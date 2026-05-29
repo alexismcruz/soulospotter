@@ -1,0 +1,154 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Country {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  code      String   @unique // ISO 3166-1 alpha-2
+  region    Region
+  flagEmoji String?
+  cities    City[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model City {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  countryId   String
+  country     Country  @relation(fields: [countryId], references: [id])
+  region      Region
+  description String?  @db.Text
+  imageUrl    String?
+  lat         Float?
+  lng         Float?
+  timezone    String?
+  currency    String?  // e.g. "USD", "EUR"
+  language    String?  // primary language spoken
+  safetyScore Int?     // 1-10
+  costLevel   CostLevel?
+  spots       Spot[]
+  tags        CityTag[]
+  seoTitle    String?
+  seoDesc     String?  @db.Text
+  published   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([region])
+  @@index([published])
+}
+
+model Spot {
+  id          String     @id @default(cuid())
+  name        String
+  slug        String
+  cityId      String
+  city        City       @relation(fields: [cityId], references: [id])
+  category    SpotCategory
+  description String?    @db.Text
+  address     String?
+  lat         Float?
+  lng         Float?
+  website     String?
+  imageUrl    String?
+  priceRange  PriceRange?
+  rating      Float?     // aggregated, 1-5
+  tags        SpotTag[]
+  affiliateLinks AffiliateLink[]
+  published   Boolean    @default(false)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  @@unique([cityId, slug])
+  @@index([cityId, category])
+  @@index([published])
+}
+
+model AffiliateLink {
+  id        String          @id @default(cuid())
+  spotId    String?
+  spot      Spot?           @relation(fields: [spotId], references: [id])
+  provider  AffiliateProvider
+  url       String
+  label     String?         // e.g. "Book on Booking.com"
+  createdAt DateTime        @default(now())
+}
+
+// Tags are free-form strings stored normalized
+model CityTag {
+  id     String @id @default(cuid())
+  cityId String
+  city   City   @relation(fields: [cityId], references: [id], onDelete: Cascade)
+  tag    String
+
+  @@unique([cityId, tag])
+  @@index([tag])
+}
+
+model SpotTag {
+  id     String @id @default(cuid())
+  spotId String
+  spot   Spot   @relation(fields: [spotId], references: [id], onDelete: Cascade)
+  tag    String
+
+  @@unique([spotId, tag])
+  @@index([tag])
+}
+
+enum Region {
+  NORTH_AMERICA
+  LATIN_AMERICA
+  EUROPE
+  MIDDLE_EAST_AFRICA
+  SOUTH_ASIA
+  SOUTHEAST_ASIA
+  EAST_ASIA
+  OCEANIA
+}
+
+enum CostLevel {
+  BUDGET
+  MID_RANGE
+  EXPENSIVE
+}
+
+enum PriceRange {
+  FREE
+  BUDGET     // < $10
+  MID        // $10-30
+  HIGH       // $30+
+}
+
+enum SpotCategory {
+  ACCOMMODATION   // hostels, guesthouses
+  CAFE            // work-friendly cafes
+  COWORKING       // coworking spaces
+  FOOD            // restaurants, street food
+  WELLNESS        // spas, yoga, meditation
+  COMMUNITY       // meetup spots, expat hubs
+  NATURE          // parks, hikes, beaches
+  CULTURE         // museums, temples, galleries
+  NIGHTLIFE
+  TRANSPORT       // airports, bus hubs
+}
+
+enum AffiliateProvider {
+  BOOKING_COM
+  HOSTELWORLD
+  AIRBNB
+  SAFETYWING
+  WORLD_NOMADS
+  AIRALO
+  GETYOURGUIDE
+  VIATOR
+  OTHER
+}

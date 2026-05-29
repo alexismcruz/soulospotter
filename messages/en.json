@@ -1,0 +1,63 @@
+{
+  "common": {
+    "appName": "SouloSpotter",
+    "tagline": "Travel alone. Find yourself.",
+    "search": "Search destinations",
+    "explore": "Explore",
+    "viewAll": "View all",
+    "learnMore": "Learn more",
+    "backToTop": "Back to top"
+  },
+  "nav": {
+    "destinations": "Destinations",
+    "categories": "Categories",
+    "resources": "Resources",
+    "about": "About"
+  },
+  "home": {
+    "heroTitle": "Travel alone.",
+    "heroTitleHighlight": "Find yourself.",
+    "heroSubtitle": "The directory for solo travelers who seek more than a destination.",
+    "featuredDestinations": "Featured Destinations",
+    "browseByRegion": "Browse by Region",
+    "popularSpots": "Popular Spots"
+  },
+  "city": {
+    "spotsIn": "Spots in {city}",
+    "safetyScore": "Safety Score",
+    "costLevel": "Cost Level",
+    "bestFor": "Best for"
+  },
+  "spot": {
+    "visitWebsite": "Visit Website",
+    "getDirections": "Get Directions",
+    "bookNow": "Book Now"
+  },
+  "regions": {
+    "NORTH_AMERICA": "North America",
+    "LATIN_AMERICA": "Latin America",
+    "EUROPE": "Europe",
+    "MIDDLE_EAST_AFRICA": "Middle East & Africa",
+    "SOUTH_ASIA": "South Asia",
+    "SOUTHEAST_ASIA": "Southeast Asia",
+    "EAST_ASIA": "East Asia",
+    "OCEANIA": "Oceania"
+  },
+  "categories": {
+    "ACCOMMODATION": "Accommodation",
+    "CAFE": "Cafes",
+    "COWORKING": "Coworking",
+    "FOOD": "Food & Drink",
+    "WELLNESS": "Wellness",
+    "COMMUNITY": "Community",
+    "NATURE": "Nature",
+    "CULTURE": "Culture",
+    "NIGHTLIFE": "Nightlife",
+    "TRANSPORT": "Transport"
+  },
+  "cost": {
+    "BUDGET": "Budget",
+    "MID_RANGE": "Mid-range",
+    "EXPENSIVE": "Expensive"
+  }
+}
