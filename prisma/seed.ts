@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { PrismaClient, Region, CostLevel, SpotCategory, PriceRange } from "@prisma/client";
 
 const prisma = new PrismaClient();
