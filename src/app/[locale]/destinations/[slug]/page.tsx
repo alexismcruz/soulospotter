@@ -7,6 +7,7 @@ import SiteFooter from "@/components/layout/SiteFooter";
 import CityHero from "@/components/city/CityHero";
 import CityStats from "@/components/city/CityStats";
 import SpotList from "@/components/city/SpotList";
+import TripResources from "@/components/city/TripResources";
 
 type Props = {
   params: Promise<{ slug: string; locale: string }>;
@@ -77,6 +78,7 @@ export default async function CityPage({ params, searchParams }: Props) {
         <CityHero city={city} />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <CityStats city={city} />
+          <TripResources />
           <SpotList
             spots={filteredSpots}
             allSpots={city.spots}
