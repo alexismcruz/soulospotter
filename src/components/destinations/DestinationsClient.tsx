@@ -3,18 +3,12 @@
 import { useState, useMemo } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { Region, CostLevel } from "@prisma/client";
+import { REGIONS as REGION_LIST, REGION_BY_ENUM } from "@/lib/regions";
 import CityCard from "./CityCard";
 
 const REGIONS: { value: Region | ""; label: string; emoji: string }[] = [
-  { value: "",                   label: "All Regions",          emoji: "🌍" },
-  { value: "NORTH_AMERICA",      label: "North America",        emoji: "🗽" },
-  { value: "LATIN_AMERICA",      label: "Latin America",        emoji: "🌿" },
-  { value: "EUROPE",             label: "Europe",               emoji: "🏛️" },
-  { value: "MIDDLE_EAST_AFRICA", label: "Middle East & Africa", emoji: "🏜️" },
-  { value: "SOUTH_ASIA",         label: "South Asia",           emoji: "🕌" },
-  { value: "SOUTHEAST_ASIA",     label: "Southeast Asia",       emoji: "🌴" },
-  { value: "EAST_ASIA",          label: "East Asia",            emoji: "⛩️" },
-  { value: "OCEANIA",            label: "Oceania",              emoji: "🌊" },
+  { value: "", label: "All Regions", emoji: "🌍" },
+  ...REGION_LIST.map((r) => ({ value: r.region, label: r.label, emoji: r.emoji })),
 ];
 
 const COSTS: { value: CostLevel | ""; label: string }[] = [
@@ -200,7 +194,7 @@ export default function DestinationsClient({
         <div className="space-y-12">
           {Object.entries(byRegion).map(([reg, regCities]) => {
             if (!regCities || regCities.length === 0) return null;
-            const regionMeta = REGIONS.find((r) => r.value === reg);
+            const regionMeta = reg ? REGION_BY_ENUM[reg as Region] : null;
             return (
               <div key={reg}>
                 {/* Region heading — only show when not filtered to one region */}
