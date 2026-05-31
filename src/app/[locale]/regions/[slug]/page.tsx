@@ -72,7 +72,7 @@ export default async function RegionPage({ params }: Props) {
             <div className="flex items-start gap-5">
               <span className="text-6xl">{meta.emoji}</span>
               <div>
-                <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold">{meta.label}</h1>
+                <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-soulo-white">{meta.label}</h1>
                 <p className="mt-3 text-soulo-mist text-lg max-w-2xl leading-relaxed">
                   {meta.description}
                 </p>

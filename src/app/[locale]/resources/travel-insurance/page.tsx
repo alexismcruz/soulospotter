@@ -33,7 +33,7 @@ export default function TravelInsurancePage() {
               <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-sm text-blue-300 mb-5">
                 🛡️ Updated for 2025
               </div>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
+              <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-soulo-white">
                 Travel Insurance for<br />
                 <span className="text-blue-300">Solo Travelers</span>
               </h1>

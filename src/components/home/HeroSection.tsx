@@ -36,7 +36,7 @@ export default function HeroSection() {
           </div>
 
           {/* Headline */}
-          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight mb-4">
+          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight mb-4 text-soulo-white">
             {t("heroTitle")}{" "}
             <span className="text-soulo-gold italic">{t("heroTitleHighlight")}</span>
           </h1>

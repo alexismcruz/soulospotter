@@ -89,7 +89,7 @@ export default function ToursPage() {
               <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-sm text-amber-300 mb-5">
                 🗺️ Curated for solo travelers
               </div>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
+              <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-soulo-white">
                 Group Tours for<br />
                 <span className="text-amber-300">Solo Travelers</span>
               </h1>

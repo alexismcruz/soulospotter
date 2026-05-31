@@ -24,7 +24,7 @@ export default function AboutPage() {
               <span className="text-soulo-white">About</span>
             </nav>
             <p className="text-soulo-gold font-semibold text-sm uppercase tracking-widest mb-4">Our story</p>
-            <h1 className="font-display text-4xl sm:text-5xl font-bold leading-tight mb-6">
+            <h1 className="font-display text-4xl sm:text-5xl font-bold leading-tight mb-6 text-soulo-white">
               Built for the solo traveler.<br />
               <span className="text-soulo-gold italic">By someone who gets it.</span>
             </h1>
@@ -161,6 +161,7 @@ export default function AboutPage() {
         <div className="bg-soulo-slate py-16">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="font-display text-3xl font-bold text-soulo-white mb-4">Ready to explore?</h2>
+
             <p className="text-soulo-mist mb-8 max-w-lg mx-auto">
               21 cities, 8 regions, and 63 curated spots — built for you.
             </p>

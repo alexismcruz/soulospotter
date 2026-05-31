@@ -32,7 +32,7 @@ export default function EsimsPage() {
               <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-sm text-teal-300 mb-5">
                 📱 Works in 200+ countries
               </div>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
+              <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-soulo-white">
                 Stay Connected Anywhere<br />
                 <span className="text-teal-300">with Airalo eSIM</span>
               </h1>
