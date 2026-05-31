@@ -141,6 +141,49 @@ enum SpotCategory {
   TRANSPORT       // airports, bus hubs
 }
 
+model Submission {
+  id          String           @id @default(cuid())
+  // Spot info
+  spotName    String
+  category    SpotCategory
+  description String           @db.Text
+  address     String
+  website     String?
+  // Location
+  cityName    String           // free-text — we match to a City later
+  countryName String
+  // Submitter
+  submitterName  String
+  submitterEmail String
+  // Status
+  status      SubmissionStatus @default(PENDING)
+  reviewNote  String?
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+model AdvertiseInquiry {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  business  String
+  city      String
+  tier      String   // "featured" | "spotlight" | "homepage"
+  message   String?  @db.Text
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+}
+
+enum SubmissionStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
 enum AffiliateProvider {
   BOOKING_COM
   HOSTELWORLD

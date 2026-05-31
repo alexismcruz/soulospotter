@@ -35,6 +35,8 @@ export default function SiteFooter() {
               <li><Link href="/resources/travel-insurance" className="hover:text-white transition-colors">Travel Insurance</Link></li>
               <li><Link href="/resources/esims" className="hover:text-white transition-colors">eSIMs for Travel</Link></li>
               <li><Link href="/resources/tours" className="hover:text-white transition-colors">Solo Tours</Link></li>
+              <li><Link href="/submit" className="hover:text-white transition-colors">Submit a Listing</Link></li>
+              <li><Link href="/advertise" className="hover:text-white transition-colors">Advertise with Us</Link></li>
               <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
             </ul>
           </div>
