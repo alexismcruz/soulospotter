@@ -59,38 +59,35 @@ export default async function RegionPage({ params }: Props) {
       <SiteHeader />
       <main className="flex-1">
         {/* Hero */}
-        <div className="bg-gradient-to-br from-stone-900 via-stone-800 to-stone-900 text-white">
+        <div className="bg-soulo-slate text-soulo-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
-            {/* Breadcrumb */}
-            <nav className="flex items-center gap-2 text-sm text-stone-400 mb-6">
-              <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            <nav className="flex items-center gap-2 text-sm text-soulo-mist mb-6">
+              <Link href="/" className="hover:text-soulo-white transition-colors">Home</Link>
               <span>/</span>
-              <Link href="/destinations" className="hover:text-white transition-colors">Destinations</Link>
+              <Link href="/destinations" className="hover:text-soulo-white transition-colors">Destinations</Link>
               <span>/</span>
-              <span className="text-white">{meta.label}</span>
+              <span className="text-soulo-white">{meta.label}</span>
             </nav>
 
             <div className="flex items-start gap-5">
               <span className="text-6xl">{meta.emoji}</span>
               <div>
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold">{meta.label}</h1>
-                <p className="mt-3 text-stone-300 text-lg max-w-2xl leading-relaxed">
+                <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold">{meta.label}</h1>
+                <p className="mt-3 text-soulo-mist text-lg max-w-2xl leading-relaxed">
                   {meta.description}
                 </p>
-
-                {/* Stats */}
                 <div className="mt-6 flex flex-wrap gap-6 text-sm">
                   <div>
-                    <span className="text-2xl font-bold text-amber-400">{cities.length}</span>
-                    <span className="ml-1.5 text-stone-400">{cities.length === 1 ? "city" : "cities"}</span>
+                    <span className="text-2xl font-bold text-soulo-gold">{cities.length}</span>
+                    <span className="ml-1.5 text-soulo-mist">{cities.length === 1 ? "city" : "cities"}</span>
                   </div>
                   <div>
-                    <span className="text-2xl font-bold text-amber-400">{countries}</span>
-                    <span className="ml-1.5 text-stone-400">{countries === 1 ? "country" : "countries"}</span>
+                    <span className="text-2xl font-bold text-soulo-gold">{countries}</span>
+                    <span className="ml-1.5 text-soulo-mist">{countries === 1 ? "country" : "countries"}</span>
                   </div>
                   <div>
-                    <span className="text-2xl font-bold text-amber-400">{totalSpots}</span>
-                    <span className="ml-1.5 text-stone-400">curated spots</span>
+                    <span className="text-2xl font-bold text-soulo-gold">{totalSpots}</span>
+                    <span className="ml-1.5 text-soulo-mist">curated spots</span>
                   </div>
                 </div>
               </div>
@@ -99,18 +96,18 @@ export default async function RegionPage({ params }: Props) {
         </div>
 
         {/* Cities grid */}
-        <div className="bg-stone-50 py-12">
+        <div className="bg-soulo-white py-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {cities.length === 0 ? (
-              <div className="text-center py-20 text-stone-400">
+              <div className="text-center py-20 text-soulo-mist">
                 <p className="text-4xl mb-3">{meta.emoji}</p>
-                <p className="text-lg font-medium text-stone-600">More cities coming soon.</p>
+                <p className="text-lg font-medium text-soulo-grey">More cities coming soon.</p>
                 <p className="text-sm mt-1">We're curating the best solo travel spots in {meta.label}.</p>
               </div>
             ) : (
               <>
-                <p className="text-sm text-stone-500 mb-6">
-                  Showing <strong className="text-stone-800">{cities.length}</strong>{" "}
+                <p className="text-sm text-soulo-grey mb-6">
+                  Showing <strong className="text-soulo-dark">{cities.length}</strong>{" "}
                   {cities.length === 1 ? "destination" : "destinations"} in {meta.label}
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
@@ -124,18 +121,18 @@ export default async function RegionPage({ params }: Props) {
         </div>
 
         {/* Explore other regions */}
-        <div className="bg-white border-t border-stone-100 py-12">
+        <div className="bg-soulo-linen border-t border-soulo-border py-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-xl font-bold text-stone-900 mb-6">Explore other regions</h2>
+            <h2 className="font-display text-xl font-bold text-soulo-dark mb-6">Explore other regions</h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
               {otherRegions.map((r) => (
                 <Link
                   key={r.slug}
                   href={`/regions/${r.slug}`}
-                  className="flex items-center gap-3 p-3.5 rounded-xl border border-stone-200 bg-stone-50 hover:border-amber-300 hover:bg-amber-50 transition-all group"
+                  className="flex items-center gap-3 p-3.5 rounded-2xl border border-soulo-border bg-white hover:border-soulo-gold hover:bg-soulo-linen transition-all group"
                 >
                   <span className="text-2xl">{r.emoji}</span>
-                  <span className="text-sm font-medium text-stone-700 group-hover:text-amber-700 leading-snug">
+                  <span className="text-sm font-medium text-soulo-grey group-hover:text-soulo-dark leading-snug">
                     {r.label}
                   </span>
                 </Link>

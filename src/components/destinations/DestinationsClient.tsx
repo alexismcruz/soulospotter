@@ -98,11 +98,11 @@ export default function DestinationsClient({
   return (
     <div>
       {/* Search + filters */}
-      <div className="bg-white rounded-2xl border border-stone-200 p-4 sm:p-5 mb-8 space-y-4">
+      <div className="bg-white rounded-2xl border border-soulo-border p-4 sm:p-5 mb-8 space-y-4">
         {/* Search input */}
         <div className="relative">
           <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-            <svg className="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 text-soulo-mist" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
           </div>
@@ -114,12 +114,12 @@ export default function DestinationsClient({
               updateParams(e.target.value, region, cost);
             }}
             placeholder="Search cities, countries, or tags..."
-            className="w-full pl-12 pr-4 py-3 rounded-xl border border-stone-200 text-stone-900 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all text-sm"
+            className="w-full pl-12 pr-4 py-3 rounded-xl border border-soulo-border text-soulo-dark placeholder-soulo-mist focus:outline-none focus:ring-2 focus:ring-soulo-gold focus:border-transparent transition-all text-sm"
           />
           {query && (
             <button
               onClick={() => { setQuery(""); updateParams("", region, cost); }}
-              className="absolute inset-y-0 right-3 flex items-center text-stone-400 hover:text-stone-600"
+              className="absolute inset-y-0 right-3 flex items-center text-soulo-mist hover:text-soulo-grey"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -134,7 +134,7 @@ export default function DestinationsClient({
           <select
             value={region}
             onChange={(e) => { setRegion(e.target.value); updateParams(query, e.target.value, cost); }}
-            className="flex-1 min-w-[160px] px-3 py-2.5 rounded-xl border border-stone-200 text-sm text-stone-700 bg-white focus:outline-none focus:ring-2 focus:ring-amber-400 cursor-pointer"
+            className="flex-1 min-w-[160px] px-3 py-2.5 rounded-2xl border border-soulo-border text-sm text-soulo-grey bg-white focus:outline-none focus:ring-2 focus:ring-soulo-gold cursor-pointer"
           >
             {REGIONS.map((r) => (
               <option key={r.value} value={r.value}>
@@ -147,7 +147,7 @@ export default function DestinationsClient({
           <select
             value={cost}
             onChange={(e) => { setCost(e.target.value); updateParams(query, region, e.target.value); }}
-            className="flex-1 min-w-[160px] px-3 py-2.5 rounded-xl border border-stone-200 text-sm text-stone-700 bg-white focus:outline-none focus:ring-2 focus:ring-amber-400 cursor-pointer"
+            className="flex-1 min-w-[160px] px-3 py-2.5 rounded-2xl border border-soulo-border text-sm text-soulo-grey bg-white focus:outline-none focus:ring-2 focus:ring-soulo-gold cursor-pointer"
           >
             {COSTS.map((c) => (
               <option key={c.value} value={c.value}>{c.label}</option>
@@ -158,7 +158,7 @@ export default function DestinationsClient({
           {hasFilters && (
             <button
               onClick={clearFilters}
-              className="px-4 py-2.5 rounded-xl border border-stone-200 text-sm text-stone-600 hover:bg-stone-50 transition-colors whitespace-nowrap"
+              className="px-4 py-2.5 rounded-xl border border-soulo-border text-sm text-soulo-grey hover:bg-soulo-linen transition-colors whitespace-nowrap"
             >
               Clear filters
             </button>
@@ -167,22 +167,22 @@ export default function DestinationsClient({
       </div>
 
       {/* Results summary */}
-      <p className="text-sm text-stone-500 mb-6">
+      <p className="text-sm text-soulo-grey mb-6">
         {filtered.length === 0
           ? "No destinations match your filters."
-          : <>Showing <strong className="text-stone-800">{filtered.length}</strong> {filtered.length === 1 ? "destination" : "destinations"}{hasFilters ? " matching your filters" : ""}</>
+          : <>Showing <strong className="text-soulo-dark">{filtered.length}</strong> {filtered.length === 1 ? "destination" : "destinations"}{hasFilters ? " matching your filters" : ""}</>
         }
       </p>
 
       {/* No results */}
       {filtered.length === 0 && (
-        <div className="text-center py-20 text-stone-400">
+        <div className="text-center py-20 text-soulo-mist">
           <p className="text-5xl mb-4">🗺️</p>
-          <p className="text-lg font-medium text-stone-600">No destinations found</p>
+          <p className="text-lg font-medium text-soulo-grey">No destinations found</p>
           <p className="text-sm mt-2">Try adjusting your search or filters.</p>
           <button
             onClick={clearFilters}
-            className="mt-4 px-5 py-2 rounded-xl bg-amber-500 text-stone-900 font-medium text-sm hover:bg-amber-400 transition-colors"
+            className="mt-4 px-5 py-2 rounded-xl bg-soulo-gold text-soulo-dark font-medium text-sm hover:bg-amber-400 transition-colors"
           >
             Clear all filters
           </button>
@@ -201,8 +201,8 @@ export default function DestinationsClient({
                 {!region && (
                   <div className="flex items-center gap-3 mb-5">
                     <span className="text-2xl">{regionMeta?.emoji}</span>
-                    <h2 className="text-lg font-bold text-stone-800">{regionMeta?.label}</h2>
-                    <span className="text-sm text-stone-400">{regCities.length} {regCities.length === 1 ? "city" : "cities"}</span>
+                    <h2 className="text-lg font-bold text-soulo-dark">{regionMeta?.label}</h2>
+                    <span className="text-sm text-soulo-mist">{regCities.length} {regCities.length === 1 ? "city" : "cities"}</span>
                   </div>
                 )}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">

@@ -17,15 +17,14 @@ const CATEGORY_META: Record<SpotCategory, { emoji: string; slug: string; desc: s
 
 export default function CategoryGrid() {
   const t = useTranslations("categories");
-
   const categories = Object.entries(CATEGORY_META) as [SpotCategory, typeof CATEGORY_META[SpotCategory]][];
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-stone-50">
+    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-soulo-white">
       <div className="max-w-7xl mx-auto">
         <div className="mb-10">
-          <h2 className="text-2xl sm:text-3xl font-bold text-stone-900">Browse by Category</h2>
-          <p className="mt-2 text-stone-500">Find exactly what you need, wherever you are.</p>
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-soulo-dark">Browse by Category</h2>
+          <p className="mt-2 text-soulo-grey">Find exactly what you need, wherever you are.</p>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
@@ -33,16 +32,16 @@ export default function CategoryGrid() {
             <Link
               key={category}
               href={`/categories/${meta.slug}`}
-              className="group flex flex-col items-center text-center gap-3 p-5 rounded-2xl bg-white border border-stone-200 hover:border-amber-300 hover:shadow-md transition-all duration-200 hover:-translate-y-0.5"
+              className="group flex flex-col items-center text-center gap-3 p-5 rounded-2xl bg-soulo-linen border border-soulo-border hover:border-soulo-gold hover:shadow-md transition-all duration-200 hover:-translate-y-0.5"
             >
               <span className="text-3xl group-hover:scale-110 transition-transform duration-200">
                 {meta.emoji}
               </span>
               <div>
-                <p className="text-sm font-semibold text-stone-800 group-hover:text-amber-600 transition-colors">
+                <p className="text-sm font-semibold text-soulo-dark group-hover:text-soulo-slate transition-colors">
                   {t(category)}
                 </p>
-                <p className="text-xs text-stone-400 mt-0.5 leading-snug">
+                <p className="text-xs text-soulo-mist mt-0.5 leading-snug">
                   {meta.desc}
                 </p>
               </div>

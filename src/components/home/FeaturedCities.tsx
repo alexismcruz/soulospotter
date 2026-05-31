@@ -1,13 +1,12 @@
 import Link from "next/link";
 import { CostLevel } from "@prisma/client";
+import { CITY_IMAGES, FALLBACK_IMAGE } from "@/lib/cityImages";
 
 const COST_LABEL: Record<CostLevel, { label: string; color: string }> = {
-  BUDGET:    { label: "$",   color: "text-green-600 bg-green-50" },
-  MID_RANGE: { label: "$$",  color: "text-amber-600 bg-amber-50" },
-  EXPENSIVE: { label: "$$$", color: "text-red-600 bg-red-50" },
+  BUDGET:    { label: "$",   color: "text-soulo-dark bg-soulo-gold" },
+  MID_RANGE: { label: "$$",  color: "text-soulo-dark bg-amber-200" },
+  EXPENSIVE: { label: "$$$", color: "text-white bg-purple-500" },
 };
-
-import { CITY_IMAGES, FALLBACK_IMAGE } from "@/lib/cityImages";
 
 type CityWithRelations = {
   id: string;
@@ -28,16 +27,16 @@ type Props = {
 
 export default function FeaturedCities({ cities }: Props) {
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-soulo-linen">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-end justify-between mb-10">
           <div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-stone-900">Featured Destinations</h2>
-            <p className="mt-2 text-stone-500">Hand-picked cities for the solo traveler.</p>
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-soulo-dark">Featured Destinations</h2>
+            <p className="mt-2 text-soulo-grey">Hand-picked cities for the solo traveler.</p>
           </div>
           <Link
             href="/destinations"
-            className="hidden sm:flex items-center gap-1 text-sm font-medium text-amber-600 hover:text-amber-700 transition-colors"
+            className="hidden sm:flex items-center gap-1 text-sm font-semibold text-soulo-gold hover:text-amber-600 transition-colors"
           >
             View all
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -55,7 +54,7 @@ export default function FeaturedCities({ cities }: Props) {
               <Link
                 key={city.id}
                 href={`/destinations/${city.slug}`}
-                className="group rounded-2xl overflow-hidden border border-stone-200 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 bg-white"
+                className="group rounded-2xl overflow-hidden border border-soulo-border hover:shadow-lg hover:border-soulo-gold transition-all duration-200 hover:-translate-y-1 bg-white"
               >
                 {/* Image */}
                 <div className="relative h-44 overflow-hidden">
@@ -64,15 +63,14 @@ export default function FeaturedCities({ cities }: Props) {
                     alt={city.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                  {/* Overlay badges */}
                   <div className="absolute top-3 left-3 flex gap-1.5">
                     {cost && (
-                      <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${cost.color}`}>
+                      <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${cost.color}`}>
                         {cost.label}
                       </span>
                     )}
                     {city.safetyScore && city.safetyScore >= 9 && (
-                      <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700">
+                      <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-soulo-teal text-soulo-dark">
                         Very Safe
                       </span>
                     )}
@@ -83,31 +81,30 @@ export default function FeaturedCities({ cities }: Props) {
                 <div className="p-4">
                   <div className="flex items-start justify-between gap-2">
                     <div>
-                      <h3 className="font-semibold text-stone-900 group-hover:text-amber-600 transition-colors">
+                      <h3 className="font-display font-semibold text-soulo-dark group-hover:text-soulo-slate transition-colors">
                         {city.name}
                       </h3>
-                      <p className="text-xs text-stone-500 mt-0.5">
+                      <p className="text-xs text-soulo-mist mt-0.5">
                         {city.country.flagEmoji} {city.country.name}
                       </p>
                     </div>
-                    <span className="text-xs text-stone-400 whitespace-nowrap mt-0.5">
+                    <span className="text-xs text-soulo-mist whitespace-nowrap mt-0.5">
                       {city._count.spots} spots
                     </span>
                   </div>
 
                   {city.description && (
-                    <p className="mt-2 text-xs text-stone-500 line-clamp-2 leading-relaxed">
+                    <p className="mt-2 text-xs text-soulo-grey line-clamp-2 leading-relaxed">
                       {city.description}
                     </p>
                   )}
 
-                  {/* Tags */}
                   {city.tags.length > 0 && (
                     <div className="mt-3 flex flex-wrap gap-1">
                       {city.tags.slice(0, 3).map((t) => (
                         <span
                           key={t.tag}
-                          className="text-xs px-2 py-0.5 rounded-full bg-stone-100 text-stone-500"
+                          className="text-xs px-2 py-0.5 rounded-full bg-soulo-linen text-soulo-grey border border-soulo-border"
                         >
                           {t.tag}
                         </span>
@@ -120,11 +117,10 @@ export default function FeaturedCities({ cities }: Props) {
           })}
         </div>
 
-        {/* Mobile view all */}
         <div className="mt-6 text-center sm:hidden">
           <Link
             href="/destinations"
-            className="inline-flex items-center gap-1 text-sm font-medium text-amber-600 hover:text-amber-700 transition-colors"
+            className="inline-flex items-center gap-1 text-sm font-semibold text-soulo-gold hover:text-amber-600 transition-colors"
           >
             View all destinations
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

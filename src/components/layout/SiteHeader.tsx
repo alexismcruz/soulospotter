@@ -9,48 +9,44 @@ export default function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-sm border-b border-stone-100">
+    <header className="sticky top-0 z-50 bg-soulo-slate border-b border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
             <span className="text-2xl">🧭</span>
-            <span className="font-bold text-xl tracking-tight text-stone-900 group-hover:text-amber-600 transition-colors">
+            <span className="font-display font-bold text-xl tracking-tight text-soulo-white group-hover:text-soulo-gold transition-colors">
               SouloSpotter
             </span>
           </Link>
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">
+            {[
+              { href: "/destinations", label: t("destinations") },
+              { href: "/regions/southeast-asia", label: t("categories") },
+              { href: "/resources", label: t("resources") },
+              { href: "/about", label: t("about") },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="text-sm font-medium text-soulo-mist hover:text-soulo-white transition-colors"
+              >
+                {item.label}
+              </Link>
+            ))}
             <Link
-              href="/destinations"
-              className="text-sm font-medium text-stone-600 hover:text-stone-900 transition-colors"
+              href="/advertise"
+              className="text-sm font-semibold px-4 py-1.5 rounded-full bg-soulo-gold text-soulo-dark hover:bg-amber-400 transition-colors"
             >
-              {t("destinations")}
-            </Link>
-            <Link
-              href="/categories"
-              className="text-sm font-medium text-stone-600 hover:text-stone-900 transition-colors"
-            >
-              {t("categories")}
-            </Link>
-            <Link
-              href="/resources"
-              className="text-sm font-medium text-stone-600 hover:text-stone-900 transition-colors"
-            >
-              {t("resources")}
-            </Link>
-            <Link
-              href="/about"
-              className="text-sm font-medium text-stone-600 hover:text-stone-900 transition-colors"
-            >
-              {t("about")}
+              Advertise
             </Link>
           </nav>
 
           {/* Mobile menu button */}
           <button
-            className="md:hidden p-2 rounded-lg text-stone-600 hover:bg-stone-100 transition-colors"
+            className="md:hidden p-2 rounded-lg text-soulo-mist hover:text-soulo-white transition-colors"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
           >
@@ -69,18 +65,19 @@ export default function SiteHeader() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden border-t border-stone-100 bg-white">
+        <div className="md:hidden border-t border-white/10 bg-soulo-slate">
           <nav className="flex flex-col px-4 py-3 gap-1">
             {[
               { href: "/destinations", label: t("destinations") },
-              { href: "/categories", label: t("categories") },
               { href: "/resources", label: t("resources") },
+              { href: "/submit", label: "Submit a Spot" },
+              { href: "/advertise", label: "Advertise" },
               { href: "/about", label: t("about") },
             ].map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="px-3 py-2 rounded-lg text-sm font-medium text-stone-700 hover:bg-stone-50 transition-colors"
+                className="px-3 py-2 rounded-lg text-sm font-medium text-soulo-mist hover:text-soulo-white hover:bg-white/5 transition-colors"
                 onClick={() => setMenuOpen(false)}
               >
                 {item.label}

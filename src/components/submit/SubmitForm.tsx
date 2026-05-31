@@ -61,8 +61,8 @@ export default function SubmitForm() {
     return (
       <div className="bg-green-50 border border-green-200 rounded-2xl p-10 text-center">
         <div className="text-5xl mb-4">🎉</div>
-        <h2 className="text-xl font-bold text-stone-900 mb-2">Thanks for your submission!</h2>
-        <p className="text-stone-600 text-sm max-w-sm mx-auto">
+        <h2 className="text-xl font-bold text-soulo-dark mb-2">Thanks for your submission!</h2>
+        <p className="text-soulo-grey text-sm max-w-sm mx-auto">
           We'll review your listing within 5 business days. If approved, it will appear on the city page automatically.
         </p>
       </div>
@@ -72,30 +72,30 @@ export default function SubmitForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
       {/* Section: About the spot */}
-      <fieldset className="bg-white rounded-2xl border border-stone-200 p-6 space-y-5">
-        <legend className="text-base font-bold text-stone-900 px-1">About the spot</legend>
+      <fieldset className="bg-white rounded-2xl border border-soulo-border p-6 space-y-5">
+        <legend className="text-base font-display font-bold text-soulo-dark px-1">About the spot</legend>
 
         <div className="grid sm:grid-cols-2 gap-5">
           <div>
-            <label className="block text-sm font-medium text-stone-700 mb-1.5">
+            <label className="block text-sm font-medium text-soulo-grey mb-1.5">
               Spot name <span className="text-red-500">*</span>
             </label>
             <input
               name="spotName"
               required
               placeholder="e.g. Pergamino Café"
-              className="w-full px-4 py-2.5 rounded-xl border border-stone-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 transition-all"
+              className="w-full px-4 py-2.5 rounded-xl border border-soulo-border text-sm focus:outline-none focus:ring-2 focus:ring-soulo-gold transition-all"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-stone-700 mb-1.5">
+            <label className="block text-sm font-medium text-soulo-grey mb-1.5">
               Category <span className="text-red-500">*</span>
             </label>
             <select
               name="category"
               required
-              className="w-full px-4 py-2.5 rounded-xl border border-stone-200 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-amber-400 transition-all"
+              className="w-full px-4 py-2.5 rounded-xl border border-soulo-border text-sm bg-white focus:outline-none focus:ring-2 focus:ring-soulo-gold transition-all"
             >
               <option value="">Select a category</option>
               {CATEGORIES.map((c) => (
@@ -108,7 +108,7 @@ export default function SubmitForm() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-stone-700 mb-1.5">
+          <label className="block text-sm font-medium text-soulo-grey mb-1.5">
             Description <span className="text-red-500">*</span>
           </label>
           <textarea
@@ -118,92 +118,92 @@ export default function SubmitForm() {
             maxLength={1000}
             rows={4}
             placeholder="Why is this spot great for solo travelers? What makes it special? (min. 20 characters)"
-            className="w-full px-4 py-2.5 rounded-xl border border-stone-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 transition-all resize-none"
+            className="w-full px-4 py-2.5 rounded-xl border border-soulo-border text-sm focus:outline-none focus:ring-2 focus:ring-soulo-gold transition-all resize-none"
           />
         </div>
 
         <div className="grid sm:grid-cols-2 gap-5">
           <div>
-            <label className="block text-sm font-medium text-stone-700 mb-1.5">
+            <label className="block text-sm font-medium text-soulo-grey mb-1.5">
               Address <span className="text-red-500">*</span>
             </label>
             <input
               name="address"
               required
               placeholder="Street address or neighbourhood"
-              className="w-full px-4 py-2.5 rounded-xl border border-stone-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 transition-all"
+              className="w-full px-4 py-2.5 rounded-xl border border-soulo-border text-sm focus:outline-none focus:ring-2 focus:ring-soulo-gold transition-all"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-stone-700 mb-1.5">
-              Website <span className="text-stone-400 font-normal">(optional)</span>
+            <label className="block text-sm font-medium text-soulo-grey mb-1.5">
+              Website <span className="text-soulo-mist font-normal">(optional)</span>
             </label>
             <input
               name="website"
               type="url"
               placeholder="https://..."
-              className="w-full px-4 py-2.5 rounded-xl border border-stone-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 transition-all"
+              className="w-full px-4 py-2.5 rounded-xl border border-soulo-border text-sm focus:outline-none focus:ring-2 focus:ring-soulo-gold transition-all"
             />
           </div>
         </div>
       </fieldset>
 
       {/* Section: Location */}
-      <fieldset className="bg-white rounded-2xl border border-stone-200 p-6 space-y-5">
-        <legend className="text-base font-bold text-stone-900 px-1">Location</legend>
+      <fieldset className="bg-white rounded-2xl border border-soulo-border p-6 space-y-5">
+        <legend className="text-base font-display font-bold text-soulo-dark px-1">Location</legend>
 
         <div className="grid sm:grid-cols-2 gap-5">
           <div>
-            <label className="block text-sm font-medium text-stone-700 mb-1.5">
+            <label className="block text-sm font-medium text-soulo-grey mb-1.5">
               City <span className="text-red-500">*</span>
             </label>
             <input
               name="cityName"
               required
               placeholder="e.g. Medellín"
-              className="w-full px-4 py-2.5 rounded-xl border border-stone-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 transition-all"
+              className="w-full px-4 py-2.5 rounded-xl border border-soulo-border text-sm focus:outline-none focus:ring-2 focus:ring-soulo-gold transition-all"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-stone-700 mb-1.5">
+            <label className="block text-sm font-medium text-soulo-grey mb-1.5">
               Country <span className="text-red-500">*</span>
             </label>
             <input
               name="countryName"
               required
               placeholder="e.g. Colombia"
-              className="w-full px-4 py-2.5 rounded-xl border border-stone-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 transition-all"
+              className="w-full px-4 py-2.5 rounded-xl border border-soulo-border text-sm focus:outline-none focus:ring-2 focus:ring-soulo-gold transition-all"
             />
           </div>
         </div>
 
-        <div className="bg-amber-50 border border-amber-200 rounded-xl p-3.5 text-xs text-stone-600">
+        <div className="bg-soulo-linen border border-soulo-gold/30 rounded-xl p-3.5 text-xs text-soulo-grey">
           💡 <strong>Not on our city list yet?</strong> Submit it anyway — if we get enough spots in a city, we'll add it to the directory.
         </div>
       </fieldset>
 
       {/* Section: About you */}
-      <fieldset className="bg-white rounded-2xl border border-stone-200 p-6 space-y-5">
-        <legend className="text-base font-bold text-stone-900 px-1">About you</legend>
-        <p className="text-xs text-stone-500 -mt-2">We won't publish your details — this is just so we can follow up if needed.</p>
+      <fieldset className="bg-white rounded-2xl border border-soulo-border p-6 space-y-5">
+        <legend className="text-base font-display font-bold text-soulo-dark px-1">About you</legend>
+        <p className="text-xs text-soulo-mist -mt-2">We won't publish your details — this is just so we can follow up if needed.</p>
 
         <div className="grid sm:grid-cols-2 gap-5">
           <div>
-            <label className="block text-sm font-medium text-stone-700 mb-1.5">
+            <label className="block text-sm font-medium text-soulo-grey mb-1.5">
               Your name <span className="text-red-500">*</span>
             </label>
             <input
               name="submitterName"
               required
               placeholder="Your name"
-              className="w-full px-4 py-2.5 rounded-xl border border-stone-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 transition-all"
+              className="w-full px-4 py-2.5 rounded-xl border border-soulo-border text-sm focus:outline-none focus:ring-2 focus:ring-soulo-gold transition-all"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-stone-700 mb-1.5">
+            <label className="block text-sm font-medium text-soulo-grey mb-1.5">
               Email <span className="text-red-500">*</span>
             </label>
             <input
@@ -211,7 +211,7 @@ export default function SubmitForm() {
               type="email"
               required
               placeholder="your@email.com"
-              className="w-full px-4 py-2.5 rounded-xl border border-stone-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 transition-all"
+              className="w-full px-4 py-2.5 rounded-xl border border-soulo-border text-sm focus:outline-none focus:ring-2 focus:ring-soulo-gold transition-all"
             />
           </div>
         </div>
@@ -228,12 +228,12 @@ export default function SubmitForm() {
       <button
         type="submit"
         disabled={state === "submitting"}
-        className="w-full py-3.5 bg-amber-500 hover:bg-amber-400 disabled:bg-amber-300 text-stone-900 font-bold rounded-xl transition-colors text-sm"
+        className="w-full py-3.5 bg-soulo-gold hover:bg-amber-400 disabled:bg-soulo-gold/60 text-soulo-dark font-bold rounded-xl transition-colors text-sm"
       >
         {state === "submitting" ? "Submitting..." : "Submit listing for review →"}
       </button>
 
-      <p className="text-xs text-center text-stone-400">
+      <p className="text-xs text-center text-soulo-mist">
         By submitting, you confirm this is a real place and you have no commercial interest in it (or have disclosed that you do).
       </p>
     </form>

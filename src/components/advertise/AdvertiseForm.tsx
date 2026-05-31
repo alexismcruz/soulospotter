@@ -48,7 +48,7 @@ export default function AdvertiseForm() {
       <div className="bg-green-50 border border-green-200 rounded-2xl p-10 text-center">
         <div className="text-5xl mb-4">🚀</div>
         <h2 className="text-xl font-bold text-stone-900 mb-2">Inquiry received!</h2>
-        <p className="text-stone-600 text-sm max-w-sm mx-auto">
+        <p className="text-soulo-grey text-sm max-w-sm mx-auto">
           We'll be in touch within 24 hours to confirm your listing details and get you set up.
         </p>
       </div>
@@ -56,21 +56,21 @@ export default function AdvertiseForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-2xl border border-stone-200 p-7 space-y-5">
+    <form onSubmit={handleSubmit} className="bg-white rounded-2xl border border-soulo-border p-7 space-y-5">
       <div className="grid sm:grid-cols-2 gap-5">
         <div>
-          <label className="block text-sm font-medium text-stone-700 mb-1.5">
+          <label className="block text-sm font-medium text-soulo-grey mb-1.5">
             Your name <span className="text-red-500">*</span>
           </label>
           <input
             name="name"
             required
             placeholder="Alex Cruz"
-            className="w-full px-4 py-2.5 rounded-xl border border-stone-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 transition-all"
+            className="w-full px-4 py-2.5 rounded-xl border border-soulo-border text-sm focus:outline-none focus:ring-2 focus:ring-soulo-gold transition-all"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-stone-700 mb-1.5">
+          <label className="block text-sm font-medium text-soulo-grey mb-1.5">
             Email <span className="text-red-500">*</span>
           </label>
           <input
@@ -78,44 +78,44 @@ export default function AdvertiseForm() {
             type="email"
             required
             placeholder="you@yourbusiness.com"
-            className="w-full px-4 py-2.5 rounded-xl border border-stone-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 transition-all"
+            className="w-full px-4 py-2.5 rounded-xl border border-soulo-border text-sm focus:outline-none focus:ring-2 focus:ring-soulo-gold transition-all"
           />
         </div>
       </div>
 
       <div className="grid sm:grid-cols-2 gap-5">
         <div>
-          <label className="block text-sm font-medium text-stone-700 mb-1.5">
+          <label className="block text-sm font-medium text-soulo-grey mb-1.5">
             Business name <span className="text-red-500">*</span>
           </label>
           <input
             name="business"
             required
             placeholder="Your hostel, café, or tour"
-            className="w-full px-4 py-2.5 rounded-xl border border-stone-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 transition-all"
+            className="w-full px-4 py-2.5 rounded-xl border border-soulo-border text-sm focus:outline-none focus:ring-2 focus:ring-soulo-gold transition-all"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-stone-700 mb-1.5">
+          <label className="block text-sm font-medium text-soulo-grey mb-1.5">
             City <span className="text-red-500">*</span>
           </label>
           <input
             name="city"
             required
             placeholder="e.g. Bali, Lisbon, Seoul"
-            className="w-full px-4 py-2.5 rounded-xl border border-stone-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 transition-all"
+            className="w-full px-4 py-2.5 rounded-xl border border-soulo-border text-sm focus:outline-none focus:ring-2 focus:ring-soulo-gold transition-all"
           />
         </div>
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-stone-700 mb-1.5">
+        <label className="block text-sm font-medium text-soulo-grey mb-1.5">
           Package <span className="text-red-500">*</span>
         </label>
         <select
           name="tier"
           required
-          className="w-full px-4 py-2.5 rounded-xl border border-stone-200 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-amber-400 transition-all"
+          className="w-full px-4 py-2.5 rounded-xl border border-soulo-border text-sm bg-white focus:outline-none focus:ring-2 focus:ring-soulo-gold transition-all"
         >
           <option value="">Select a package</option>
           {TIERS.map((t) => (
@@ -125,14 +125,14 @@ export default function AdvertiseForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-stone-700 mb-1.5">
-          Anything else? <span className="text-stone-400 font-normal">(optional)</span>
+        <label className="block text-sm font-medium text-soulo-grey mb-1.5">
+          Anything else? <span className="text-soulo-mist font-normal">(optional)</span>
         </label>
         <textarea
           name="message"
           rows={3}
           placeholder="Multiple locations, special requests, questions..."
-          className="w-full px-4 py-2.5 rounded-xl border border-stone-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 transition-all resize-none"
+          className="w-full px-4 py-2.5 rounded-xl border border-soulo-border text-sm focus:outline-none focus:ring-2 focus:ring-soulo-gold transition-all resize-none"
         />
       </div>
 
@@ -145,12 +145,12 @@ export default function AdvertiseForm() {
       <button
         type="submit"
         disabled={state === "submitting"}
-        className="w-full py-3.5 bg-amber-500 hover:bg-amber-400 disabled:bg-amber-300 text-stone-900 font-bold rounded-xl transition-colors text-sm"
+        className="w-full py-3.5 bg-soulo-gold hover:bg-amber-400 disabled:bg-soulo-gold/60 text-soulo-dark font-bold rounded-xl transition-colors text-sm"
       >
         {state === "submitting" ? "Sending..." : "Send inquiry →"}
       </button>
 
-      <p className="text-xs text-center text-stone-400">
+      <p className="text-xs text-center text-soulo-mist">
         We'll reply within 24 hours. No automated sales sequences — a real human will respond.
       </p>
     </form>
