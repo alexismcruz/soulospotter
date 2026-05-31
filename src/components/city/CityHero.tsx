@@ -19,6 +19,7 @@ const COST_LABELS: Record<CostLevel, string> = {
 };
 
 import { CITY_IMAGE_LG, FALLBACK_IMAGE } from "@/lib/cityImages";
+import FlagImage from "@/components/ui/FlagImage";
 
 type CityWithRelations = {
   name: string;
@@ -30,7 +31,7 @@ type CityWithRelations = {
   currency: string | null;
   language: string | null;
   timezone: string | null;
-  country: { name: string; flagEmoji: string | null };
+  country: { name: string; code: string; flagEmoji: string | null };
   tags: { tag: string }[];
   spots: unknown[];
 };
@@ -79,7 +80,7 @@ export default function CityHero({ city }: { city: CityWithRelations }) {
           </div>
 
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
-            {city.country.flagEmoji} {city.name}
+            <span className="inline-flex items-center gap-2"><FlagImage code={city.country.code} name={city.country.name} size="md" /> {city.name}</span>
           </h1>
           <p className="mt-1 text-white/60 text-sm">{city.country.name}</p>
 

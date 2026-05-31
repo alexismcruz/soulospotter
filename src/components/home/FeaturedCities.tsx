@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CostLevel } from "@prisma/client";
 import { CITY_IMAGES, FALLBACK_IMAGE } from "@/lib/cityImages";
+import FlagImage from "@/components/ui/FlagImage";
 
 const COST_LABEL: Record<CostLevel, { label: string; color: string }> = {
   BUDGET:    { label: "$",   color: "text-soulo-dark bg-soulo-gold" },
@@ -16,7 +17,7 @@ type CityWithRelations = {
   costLevel: CostLevel | null;
   safetyScore: number | null;
   description: string | null;
-  country: { name: string; flagEmoji: string | null };
+  country: { name: string; code: string; flagEmoji: string | null };
   tags: { tag: string }[];
   _count: { spots: number };
 };
@@ -85,7 +86,7 @@ export default function FeaturedCities({ cities }: Props) {
                         {city.name}
                       </h3>
                       <p className="text-xs text-soulo-mist mt-0.5">
-                        {city.country.flagEmoji} {city.country.name}
+                        <FlagImage code={city.country.code} name={city.country.name} /> {city.country.name}
                       </p>
                     </div>
                     <span className="text-xs text-soulo-mist whitespace-nowrap mt-0.5">

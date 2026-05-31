@@ -26,7 +26,7 @@ type City = {
   costLevel: CostLevel | null;
   safetyScore: number | null;
   description: string | null;
-  country: { name: string; flagEmoji: string | null };
+  country: { name: string; code: string; flagEmoji: string | null };
   tags: { tag: string }[];
   _count: { spots: number };
 };

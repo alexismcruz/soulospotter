@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CostLevel, Region } from "@prisma/client";
 import { CITY_IMAGES, FALLBACK_IMAGE } from "@/lib/cityImages";
+import FlagImage from "@/components/ui/FlagImage";
 
 const COST_BADGE: Record<CostLevel, { symbol: string; color: string }> = {
   BUDGET:    { symbol: "$",   color: "text-soulo-dark bg-soulo-gold" },
@@ -16,7 +17,7 @@ type City = {
   costLevel: CostLevel | null;
   safetyScore: number | null;
   description: string | null;
-  country: { name: string; flagEmoji: string | null };
+  country: { name: string; code: string; flagEmoji: string | null };
   tags: { tag: string }[];
   _count: { spots: number };
 };
@@ -57,7 +58,7 @@ export default function CityCard({ city }: { city: City }) {
               {city.name}
             </h3>
             <p className="text-xs text-soulo-mist mt-0.5">
-              {city.country.flagEmoji} {city.country.name}
+              <FlagImage code={city.country.code} name={city.country.name} /> {city.country.name}
             </p>
           </div>
           <span className="text-xs text-soulo-mist whitespace-nowrap mt-0.5">
