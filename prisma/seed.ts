@@ -564,7 +564,7 @@ async function main() {
     if (!city) continue;
 
     for (const exp of experiences) {
-      const slug = `${citySlug}-${exp.name.toLowerCase().replace(/\s+/g, "-")}`.substring(0, 100);
+      const slug = `${citySlug}-${exp.name.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9\s-]/g, "").replace(/\s+/g, "-").replace(/-+/g, "-")}`.substring(0, 100);
 
       // Create or get organizer
       const organizer = await prisma.experienceOrganizer.upsert({
