@@ -37,6 +37,7 @@ model City {
   costLevel   CostLevel?
   spots       Spot[]
   tags        CityTag[]
+  experiences Experience[]
   seoTitle    String?
   seoDesc     String?  @db.Text
   published   Boolean  @default(false)
@@ -194,4 +195,86 @@ enum AffiliateProvider {
   GETYOURGUIDE
   VIATOR
   OTHER
+}
+
+// ─── EXPERIENCES MARKETPLACE ───────────────────────────────────
+
+model ExperienceOrganizer {
+  id          String        @id @default(cuid())
+  name        String
+  email       String        @unique
+  experiences Experience[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model Experience {
+  id            String              @id @default(cuid())
+  slug          String              @unique
+  name          String
+  cityId        String
+  city          City                @relation(fields: [cityId], references: [id])
+  category      ExperienceCategory
+  description   String              @db.Text
+  price         Float               // per person
+  groupSizeMin  Int
+  groupSizeMax  Int
+  duration      String              // "2 hours", "Full day", etc
+  frequency     String              // one-time, daily, weekly, monthly, seasonal
+  bookingUrl    String
+  photoUrl      String?             // Cloudinary or Unsplash URL
+  organizerId   String
+  organizer     ExperienceOrganizer @relation(fields: [organizerId], references: [id])
+  isFeatured    Boolean             @default(false)
+  isActive      Boolean             @default(true)
+  createdAt     DateTime            @default(now())
+  updatedAt     DateTime            @updatedAt
+
+  @@index([cityId])
+  @@index([category])
+  @@index([isFeatured])
+  @@index([isActive])
+}
+
+model ExperienceSubmission {
+  id              String                   @id @default(cuid())
+  name            String
+  city            String                   // city slug
+  category        String                   // experience category
+  description     String                   @db.Text
+  price           Float
+  groupSizeMin    Int
+  groupSizeMax    Int
+  duration        String
+  frequency       String
+  bookingUrl      String
+  photoUrl        String?
+  organizerName   String
+  organizerEmail  String                   @unique
+  package         String                   // "basic" or "featured"
+  notes           String?                  @db.Text
+  status          ExperienceSubmissionStatus @default(PENDING)
+  reviewNote      String?
+  createdAt       DateTime                 @default(now())
+  updatedAt       DateTime                 @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+enum ExperienceCategory {
+  OUTDOOR_ADVENTURE
+  FOOD_DRINK
+  ARTS_CULTURE
+  WELLNESS_MINDFULNESS
+  NIGHTLIFE_SOCIAL
+  DAY_TRIPS
+  PHOTOGRAPHY_WALKS
+  FITNESS_SPORTS
+}
+
+enum ExperienceSubmissionStatus {
+  PENDING
+  APPROVED
+  REJECTED
 }

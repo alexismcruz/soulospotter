@@ -20,6 +20,8 @@ const COST_LABELS: Record<CostLevel, string> = {
 
 import { CITY_IMAGE_LG, FALLBACK_IMAGE } from "@/lib/cityImages";
 import FlagImage from "@/components/ui/FlagImage";
+import { CATEGORY_META } from "@/lib/categoryUtils";
+import { SpotCategory } from "@prisma/client";
 
 type CityWithRelations = {
   name: string;
@@ -36,7 +38,13 @@ type CityWithRelations = {
   spots: unknown[];
 };
 
-export default function CityHero({ city }: { city: CityWithRelations }) {
+export default function CityHero({
+  city,
+  activeCategory,
+}: {
+  city: CityWithRelations;
+  activeCategory?: SpotCategory;
+}) {
   const imgSrc = CITY_IMAGE_LG[city.slug] ?? FALLBACK_IMAGE;
 
   return (
@@ -56,7 +64,19 @@ export default function CityHero({ city }: { city: CityWithRelations }) {
           <span>/</span>
           <Link href="/destinations" className="hover:text-white transition-colors">Destinations</Link>
           <span>/</span>
-          <span className="text-white">{city.name}</span>
+          {activeCategory ? (
+            <>
+              <Link href={`/destinations/${city.slug}`} className="hover:text-white transition-colors">
+                {city.name}
+              </Link>
+              <span>/</span>
+              <span className="text-white">
+                {CATEGORY_META[activeCategory].emoji} {CATEGORY_META[activeCategory].label}
+              </span>
+            </>
+          ) : (
+            <span className="text-white">{city.name}</span>
+          )}
         </nav>
       </div>
 

@@ -1,14 +1,19 @@
 import { MetadataRoute } from "next";
 import { prisma } from "@/lib/prisma";
 import { REGIONS } from "@/lib/regions";
+import { CATEGORY_SLUGS } from "@/lib/categoryUtils";
 
 const BASE_URL = "https://soulospotter.com";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  // Fetch all published cities
+  // Fetch all published cities with their spot categories
   const cities = await prisma.city.findMany({
     where: { published: true },
-    select: { slug: true, updatedAt: true },
+    select: {
+      slug: true,
+      updatedAt: true,
+      spots: { where: { published: true }, select: { category: true } },
+    },
   });
 
   // Static pages
@@ -40,5 +45,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.9,
   }));
 
-  return [...staticPages, ...regionPages, ...cityPages];
+  // City × category pages — only for combos that actually have spots
+  const categoryPages: MetadataRoute.Sitemap = cities.flatMap((city) => {
+    const uniqueCategories = [...new Set(city.spots.map((s) => s.category))];
+    return uniqueCategories.map((cat) => ({
+      url: `${BASE_URL}/destinations/${city.slug}/${CATEGORY_SLUGS[cat]}`,
+      lastModified: city.updatedAt,
+      changeFrequency: "weekly" as const,
+      priority: 0.75,
+    }));
+  });
+
+  return [...staticPages, ...regionPages, ...cityPages, ...categoryPages];
 }

@@ -1,18 +1,6 @@
 import Link from "next/link";
 import { SpotCategory, PriceRange, AffiliateProvider } from "@prisma/client";
-
-const CATEGORY_META: Record<SpotCategory, { emoji: string; label: string }> = {
-  ACCOMMODATION: { emoji: "🏨", label: "Accommodation" },
-  CAFE:          { emoji: "☕", label: "Cafes" },
-  COWORKING:     { emoji: "💻", label: "Coworking" },
-  FOOD:          { emoji: "🍜", label: "Food & Drink" },
-  WELLNESS:      { emoji: "🧘", label: "Wellness" },
-  COMMUNITY:     { emoji: "🤝", label: "Community" },
-  NATURE:        { emoji: "🏔️", label: "Nature" },
-  CULTURE:       { emoji: "🏛️", label: "Culture" },
-  NIGHTLIFE:     { emoji: "🌙", label: "Nightlife" },
-  TRANSPORT:     { emoji: "✈️", label: "Transport" },
-};
+import { CATEGORY_SLUGS, CATEGORY_META } from "@/lib/categoryUtils";
 
 const PRICE_LABELS: Record<PriceRange, { label: string; color: string }> = {
   FREE:   { label: "Free",   color: "text-emerald-600 bg-emerald-50" },
@@ -85,7 +73,7 @@ export default function SpotList({ spots, allSpots, categories, activeCategory, 
           return (
             <Link
               key={cat}
-              href={`/destinations/${citySlug}?category=${cat}`}
+              href={`/destinations/${citySlug}/${CATEGORY_SLUGS[cat]}`}
               className={`flex-shrink-0 flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                 activeCategory === cat
                   ? "bg-soulo-slate text-white"

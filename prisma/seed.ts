@@ -469,8 +469,140 @@ async function main() {
     cityCount++;
   }
 
+  // ─── Seed Experiences ───────────────────────────────────
+
+  const experiencesByCity: Record<string, Array<{ name: string; category: string; description: string; price: number; groupSizeMin: number; groupSizeMax: number; duration: string; frequency: string; bookingUrl: string; photoUrl: string; organizerName: string; organizerEmail: string; isFeatured?: boolean }>> = {
+    "new-york-city": [
+      { name: "Street Photography Walk in Manhattan", category: "PHOTOGRAPHY_WALKS", description: "Explore iconic NYC photography locations with a professional photographer. Learn composition, lighting, and how to capture the energy of the city. Small group of max 6 people.", price: 65, groupSizeMin: 1, groupSizeMax: 6, duration: "3 hours", frequency: "weekly", bookingUrl: "https://www.getyourguide.com/new-york-city-l18/", photoUrl: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&q=80", organizerName: "NYC Photography Tours", organizerEmail: "info@nycphoto.example", isFeatured: true },
+      { name: "Food Tour of Greenwich Village", category: "FOOD_DRINK", description: "Taste your way through Greenwich Village with stops at 5 iconic eateries. Learn the neighborhood's history through its food culture.", price: 55, groupSizeMin: 1, groupSizeMax: 8, duration: "2.5 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1495567720989-cebdbdd97913?w=600&q=80", organizerName: "Village Food Tours", organizerEmail: "tours@village.example" },
+    ],
+    "portland": [
+      { name: "Waterfall Hike in Columbia River Gorge", category: "OUTDOOR_ADVENTURE", description: "Half-day hike to three stunning waterfalls. Perfect for solo travelers seeking nature and solitude.", price: 45, groupSizeMin: 1, groupSizeMax: 10, duration: "4 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80", organizerName: "Portland Outdoor Adventures", organizerEmail: "hikes@portland.example", isFeatured: true },
+      { name: "Craft Beer Tasting Tour", category: "FOOD_DRINK", description: "Visit 3 award-winning Portland breweries. Learn brewing techniques and taste seasonal releases.", price: 50, groupSizeMin: 1, groupSizeMax: 12, duration: "2.5 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=600&q=80", organizerName: "Portland Brewery Tours", organizerEmail: "beers@portland.example" },
+    ],
+    "mexico-city": [
+      { name: "Traditional Mexican Cooking Class", category: "FOOD_DRINK", description: "Learn to make authentic mole, tamales, and chiles rellenos from a local chef. Eat what you cook.", price: 60, groupSizeMin: 1, groupSizeMax: 8, duration: "3 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80", organizerName: "CDMX Cooking Studio", organizerEmail: "cook@cdmx.example", isFeatured: true },
+      { name: "Street Art & Muralism Tour", category: "ARTS_CULTURE", description: "Explore Mexico City's vibrant street art scene with a local artist. Visit hidden murals and learn the stories behind them.", price: 35, groupSizeMin: 1, groupSizeMax: 10, duration: "2 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1578926078328-123456789012?w=600&q=80", organizerName: "CDMX Street Art", organizerEmail: "art@cdmx.example" },
+      { name: "Yoga & Meditation Retreat (Morning)", category: "WELLNESS_MINDFULNESS", description: "Start your day with sunrise yoga overlooking the city. Perfect for solo travelers seeking peace and mindfulness.", price: 30, groupSizeMin: 1, groupSizeMax: 15, duration: "1.5 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=80", organizerName: "Mexico City Yoga", organizerEmail: "yoga@cdmx.example" },
+    ],
+    "medellin": [
+      { name: "Comuna 13 Graffiti Tour", category: "ARTS_CULTURE", description: "Explore Medellín's most colorful neighborhood with a local street artist. Learn about the transformation of this iconic area.", price: 40, groupSizeMin: 1, groupSizeMax: 12, duration: "2.5 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1578926078328-123456789012?w=600&q=80", organizerName: "Medellin Graffiti Tours", organizerEmail: "graffiti@medellin.example", isFeatured: true },
+      { name: "Coffee Farm Tour & Tasting", category: "FOOD_DRINK", description: "Visit a working coffee farm in the hills above Medellín. Learn the process from bean to cup and taste fresh coffee.", price: 50, groupSizeMin: 1, groupSizeMax: 8, duration: "4 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1559056199-641a0ac8b3f4?w=600&q=80", organizerName: "Medellin Coffee Tours", organizerEmail: "coffee@medellin.example" },
+    ],
+    "rio-de-janeiro": [
+      { name: "Sunrise Hike to Christ the Redeemer", category: "OUTDOOR_ADVENTURE", description: "Hike up to the iconic statue before dawn. Watch the sunrise over Rio from one of the world's most breathtaking viewpoints.", price: 55, groupSizeMin: 1, groupSizeMax: 10, duration: "3 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=600&q=80", organizerName: "Rio Adventure Tours", organizerEmail: "hikes@rio.example", isFeatured: true },
+      { name: "Samba Dancing Workshop", category: "NIGHTLIFE_SOCIAL", description: "Learn authentic samba from a local dancer. Feel the rhythm and culture of Rio in a fun, energetic class.", price: 40, groupSizeMin: 1, groupSizeMax: 15, duration: "1.5 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1524578271613-d2a0ca7d4e46?w=600&q=80", organizerName: "Rio Samba School", organizerEmail: "samba@rio.example" },
+    ],
+    "lisbon": [
+      { name: "Fado Music & Wine Evening", category: "NIGHTLIFE_SOCIAL", description: "Experience traditional Fado music in Alfama while tasting Portuguese wines. Soul-stirring music and warm hospitality.", price: 45, groupSizeMin: 1, groupSizeMax: 20, duration: "2 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&q=80", organizerName: "Lisbon Fado Nights", organizerEmail: "fado@lisbon.example", isFeatured: true },
+      { name: "Pastry Making Class", category: "FOOD_DRINK", description: "Learn to make Portuguese pastéis de nata and other traditional pastries. Bake, eat, and take your creations home.", price: 50, groupSizeMin: 1, groupSizeMax: 12, duration: "2.5 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1555939594-58d7cb561121?w=600&q=80", organizerName: "Lisbon Pastry School", organizerEmail: "pastry@lisbon.example" },
+      { name: "Sunset Sailing Trip on Tagus River", category: "DAY_TRIPS", description: "Sail the Tagus River at golden hour. Relax on deck, watch the city lights come alive, and enjoy the sea breeze.", price: 60, groupSizeMin: 1, groupSizeMax: 12, duration: "2.5 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1600152362024-ba3b6a9f49a1?w=600&q=80", organizerName: "Lisbon Sailing Tours", organizerEmail: "sailing@lisbon.example" },
+    ],
+    "tbilisi": [
+      { name: "Sulphur Bath Experience", category: "WELLNESS_MINDFULNESS", description: "Soak in natural sulfur hot springs in the old town. Ancient wellness tradition meets modern relaxation.", price: 20, groupSizeMin: 1, groupSizeMax: 10, duration: "1.5 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1602088113235-229c19758e9f?w=600&q=80", organizerName: "Tbilisi Wellness", organizerEmail: "baths@tbilisi.example", isFeatured: true },
+      { name: "Georgian Food & Wine Tour", category: "FOOD_DRINK", description: "Taste authentic Georgian cuisine and natural wines at family-run restaurants. Learn the stories behind the food.", price: 40, groupSizeMin: 1, groupSizeMax: 12, duration: "3 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80", organizerName: "Tbilisi Food Tours", organizerEmail: "food@tbilisi.example" },
+    ],
+    "barcelona": [
+      { name: "Gaudí & Gothic Quarter Walking Tour", category: "ARTS_CULTURE", description: "Explore Barcelona's architectural masterpieces. Visit Sagrada Familia, Park Güell, and Gothic streets with an expert guide.", price: 50, groupSizeMin: 1, groupSizeMax: 20, duration: "3 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1583422409516-2895a77efded?w=600&q=80", organizerName: "Barcelona Arch Tours", organizerEmail: "gaudi@barcelona.example", isFeatured: true },
+      { name: "Tapas Crawl & Local Bars", category: "FOOD_DRINK", description: "Sample traditional tapas and local wines at neighborhood bars. Meet locals and experience Barcelona's food culture.", price: 45, groupSizeMin: 1, groupSizeMax: 15, duration: "2.5 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1497636577773-f1231844b663?w=600&q=80", organizerName: "Barcelona Food Tours", organizerEmail: "tapas@barcelona.example" },
+    ],
+    "berlin": [
+      { name: "Cold War History Bike Tour", category: "DAY_TRIPS", description: "Pedal through Berlin's history. Visit East Side Gallery, Checkpoint Charlie, and secret Cold War sites on two wheels.", price: 30, groupSizeMin: 1, groupSizeMax: 12, duration: "2.5 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1569163139394-de4798aa62b3?w=600&q=80", organizerName: "Berlin Bike Tours", organizerEmail: "bikes@berlin.example", isFeatured: true },
+      { name: "Street Art & Underground Culture", category: "ARTS_CULTURE", description: "Discover Berlin's thriving street art scene with a local artist. Explore galleries, clubs, and hidden murals in Kreuzberg.", price: 40, groupSizeMin: 1, groupSizeMax: 10, duration: "2 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1549887534-7b58bfb48a1d?w=600&q=80", organizerName: "Berlin Art Tours", organizerEmail: "art@berlin.example" },
+    ],
+    "marrakech": [
+      { name: "Medina Street Food Tour", category: "FOOD_DRINK", description: "Navigate the souks and taste authentic street food. Learn about Moroccan spices and flavors from a local guide.", price: 35, groupSizeMin: 1, groupSizeMax: 8, duration: "2.5 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1555939594-58d7cb561121?w=600&q=80", organizerName: "Marrakech Food Tours", organizerEmail: "food@marrakech.example", isFeatured: true },
+      { name: "Desert Camel Trek Sunset", category: "OUTDOOR_ADVENTURE", description: "Ride camels into the Sahara and watch the sunset over dunes. Authentic desert experience with Berber guides.", price: 50, groupSizeMin: 1, groupSizeMax: 10, duration: "3 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=600&q=80", organizerName: "Marrakech Desert Tours", organizerEmail: "desert@marrakech.example" },
+    ],
+    "rishikesh": [
+      { name: "Yoga Retreat Package (3 Days)", category: "WELLNESS_MINDFULNESS", description: "Immerse yourself in yoga, meditation, and Ayurveda on the banks of the Ganges. For all levels, perfect for solo travelers.", price: 150, groupSizeMin: 1, groupSizeMax: 20, duration: "3 days", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=80", organizerName: "Rishikesh Yoga Academy", organizerEmail: "yoga@rishikesh.example", isFeatured: true },
+      { name: "Ganges River Rafting Adventure", category: "OUTDOOR_ADVENTURE", description: "Whitewater rafting on the Ganges. Thrilling rapids with expert guides and stunning gorge scenery.", price: 40, groupSizeMin: 1, groupSizeMax: 10, duration: "2.5 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80", organizerName: "Rishikesh Adventure", organizerEmail: "adventure@rishikesh.example" },
+    ],
+    "kathmandu": [
+      { name: "Kathmandu Valley Heritage Walk", category: "ARTS_CULTURE", description: "Visit ancient temples, stupas, and royal palaces. Learn Nepali history and Buddhism from a local guide.", price: 30, groupSizeMin: 1, groupSizeMax: 12, duration: "3 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1585464231875-d9ef1f5ad396?w=600&q=80", organizerName: "Kathmandu Culture Tours", organizerEmail: "culture@kathmandu.example", isFeatured: true },
+      { name: "Nepalese Cooking Class", category: "FOOD_DRINK", description: "Learn to cook momos, dal bhat, and other Nepali favorites. Cook with a local family and eat your creations.", price: 35, groupSizeMin: 1, groupSizeMax: 8, duration: "2.5 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80", organizerName: "Kathmandu Kitchen", organizerEmail: "cook@kathmandu.example" },
+    ],
+    "chiang-mai": [
+      { name: "Thai Cooking Class", category: "FOOD_DRINK", description: "Learn to cook pad thai, curry, and more. Visit local markets, cook with a chef, and enjoy your feast.", price: 45, groupSizeMin: 1, groupSizeMax: 12, duration: "3 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80", organizerName: "Chiang Mai Culinary", organizerEmail: "cook@chiangmai.example", isFeatured: true },
+      { name: "Muay Thai Boxing Training", category: "FITNESS_SPORTS", description: "Learn authentic Muay Thai at a local gym. Perfect for fitness and solo travelers seeking an authentic experience.", price: 25, groupSizeMin: 1, groupSizeMax: 15, duration: "1.5 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1549719386-74dfaf8c7cb2?w=600&q=80", organizerName: "Chiang Mai Fight Club", organizerEmail: "muay@chiangmai.example" },
+      { name: "Sunrise Temple Photography Walk", category: "PHOTOGRAPHY_WALKS", description: "Visit 5 temples at dawn with a photographer guide. Capture golden light on 1000-year-old pagodas.", price: 40, groupSizeMin: 1, groupSizeMax: 8, duration: "2.5 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1517604931442-7e0c6ed2963c?w=600&q=80", organizerName: "Chiang Mai Photo Tours", organizerEmail: "photo@chiangmai.example" },
+    ],
+    "hoi-an": [
+      { name: "Tailor-Made Suit & Dress", category: "ARTS_CULTURE", description: "Get a custom tailored suit or dress made in 24-48 hours. Watch the masters work and get fitted on their famous tailors.", price: 100, groupSizeMin: 1, groupSizeMax: 5, duration: "3 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=600&q=80", organizerName: "Hoi An Tailors", organizerEmail: "tailors@hoian.example", isFeatured: true },
+      { name: "Lantern Making Workshop", category: "ARTS_CULTURE", description: "Create your own silk lantern. Watch the sunset over the Vu River from your boat with your handmade lantern.", price: 30, groupSizeMin: 1, groupSizeMax: 10, duration: "1.5 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1572437261485-ca2a50a5e6a9?w=600&q=80", organizerName: "Hoi An Crafts", organizerEmail: "crafts@hoian.example" },
+    ],
+    "bali": [
+      { name: "Mount Batur Sunrise Hike", category: "OUTDOOR_ADVENTURE", description: "Hike to the summit of an active volcano before dawn. Watch sunrise over the volcanic landscape and neighboring mountains.", price: 35, groupSizeMin: 1, groupSizeMax: 12, duration: "4 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80", organizerName: "Bali Adventure Tours", organizerEmail: "hikes@bali.example", isFeatured: true },
+      { name: "Traditional Balinese Cooking", category: "FOOD_DRINK", description: "Cook authentic Balinese dishes in a traditional home. Visit the market, prepare a 3-course meal, and eat together.", price: 40, groupSizeMin: 1, groupSizeMax: 6, duration: "3 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80", organizerName: "Bali Home Cooking", organizerEmail: "cook@bali.example" },
+      { name: "Yoga & Rice Field Sunrise", category: "WELLNESS_MINDFULNESS", description: "Practice yoga overlooking terraced rice fields at sunrise. Peaceful and transformative experience in nature.", price: 30, groupSizeMin: 1, groupSizeMax: 15, duration: "1.5 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=80", organizerName: "Bali Yoga Retreats", organizerEmail: "yoga@bali.example" },
+    ],
+    "siargao": [
+      { name: "Beginner Surfing Lessons", category: "FITNESS_SPORTS", description: "Learn to surf at Cloud 9, Philippines' most famous break. Expert instructors teach all levels from the beach.", price: 35, groupSizeMin: 1, groupSizeMax: 4, duration: "2 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1514305189212-7fc755583df1?w=600&q=80", organizerName: "Siargao Surf School", organizerEmail: "surf@siargao.example", isFeatured: true },
+      { name: "Island Hopping Day Tour", category: "DAY_TRIPS", description: "Visit 3 nearby islands by boat. Snorkel, swim, relax on pristine beaches with lunch included.", price: 30, groupSizeMin: 1, groupSizeMax: 8, duration: "7 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80", organizerName: "Siargao Tours", organizerEmail: "tours@siargao.example" },
+    ],
+    "kyoto": [
+      { name: "Temple Hopping & Zen Gardens", category: "ARTS_CULTURE", description: "Visit 5 sacred temples and meditate in zen gardens. Learn about Japanese Buddhism from an English-speaking guide.", price: 50, groupSizeMin: 1, groupSizeMax: 10, duration: "3 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=600&q=80", organizerName: "Kyoto Temple Tours", organizerEmail: "temples@kyoto.example", isFeatured: true },
+      { name: "Traditional Japanese Tea Ceremony", category: "ARTS_CULTURE", description: "Experience a real tea ceremony (chanoyu) in a geisha house. Learn the art, history, and philosophy of tea.", price: 60, groupSizeMin: 1, groupSizeMax: 8, duration: "1.5 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80", organizerName: "Kyoto Tea Masters", organizerEmail: "tea@kyoto.example" },
+    ],
+    "seoul": [
+      { name: "K-Culture Workshop (Calligraphy & Makeup)", category: "ARTS_CULTURE", description: "Learn traditional Korean calligraphy and Korean makeup techniques. Hands-on experience with Korean artists.", price: 45, groupSizeMin: 1, groupSizeMax: 10, duration: "2 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1516979187457-635ffe35ff39?w=600&q=80", organizerName: "Seoul Culture Studio", organizerEmail: "culture@seoul.example", isFeatured: true },
+      { name: "Korean Cooking Class & Market Tour", category: "FOOD_DRINK", description: "Shop at a traditional market and cook 4 classic Korean dishes. Eat your creations and take leftovers home.", price: 50, groupSizeMin: 1, groupSizeMax: 12, duration: "3 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80", organizerName: "Seoul Kitchen", organizerEmail: "cook@seoul.example" },
+    ],
+    "melbourne": [
+      { name: "Street Art Laneways Tour", category: "ARTS_CULTURE", description: "Explore Melbourne's famous laneways covered in street art. Learn the stories from a local artist guide.", price: 35, groupSizeMin: 1, groupSizeMax: 12, duration: "2 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1549887534-7b58bfb48a1d?w=600&q=80", organizerName: "Melbourne Art Tours", organizerEmail: "art@melbourne.example", isFeatured: true },
+      { name: "Coffee Culture Masterclass", category: "FOOD_DRINK", description: "Visit 3 specialty coffee roasters. Learn latte art, espresso extraction, and become a coffee connoisseur.", price: 55, groupSizeMin: 1, groupSizeMax: 8, duration: "2.5 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=600&q=80", organizerName: "Melbourne Coffee Academy", organizerEmail: "coffee@melbourne.example" },
+    ],
+    "queenstown": [
+      { name: "Adventure Sports Bundle (Bungy & Skydiving)", category: "FITNESS_SPORTS", description: "Experience bungy jumping over Kawarau River and skydiving over Milford Sound. Adrenaline-packed day.", price: 450, groupSizeMin: 1, groupSizeMax: 2, duration: "Full day", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1561418882-24a5d6f83f17?w=600&q=80", organizerName: "Queenstown Adventures", organizerEmail: "extreme@queenstown.example", isFeatured: true },
+      { name: "Wine Tasting & Vineyard Tour", category: "FOOD_DRINK", description: "Tour 3 wineries in Central Otago. Taste award-winning Pinot Noir and learn about New Zealand wine.", price: 70, groupSizeMin: 1, groupSizeMax: 8, duration: "3 hours", frequency: "daily", bookingUrl: "https://www.getyourguide.com/", photoUrl: "https://images.unsplash.com/photo-1510812431401-41d2cab2707d?w=600&q=80", organizerName: "Queenstown Wine Tours", organizerEmail: "wine@queenstown.example" },
+    ],
+  };
+
+  let experienceCount = 0;
+  for (const [citySlug, experiences] of Object.entries(experiencesByCity)) {
+    const city = await prisma.city.findUnique({ where: { slug: citySlug } });
+    if (!city) continue;
+
+    for (const exp of experiences) {
+      const slug = `${citySlug}-${exp.name.toLowerCase().replace(/\s+/g, "-")}`.substring(0, 100);
+
+      // Create or get organizer
+      const organizer = await prisma.experienceOrganizer.upsert({
+        where: { email: exp.organizerEmail },
+        update: {},
+        create: { name: exp.organizerName, email: exp.organizerEmail },
+      });
+
+      // Create experience
+      await prisma.experience.upsert({
+        where: { slug },
+        update: {},
+        create: {
+          slug,
+          name: exp.name,
+          cityId: city.id,
+          category: exp.category as any,
+          description: exp.description,
+          price: exp.price,
+          groupSizeMin: exp.groupSizeMin,
+          groupSizeMax: exp.groupSizeMax,
+          duration: exp.duration,
+          frequency: exp.frequency,
+          bookingUrl: exp.bookingUrl,
+          photoUrl: exp.photoUrl,
+          organizerId: organizer.id,
+          isFeatured: exp.isFeatured || false,
+          isActive: true,
+        },
+      });
+
+      experienceCount++;
+    }
+  }
+
   console.log(`✅ ${cityCount} cities seeded`);
   console.log(`✅ ${spotCount} spots seeded`);
+  console.log(`✅ ${experienceCount} experiences seeded`);
   console.log("🎉 Done!");
 }
 

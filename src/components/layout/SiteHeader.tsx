@@ -24,6 +24,7 @@ export default function SiteHeader() {
           <nav className="hidden md:flex items-center gap-8">
             {[
               { href: "/destinations", label: t("destinations") },
+              { href: "/experiences", label: "Experiences" },
               { href: "/regions/southeast-asia", label: t("categories") },
               { href: "/resources", label: t("resources") },
               { href: "/about", label: t("about") },
@@ -69,6 +70,7 @@ export default function SiteHeader() {
           <nav className="flex flex-col px-4 py-3 gap-1">
             {[
               { href: "/destinations", label: t("destinations") },
+              { href: "/experiences", label: "Experiences" },
               { href: "/resources", label: t("resources") },
               { href: "/submit", label: "Submit a Spot" },
               { href: "/advertise", label: "Advertise" },

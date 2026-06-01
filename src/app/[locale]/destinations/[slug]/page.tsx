@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
-import { SpotCategory } from "@prisma/client";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import CityHero from "@/components/city/CityHero";
@@ -11,7 +10,6 @@ import TripResources from "@/components/city/TripResources";
 
 type Props = {
   params: Promise<{ slug: string; locale: string }>;
-  searchParams: Promise<{ category?: string }>;
 };
 
 async function getCity(slug: string) {
@@ -56,18 +54,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function CityPage({ params, searchParams }: Props) {
+export default async function CityPage({ params }: Props) {
   const { slug } = await params;
-  const { category } = await searchParams;
 
   const city = await getCity(slug);
   if (!city) notFound();
-
-  const activeCategory = category as SpotCategory | undefined;
-
-  const filteredSpots = activeCategory
-    ? city.spots.filter((s) => s.category === activeCategory)
-    : city.spots;
 
   const categories = Array.from(new Set(city.spots.map((s) => s.category)));
 
@@ -80,10 +71,10 @@ export default async function CityPage({ params, searchParams }: Props) {
           <CityStats city={city} />
           <TripResources />
           <SpotList
-            spots={filteredSpots}
+            spots={city.spots}
             allSpots={city.spots}
             categories={categories}
-            activeCategory={activeCategory}
+            activeCategory={undefined}
             citySlug={slug}
           />
         </div>
