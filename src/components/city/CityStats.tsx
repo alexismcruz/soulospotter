@@ -1,4 +1,5 @@
 import { CostLevel } from "@prisma/client";
+import { getSafetySourcesText } from "@/lib/safetySourcesByCity";
 
 const COST_DISPLAY: Record<CostLevel, { label: string; symbol: string; color: string }> = {
   BUDGET:    { label: "Budget",    symbol: "$",   color: "text-soulo-gold" },
@@ -8,6 +9,7 @@ const COST_DISPLAY: Record<CostLevel, { label: string; symbol: string; color: st
 
 type Props = {
   city: {
+    slug: string;
     description: string | null;
     safetyScore: number | null;
     costLevel: CostLevel | null;
@@ -20,6 +22,8 @@ type Props = {
 
 export default function CityStats({ city }: Props) {
   const cost = city.costLevel ? COST_DISPLAY[city.costLevel] : null;
+
+  const safetySourcesText = getSafetySourcesText(city.slug);
 
   return (
     <div className="mb-10">
@@ -35,12 +39,20 @@ export default function CityStats({ city }: Props) {
             <p className="text-xs text-soulo-mist uppercase tracking-wide font-medium mb-1">Safety Score</p>
             <div className="flex items-center gap-2">
               <span className="text-2xl font-bold text-soulo-dark">{city.safetyScore}/10</span>
-              <span className="text-lg">{city.safetyScore >= 9 ? "🛡️" : city.safetyScore >= 7 ? "✅" : "⚠️"}</span>
+              <span
+                className="text-lg cursor-help hover:opacity-75 transition-opacity"
+                title={safetySourcesText}
+              >
+                {city.safetyScore >= 9 ? "🛡️" : city.safetyScore >= 7 ? "✅" : "⚠️"}
+              </span>
             </div>
             {city.safetyScore >= 9 && (
               <span className="inline-block mt-1.5 text-xs font-semibold px-2 py-0.5 rounded-full bg-soulo-teal text-soulo-dark">
                 Very Safe
               </span>
+            )}
+            {city.safetyScore < 9 && (
+              <p className="text-xs text-soulo-grey mt-2">Hover over icon for data sources →</p>
             )}
           </div>
         )}
