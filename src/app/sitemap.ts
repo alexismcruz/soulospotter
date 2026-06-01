@@ -3,6 +3,9 @@ import { prisma } from "@/lib/prisma";
 import { REGIONS } from "@/lib/regions";
 import { CATEGORY_SLUGS } from "@/lib/categoryUtils";
 
+// Always fetch fresh data from the database — never use cached build output
+export const dynamic = "force-dynamic";
+
 const BASE_URL = "https://soulospotter.com";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
