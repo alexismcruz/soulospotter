@@ -207,7 +207,7 @@ export default function SiteHeader() {
               href="/advertise"
               className="group relative text-sm font-semibold px-4 py-1.5 rounded-full bg-soulo-gold text-soulo-dark hover:bg-amber-400 transition-colors"
             >
-              Reach Solo Travelers
+              Reach Travelers
               {/* Tooltip */}
               <span className="pointer-events-none absolute -bottom-9 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-lg bg-soulo-dark text-soulo-mist text-xs px-3 py-1.5 opacity-0 group-hover:opacity-100 transition-opacity border border-white/10">
                 List your business from $29/mo
@@ -260,7 +260,7 @@ export default function SiteHeader() {
               className="mt-2 mx-3 py-2.5 text-center rounded-xl text-sm font-bold bg-soulo-gold text-soulo-dark hover:bg-amber-400 transition-colors"
               onClick={() => setMenuOpen(false)}
             >
-              Reach Solo Travelers — List from $29/mo
+              Reach Travelers — List from $29/mo
             </Link>
           </nav>
         </div>
