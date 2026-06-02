@@ -18,16 +18,18 @@ export default function HeroSection() {
 
   return (
     <section className="relative overflow-hidden bg-soulo-slate text-soulo-white">
-      {/* Subtle dot texture */}
-      <div className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage: `radial-gradient(circle, #FAFAF8 1px, transparent 1px)`,
-          backgroundSize: "40px 40px",
-        }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-br from-soulo-slate via-soulo-slate to-[#0d1821]" />
+      {/* Hero background photo — solo traveler, open landscape */}
+      <div className="absolute inset-0">
+        <img
+          src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1600&q=85&auto=format&fit=crop"
+          alt="Solo traveler overlooking mountains"
+          className="w-full h-full object-cover object-center"
+        />
+        {/* Dark gradient overlay — keeps text readable, fades to soulo-slate at bottom */}
+        <div className="absolute inset-0 bg-gradient-to-b from-soulo-slate/70 via-soulo-slate/60 to-soulo-slate" />
+      </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-36 lg:py-44">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-48 lg:py-56">
         <div className="max-w-3xl">
           {/* Eyebrow */}
           <div className="inline-flex items-center gap-2 bg-white/10 border border-white/15 rounded-full px-4 py-1.5 text-sm font-medium text-soulo-gold mb-6">
