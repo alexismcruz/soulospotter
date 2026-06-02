@@ -2,12 +2,44 @@
 
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+const SLIDES = [
+  {
+    url: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1600&q=85&auto=format&fit=crop",
+    alt: "Solo traveler overlooking mountains",
+    label: "🏔️ Nature",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1600&q=85&auto=format&fit=crop",
+    alt: "Vibrant city nightlife",
+    label: "🌙 Nightlife",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1600&q=85&auto=format&fit=crop",
+    alt: "Open road road trip",
+    label: "🚗 Road Trips",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=85&auto=format&fit=crop",
+    alt: "Coworking space for nomads",
+    label: "💻 Coworking",
+  },
+];
 
 export default function HeroSection() {
   const t = useTranslations("home");
   const router = useRouter();
   const [query, setQuery] = useState("");
+  const [current, setCurrent] = useState(0);
+
+  // Auto-rotate every 5 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % SLIDES.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,15 +50,23 @@ export default function HeroSection() {
 
   return (
     <section className="relative overflow-hidden bg-soulo-slate text-soulo-white">
-      {/* Hero background photo — solo traveler, open landscape */}
+      {/* Carousel slides — crossfade */}
       <div className="absolute inset-0">
-        <img
-          src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1600&q=85&auto=format&fit=crop"
-          alt="Solo traveler overlooking mountains"
-          className="w-full h-full object-cover object-center"
-        />
-        {/* Dark gradient overlay — keeps text readable, fades to soulo-slate at bottom */}
-        <div className="absolute inset-0 bg-gradient-to-b from-soulo-slate/70 via-soulo-slate/60 to-soulo-slate" />
+        {SLIDES.map((slide, i) => (
+          <div
+            key={slide.url}
+            className="absolute inset-0 transition-opacity duration-1000"
+            style={{ opacity: i === current ? 1 : 0 }}
+          >
+            <img
+              src={slide.url}
+              alt={slide.alt}
+              className="w-full h-full object-cover object-center"
+            />
+          </div>
+        ))}
+        {/* Gradient overlay — text stays readable on all photos */}
+        <div className="absolute inset-0 bg-gradient-to-b from-soulo-slate/65 via-soulo-slate/55 to-soulo-slate" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-48 lg:py-56">
@@ -83,6 +123,29 @@ export default function HeroSection() {
               >
                 {city}
               </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Slide indicators + current label */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
+          {/* Current slide label */}
+          <span className="text-xs font-semibold text-soulo-gold bg-black/30 px-3 py-1 rounded-full backdrop-blur-sm">
+            {SLIDES[current].label}
+          </span>
+          {/* Dot indicators */}
+          <div className="flex gap-2">
+            {SLIDES.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrent(i)}
+                className={`rounded-full transition-all duration-300 ${
+                  i === current
+                    ? "bg-soulo-gold w-6 h-2"
+                    : "bg-white/40 hover:bg-white/70 w-2 h-2"
+                }`}
+                aria-label={`Go to slide ${i + 1}`}
+              />
             ))}
           </div>
         </div>
