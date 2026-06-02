@@ -38,6 +38,7 @@ type Spot = {
   description: string | null;
   address: string | null;
   website: string | null;
+  imageUrl: string | null;
   priceRange: PriceRange | null;
   rating: number | null;
   tags: SpotTag[];
@@ -115,6 +116,17 @@ export default function SpotList({ spots, allSpots, categories, activeCategory, 
                 href={spotUrl}
                 className="bg-white rounded-2xl border border-soulo-border hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 overflow-hidden flex flex-col group"
               >
+                {/* Photo */}
+                {spot.imageUrl && (
+                  <div className="w-full h-48 bg-soulo-linen overflow-hidden">
+                    <img
+                      src={spot.imageUrl}
+                      alt={spot.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                )}
+
                 {/* Card header */}
                 <div className="p-5 flex-1">
                   <div className="flex items-start justify-between gap-3 mb-3">

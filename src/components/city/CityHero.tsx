@@ -27,6 +27,7 @@ type CityWithRelations = {
   name: string;
   slug: string;
   description: string | null;
+  imageUrl: string | null;
   region: Region;
   costLevel: CostLevel | null;
   safetyScore: number | null;
@@ -45,7 +46,7 @@ export default function CityHero({
   city: CityWithRelations;
   activeCategory?: SpotCategory;
 }) {
-  const imgSrc = CITY_IMAGE_LG[city.slug] ?? FALLBACK_IMAGE;
+  const imgSrc = city.imageUrl ?? CITY_IMAGE_LG[city.slug] ?? FALLBACK_IMAGE;
 
   return (
     <div className="relative h-72 sm:h-96 overflow-hidden">
