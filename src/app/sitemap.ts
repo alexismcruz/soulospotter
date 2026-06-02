@@ -9,13 +9,13 @@ export const dynamic = "force-dynamic";
 const BASE_URL = "https://soulospotter.com";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  // Fetch all published cities with their spot categories
+  // Fetch all published cities with their spot categories and spot slugs
   const cities = await prisma.city.findMany({
     where: { published: true },
     select: {
       slug: true,
       updatedAt: true,
-      spots: { where: { published: true }, select: { category: true } },
+      spots: { where: { published: true }, select: { category: true, slug: true, updatedAt: true } },
     },
   });
 
@@ -67,6 +67,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }));
   });
 
+  // Individual spot pages — /destinations/[city]/[category]/[spot]
+  const spotPages: MetadataRoute.Sitemap = cities.flatMap((city) =>
+    city.spots.map((spot) => ({
+      url: `${BASE_URL}/destinations/${city.slug}/${CATEGORY_SLUGS[spot.category]}/${spot.slug}`,
+      lastModified: spot.updatedAt,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    }))
+  );
+
   // Individual experience pages
   const experiencePages: MetadataRoute.Sitemap = experiences.map((exp) => ({
     url: `${BASE_URL}/experiences/${exp.slug}`,
@@ -75,5 +85,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  return [...staticPages, ...regionPages, ...cityPages, ...categoryPages, ...experiencePages];
+  return [...staticPages, ...regionPages, ...cityPages, ...categoryPages, ...spotPages, ...experiencePages];
 }

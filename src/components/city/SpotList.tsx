@@ -107,11 +107,13 @@ export default function SpotList({ spots, allSpots, categories, activeCategory, 
           {spots.map((spot) => {
             const meta = CATEGORY_META[spot.category];
             const price = spot.priceRange ? PRICE_LABELS[spot.priceRange] : null;
+            const spotUrl = `/destinations/${citySlug}/${CATEGORY_SLUGS[spot.category]}/${spot.slug}`;
 
             return (
-              <div
+              <Link
                 key={spot.id}
-                className="bg-white rounded-2xl border border-soulo-border hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 overflow-hidden flex flex-col"
+                href={spotUrl}
+                className="bg-white rounded-2xl border border-soulo-border hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 overflow-hidden flex flex-col group"
               >
                 {/* Card header */}
                 <div className="p-5 flex-1">
@@ -119,7 +121,7 @@ export default function SpotList({ spots, allSpots, categories, activeCategory, 
                     <div className="flex items-center gap-2.5">
                       <span className="text-2xl">{meta.emoji}</span>
                       <div>
-                        <h3 className="font-semibold text-soulo-dark leading-snug">{spot.name}</h3>
+                        <h3 className="font-semibold text-soulo-dark leading-snug group-hover:text-soulo-gold transition-colors">{spot.name}</h3>
                         <p className="text-xs text-soulo-mist mt-0.5">{meta.label}</p>
                       </div>
                     </div>
@@ -184,7 +186,7 @@ export default function SpotList({ spots, allSpots, categories, activeCategory, 
                     )}
                   </div>
                 )}
-              </div>
+              </Link>
             );
           })}
         </div>
