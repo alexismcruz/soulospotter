@@ -60,6 +60,8 @@ model Spot {
   lat         Float?
   lng         Float?
   website     String?
+  phone       String?
+  googleMapsUrl String?
   imageUrl    String?
   priceRange  PriceRange?
   rating      Float?     // aggregated, 1-5

@@ -170,9 +170,34 @@ export default async function SpotPage({ params }: Props) {
 
               {/* Address */}
               {spot.address && (
-                <div className="flex items-start gap-2 text-soulo-grey mb-6">
+                <div className="flex items-start gap-2 text-soulo-grey mb-3">
                   <span className="mt-0.5">📍</span>
                   <span>{spot.address}</span>
+                </div>
+              )}
+
+              {/* Phone */}
+              {spot.phone && (
+                <div className="flex items-center gap-2 text-soulo-grey mb-3">
+                  <span>📞</span>
+                  <a href={`tel:${spot.phone}`} className="hover:text-soulo-gold transition-colors">
+                    {spot.phone}
+                  </a>
+                </div>
+              )}
+
+              {/* Google Maps link */}
+              {spot.googleMapsUrl && (
+                <div className="flex items-center gap-2 mb-6">
+                  <span>🗺️</span>
+                  <a
+                    href={spot.googleMapsUrl}
+                    target="_blank"
+                    rel="nofollow noopener noreferrer"
+                    className="text-soulo-gold hover:text-amber-500 font-semibold text-sm transition-colors"
+                  >
+                    View on Google Maps & Reviews →
+                  </a>
                 </div>
               )}
 
@@ -223,10 +248,20 @@ export default async function SpotPage({ params }: Props) {
                   <a
                     href={spot.website}
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel="nofollow noopener noreferrer"
                     className="block w-full text-center px-4 py-3 border border-soulo-border text-soulo-grey hover:bg-soulo-linen font-medium rounded-xl transition-colors text-sm"
                   >
                     Visit Website →
+                  </a>
+                )}
+                {spot.googleMapsUrl && (
+                  <a
+                    href={spot.googleMapsUrl}
+                    target="_blank"
+                    rel="nofollow noopener noreferrer"
+                    className="block w-full text-center px-4 py-3 border border-soulo-border text-soulo-grey hover:bg-soulo-linen font-medium rounded-xl transition-colors text-sm"
+                  >
+                    ⭐ Google Reviews →
                   </a>
                 )}
               </div>
