@@ -146,12 +146,16 @@ enum SpotCategory {
 
 model Submission {
   id          String           @id @default(cuid())
+  // Submission type
+  type        SubmissionType   @default(NEW)
+  spotId      String?          // For corrections: reference to existing spot
   // Spot info
   spotName    String
   category    SpotCategory
   description String           @db.Text
   address     String
   website     String?
+  imageUrl    String?          // user-provided photo URL
   // Location
   cityName    String           // free-text — we match to a City later
   countryName String
@@ -164,6 +168,7 @@ model Submission {
   createdAt   DateTime         @default(now())
   updatedAt   DateTime         @updatedAt
 
+  @@index([type])
   @@index([status])
   @@index([createdAt])
 }
@@ -185,6 +190,11 @@ enum SubmissionStatus {
   PENDING
   APPROVED
   REJECTED
+}
+
+enum SubmissionType {
+  NEW          // New venue listing
+  CORRECTION   // Update to existing venue (photo, hours, etc)
 }
 
 enum AffiliateProvider {

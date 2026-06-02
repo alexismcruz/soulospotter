@@ -17,10 +17,12 @@ const CATEGORIES: { value: SpotCategory; label: string; emoji: string }[] = [
 ];
 
 type FormState = "idle" | "submitting" | "success" | "error";
+type SubmissionType = "NEW" | "CORRECTION";
 
 export default function SubmitForm() {
   const [state, setState] = useState<FormState>("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [submissionType, setSubmissionType] = useState<SubmissionType>("NEW");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -29,11 +31,14 @@ export default function SubmitForm() {
 
     const form = e.currentTarget;
     const data = {
+      type:           submissionType,
+      spotId:         submissionType === "CORRECTION" ? (form.spotId as HTMLInputElement)?.value.trim() || null : null,
       spotName:       (form.spotName as HTMLInputElement).value.trim(),
       category:       (form.category as HTMLSelectElement).value as SpotCategory,
       description:    (form.description as HTMLTextAreaElement).value.trim(),
       address:        (form.address as HTMLInputElement).value.trim(),
-      website:        (form.website as HTMLInputElement).value.trim(),
+      website:        (form.website as HTMLInputElement).value.trim() || null,
+      imageUrl:       (form.imageUrl as HTMLInputElement).value.trim() || null,
       cityName:       (form.cityName as HTMLInputElement).value.trim(),
       countryName:    (form.countryName as HTMLInputElement).value.trim(),
       submitterName:  (form.submitterName as HTMLInputElement).value.trim(),
@@ -71,6 +76,43 @@ export default function SubmitForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
+      {/* Section: Submission Type */}
+      <fieldset className="bg-white rounded-2xl border border-soulo-border p-6 space-y-4">
+        <legend className="text-base font-display font-bold text-soulo-dark px-1">What are you doing?</legend>
+
+        <div className="space-y-3">
+          <label className="flex items-center gap-3 cursor-pointer">
+            <input
+              type="radio"
+              name="type"
+              value="NEW"
+              checked={submissionType === "NEW"}
+              onChange={(e) => setSubmissionType(e.target.value as SubmissionType)}
+              className="w-4 h-4"
+            />
+            <span className="text-sm font-medium text-soulo-dark">
+              📍 Suggesting a new venue
+            </span>
+          </label>
+          <p className="text-xs text-soulo-grey ml-7">Add a place you love to the directory (needs approval)</p>
+
+          <label className="flex items-center gap-3 cursor-pointer mt-4">
+            <input
+              type="radio"
+              name="type"
+              value="CORRECTION"
+              checked={submissionType === "CORRECTION"}
+              onChange={(e) => setSubmissionType(e.target.value as SubmissionType)}
+              className="w-4 h-4"
+            />
+            <span className="text-sm font-medium text-soulo-dark">
+              ✏️ Correcting info on an existing venue
+            </span>
+          </label>
+          <p className="text-xs text-soulo-grey ml-7">Update a photo, hours, or other details (quick approval)</p>
+        </div>
+      </fieldset>
+
       {/* Section: About the spot */}
       <fieldset className="bg-white rounded-2xl border border-soulo-border p-6 space-y-5">
         <legend className="text-base font-display font-bold text-soulo-dark px-1">About the spot</legend>
@@ -122,6 +164,19 @@ export default function SubmitForm() {
           />
         </div>
 
+        {submissionType === "CORRECTION" && (
+          <div>
+            <label className="block text-sm font-medium text-soulo-grey mb-1.5">
+              Venue name (to identify which listing) <span className="text-red-500">*</span>
+            </label>
+            <input
+              name="spotId"
+              placeholder="e.g. Canggu Social"
+              className="w-full px-4 py-2.5 rounded-xl border border-soulo-border text-sm focus:outline-none focus:ring-2 focus:ring-soulo-gold transition-all"
+            />
+          </div>
+        )}
+
         <div className="grid sm:grid-cols-2 gap-5">
           <div>
             <label className="block text-sm font-medium text-soulo-grey mb-1.5">
@@ -145,6 +200,21 @@ export default function SubmitForm() {
               placeholder="https://..."
               className="w-full px-4 py-2.5 rounded-xl border border-soulo-border text-sm focus:outline-none focus:ring-2 focus:ring-soulo-gold transition-all"
             />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-soulo-grey mb-1.5">
+              Photo URL <span className="text-soulo-mist font-normal">(optional)</span>
+            </label>
+            <input
+              name="imageUrl"
+              type="url"
+              placeholder="https://images.example.com/photo.jpg"
+              className="w-full px-4 py-2.5 rounded-xl border border-soulo-border text-sm focus:outline-none focus:ring-2 focus:ring-soulo-gold transition-all"
+            />
+            <p className="text-xs text-soulo-mist mt-1.5">
+              Share a direct link to a photo of this spot (we'll use a generic one if you skip this)
+            </p>
           </div>
         </div>
       </fieldset>
