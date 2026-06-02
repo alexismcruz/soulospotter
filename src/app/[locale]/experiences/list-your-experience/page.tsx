@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import ExperienceSubmissionForm from "@/components/experiences/ExperienceSubmissionForm";
+import PageHero from "@/components/layout/PageHero";
 
 export const metadata: Metadata = {
   title: "List Your Experience — SouloSpotter",
@@ -24,7 +25,7 @@ export default async function ListExperiencePage() {
       <SiteHeader />
       <main className="flex-1">
         {/* Hero Section */}
-        <div className="bg-soulo-slate text-soulo-white">
+        <PageHero imageKey="list-experience" imageAlt="List your experience with SouloSpotter">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
             <nav className="flex items-center gap-2 text-sm text-soulo-mist mb-8">
               <Link href="/" className="hover:text-soulo-white transition-colors">
@@ -73,7 +74,7 @@ export default async function ListExperiencePage() {
               </div>
             </div>
           </div>
-        </div>
+        </PageHero>
 
         {/* Form Section */}
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">

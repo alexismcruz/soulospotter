@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
+import PageHero from "@/components/layout/PageHero";
 
 export const metadata: Metadata = {
   title: "About SouloSpotter — Travel alone. Travel Soulo. Find yourself.",
@@ -16,7 +17,7 @@ export default function AboutPage() {
       <main className="flex-1">
 
         {/* Hero */}
-        <div className="bg-soulo-slate text-soulo-white">
+        <PageHero imageKey="about" imageAlt="Solo traveler overlooking a mountain vista">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
             <nav className="flex items-center gap-2 text-sm text-soulo-mist mb-8">
               <Link href="/" className="hover:text-soulo-white transition-colors">Home</Link>
@@ -32,7 +33,7 @@ export default function AboutPage() {
               SouloSpotter exists because solo travel deserves its own directory. Not a general travel site with a "solo travel" filter — a place built specifically for people who choose to go alone, and love what they find when they do.
             </p>
           </div>
-        </div>
+        </PageHero>
 
         {/* The philosophy */}
         <div className="bg-soulo-white py-16">

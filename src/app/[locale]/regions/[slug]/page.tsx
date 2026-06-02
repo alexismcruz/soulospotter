@@ -6,6 +6,7 @@ import { REGION_BY_SLUG, REGIONS } from "@/lib/regions";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import CityCard from "@/components/destinations/CityCard";
+import PageHero, { HERO_IMAGES } from "@/components/layout/PageHero";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -59,7 +60,7 @@ export default async function RegionPage({ params }: Props) {
       <SiteHeader />
       <main className="flex-1">
         {/* Hero */}
-        <div className="bg-soulo-slate text-soulo-white">
+        <PageHero imageKey={(slug in HERO_IMAGES ? slug : "destinations") as keyof typeof HERO_IMAGES} imageAlt={meta.label}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
             <nav className="flex items-center gap-2 text-sm text-soulo-mist mb-6">
               <Link href="/" className="hover:text-soulo-white transition-colors">Home</Link>
@@ -93,7 +94,7 @@ export default async function RegionPage({ params }: Props) {
               </div>
             </div>
           </div>
-        </div>
+        </PageHero>
 
         {/* Cities grid */}
         <div className="bg-soulo-white py-12">

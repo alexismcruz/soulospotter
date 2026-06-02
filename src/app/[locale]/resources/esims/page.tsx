@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
+import PageHero from "@/components/layout/PageHero";
 import AffiliateCTA from "@/components/resources/AffiliateCTA";
 import ResourceCityLinks from "@/components/resources/ResourceCityLinks";
 
@@ -19,7 +20,7 @@ export default function EsimsPage() {
       <SiteHeader />
       <main className="flex-1">
         {/* Hero */}
-        <div className="bg-gradient-to-br from-teal-900 via-teal-800 to-stone-900 text-white">
+        <PageHero imageKey="esims" imageAlt="Stay connected with an eSIM">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <nav className="flex items-center gap-2 text-sm text-teal-300 mb-6">
               <Link href="/" className="hover:text-white transition-colors">Home</Link>
@@ -44,7 +45,7 @@ export default function EsimsPage() {
               </div>
             </div>
           </div>
-        </div>
+        </PageHero>
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-14">
 

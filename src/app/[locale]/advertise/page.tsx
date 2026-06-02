@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
+import PageHero from "@/components/layout/PageHero";
 import AdvertiseForm from "@/components/advertise/AdvertiseForm";
 
 export const metadata: Metadata = {
@@ -80,7 +81,7 @@ export default function AdvertisePage() {
       <main className="flex-1">
 
         {/* Hero */}
-        <div className="bg-gradient-to-br from-stone-900 via-stone-800 to-amber-900 text-white">
+        <PageHero imageKey="advertise" imageAlt="Reach solo travelers worldwide">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
             <nav className="flex items-center gap-2 text-sm text-stone-400 mb-6">
               <Link href="/" className="hover:text-white transition-colors">Home</Link>
@@ -115,7 +116,7 @@ export default function AdvertisePage() {
               ))}
             </div>
           </div>
-        </div>
+        </PageHero>
 
         {/* Who it's for */}
         <div className="bg-stone-50 py-14">

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
+import PageHero from "@/components/layout/PageHero";
 import AffiliateCTA from "@/components/resources/AffiliateCTA";
 import ResourceCityLinks from "@/components/resources/ResourceCityLinks";
 
@@ -20,7 +21,7 @@ export default function TravelInsurancePage() {
       <SiteHeader />
       <main className="flex-1">
         {/* Hero */}
-        <div className="bg-gradient-to-br from-blue-900 via-blue-800 to-stone-900 text-white">
+        <PageHero imageKey="travel-insurance" imageAlt="Travel insurance for solo travelers">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <nav className="flex items-center gap-2 text-sm text-blue-300 mb-6">
               <Link href="/" className="hover:text-white transition-colors">Home</Link>
@@ -42,7 +43,7 @@ export default function TravelInsurancePage() {
               </p>
             </div>
           </div>
-        </div>
+        </PageHero>
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-14">
 
