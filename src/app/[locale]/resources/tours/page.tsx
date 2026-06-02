@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     "Group tours are the fastest way to meet other travelers and see a city properly. Our picks from GetYourGuide — curated for solo travelers across every region.",
 };
 
-const GYG_URL = "https://www.getyourguide.com/?partner_id=soulospotter"; // replace with real affiliate URL
+const GYG_URL = "https://www.getyourguide.com/?partner_id=CDE4NF2";
 
 const TOUR_PICKS = [
   {

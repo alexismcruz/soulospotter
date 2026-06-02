@@ -498,6 +498,31 @@ async function main() {
 
   // ─── Seed Experiences ───────────────────────────────────
 
+  // GetYourGuide affiliate URL mapping (city slug to GetYourGuide destination URL)
+  const GYG_AFFILIATE_ID = "CDE4NF2";
+  const gygUrlMap: Record<string, string> = {
+    "new-york-city": "https://www.getyourguide.com/new-york-city-l18/?partner_id=" + GYG_AFFILIATE_ID,
+    "portland": "https://www.getyourguide.com/portland-l29/?partner_id=" + GYG_AFFILIATE_ID,
+    "mexico-city": "https://www.getyourguide.com/mexico-city-l43/?partner_id=" + GYG_AFFILIATE_ID,
+    "medellin": "https://www.getyourguide.com/medellin-l122/?partner_id=" + GYG_AFFILIATE_ID,
+    "rio-de-janeiro": "https://www.getyourguide.com/rio-de-janeiro-l101/?partner_id=" + GYG_AFFILIATE_ID,
+    "lisbon": "https://www.getyourguide.com/lisbon-l46/?partner_id=" + GYG_AFFILIATE_ID,
+    "tbilisi": "https://www.getyourguide.com/tbilisi-l148/?partner_id=" + GYG_AFFILIATE_ID,
+    "barcelona": "https://www.getyourguide.com/barcelona-l25/?partner_id=" + GYG_AFFILIATE_ID,
+    "berlin": "https://www.getyourguide.com/berlin-l23/?partner_id=" + GYG_AFFILIATE_ID,
+    "marrakech": "https://www.getyourguide.com/marrakech-l133/?partner_id=" + GYG_AFFILIATE_ID,
+    "rishikesh": "https://www.getyourguide.com/rishikesh-l209/?partner_id=" + GYG_AFFILIATE_ID,
+    "kathmandu": "https://www.getyourguide.com/kathmandu-l75/?partner_id=" + GYG_AFFILIATE_ID,
+    "chiang-mai": "https://www.getyourguide.com/chiang-mai-l67/?partner_id=" + GYG_AFFILIATE_ID,
+    "hoi-an": "https://www.getyourguide.com/hoi-an-l192/?partner_id=" + GYG_AFFILIATE_ID,
+    "bali": "https://www.getyourguide.com/bali-l128/?partner_id=" + GYG_AFFILIATE_ID,
+    "siargao": "https://www.getyourguide.com/siargao-l329/?partner_id=" + GYG_AFFILIATE_ID,
+    "kyoto": "https://www.getyourguide.com/kyoto-l104/?partner_id=" + GYG_AFFILIATE_ID,
+    "seoul": "https://www.getyourguide.com/seoul-l57/?partner_id=" + GYG_AFFILIATE_ID,
+    "melbourne": "https://www.getyourguide.com/melbourne-l125/?partner_id=" + GYG_AFFILIATE_ID,
+    "queenstown": "https://www.getyourguide.com/queenstown-l144/?partner_id=" + GYG_AFFILIATE_ID,
+  };
+
   const experiencesByCity: Record<string, Array<{ name: string; category: string; description: string; price: number; groupSizeMin: number; groupSizeMax: number; duration: string; frequency: string; bookingUrl: string; photoUrl: string; organizerName: string; organizerEmail: string; isFeatured?: boolean }>> = {
     "new-york-city": [
       { name: "Street Photography Walk in Manhattan", category: "PHOTOGRAPHY_WALKS", description: "Explore iconic NYC photography locations with a professional photographer. Learn composition, lighting, and how to capture the energy of the city. Small group of max 6 people.", price: 65, groupSizeMin: 1, groupSizeMax: 6, duration: "3 hours", frequency: "weekly", bookingUrl: "https://www.getyourguide.com/new-york-city-l18/", photoUrl: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&q=80", organizerName: "NYC Photography Tours", organizerEmail: "info@nycphoto.example", isFeatured: true },
@@ -600,6 +625,16 @@ async function main() {
         create: { name: exp.organizerName, email: exp.organizerEmail },
       });
 
+      // Use city-specific GetYourGuide URL if booking URL is placeholder
+      let bookingUrl = exp.bookingUrl;
+      if (bookingUrl === "https://www.getyourguide.com/" || bookingUrl === "https://www.getyourguide.com") {
+        bookingUrl = gygUrlMap[citySlug] || exp.bookingUrl;
+      } else if (bookingUrl.includes("getyourguide.com") && !bookingUrl.includes("partner_id")) {
+        // If it's a GetYourGuide URL without the affiliate parameter, add it
+        const separator = bookingUrl.includes("?") ? "&" : "?";
+        bookingUrl = bookingUrl + separator + "partner_id=" + GYG_AFFILIATE_ID;
+      }
+
       // Create experience
       await prisma.experience.upsert({
         where: { slug },
@@ -615,7 +650,7 @@ async function main() {
           groupSizeMax: exp.groupSizeMax,
           duration: exp.duration,
           frequency: exp.frequency,
-          bookingUrl: exp.bookingUrl,
+          bookingUrl,
           photoUrl: exp.photoUrl,
           organizerId: organizer.id,
           isFeatured: exp.isFeatured || false,
