@@ -11,7 +11,7 @@ const EXPERIENCE_PHOTOS = {
   // Bali
   "Mount Batur Sunrise Hike": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=85", // Mountain sunrise
   "Yoga & Rice Field Sunrise": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=85", // Yoga in nature
-  "Traditional Balinese Cooking": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=85", // Cooking class
+  "Traditional Balinese Cooking": "https://images.unsplash.com/photo-1604329857912-b3f2313f6efb?w=800&q=85", // Balinese food/cooking
 
   // Chiang Mai
   "Thai Cooking Class": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=85", // Cooking
@@ -19,12 +19,12 @@ const EXPERIENCE_PHOTOS = {
   "Sunrise Temple Photography Walk": "https://images.unsplash.com/photo-1560969184-10fe8719e047?w=800&q=85", // Temple/Culture
 
   // Hội An
-  "Tailor-Made Suit & Dress": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=85", // Fashion/Tailoring
-  "Lantern Making Workshop": "https://images.unsplash.com/photo-1488815154555-75e2ee2a8d6d?w=800&q=85", // Craft/Workshop
+  "Tailor-Made Suit & Dress": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=800&q=85", // Tailor shop/sewing
+  "Lantern Making Workshop": "https://images.unsplash.com/photo-1488815154555-75e2ee2a8d6d?w=800&q=85", // Lantern/craft
 
   // Kyoto
-  "Temple Hopping & Zen Gardens": "https://images.unsplash.com/photo-1516552543322-4e7f77cefccc?w=800&q=85", // Temple/Zen
-  "Traditional Japanese Tea Ceremony": "https://images.unsplash.com/photo-1511920170033-f8396924c348?w=800&q=85", // Tea ceremony
+  "Temple Hopping & Zen Gardens": "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800&q=85", // Kyoto temples
+  "Traditional Japanese Tea Ceremony": "https://images.unsplash.com/photo-1597318301227-c92c0e9ac1f9?w=800&q=85", // Tea ceremony
 
   // Kathmandu
   "Kathmandu Valley Heritage Walk": "https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=800&q=85", // Cultural walk
@@ -44,7 +44,7 @@ const EXPERIENCE_PHOTOS = {
 
   // Queenstown
   "Adventure Sports Bundle (Bungy & Skydiving)": "https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=800&q=85", // Adventure
-  "Wine Tasting & Vineyard Tour": "https://images.unsplash.com/photo-1510812431401-41d2cab2707d?w=800&q=85", // Wine/Vineyard
+  "Wine Tasting & Vineyard Tour": "https://images.unsplash.com/photo-1608270861620-7c0f60d2e64f?w=800&q=85", // Wine tasting
 
   // New York City
   "Street Photography Walk in Manhattan": "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=800&q=85", // NYC street
