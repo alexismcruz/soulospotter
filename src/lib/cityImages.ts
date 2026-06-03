@@ -8,7 +8,7 @@ export const CITY_IMAGES: Record<string, string> = {
   "mexico-city":    "https://images.unsplash.com/photo-1585464231875-d9ef1f5ad396?w=600&q=80",
   "medellin":       "https://images.unsplash.com/photo-1599059813005-11265ba4b4ce?w=600&q=80",
   "hoi-an":         "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=600&q=80",
-  "marrakech":      "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600&q=80",
+  "marrakech":      "/cities/marrakech.jpg",
   "seoul":          "https://images.unsplash.com/photo-1538485399081-7191377e8241?w=600&q=80",
   "melbourne":      "https://images.unsplash.com/photo-1514395462725-fb4566210144?w=600&q=80",
   "berlin":         "https://images.unsplash.com/photo-1560969184-10fe8719e047?w=600&q=80",

@@ -17,13 +17,15 @@ type City = {
   costLevel: CostLevel | null;
   safetyScore: number | null;
   description: string | null;
+  imageUrl: string | null;
   country: { name: string; code: string; flagEmoji: string | null };
   tags: { tag: string }[];
   _count: { spots: number };
 };
 
 export default function CityCard({ city }: { city: City }) {
-  const imgSrc = CITY_IMAGES[city.slug] ?? FALLBACK_IMAGE;
+  // DB imageUrl takes priority, then hardcoded map, then fallback
+  const imgSrc = city.imageUrl ?? CITY_IMAGES[city.slug] ?? FALLBACK_IMAGE;
   const cost = city.costLevel ? COST_BADGE[city.costLevel] : null;
 
   return (
