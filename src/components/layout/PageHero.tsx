@@ -16,7 +16,7 @@ export const HERO_IMAGES = {
   "oceania":           "https://images.unsplash.com/photo-1469521669194-babb45599def?w=1400&q=85", // Queenstown
   // Feature pages
   "destinations":      "https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1400&q=85", // City at night
-  "experiences":       "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1400&q=85", // Cooking class
+  "experiences":       "https://images.unsplash.com/photo-1501555088652-021faa106b9b?w=1400&q=85", // Solo traveler with backpack in mountains
   "list-experience":   "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1400&q=85", // Beach/travel
   "resources":         "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1400&q=85", // Nature path
   "travel-insurance":  "https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=1400&q=85", // Chiang Mai temple

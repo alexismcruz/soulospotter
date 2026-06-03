@@ -23,8 +23,8 @@ const MENUS = {
     cta: { href: "/destinations", label: "Browse all cities →" },
   },
   experiences: {
-    image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80",
-    imageAlt: "Cooking class experience",
+    image: "https://images.unsplash.com/photo-1501555088652-021faa106b9b?w=600&q=80",
+    imageAlt: "Solo traveler with backpack in mountains",
     heading: "Do something unforgettable",
     description: "Cooking classes, hiking tours, photography walks and more.",
     links: [
