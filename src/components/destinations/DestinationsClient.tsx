@@ -11,6 +11,8 @@ const REGIONS: { value: Region | ""; label: string; emoji: string }[] = [
   ...REGION_LIST.map((r) => ({ value: r.region, label: r.label, emoji: r.emoji })),
 ];
 
+const REGION_PILLS = REGIONS; // same list, used for pill tabs
+
 const COSTS: { value: CostLevel | ""; label: string }[] = [
   { value: "",          label: "Any Budget" },
   { value: "BUDGET",    label: "Budget ($)" },
@@ -98,7 +100,7 @@ export default function DestinationsClient({
   return (
     <div>
       {/* Search + filters */}
-      <div className="bg-white rounded-2xl border border-soulo-border p-4 sm:p-5 mb-8 space-y-4">
+      <div className="mb-8 space-y-4">
         {/* Search input */}
         <div className="relative">
           <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
@@ -114,7 +116,7 @@ export default function DestinationsClient({
               updateParams(e.target.value, region, cost);
             }}
             placeholder="Search cities, countries, or tags..."
-            className="w-full pl-12 pr-4 py-3 rounded-xl border border-soulo-border text-soulo-dark placeholder-soulo-mist focus:outline-none focus:ring-2 focus:ring-soulo-gold focus:border-transparent transition-all text-sm"
+            className="w-full pl-12 pr-4 py-3 rounded-2xl border border-soulo-border bg-white text-soulo-dark placeholder-soulo-mist focus:outline-none focus:ring-2 focus:ring-soulo-gold focus:border-transparent transition-all text-sm"
           />
           {query && (
             <button
@@ -128,26 +130,28 @@ export default function DestinationsClient({
           )}
         </div>
 
-        {/* Filter row */}
-        <div className="flex flex-wrap gap-3">
-          {/* Region select */}
-          <select
-            value={region}
-            onChange={(e) => { setRegion(e.target.value); updateParams(query, e.target.value, cost); }}
-            className="flex-1 min-w-[160px] px-3 py-2.5 rounded-2xl border border-soulo-border text-sm text-soulo-grey bg-white focus:outline-none focus:ring-2 focus:ring-soulo-gold cursor-pointer"
-          >
-            {REGIONS.map((r) => (
-              <option key={r.value} value={r.value}>
-                {r.emoji} {r.label}
-              </option>
-            ))}
-          </select>
+        {/* Region pills */}
+        <div className="flex flex-wrap gap-2">
+          {REGION_PILLS.map((r) => (
+            <button
+              key={r.value}
+              onClick={() => { setRegion(r.value); updateParams(query, r.value, cost); }}
+              className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold transition-colors ${
+                region === r.value
+                  ? "bg-soulo-gold text-soulo-dark"
+                  : "bg-white border border-soulo-border text-soulo-dark hover:bg-soulo-linen"
+              }`}
+            >
+              <span>{r.emoji}</span>
+              {r.label}
+            </button>
+          ))}
 
-          {/* Cost select */}
+          {/* Budget filter */}
           <select
             value={cost}
             onChange={(e) => { setCost(e.target.value); updateParams(query, region, e.target.value); }}
-            className="flex-1 min-w-[160px] px-3 py-2.5 rounded-2xl border border-soulo-border text-sm text-soulo-grey bg-white focus:outline-none focus:ring-2 focus:ring-soulo-gold cursor-pointer"
+            className="px-4 py-2 rounded-full border border-soulo-border text-sm text-soulo-dark bg-white focus:outline-none focus:ring-2 focus:ring-soulo-gold cursor-pointer font-semibold"
           >
             {COSTS.map((c) => (
               <option key={c.value} value={c.value}>{c.label}</option>
@@ -158,9 +162,9 @@ export default function DestinationsClient({
           {hasFilters && (
             <button
               onClick={clearFilters}
-              className="px-4 py-2.5 rounded-xl border border-soulo-border text-sm text-soulo-grey hover:bg-soulo-linen transition-colors whitespace-nowrap"
+              className="px-4 py-2 rounded-full border border-soulo-border text-sm text-soulo-grey hover:bg-soulo-linen transition-colors"
             >
-              Clear filters
+              ✕ Clear
             </button>
           )}
         </div>

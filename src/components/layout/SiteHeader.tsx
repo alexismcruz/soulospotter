@@ -13,12 +13,12 @@ const MENUS = {
     heading: "Find your next city",
     description: "21 cities across 8 regions, curated for solo travelers.",
     links: [
-      { href: "/destinations", label: "All Destinations" },
-      { href: "/regions/southeast-asia", label: "Southeast Asia" },
-      { href: "/regions/europe", label: "Europe" },
-      { href: "/regions/east-asia", label: "East Asia" },
-      { href: "/regions/latin-america", label: "Latin America" },
-      { href: "/regions/south-asia", label: "South Asia" },
+      { href: "/destinations", label: "🌍 All Destinations" },
+      { href: "/destinations?region=SOUTHEAST_ASIA", label: "🌴 Southeast Asia" },
+      { href: "/destinations?region=EUROPE", label: "🏛️ Europe" },
+      { href: "/destinations?region=EAST_ASIA", label: "🏯 East Asia" },
+      { href: "/destinations?region=LATIN_AMERICA", label: "🌺 Latin America" },
+      { href: "/destinations?region=SOUTH_ASIA", label: "🕌 South Asia" },
     ],
     cta: { href: "/destinations", label: "Browse all cities →" },
   },
@@ -36,21 +36,6 @@ const MENUS = {
       { href: "/experiences/list-your-experience", label: "List your experience" },
     ],
     cta: { href: "/experiences", label: "Browse all experiences →" },
-  },
-  categories: {
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80",
-    imageAlt: "Coworking space for nomads",
-    heading: "Find the right kind of spot",
-    description: "Every spot is tagged so you know exactly what you're walking into.",
-    links: [
-      { href: "/destinations/bali/cafes", label: "☕ Cafés" },
-      { href: "/destinations/bali/coworking", label: "💻 Coworking" },
-      { href: "/destinations/bali/accommodation", label: "🏨 Accommodation" },
-      { href: "/destinations/bali/food-drink", label: "🍜 Food & Drink" },
-      { href: "/destinations/bali/wellness", label: "🧘 Wellness" },
-      { href: "/destinations/bali/nightlife", label: "🌙 Nightlife" },
-    ],
-    cta: { href: "/destinations", label: "Explore by city →" },
   },
   resources: {
     image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600&q=80",
@@ -99,7 +84,6 @@ export default function SiteHeader() {
   const navItems: { key: MenuKey; href: string; label: string }[] = [
     { key: "destinations", href: "/destinations", label: t("destinations") },
     { key: "experiences",  href: "/experiences",  label: "Experiences" },
-    { key: "categories",   href: "/regions/southeast-asia", label: t("categories") },
     { key: "resources",    href: "/resources",    label: t("resources") },
     { key: "about",        href: "/about",        label: t("about") },
   ];
@@ -241,7 +225,6 @@ export default function SiteHeader() {
             {[
               { href: "/destinations",  label: "🌍 Destinations" },
               { href: "/experiences",   label: "🎯 Experiences" },
-              { href: "/regions/southeast-asia", label: "🗂️ Categories" },
               { href: "/resources",     label: "🛡️ Resources" },
               { href: "/submit",        label: "📍 Submit a Spot" },
               { href: "/about",         label: "✨ About" },

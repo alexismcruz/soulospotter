@@ -36,12 +36,12 @@ export default async function DestinationsPage({
       <SiteHeader />
       <main className="flex-1 bg-stone-50">
         {/* Page header */}
-        <div className="bg-white border-b border-stone-100">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-            <h1 className="text-3xl sm:text-4xl font-bold text-stone-900">Destinations</h1>
-            <p className="mt-2 text-stone-500 text-lg">
-              {cities.length} cities curated for solo travelers, across{" "}
-              {new Set(cities.map((c) => c.region)).size} regions worldwide.
+        <div className="bg-soulo-slate text-soulo-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <p className="text-soulo-gold font-semibold text-sm uppercase tracking-widest mb-3">Solo Travel Directory</p>
+            <h1 className="font-display text-4xl sm:text-5xl font-bold mb-3">Destinations</h1>
+            <p className="text-soulo-mist text-lg max-w-2xl">
+              {cities.length} cities across {new Set(cities.map((c) => c.region)).size} regions, curated for solo travelers.
             </p>
           </div>
         </div>
