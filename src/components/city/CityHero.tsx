@@ -49,34 +49,34 @@ export default function CityHero({
   const imgSrc = city.imageUrl ?? CITY_IMAGE_LG[city.slug] ?? FALLBACK_IMAGE;
 
   return (
-    <div className="relative h-72 sm:h-96 overflow-hidden">
+    <div className="relative h-80 sm:h-[26rem] overflow-hidden">
       <img
         src={imgSrc}
         alt={city.name}
         className="w-full h-full object-cover"
       />
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/50 to-transparent" />
+      {/* Dark overlay — stronger at top so breadcrumbs are readable */}
+      <div className="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/40 to-stone-900/60" />
 
       {/* Breadcrumb */}
       <div className="absolute top-4 left-4 sm:left-8">
-        <nav className="flex items-center gap-2 text-sm text-white/70">
-          <Link href="/" className="hover:text-white transition-colors">Home</Link>
-          <span>/</span>
-          <Link href="/destinations" className="hover:text-white transition-colors">Destinations</Link>
-          <span>/</span>
+        <nav className="flex items-center gap-2 text-sm font-medium text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
+          <Link href="/" className="text-white/80 hover:text-white transition-colors">Home</Link>
+          <span className="text-white/50">/</span>
+          <Link href="/destinations" className="text-white/80 hover:text-white transition-colors">Destinations</Link>
+          <span className="text-white/50">/</span>
           {activeCategory ? (
             <>
-              <Link href={`/destinations/${city.slug}`} className="hover:text-white transition-colors">
+              <Link href={`/destinations/${city.slug}`} className="text-white/80 hover:text-white transition-colors">
                 {city.name}
               </Link>
-              <span>/</span>
-              <span className="text-white">
+              <span className="text-white/50">/</span>
+              <span className="text-white font-semibold">
                 {CATEGORY_META[activeCategory].emoji} {CATEGORY_META[activeCategory].label}
               </span>
             </>
           ) : (
-            <span className="text-white">{city.name}</span>
+            <span className="text-white font-semibold">{city.name}</span>
           )}
         </nav>
       </div>
@@ -100,7 +100,7 @@ export default function CityHero({
             )}
           </div>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white">
             <span className="inline-flex items-center gap-2"><FlagImage code={city.country.code} name={city.country.name} size="md" /> {city.name}</span>
           </h1>
           <p className="mt-1 text-white/60 text-sm">{city.country.name}</p>
