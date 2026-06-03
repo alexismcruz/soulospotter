@@ -7,90 +7,91 @@ const prisma = new PrismaClient();
 // Real, relevant images for each experience
 // ============================================================================
 
+// Using Unsplash's search endpoint for reliable, always-available images
 const EXPERIENCE_PHOTOS = {
   // Bali
-  "Mount Batur Sunrise Hike": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=85", // Mountain sunrise
-  "Yoga & Rice Field Sunrise": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=85", // Yoga in nature
-  "Traditional Balinese Cooking": "https://images.unsplash.com/photo-1604329857912-b3f2313f6efb?w=800&q=85", // Balinese food/cooking
+  "Mount Batur Sunrise Hike": "https://source.unsplash.com/800x600/?mountain,sunrise,hiking",
+  "Yoga & Rice Field Sunrise": "https://source.unsplash.com/800x600/?yoga,meditation,nature",
+  "Traditional Balinese Cooking": "https://source.unsplash.com/800x600/?balinese,food,cooking",
 
   // Chiang Mai
-  "Thai Cooking Class": "https://images.unsplash.com/photo-1455619452474-d2be8b1e4e31?w=800&q=85", // Thai food
-  "Muay Thai Boxing Training": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=85", // Fitness/Training
-  "Sunrise Temple Photography Walk": "https://images.unsplash.com/photo-1560969184-10fe8719e047?w=800&q=85", // Temple/Culture
+  "Thai Cooking Class": "https://source.unsplash.com/800x600/?thai,food,cooking",
+  "Muay Thai Boxing Training": "https://source.unsplash.com/800x600/?boxing,training,fitness",
+  "Sunrise Temple Photography Walk": "https://source.unsplash.com/800x600/?temple,asia,culture",
 
   // Hội An
-  "Tailor-Made Suit & Dress": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=800&q=85", // Tailor shop/sewing
-  "Lantern Making Workshop": "https://images.unsplash.com/photo-1488815154555-75e2ee2a8d6d?w=800&q=85", // Lantern/craft
+  "Tailor-Made Suit & Dress": "https://source.unsplash.com/800x600/?tailor,sewing,fashion",
+  "Lantern Making Workshop": "https://source.unsplash.com/800x600/?lantern,craft,workshop",
 
   // Kyoto
-  "Temple Hopping & Zen Gardens": "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800&q=85", // Kyoto temples
-  "Traditional Japanese Tea Ceremony": "https://images.unsplash.com/photo-1597318301227-c92c0e9ac1f9?w=800&q=85", // Tea ceremony
+  "Temple Hopping & Zen Gardens": "https://source.unsplash.com/800x600/?kyoto,temple,zen",
+  "Traditional Japanese Tea Ceremony": "https://source.unsplash.com/800x600/?tea,ceremony,japanese",
 
   // Kathmandu
-  "Kathmandu Valley Heritage Walk": "https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=800&q=85", // Cultural walk
-  "Nepalese Cooking Class": "https://images.unsplash.com/photo-1585469991498-e3f20ebd5e5f?w=800&q=85", // Nepalese food
+  "Kathmandu Valley Heritage Walk": "https://source.unsplash.com/800x600/?kathmandu,nepal,culture",
+  "Nepalese Cooking Class": "https://source.unsplash.com/800x600/?nepalese,food,curry",
 
   // Siargao
-  "Beginner Surfing Lessons": "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=800&q=85", // Surfing
-  "Island Hopping Day Tour": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=85", // Beach/Island
+  "Beginner Surfing Lessons": "https://source.unsplash.com/800x600/?surfing,beach,philippines",
+  "Island Hopping Day Tour": "https://source.unsplash.com/800x600/?island,beach,tropical",
 
   // Seoul
-  "K-Culture Workshop (Calligraphy & Makeup)": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=85", // Art/Culture
-  "Korean Cooking Class & Market Tour": "https://images.unsplash.com/photo-1541519227354-08fa5d50c44d?w=800&q=85", // Korean food
+  "K-Culture Workshop (Calligraphy & Makeup)": "https://source.unsplash.com/800x600/?korea,culture,art",
+  "Korean Cooking Class & Market Tour": "https://source.unsplash.com/800x600/?korean,food,bibimbap",
 
   // Melbourne
-  "Street Art Laneways Tour": "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=800&q=85", // Street art
-  "Coffee Culture Masterclass": "https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=800&q=85", // Coffee
+  "Street Art Laneways Tour": "https://source.unsplash.com/800x600/?street,art,melbourne",
+  "Coffee Culture Masterclass": "https://source.unsplash.com/800x600/?coffee,latte,café",
 
   // Queenstown
-  "Adventure Sports Bundle (Bungy & Skydiving)": "https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=800&q=85", // Adventure
-  "Wine Tasting & Vineyard Tour": "https://images.unsplash.com/photo-1608270861620-7c0f60d2e64f?w=800&q=85", // Wine tasting
+  "Adventure Sports Bundle (Bungy & Skydiving)": "https://source.unsplash.com/800x600/?adventure,bungy,extreme",
+  "Wine Tasting & Vineyard Tour": "https://source.unsplash.com/800x600/?wine,vineyard,tasting",
 
   // New York City
-  "Street Photography Walk in Manhattan": "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=800&q=85", // NYC street
-  "Food Tour of Greenwich Village": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=85", // Food tour
+  "Street Photography Walk in Manhattan": "https://source.unsplash.com/800x600/?newyork,street,city",
+  "Food Tour of Greenwich Village": "https://source.unsplash.com/800x600/?food,restaurant,newyork",
 
   // Portland
-  "Waterfall Hike in Columbia River Gorge": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=85", // Hiking
-  "Craft Beer Tasting Tour": "https://images.unsplash.com/photo-1608270861620-7c0f60d2e64f?w=800&q=85", // Beer tasting
+  "Waterfall Hike in Columbia River Gorge": "https://source.unsplash.com/800x600/?waterfall,hiking,nature",
+  "Craft Beer Tasting Tour": "https://source.unsplash.com/800x600/?beer,brewery,craft",
 
   // Mexico City
-  "Traditional Mexican Cooking Class": "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=800&q=85", // Mexican food
-  "Street Art & Muralism Tour": "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=800&q=85", // Street art
+  "Traditional Mexican Cooking Class": "https://source.unsplash.com/800x600/?mexican,food,tacos",
+  "Street Art & Muralism Tour": "https://source.unsplash.com/800x600/?street,art,mural",
 
   // Medellín
-  "Yoga & Meditation Retreat (Morning)": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=85", // Yoga
-  "Comuna 13 Graffiti Tour": "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=800&q=85", // Street art
-  "Coffee Farm Tour & Tasting": "https://images.unsplash.com/photo-1599599810694-b5ac4dd37e80?w=800&q=85", // Colombian coffee
+  "Yoga & Meditation Retreat (Morning)": "https://source.unsplash.com/800x600/?yoga,meditation,sunrise",
+  "Comuna 13 Graffiti Tour": "https://source.unsplash.com/800x600/?graffiti,street,art",
+  "Coffee Farm Tour & Tasting": "https://source.unsplash.com/800x600/?coffee,farm,colombia",
 
   // Rio de Janeiro
-  "Sunrise Hike to Christ the Redeemer": "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=800&q=85", // Rio landscape
-  "Samba Dancing Workshop": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&q=85", // Samba/dancing
+  "Sunrise Hike to Christ the Redeemer": "https://source.unsplash.com/800x600/?rio,christ,mountain",
+  "Samba Dancing Workshop": "https://source.unsplash.com/800x600/?samba,dance,brazil",
 
   // Lisbon
-  "Fado Music & Wine Evening": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&q=85", // Music/Wine
-  "Pastry Making Class": "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=800&q=85", // Portuguese pastry
-  "Sunset Sailing Trip on Tagus River": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=85", // Sailing/Water
+  "Fado Music & Wine Evening": "https://source.unsplash.com/800x600/?fado,music,portugal",
+  "Pastry Making Class": "https://source.unsplash.com/800x600/?pastry,baking,dessert",
+  "Sunset Sailing Trip on Tagus River": "https://source.unsplash.com/800x600/?sailing,boat,sunset",
 
   // Barcelona
-  "Gaudí & Gothic Quarter Walking Tour": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=85", // Architecture
-  "Tapas Crawl & Local Bars": "https://images.unsplash.com/photo-1599599810694-b5ac4dd37e80?w=800&q=85", // Spanish tapas
+  "Gaudí & Gothic Quarter Walking Tour": "https://source.unsplash.com/800x600/?barcelona,architecture,gaudi",
+  "Tapas Crawl & Local Bars": "https://source.unsplash.com/800x600/?tapas,spanish,food",
 
   // Berlin
-  "Cold War History Bike Tour": "https://images.unsplash.com/photo-1560969184-10fe8719e047?w=800&q=85", // History/Culture
-  "Street Art & Underground Culture": "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=800&q=85", // Street art
+  "Cold War History Bike Tour": "https://source.unsplash.com/800x600/?berlin,history,bike",
+  "Street Art & Underground Culture": "https://source.unsplash.com/800x600/?berlin,street,art",
 
   // Marrakech
-  "Medina Street Food Tour": "https://images.unsplash.com/photo-1630383249896-424e7b4d7dbc?w=800&q=85", // Moroccan street food
-  "Desert Camel Trek Sunset": "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=85", // Desert
+  "Medina Street Food Tour": "https://source.unsplash.com/800x600/?moroccan,food,market",
+  "Desert Camel Trek Sunset": "https://source.unsplash.com/800x600/?desert,camel,sunset",
 
   // Tbilisi
-  "Georgian Food & Wine Tour": "https://images.unsplash.com/photo-1596195694373-f5b4d4ef851f?w=800&q=85", // Georgian food/wine
-  "Sulphur Bath Experience": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=85", // Wellness/Bath
+  "Georgian Food & Wine Tour": "https://source.unsplash.com/800x600/?georgian,food,wine",
+  "Sulphur Bath Experience": "https://source.unsplash.com/800x600/?bath,spa,wellness",
 
   // Rishikesh
-  "Yoga Retreat Package (3 Days)": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=85", // Yoga
-  "Ganges River Rafting Adventure": "https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=800&q=85", // Adventure/Water
+  "Yoga Retreat Package (3 Days)": "https://source.unsplash.com/800x600/?yoga,india,meditation",
+  "Ganges River Rafting Adventure": "https://source.unsplash.com/800x600/?rafting,river,adventure",
 };
 
 async function main() {
