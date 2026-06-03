@@ -14,7 +14,7 @@ const EXPERIENCE_PHOTOS = {
   "Traditional Balinese Cooking": "https://images.unsplash.com/photo-1604329857912-b3f2313f6efb?w=800&q=85", // Balinese food/cooking
 
   // Chiang Mai
-  "Thai Cooking Class": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=85", // Cooking
+  "Thai Cooking Class": "https://images.unsplash.com/photo-1455619452474-d2be8b1e4e31?w=800&q=85", // Thai food
   "Muay Thai Boxing Training": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=85", // Fitness/Training
   "Sunrise Temple Photography Walk": "https://images.unsplash.com/photo-1560969184-10fe8719e047?w=800&q=85", // Temple/Culture
 
@@ -28,7 +28,7 @@ const EXPERIENCE_PHOTOS = {
 
   // Kathmandu
   "Kathmandu Valley Heritage Walk": "https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=800&q=85", // Cultural walk
-  "Nepalese Cooking Class": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=85", // Cooking
+  "Nepalese Cooking Class": "https://images.unsplash.com/photo-1585469991498-e3f20ebd5e5f?w=800&q=85", // Nepalese food
 
   // Siargao
   "Beginner Surfing Lessons": "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=800&q=85", // Surfing
@@ -36,7 +36,7 @@ const EXPERIENCE_PHOTOS = {
 
   // Seoul
   "K-Culture Workshop (Calligraphy & Makeup)": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=85", // Art/Culture
-  "Korean Cooking Class & Market Tour": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=85", // Cooking
+  "Korean Cooking Class & Market Tour": "https://images.unsplash.com/photo-1541519227354-08fa5d50c44d?w=800&q=85", // Korean food
 
   // Melbourne
   "Street Art Laneways Tour": "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=800&q=85", // Street art
@@ -55,37 +55,37 @@ const EXPERIENCE_PHOTOS = {
   "Craft Beer Tasting Tour": "https://images.unsplash.com/photo-1608270861620-7c0f60d2e64f?w=800&q=85", // Beer tasting
 
   // Mexico City
-  "Traditional Mexican Cooking Class": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=85", // Cooking
+  "Traditional Mexican Cooking Class": "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=800&q=85", // Mexican food
   "Street Art & Muralism Tour": "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=800&q=85", // Street art
 
   // Medellín
   "Yoga & Meditation Retreat (Morning)": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=85", // Yoga
   "Comuna 13 Graffiti Tour": "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=800&q=85", // Street art
-  "Coffee Farm Tour & Tasting": "https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=800&q=85", // Coffee
+  "Coffee Farm Tour & Tasting": "https://images.unsplash.com/photo-1599599810694-b5ac4dd37e80?w=800&q=85", // Colombian coffee
 
   // Rio de Janeiro
   "Sunrise Hike to Christ the Redeemer": "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=800&q=85", // Rio landscape
-  "Samba Dancing Workshop": "https://images.unsplash.com/photo-1544611180-5658e5a9dd63?w=800&q=85", // Dancing
+  "Samba Dancing Workshop": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&q=85", // Samba/dancing
 
   // Lisbon
   "Fado Music & Wine Evening": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&q=85", // Music/Wine
-  "Pastry Making Class": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&q=85", // Pastry
+  "Pastry Making Class": "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=800&q=85", // Portuguese pastry
   "Sunset Sailing Trip on Tagus River": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=85", // Sailing/Water
 
   // Barcelona
   "Gaudí & Gothic Quarter Walking Tour": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=85", // Architecture
-  "Tapas Crawl & Local Bars": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=85", // Food
+  "Tapas Crawl & Local Bars": "https://images.unsplash.com/photo-1599599810694-b5ac4dd37e80?w=800&q=85", // Spanish tapas
 
   // Berlin
   "Cold War History Bike Tour": "https://images.unsplash.com/photo-1560969184-10fe8719e047?w=800&q=85", // History/Culture
   "Street Art & Underground Culture": "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=800&q=85", // Street art
 
   // Marrakech
-  "Medina Street Food Tour": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=85", // Food
+  "Medina Street Food Tour": "https://images.unsplash.com/photo-1630383249896-424e7b4d7dbc?w=800&q=85", // Moroccan street food
   "Desert Camel Trek Sunset": "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=85", // Desert
 
   // Tbilisi
-  "Georgian Food & Wine Tour": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=85", // Food/Wine
+  "Georgian Food & Wine Tour": "https://images.unsplash.com/photo-1596195694373-f5b4d4ef851f?w=800&q=85", // Georgian food/wine
   "Sulphur Bath Experience": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=85", // Wellness/Bath
 
   // Rishikesh
