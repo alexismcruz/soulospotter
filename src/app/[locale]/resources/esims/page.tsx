@@ -7,12 +7,12 @@ import AffiliateCTA from "@/components/resources/AffiliateCTA";
 import ResourceCityLinks from "@/components/resources/ResourceCityLinks";
 
 export const metadata: Metadata = {
-  title: "Best eSIM for Solo Travelers — Airalo Review (2025) — SouloSpotter",
+  title: "Best eSIM for Solo Travelers — eSIMGo Review (2025) — SouloSpotter",
   description:
-    "Never get stranded without data again. Airalo lets you buy a local eSIM before you land — works in 200+ countries. Our honest review for solo travelers.",
+    "Never get stranded without data again. eSIMGo lets you buy a local eSIM before you land — works in 200+ countries. Our honest review for solo travelers.",
 };
 
-const AIRALO_URL = "https://www.airalo.com/?referral=soulospotter"; // replace with real affiliate URL
+const ESIMGO_URL = "https://breezesim.com?sca_ref=11468464.321pPwPKQ4";
 
 export default function EsimsPage() {
   return (
@@ -35,13 +35,13 @@ export default function EsimsPage() {
               </div>
               <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-soulo-white">
                 Stay Connected Anywhere<br />
-                <span className="text-teal-300">with Airalo eSIM</span>
+                <span className="text-teal-300">with eSIMGo</span>
               </h1>
               <p className="mt-4 text-teal-100 text-lg leading-relaxed max-w-2xl">
                 No more airport SIM card queues. No more roaming charges. Buy a local data plan from your phone before you even board the plane.
               </p>
               <div className="mt-6">
-                <AffiliateCTA href={AIRALO_URL} label="Browse eSIM plans on Airalo" sublabel="Plans from $5 · Instant activation" color="teal" />
+                <AffiliateCTA href={ESIMGO_URL} label="Browse eSIM plans on eSIMGo" sublabel="Plans from $5 · Instant activation" color="teal" />
               </div>
             </div>
           </div>
@@ -62,10 +62,10 @@ export default function EsimsPage() {
 
           {/* Why Airalo */}
           <section>
-            <h2 className="text-2xl font-bold text-stone-900 mb-5">Why Airalo is the best option</h2>
+            <h2 className="text-2xl font-bold text-stone-900 mb-5">Why eSIMGo is the best option</h2>
             <div className="grid sm:grid-cols-2 gap-4 mb-6">
               {[
-                { emoji: "🌍", title: "200+ countries covered", body: "From Bali to Tbilisi to Siargao — wherever SouloSpotter sends you, Airalo has a plan." },
+                { emoji: "🌍", title: "200+ countries covered", body: "From Bali to Tbilisi to Siargao — wherever SouloSpotter sends you, eSIMGo has a plan." },
                 { emoji: "💸", title: "Plans from $5", body: "A 1GB plan for a weekend in Bangkok costs less than a coffee. Competitive pricing vs. airport SIMs." },
                 { emoji: "⚡", title: "Instant activation", body: "Buy on the plane, activate on landing. No queues, no shops, no language barrier." },
                 { emoji: "📲", title: "Keep your home number", body: "Your eSIM runs alongside your regular SIM. You can still receive calls and texts on your real number." },
@@ -88,9 +88,9 @@ export default function EsimsPage() {
             <h2 className="text-2xl font-bold text-stone-900 mb-5">How it works in 3 steps</h2>
             <div className="flex flex-col sm:flex-row gap-4">
               {[
-                { step: "1", title: "Check compatibility", body: "Most iPhones from XS onwards and Android flagships from 2020+ support eSIM. Check Airalo's compatibility list." },
+                { step: "1", title: "Check compatibility", body: "Most iPhones from XS onwards and Android flagships from 2020+ support eSIM. Check eSIMGo's compatibility list." },
                 { step: "2", title: "Buy your plan", body: "Search your destination, pick a data plan (1GB to unlimited), and pay. Plans start at $5." },
-                { step: "3", title: "Activate on arrival", body: "Open the Airalo app, tap activate, and you're online. Takes about 30 seconds." },
+                { step: "3", title: "Activate on arrival", body: "Open the eSIMGo app, tap activate, and you're online. Takes about 30 seconds." },
               ].map((item) => (
                 <div key={item.step} className="flex-1 bg-white rounded-2xl border border-stone-200 p-5">
                   <div className="w-8 h-8 rounded-full bg-teal-600 text-white text-sm font-bold flex items-center justify-center mb-3">
@@ -133,7 +133,7 @@ export default function EsimsPage() {
                       <td className="px-5 py-3 text-stone-600">{price}</td>
                       <td className="px-5 py-3">
                         <a
-                          href={AIRALO_URL}
+                          href={ESIMGO_URL}
                           target="_blank"
                           rel="noopener noreferrer sponsored"
                           className="text-xs font-semibold text-teal-600 hover:text-teal-700"
@@ -149,7 +149,7 @@ export default function EsimsPage() {
           </section>
 
           {/* Bottom CTA */}
-          <AffiliateCTA href={AIRALO_URL} label="Browse all Airalo eSIM plans" sublabel="200+ countries · Plans from $5 · Instant activation" color="teal" />
+          <AffiliateCTA href={ESIMGO_URL} label="Browse all eSIMGo plans" sublabel="200+ countries · Plans from $5 · Instant activation" color="teal" />
 
           {/* Related cities */}
           <ResourceCityLinks
@@ -158,7 +158,7 @@ export default function EsimsPage() {
           />
 
           <p className="text-xs text-stone-400 border-t border-stone-100 pt-6">
-            <strong className="text-stone-500">Affiliate disclosure:</strong> The Airalo link above is an affiliate link. SouloSpotter earns a small commission if you purchase — at no extra cost to you.
+            <strong className="text-stone-500">Affiliate disclosure:</strong> The eSIMGo link above is an affiliate link. SouloSpotter earns a small commission if you purchase — at no extra cost to you.
           </p>
         </div>
       </main>

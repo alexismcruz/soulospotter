@@ -28,7 +28,7 @@ const RESOURCES = [
     title: "eSIMs for Travel",
     subtitle: "Stay connected anywhere",
     description:
-      "No more hunting for SIM cards at airports. Airalo lets you buy a local data plan before you land — works in 200+ countries.",
+      "No more hunting for SIM cards at airports. eSIMGo lets you buy a local data plan before you land — works in 200+ countries.",
     cta: "Get an eSIM",
     highlight: "bg-teal-50 border-teal-200",
     badge: "Buy before you fly",

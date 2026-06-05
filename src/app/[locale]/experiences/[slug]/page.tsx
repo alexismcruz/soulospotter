@@ -308,7 +308,7 @@ export default async function ExperienceDetailPage({ params }: Props) {
             </h2>
             <div className="grid sm:grid-cols-3 gap-4">
               <AffiliateCTA href="https://safetywing.com/?referenceID=soulospotter" label="Get travel insurance" sublabel="From $45/month" color="blue" />
-              <AffiliateCTA href="https://www.airalo.com/?referral=soulospotter" label="Get an eSIM" sublabel="200+ countries · From $5" color="teal" />
+              <AffiliateCTA href="https://breezesim.com?sca_ref=11468464.321pPwPKQ4" label="Get an eSIM" sublabel="200+ countries · From $5" color="teal" />
               <AffiliateCTA href="https://www.getyourguide.com/?partner_id=CDE4NF2" label="Browse more tours" sublabel="300,000+ experiences" color="amber" />
             </div>
           </div>
