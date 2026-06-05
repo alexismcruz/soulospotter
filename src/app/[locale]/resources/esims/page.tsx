@@ -60,17 +60,17 @@ export default function EsimsPage() {
             </p>
           </section>
 
-          {/* Why Airalo */}
+          {/* Why eSIMGo */}
           <section>
             <h2 className="text-2xl font-bold text-stone-900 mb-5">Why eSIMGo is the best option</h2>
             <div className="grid sm:grid-cols-2 gap-4 mb-6">
               {[
                 { emoji: "🌍", title: "200+ countries covered", body: "From Bali to Tbilisi to Siargao — wherever SouloSpotter sends you, eSIMGo has a plan." },
                 { emoji: "💸", title: "Plans from $5", body: "A 1GB plan for a weekend in Bangkok costs less than a coffee. Competitive pricing vs. airport SIMs." },
-                { emoji: "⚡", title: "Instant activation", body: "Buy on the plane, activate on landing. No queues, no shops, no language barrier." },
+                { emoji: "⚡", title: "Instant activation", body: "Buy before you fly, activate on landing. No queues, no shops, no language barrier." },
                 { emoji: "📲", title: "Keep your home number", body: "Your eSIM runs alongside your regular SIM. You can still receive calls and texts on your real number." },
                 { emoji: "🔄", title: "Switch between countries", body: "Traveling multiple countries? Buy a regional plan or switch between country plans in the app." },
-                { emoji: "⭐", title: "Trusted by millions", body: "4.7 stars on Trustpilot with over 600,000 reviews. The most-used travel eSIM app in the world." },
+                { emoji: "⭐", title: "Simple & reliable", body: "Clean app, straightforward plans, and fast customer support. No hidden fees or complicated activation steps." },
               ].map((item) => (
                 <div key={item.title} className="flex gap-4 p-4 rounded-xl bg-teal-50 border border-teal-100">
                   <span className="text-2xl flex-shrink-0">{item.emoji}</span>
