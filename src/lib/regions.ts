@@ -42,28 +42,12 @@ export const REGIONS: RegionMeta[] = [
       "Medinas, souks, and sunsets over the Sahara. The Middle East and Africa are the most underrated solo travel regions on the planet — rich in culture, hospitality, and once-in-a-lifetime experiences.",
   },
   {
-    region: Region.SOUTH_ASIA,
-    slug: "south-asia",
-    label: "South Asia",
-    emoji: "🕌",
+    region: Region.ASIA,
+    slug: "asia",
+    label: "Asia",
+    emoji: "🌏",
     description:
-      "Yoga ashrams, Himalayan trails, and the most intense sensory experiences you'll ever have. South Asia has a way of changing solo travelers permanently — you leave a different person.",
-  },
-  {
-    region: Region.SOUTHEAST_ASIA,
-    slug: "southeast-asia",
-    label: "Southeast Asia",
-    emoji: "🌴",
-    description:
-      "The original solo traveler's paradise — affordable, warm, endlessly beautiful, and full of people who've been here before and never quite left. From rice terraces to surf breaks, SEA has it all.",
-  },
-  {
-    region: Region.EAST_ASIA,
-    slug: "east-asia",
-    label: "East Asia",
-    emoji: "⛩️",
-    description:
-      "Temples at sunrise, world-class food on every corner, and cities so safe you'll forget to be careful. East Asia is the most rewarding solo travel region for first-time solo adventurers.",
+      "From the temples of Angkor to the streets of Bangkok, the rice terraces of Bali to the karst peaks of Guilin — Asia is the world's most rewarding solo travel continent. Warm, affordable, endlessly surprising, and full of people who came for a week and stayed for a year.",
   },
   {
     region: Region.OCEANIA,

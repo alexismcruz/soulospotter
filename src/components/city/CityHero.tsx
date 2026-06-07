@@ -6,9 +6,7 @@ const REGION_LABELS: Record<Region, string> = {
   LATIN_AMERICA: "Latin America",
   EUROPE: "Europe",
   MIDDLE_EAST_AFRICA: "Middle East & Africa",
-  SOUTH_ASIA: "South Asia",
-  SOUTHEAST_ASIA: "Southeast Asia",
-  EAST_ASIA: "East Asia",
+  ASIA: "Asia",
   OCEANIA: "Oceania",
 };
 

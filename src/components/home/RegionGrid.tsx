@@ -7,9 +7,7 @@ const REGION_HIGHLIGHTS: Record<Region, string> = {
   LATIN_AMERICA:      "bg-green-50 border-green-200 hover:border-green-400",
   EUROPE:             "bg-indigo-50 border-indigo-200 hover:border-indigo-400",
   MIDDLE_EAST_AFRICA: "bg-orange-50 border-orange-200 hover:border-orange-400",
-  SOUTH_ASIA:         "bg-yellow-50 border-yellow-200 hover:border-yellow-400",
-  SOUTHEAST_ASIA:     "bg-teal-50 border-teal-200 hover:border-teal-400",
-  EAST_ASIA:          "bg-red-50 border-red-200 hover:border-red-400",
+  ASIA:               "bg-teal-50 border-teal-200 hover:border-teal-400",
   OCEANIA:            "bg-cyan-50 border-cyan-200 hover:border-cyan-400",
 };
 

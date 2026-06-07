@@ -6,12 +6,10 @@
 // Curated Unsplash images per page context — all verified 200 OK
 export const HERO_IMAGES = {
   // Regions
-  "southeast-asia":    "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1400&q=85", // Bali rice terraces
+  "asia":              "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1400&q=85", // Bali rice terraces
   "europe":            "https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=1400&q=85", // Lisbon
-  "east-asia":         "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=1400&q=85", // Kyoto
   "latin-america":     "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=1400&q=85", // Rio
   "north-america":     "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=1400&q=85", // NYC
-  "south-asia":        "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1400&q=85", // Mountains
   "middle-east-africa":"https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1400&q=85", // Marrakech
   "oceania":           "https://images.unsplash.com/photo-1469521669194-babb45599def?w=1400&q=85", // Queenstown
   // Feature pages

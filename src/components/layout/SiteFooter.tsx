@@ -21,7 +21,7 @@ export default function SiteFooter() {
             <h3 className="text-xs font-semibold text-soulo-white uppercase tracking-wider mb-4">Explore</h3>
             <ul className="space-y-2 text-sm">
               <li><Link href="/destinations" className="hover:text-soulo-white transition-colors">Destinations</Link></li>
-              <li><Link href="/regions/southeast-asia" className="hover:text-soulo-white transition-colors">Southeast Asia</Link></li>
+              <li><Link href="/regions/asia" className="hover:text-soulo-white transition-colors">Asia</Link></li>
               <li><Link href="/regions/europe" className="hover:text-soulo-white transition-colors">Europe</Link></li>
               <li><Link href="/regions/oceania" className="hover:text-soulo-white transition-colors">Oceania</Link></li>
             </ul>
