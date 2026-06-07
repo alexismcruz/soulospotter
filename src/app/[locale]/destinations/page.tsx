@@ -8,7 +8,7 @@ import DestinationsClient from "@/components/destinations/DestinationsClient";
 export const metadata: Metadata = {
   title: "Destinations — SouloSpotter",
   description:
-    "Browse 21 cities across 8 regions curated for solo travelers. Filter by region, cost, and safety to find your next soulo adventure.",
+    "Browse solo-travel destinations by region, country, and city. Filter by region, cost, and safety to find your next soulo adventure.",
 };
 
 async function getAllCities() {

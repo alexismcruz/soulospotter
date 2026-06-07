@@ -21,7 +21,7 @@ async function getCitiesByRegion(slug: string) {
       tags: true,
       _count: { select: { spots: true } },
     },
-    orderBy: { name: "asc" },
+    orderBy: [{ country: { name: "asc" } }, { name: "asc" }],
   });
 
   return { meta, cities };
@@ -107,14 +107,34 @@ export default async function RegionPage({ params }: Props) {
               </div>
             ) : (
               <>
-                <p className="text-sm text-soulo-grey mb-6">
+                <p className="text-sm text-soulo-grey mb-8">
                   Showing <strong className="text-soulo-dark">{cities.length}</strong>{" "}
                   {cities.length === 1 ? "destination" : "destinations"} in {meta.label}
                 </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-                  {cities.map((city) => (
-                    <CityCard key={city.id} city={city} />
-                  ))}
+                <div className="space-y-12">
+                  {Object.entries(
+                    cities.reduce((acc, city) => {
+                      (acc[city.country.name] ??= []).push(city);
+                      return acc;
+                    }, {} as Record<string, typeof cities>)
+                  )
+                    .sort(([a], [b]) => a.localeCompare(b))
+                    .map(([countryName, countryCities]) => (
+                      <div key={countryName}>
+                        <div className="flex items-center gap-3 mb-5">
+                          <span className="text-2xl">{countryCities[0].country.flagEmoji}</span>
+                          <h2 className="font-display text-xl font-bold text-soulo-dark">{countryName}</h2>
+                          <span className="text-sm text-soulo-mist">
+                            {countryCities.length} {countryCities.length === 1 ? "city" : "cities"}
+                          </span>
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                          {countryCities.map((city) => (
+                            <CityCard key={city.id} city={city} />
+                          ))}
+                        </div>
+                      </div>
+                    ))}
                 </div>
               </>
             )}

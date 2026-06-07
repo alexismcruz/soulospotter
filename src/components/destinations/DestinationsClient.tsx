@@ -194,30 +194,57 @@ export default function DestinationsClient({
         </div>
       )}
 
-      {/* Grouped by region */}
+      {/* Grouped by region -> country -> city (all alphabetical) */}
       {filtered.length > 0 && (
-        <div className="space-y-12">
-          {Object.entries(byRegion).map(([reg, regCities]) => {
-            if (!regCities || regCities.length === 0) return null;
-            const regionMeta = reg ? REGION_BY_ENUM[reg as Region] : null;
-            return (
-              <div key={reg}>
-                {/* Region heading — only show when not filtered to one region */}
-                {!region && (
-                  <div className="flex items-center gap-3 mb-5">
-                    <span className="text-2xl">{regionMeta?.emoji}</span>
-                    <h2 className="text-lg font-bold text-soulo-dark">{regionMeta?.label}</h2>
-                    <span className="text-sm text-soulo-mist">{regCities.length} {regCities.length === 1 ? "city" : "cities"}</span>
+        <div className="space-y-14">
+          {Object.entries(byRegion)
+            .filter(([, regCities]) => regCities && regCities.length > 0)
+            .sort(([a], [b]) => {
+              const la = REGION_BY_ENUM[a as Region]?.label ?? a;
+              const lb = REGION_BY_ENUM[b as Region]?.label ?? b;
+              return la.localeCompare(lb);
+            })
+            .map(([reg, regCities]) => {
+              const regionMeta = reg ? REGION_BY_ENUM[reg as Region] : null;
+              // group this region's cities by country, alphabetically
+              const byCountry = Object.entries(
+                regCities!.reduce((acc, city) => {
+                  (acc[city.country.name] ??= []).push(city);
+                  return acc;
+                }, {} as Record<string, City[]>)
+              )
+                .map(([name, cs]) => [name, cs.slice().sort((x, y) => x.name.localeCompare(y.name))] as [string, City[]])
+                .sort(([a], [b]) => a.localeCompare(b));
+
+              return (
+                <div key={reg}>
+                  {/* Region heading — hidden when filtered to one region */}
+                  {!region && (
+                    <div className="flex items-center gap-3 mb-6 pb-2 border-b border-soulo-border">
+                      <span className="text-2xl">{regionMeta?.emoji}</span>
+                      <h2 className="font-display text-2xl font-bold text-soulo-dark">{regionMeta?.label}</h2>
+                      <span className="text-sm text-soulo-mist">{regCities!.length} {regCities!.length === 1 ? "city" : "cities"}</span>
+                    </div>
+                  )}
+                  <div className="space-y-10">
+                    {byCountry.map(([countryName, countryCities]) => (
+                      <div key={countryName}>
+                        <div className="flex items-center gap-2.5 mb-5">
+                          <span className="text-xl">{countryCities[0].country.flagEmoji}</span>
+                          <h3 className="font-display text-lg font-bold text-soulo-dark">{countryName}</h3>
+                          <span className="text-xs text-soulo-mist">{countryCities.length} {countryCities.length === 1 ? "city" : "cities"}</span>
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                          {countryCities.map((city) => (
+                            <CityCard key={city.id} city={city} />
+                          ))}
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                )}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-                  {regCities.map((city) => (
-                    <CityCard key={city.id} city={city} />
-                  ))}
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
       )}
     </div>
