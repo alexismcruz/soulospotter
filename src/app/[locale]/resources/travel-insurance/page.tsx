@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     "SafetyWing vs World Nomads — an honest comparison for solo travelers. Which travel insurance is right for your trip? We break down cost, coverage, and claims.",
 };
 
-const SAFETYWING_URL = "https://safetywing.com/?referenceID=soulospotter"; // replace with real affiliate URL
+const SAFETYWING_URL = "https://safetywing.com/?referenceID=26538744&utm_source=26538744&utm_medium=Ambassador";
 const WORLD_NOMADS_URL = "https://www.worldnomads.com/?affiliate=soulospotter"; // replace with real affiliate URL
 
 export default function TravelInsurancePage() {
