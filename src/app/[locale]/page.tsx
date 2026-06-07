@@ -5,7 +5,6 @@ import { Region } from "@prisma/client";
 import HeroSection from "@/components/home/HeroSection";
 import RegionGrid from "@/components/home/RegionGrid";
 import FeaturedCities from "@/components/home/FeaturedCities";
-import CategoryGrid from "@/components/home/CategoryGrid";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 
@@ -54,7 +53,6 @@ export default async function HomePage() {
         <HeroSection />
         <RegionGrid regionCounts={regionCountMap} />
         <FeaturedCities cities={featuredCities} />
-        <CategoryGrid />
       </main>
       <SiteFooter />
     </div>
