@@ -24,6 +24,7 @@ const GYG_CITY_MAP: Record<string, string> = {
   "hanoi": "https://www.getyourguide.com/hanoi-l88/?partner_id=" + AFFILIATE_ID,
   "bali": "https://www.getyourguide.com/bali-l128/?partner_id=" + AFFILIATE_ID,
   "siargao": "https://www.getyourguide.com/siargao-l329/?partner_id=" + AFFILIATE_ID,
+  "hong-kong": "https://www.getyourguide.com/hong-kong-l103/?partner_id=" + AFFILIATE_ID,
   "kyoto": "https://www.getyourguide.com/kyoto-l104/?partner_id=" + AFFILIATE_ID,
   "seoul": "https://www.getyourguide.com/seoul-l57/?partner_id=" + AFFILIATE_ID,
   "melbourne": "https://www.getyourguide.com/melbourne-l125/?partner_id=" + AFFILIATE_ID,
