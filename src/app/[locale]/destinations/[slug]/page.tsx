@@ -7,6 +7,7 @@ import CityHero from "@/components/city/CityHero";
 import CityStats from "@/components/city/CityStats";
 import SpotList from "@/components/city/SpotList";
 import TripResources from "@/components/city/TripResources";
+import FlightCheck from "@/components/city/FlightCheck";
 
 type Props = {
   params: Promise<{ slug: string; locale: string }>;
@@ -69,6 +70,7 @@ export default async function CityPage({ params }: Props) {
         <CityHero city={city} />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <CityStats city={city} />
+          <FlightCheck citySlug={slug} cityName={city.name} />
           <TripResources citySlug={slug} />
           <SpotList
             spots={city.spots}
