@@ -103,6 +103,15 @@ export const COMMON_ORIGINS: Airport[] = [
   { code: "MEX", city: "Mexico City" },
 ];
 
+/** All destination airports + common origins, de-duped, for global pickers. */
+export const ALL_AIRPORTS: Airport[] = (() => {
+  const map = new Map<string, Airport>();
+  for (const a of [...COMMON_ORIGINS, ...Object.values(CITY_AIRPORTS)]) {
+    if (!map.has(a.code)) map.set(a.code, a);
+  }
+  return Array.from(map.values()).sort((x, y) => x.city.localeCompare(y.city));
+})();
+
 export type FlightQuery = {
   origin: string;       // IATA code or city, e.g. "JFK"
   dest: string;         // IATA code or city

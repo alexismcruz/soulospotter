@@ -4,6 +4,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import GlobalFlightCTA from "@/components/flights/GlobalFlightCTA";
 import "../globals.css";
 
 const playfair = Playfair_Display({
@@ -64,6 +65,7 @@ export default async function LocaleLayout({
       <body className="min-h-full flex flex-col bg-soulo-white text-soulo-dark">
         <NextIntlClientProvider messages={messages}>
           {children}
+          <GlobalFlightCTA />
         </NextIntlClientProvider>
       </body>
     </html>
