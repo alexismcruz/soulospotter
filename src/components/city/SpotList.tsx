@@ -51,9 +51,10 @@ type Props = {
   categories: SpotCategory[];
   activeCategory: SpotCategory | undefined;
   citySlug: string;
+  cityName: string;
 };
 
-export default function SpotList({ spots, allSpots, categories, activeCategory, citySlug }: Props) {
+export default function SpotList({ spots, allSpots, categories, activeCategory, citySlug, cityName }: Props) {
   return (
     <div>
       {/* Category filter tabs */}
@@ -88,6 +89,13 @@ export default function SpotList({ spots, allSpots, categories, activeCategory, 
           );
         })}
       </div>
+
+      {/* Section H2 — keyword-rich heading for Google */}
+      <h2 className="font-display text-2xl font-bold text-soulo-dark mb-2">
+        {activeCategory
+          ? `Best ${CATEGORY_META[activeCategory].label} in ${cityName} for Solo Travelers`
+          : `Top Spots in ${cityName} for Solo Travelers`}
+      </h2>
 
       {/* Spot count */}
       <p className="text-sm text-soulo-grey mb-6">

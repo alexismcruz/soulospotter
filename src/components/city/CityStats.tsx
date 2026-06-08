@@ -9,6 +9,7 @@ const COST_DISPLAY: Record<CostLevel, { label: string; symbol: string; color: st
 
 type Props = {
   city: {
+    name: string;
     slug: string;
     description: string | null;
     safetyScore: number | null;
@@ -28,9 +29,14 @@ export default function CityStats({ city }: Props) {
   return (
     <div className="mb-10">
       {city.description && (
-        <p className="text-soulo-grey leading-relaxed max-w-3xl mb-8 text-lg">
-          {city.description}
-        </p>
+        <div className="mb-8">
+          <h2 className="font-display text-2xl font-bold text-soulo-dark mb-3">
+            About {city.name} for Solo Travelers
+          </h2>
+          <p className="text-soulo-grey leading-relaxed max-w-3xl text-lg">
+            {city.description}
+          </p>
+        </div>
       )}
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">

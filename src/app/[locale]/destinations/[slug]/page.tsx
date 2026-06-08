@@ -76,6 +76,7 @@ export default async function CityPage({ params }: Props) {
             categories={categories}
             activeCategory={undefined}
             citySlug={slug}
+            cityName={city.name}
           />
         </div>
       </main>

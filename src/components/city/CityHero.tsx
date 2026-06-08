@@ -98,10 +98,30 @@ export default function CityHero({
             )}
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white">
-            <span className="inline-flex items-center gap-2"><FlagImage code={city.country.code} name={city.country.name} size="md" /> {city.name}</span>
-          </h1>
-          <p className="mt-1 text-white/60 text-sm">{city.country.name}</p>
+          {activeCategory ? (
+            <>
+              {/* Category page: H1 = "Cafes in Bangkok" — matches <title> for Google */}
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
+                {CATEGORY_META[activeCategory].emoji}{" "}
+                {CATEGORY_META[activeCategory].label} in {city.name}
+              </h1>
+              <p className="mt-2 text-white/60 text-sm flex items-center gap-1.5">
+                <FlagImage code={city.country.code} name={city.country.name} size="sm" />
+                {city.country.name}
+              </p>
+            </>
+          ) : (
+            <>
+              {/* City page: H1 = "Solo Travel in Bangkok" */}
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white">
+                <span className="inline-flex items-center gap-2">
+                  <FlagImage code={city.country.code} name={city.country.name} size="md" />
+                  Solo Travel in {city.name}
+                </span>
+              </h1>
+              <p className="mt-1 text-white/60 text-sm">{city.country.name}</p>
+            </>
+          )}
 
           {/* Tags */}
           {city.tags.length > 0 && (

@@ -125,7 +125,7 @@ export default async function SpotPage({ params }: Props) {
           <div className="grid lg:grid-cols-3 gap-10">
 
             {/* Left — main info */}
-            <div className="lg:col-span-2">
+            <article className="lg:col-span-2">
 
               {/* Category badge */}
               <div className="mb-4">
@@ -149,9 +149,14 @@ export default async function SpotPage({ params }: Props) {
 
               {/* Description */}
               {spot.description && (
-                <p className="text-soulo-grey leading-relaxed text-lg mb-8">
-                  {spot.description}
-                </p>
+                <>
+                  <h2 className="font-display text-xl font-bold text-soulo-dark mb-3">
+                    About {spot.name}
+                  </h2>
+                  <p className="text-soulo-grey leading-relaxed text-lg mb-8">
+                    {spot.description}
+                  </p>
+                </>
               )}
 
               {/* Tags */}
@@ -205,7 +210,7 @@ export default async function SpotPage({ params }: Props) {
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-soulo-teal/20 text-soulo-teal font-semibold text-sm">
                 ✓ Solo-friendly spot
               </div>
-            </div>
+            </article>
 
             {/* Right — sidebar */}
             <div className="lg:col-span-1 space-y-4">

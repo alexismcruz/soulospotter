@@ -101,6 +101,7 @@ export default async function CityCategoryPage({ params }: Props) {
             categories={categories}
             activeCategory={activeCategory}
             citySlug={slug}
+            cityName={city.name}
           />
         </div>
       </main>
