@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { SpotCategory, PriceRange, AffiliateProvider } from "@prisma/client";
 import { CATEGORY_SLUGS, CATEGORY_META } from "@/lib/categoryUtils";
 
@@ -126,11 +127,14 @@ export default function SpotList({ spots, allSpots, categories, activeCategory, 
               >
                 {/* Photo */}
                 {spot.imageUrl && (
-                  <div className="w-full h-48 bg-soulo-linen overflow-hidden">
-                    <img
+                  <div className="relative w-full h-48 bg-soulo-linen overflow-hidden">
+                    <Image
                       src={spot.imageUrl}
-                      alt={spot.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      alt={`${spot.name} — ${meta.label} in ${cityName}`}
+                      fill
+                      loading="lazy"
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                   </div>
                 )}

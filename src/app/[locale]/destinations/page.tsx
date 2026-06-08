@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Destinations — SouloSpotter",
   description:
     "Browse solo-travel destinations by region, country, and city. Filter by region, cost, and safety to find your next soulo adventure.",
+  alternates: { canonical: "https://soulospotter.com/destinations" },
 };
 
 async function getAllCities() {

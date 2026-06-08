@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ExperienceCategory } from "@prisma/client";
 import FlagImage from "@/components/ui/FlagImage";
 
@@ -50,10 +51,13 @@ export default function ExperienceCard({
       }`}>
         {/* Photo */}
         <div className="relative w-full h-48 overflow-hidden bg-soulo-linen">
-          <img
+          <Image
             src={imgSrc}
-            alt={name}
-            className="w-full h-full object-cover"
+            alt={`${name} — ${categoryInfo.label} in ${city.name}`}
+            fill
+            loading="lazy"
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
           {isFeatured && (
             <div className="absolute top-3 right-3 bg-soulo-gold text-soulo-dark px-3 py-1 rounded-full text-xs font-bold">

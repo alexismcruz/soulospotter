@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "Curated Experiences for Solo Travelers — SouloSpotter",
   description:
     "Browse solo-friendly tours, activities, and experiences across 30+ countries. Cooking classes, hiking tours, photography walks, and more — curated for travelers going alone.",
+  alternates: { canonical: "https://soulospotter.com/experiences" },
 };
 
 export default async function ExperiencesPage() {

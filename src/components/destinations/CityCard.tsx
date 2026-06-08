@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { CostLevel, Region } from "@prisma/client";
 import { CITY_IMAGES, FALLBACK_IMAGE } from "@/lib/cityImages";
 import FlagImage from "@/components/ui/FlagImage";
@@ -34,10 +35,12 @@ export default function CityCard({ city }: { city: City }) {
       className="group rounded-2xl overflow-hidden border border-soulo-border bg-white hover:shadow-lg hover:border-soulo-gold transition-all duration-200 hover:-translate-y-1 flex flex-col"
     >
       <div className="relative h-44 overflow-hidden">
-        <img
+        <Image
           src={imgSrc}
-          alt={city.name}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          alt={`Solo travel in ${city.name}, ${city.country.name}`}
+          fill
+          className="object-cover group-hover:scale-105 transition-transform duration-300"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
         />
         <div className="absolute top-3 left-3 flex gap-1.5">
           {cost && (

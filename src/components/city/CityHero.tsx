@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { CostLevel, Region } from "@prisma/client";
 
 const REGION_LABELS: Record<Region, string> = {
@@ -48,10 +49,13 @@ export default function CityHero({
 
   return (
     <div className="relative h-80 sm:h-[26rem] overflow-hidden">
-      <img
+      <Image
         src={imgSrc}
-        alt={city.name}
-        className="w-full h-full object-cover"
+        alt={`${city.name}, ${city.country.name} — solo travel guide`}
+        fill
+        priority
+        className="object-cover"
+        sizes="100vw"
       />
       {/* Dark overlay — stronger at top so breadcrumbs are readable */}
       <div className="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/40 to-stone-900/60" />

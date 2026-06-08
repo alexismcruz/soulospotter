@@ -7,6 +7,10 @@ import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import CityCard from "@/components/destinations/CityCard";
 import PageHero, { HERO_IMAGES } from "@/components/layout/PageHero";
+import JsonLd from "@/components/seo/JsonLd";
+import { breadcrumbSchema } from "@/lib/jsonld";
+
+const BASE = "https://soulospotter.com";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -38,6 +42,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `Solo Travel in ${meta.label} — SouloSpotter`,
     description: meta.description,
+    alternates: { canonical: `${BASE}/regions/${slug}` },
   };
 }
 
@@ -55,8 +60,15 @@ export default async function RegionPage({ params }: Props) {
   // Other regions for "Explore other regions" section
   const otherRegions = REGIONS.filter((r) => r.slug !== slug);
 
+  const jsonLd = breadcrumbSchema([
+    { name: "Home",         url: BASE },
+    { name: "Destinations", url: `${BASE}/destinations` },
+    { name: meta.label,     url: `${BASE}/regions/${slug}` },
+  ]);
+
   return (
     <div className="flex flex-col min-h-screen">
+      <JsonLd data={jsonLd} />
       <SiteHeader />
       <main className="flex-1">
         {/* Hero */}

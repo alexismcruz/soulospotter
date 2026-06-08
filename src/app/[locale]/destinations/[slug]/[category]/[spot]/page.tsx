@@ -8,6 +8,10 @@ import SiteFooter from "@/components/layout/SiteFooter";
 import FlagImage from "@/components/ui/FlagImage";
 import TripResources from "@/components/city/TripResources";
 import { SLUG_TO_CATEGORY, CATEGORY_SLUGS, CATEGORY_META } from "@/lib/categoryUtils";
+import JsonLd from "@/components/seo/JsonLd";
+import { spotSchema, breadcrumbSchema } from "@/lib/jsonld";
+
+const BASE = "https://soulospotter.com";
 
 type Props = {
   params: Promise<{ slug: string; category: string; spot: string; locale: string }>;
@@ -60,7 +64,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug, spot: spotSlug } = await params;
+  const { slug, category: catSlug, spot: spotSlug } = await params;
   const spot = await getSpot(slug, spotSlug);
   if (!spot) return {};
   const catMeta = CATEGORY_META[spot.category];
@@ -69,6 +73,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description:
       spot.description?.substring(0, 160) ??
       `${spot.name} is a solo-travel-friendly ${catMeta.label.toLowerCase()} in ${spot.city.name}. Discovered and verified by SouloSpotter.`,
+    alternates: {
+      canonical: `${BASE}/destinations/${slug}/${catSlug}/${spotSlug}`,
+    },
   };
 }
 
@@ -94,8 +101,33 @@ export default async function SpotPage({ params }: Props) {
     take: 3,
   });
 
+  const jsonLd = [
+    spotSchema({
+      name: spot.name,
+      slug: spot.slug,
+      category: spot.category,
+      description: spot.description,
+      address: spot.address,
+      cityName: spot.city.name,
+      citySlug: citySlug,
+      countryName: spot.city.country.name,
+      countryCode: spot.city.country.code,
+      imageUrl: spot.imageUrl,
+      website: spot.website,
+      categorySlug,
+    }),
+    breadcrumbSchema([
+      { name: "Home",                          url: BASE },
+      { name: "Destinations",                  url: `${BASE}/destinations` },
+      { name: spot.city.name,                  url: `${BASE}/destinations/${citySlug}` },
+      { name: catMeta.label,                   url: `${BASE}/destinations/${citySlug}/${categorySlug}` },
+      { name: spot.name,                       url: `${BASE}/destinations/${citySlug}/${categorySlug}/${spot.slug}` },
+    ]),
+  ];
+
   return (
     <div className="flex flex-col min-h-screen">
+      <JsonLd data={jsonLd} />
       <SiteHeader />
       <main className="flex-1">
 

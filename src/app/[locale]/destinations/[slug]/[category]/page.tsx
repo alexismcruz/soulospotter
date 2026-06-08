@@ -9,6 +9,10 @@ import CityStats from "@/components/city/CityStats";
 import SpotList from "@/components/city/SpotList";
 import TripResources from "@/components/city/TripResources";
 import { SLUG_TO_CATEGORY, CATEGORY_SLUGS, CATEGORY_META } from "@/lib/categoryUtils";
+import JsonLd from "@/components/seo/JsonLd";
+import { breadcrumbSchema } from "@/lib/jsonld";
+
+const BASE = "https://soulospotter.com";
 
 type Props = {
   params: Promise<{ slug: string; category: string; locale: string }>;
@@ -62,6 +66,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${meta.label} in ${city.name} for Solo Travelers — SouloSpotter`,
     description: `The best ${meta.label.toLowerCase()} in ${city.name} for solo travelers. ${count} curated ${count === 1 ? "spot" : "spots"} — handpicked for people who travel alone.`,
+    alternates: {
+      canonical: `${BASE}/destinations/${slug}/${categorySlug}`,
+    },
     openGraph: {
       title: `${meta.emoji} ${meta.label} in ${city.name} | SouloSpotter`,
       description: `${count} solo-travel-friendly ${meta.label.toLowerCase()} in ${city.name}.`,
@@ -87,8 +94,16 @@ export default async function CityCategoryPage({ params }: Props) {
 
   const categories = Array.from(new Set(city.spots.map((s) => s.category)));
 
+  const jsonLd = breadcrumbSchema([
+    { name: "Home",                               url: BASE },
+    { name: "Destinations",                       url: `${BASE}/destinations` },
+    { name: city.name,                            url: `${BASE}/destinations/${slug}` },
+    { name: CATEGORY_META[activeCategory].label,  url: `${BASE}/destinations/${slug}/${categorySlug}` },
+  ]);
+
   return (
     <div className="flex flex-col min-h-screen">
+      <JsonLd data={jsonLd} />
       <SiteHeader />
       <main className="flex-1">
         <CityHero city={city} activeCategory={activeCategory} />

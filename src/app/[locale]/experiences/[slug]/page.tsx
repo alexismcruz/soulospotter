@@ -6,6 +6,10 @@ import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import FlagImage from "@/components/ui/FlagImage";
 import AffiliateCTA from "@/components/resources/AffiliateCTA";
+import JsonLd from "@/components/seo/JsonLd";
+import { experienceSchema, breadcrumbSchema } from "@/lib/jsonld";
+
+const BASE = "https://soulospotter.com";
 
 type Props = {
   params: Promise<{ slug: string; locale: string }>;
@@ -36,6 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${experience.name} in ${experience.city.name} — SouloSpotter`,
     description: experience.description.substring(0, 160),
+    alternates: { canonical: `${BASE}/experiences/${slug}` },
     openGraph: {
       title: `${experience.name} | SouloSpotter`,
       description: experience.description.substring(0, 160),
@@ -93,8 +98,27 @@ export default async function ExperienceDetailPage({ params }: Props) {
   const hasRealContact = !isPlaceholderEmail(experience.organizer.email);
   const isPlaceholderBooking = experience.bookingUrl === "https://www.getyourguide.com/" || experience.bookingUrl === "https://www.getyourguide.com";
 
+  const jsonLd = [
+    experienceSchema({
+      name: experience.name,
+      slug: experience.slug,
+      description: experience.description,
+      price: experience.price,
+      duration: experience.duration,
+      cityName: experience.city.name,
+      countryName: experience.city.country.name,
+      imageUrl: experience.photoUrl,
+    }),
+    breadcrumbSchema([
+      { name: "Home",             url: BASE },
+      { name: "Experiences",      url: `${BASE}/experiences` },
+      { name: experience.name,    url: `${BASE}/experiences/${experience.slug}` },
+    ]),
+  ];
+
   return (
     <div className="flex flex-col min-h-screen">
+      <JsonLd data={jsonLd} />
       <SiteHeader />
       <main className="flex-1">
 

@@ -7,6 +7,8 @@ import RegionGrid from "@/components/home/RegionGrid";
 import FeaturedCities from "@/components/home/FeaturedCities";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
+import JsonLd from "@/components/seo/JsonLd";
+import { websiteSchema, organizationSchema } from "@/lib/jsonld";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("home");
@@ -48,6 +50,7 @@ export default async function HomePage() {
 
   return (
     <div className="flex flex-col min-h-screen">
+      <JsonLd data={[websiteSchema(), organizationSchema()]} />
       <SiteHeader />
       <main className="flex-1">
         <HeroSection />
