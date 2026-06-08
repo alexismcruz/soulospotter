@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { useState, useMemo, useEffect } from "react";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { Region, CostLevel } from "@prisma/client";
 import { REGIONS as REGION_LIST, REGION_BY_ENUM } from "@/lib/regions";
 import CityCard from "./CityCard";
@@ -49,10 +49,19 @@ export default function DestinationsClient({
 }: Props) {
   const router = useRouter();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   const [query, setQuery] = useState(initialQuery);
   const [region, setRegion] = useState(initialRegion);
   const [cost, setCost] = useState(initialCost);
+
+  // Keep filters in sync with the URL (e.g. when navigating from the
+  // Destinations dropdown to /destinations?region=EUROPE while already mounted).
+  useEffect(() => {
+    setQuery(searchParams.get("q") ?? "");
+    setRegion(searchParams.get("region") ?? "");
+    setCost(searchParams.get("cost") ?? "");
+  }, [searchParams]);
 
   // Update URL params when filters change
   function updateParams(newQuery: string, newRegion: string, newCost: string) {
