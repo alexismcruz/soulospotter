@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Submit a Listing — SouloSpotter",
   description:
     "Know a great spot for solo travelers? Submit it to SouloSpotter. We review every listing before it goes live.",
+  alternates: { canonical: "https://soulospotter.com/submit" },
 };
 
 export default function SubmitPage() {

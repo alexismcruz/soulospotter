@@ -3,14 +3,25 @@ import Link from "next/link";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import PageHero from "@/components/layout/PageHero";
+import { prisma } from "@/lib/prisma";
 
 export const metadata: Metadata = {
   title: "About SouloSpotter — Travel alone. Travel Soulo. Find yourself.",
   description:
     "SouloSpotter is the global directory for solo travelers who seek more than a destination. We curate the best spots, cities, and resources for people who travel alone — and love it.",
+  alternates: { canonical: "https://soulospotter.com/about" },
+  openGraph: {
+    title: "About SouloSpotter",
+    description: "The global solo travel directory — built for people who travel alone and love it.",
+  },
 };
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const [cityCount, spotCount, regionCount] = await Promise.all([
+    prisma.city.count({ where: { published: true } }),
+    prisma.spot.count({ where: { published: true } }),
+    prisma.city.groupBy({ by: ["region"], where: { published: true } }).then((r) => r.length),
+  ]);
   return (
     <div className="flex flex-col min-h-screen">
       <SiteHeader />
@@ -55,10 +66,10 @@ export default function AboutPage() {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { emoji: "🌍", stat: "21", label: "Cities curated" },
-                  { emoji: "🗺️", stat: "8",  label: "Global regions" },
-                  { emoji: "📍", stat: "63+", label: "Spots verified" },
-                  { emoji: "🌐", stat: "5",  label: "Target markets" },
+                  { emoji: "🌍", stat: `${cityCount}`,      label: "Cities curated" },
+                  { emoji: "🗺️", stat: `${regionCount}`,    label: "Global regions" },
+                  { emoji: "📍", stat: `${spotCount}+`,     label: "Spots verified" },
+                  { emoji: "🌐", stat: "5",                  label: "Target markets" },
                 ].map((item) => (
                   <div key={item.label} className="bg-soulo-linen rounded-2xl p-5 border border-soulo-border text-center">
                     <span className="text-3xl">{item.emoji}</span>
@@ -164,7 +175,7 @@ export default function AboutPage() {
             <h2 className="font-display text-3xl font-bold text-soulo-white mb-4">Ready to explore?</h2>
 
             <p className="text-soulo-mist mb-8 max-w-lg mx-auto">
-              21 cities, 8 regions, and 63 curated spots — built for you.
+              {cityCount} cities, {regionCount} regions, and {spotCount}+ curated spots — built for you.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link

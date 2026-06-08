@@ -9,6 +9,11 @@ export const metadata: Metadata = {
   title: "Advertise with SouloSpotter — Reach Travelers Worldwide",
   description:
     "Put your business in front of thousands of solo travelers. Featured listings, city spotlights, and homepage placements — transparent pricing, no hidden fees.",
+  alternates: { canonical: "https://soulospotter.com/advertise" },
+  openGraph: {
+    title: "Advertise with SouloSpotter",
+    description: "Reach thousands of solo travelers. Featured listings and city spotlights.",
+  },
 };
 
 const TIERS = [

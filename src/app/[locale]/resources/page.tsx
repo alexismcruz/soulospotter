@@ -7,6 +7,11 @@ export const metadata: Metadata = {
   title: "Solo Travel Resources — SouloSpotter",
   description:
     "Everything a solo traveler needs before departure — travel insurance, eSIMs, tours, and gear. Curated and trusted by SouloSpotter.",
+  alternates: { canonical: "https://soulospotter.com/resources" },
+  openGraph: {
+    title: "Solo Travel Resources — SouloSpotter",
+    description: "Travel insurance, eSIMs, solo-friendly tours — everything you need before you fly.",
+  },
 };
 
 const RESOURCES = [

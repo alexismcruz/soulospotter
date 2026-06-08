@@ -10,6 +10,11 @@ export const metadata: Metadata = {
   title: "Best Travel Insurance for Solo Travelers (2025) — SouloSpotter",
   description:
     "SafetyWing vs World Nomads — an honest comparison for solo travelers. Which travel insurance is right for your trip? We break down cost, coverage, and claims.",
+  alternates: { canonical: "https://soulospotter.com/resources/travel-insurance" },
+  openGraph: {
+    title: "Best Travel Insurance for Solo Travelers (2025)",
+    description: "SafetyWing vs World Nomads — an honest comparison for solo travelers.",
+  },
 };
 
 const SAFETYWING_URL = "https://safetywing.com/?referenceID=26538744&utm_source=26538744&utm_medium=Ambassador";

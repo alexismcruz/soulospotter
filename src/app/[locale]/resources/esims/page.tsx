@@ -10,6 +10,11 @@ export const metadata: Metadata = {
   title: "Best eSIM for Solo Travelers — eSIMGo Review (2025) — SouloSpotter",
   description:
     "Never get stranded without data again. eSIMGo lets you buy a local eSIM before you land — works in 200+ countries. Our honest review for solo travelers.",
+  alternates: { canonical: "https://soulospotter.com/resources/esims" },
+  openGraph: {
+    title: "Best eSIM for Solo Travelers (2025)",
+    description: "Stay connected in 200+ countries. Our honest eSIM review for solo travelers.",
+  },
 };
 
 const ESIMGO_URL = "https://breezesim.com?sca_ref=11468464.321pPwPKQ4";
