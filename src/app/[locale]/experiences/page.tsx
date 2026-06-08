@@ -46,8 +46,13 @@ export default async function ExperiencesPage() {
     slug: exp.slug,
     name: exp.name,
     city: {
+      slug: exp.city.slug,
       name: exp.city.name,
-      country: { code: exp.city.country.code },
+      country: {
+        code: exp.city.country.code,
+        name: exp.city.country.name,
+        flagEmoji: exp.city.country.flagEmoji ?? undefined,
+      },
     },
     category: exp.category,
     price: exp.price,
