@@ -27,7 +27,13 @@ const SLIDES = [
   },
 ];
 
-export default function HeroSection() {
+interface HeroSectionProps {
+  cityCount: number;
+  spotCount: number;
+  regionCount: number;
+}
+
+export default function HeroSection({ cityCount, spotCount, regionCount }: HeroSectionProps) {
   const t = useTranslations("home");
   const router = useRouter();
   const [query, setQuery] = useState("");
@@ -74,7 +80,7 @@ export default function HeroSection() {
           {/* Eyebrow */}
           <div className="inline-flex items-center gap-2 bg-white/10 border border-white/15 rounded-full px-4 py-1.5 text-sm font-medium text-soulo-gold mb-6">
             <span>🌍</span>
-            <span>21 cities · 8 regions · 63 spots</span>
+            <span>{cityCount} cities · {regionCount} regions · {spotCount} spots</span>
           </div>
 
           {/* Headline */}

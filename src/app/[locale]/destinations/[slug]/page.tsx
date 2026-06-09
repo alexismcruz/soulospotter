@@ -8,6 +8,7 @@ import CityHero from "@/components/city/CityHero";
 import CityStats from "@/components/city/CityStats";
 import SpotList from "@/components/city/SpotList";
 import TripResources from "@/components/city/TripResources";
+import CityExperiences from "@/components/city/CityExperiences";
 import CityCard from "@/components/destinations/CityCard";
 import JsonLd from "@/components/seo/JsonLd";
 import { citySchema, breadcrumbSchema } from "@/lib/jsonld";
@@ -31,6 +32,11 @@ async function getCity(slug: string) {
           affiliateLinks: true,
         },
         orderBy: { name: "asc" },
+      },
+      experiences: {
+        where: { isActive: true },
+        orderBy: [{ isFeatured: "desc" }, { createdAt: "desc" }],
+        take: 12,
       },
     },
   });
@@ -104,6 +110,23 @@ export default async function CityPage({ params }: Props) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <CityStats city={city} />
           <TripResources citySlug={slug} />
+          <CityExperiences
+            cityName={city.name}
+            citySlug={slug}
+            experiences={city.experiences.map((exp) => ({
+              id: exp.id,
+              slug: exp.slug,
+              name: exp.name,
+              category: exp.category,
+              price: exp.price,
+              groupSizeMin: exp.groupSizeMin,
+              groupSizeMax: exp.groupSizeMax,
+              duration: exp.duration,
+              photoUrl: exp.photoUrl ?? undefined,
+              isFeatured: exp.isFeatured,
+              city: { name: city.name, country: { code: city.country.code, name: city.country.name } },
+            }))}
+          />
           <SpotList
             spots={city.spots}
             allSpots={city.spots}
