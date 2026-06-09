@@ -103,10 +103,81 @@ export const COMMON_ORIGINS: Airport[] = [
   { code: "MEX", city: "Mexico City" },
 ];
 
-/** All destination airports + common origins, de-duped, for global pickers. */
+/**
+ * Comprehensive list of major international airports worldwide, so visitors can
+ * search ANY global route — not only the destinations featured on the site.
+ * The flight form accepts free text too (any valid IATA code works), this just
+ * powers the autocomplete suggestions.
+ */
+export const WORLD_AIRPORTS: Airport[] = [
+  // ── North America ──
+  { code: "JFK", city: "New York JFK" }, { code: "EWR", city: "New York Newark" },
+  { code: "LGA", city: "New York LaGuardia" }, { code: "LAX", city: "Los Angeles" },
+  { code: "SFO", city: "San Francisco" }, { code: "ORD", city: "Chicago O'Hare" },
+  { code: "SEA", city: "Seattle" }, { code: "MIA", city: "Miami" }, { code: "BOS", city: "Boston" },
+  { code: "ATL", city: "Atlanta" }, { code: "DFW", city: "Dallas" }, { code: "DEN", city: "Denver" },
+  { code: "LAS", city: "Las Vegas" }, { code: "IAD", city: "Washington Dulles" },
+  { code: "PHX", city: "Phoenix" }, { code: "PDX", city: "Portland" }, { code: "AUS", city: "Austin" },
+  { code: "HNL", city: "Honolulu" }, { code: "YYZ", city: "Toronto" }, { code: "YVR", city: "Vancouver" },
+  { code: "YUL", city: "Montreal" }, { code: "YYC", city: "Calgary" }, { code: "MEX", city: "Mexico City" },
+  { code: "CUN", city: "Cancún" }, { code: "GDL", city: "Guadalajara" }, { code: "PTY", city: "Panama City" },
+  { code: "SJO", city: "San José (Costa Rica)" }, { code: "HAV", city: "Havana" },
+  // ── South America ──
+  { code: "GRU", city: "São Paulo" }, { code: "GIG", city: "Rio de Janeiro" }, { code: "EZE", city: "Buenos Aires" },
+  { code: "SCL", city: "Santiago" }, { code: "LIM", city: "Lima" }, { code: "BOG", city: "Bogotá" },
+  { code: "MDE", city: "Medellín" }, { code: "UIO", city: "Quito" }, { code: "CUZ", city: "Cusco" },
+  { code: "MVD", city: "Montevideo" }, { code: "LPB", city: "La Paz" },
+  // ── Europe ──
+  { code: "LHR", city: "London Heathrow" }, { code: "LGW", city: "London Gatwick" },
+  { code: "STN", city: "London Stansted" }, { code: "MAN", city: "Manchester" }, { code: "EDI", city: "Edinburgh" },
+  { code: "DUB", city: "Dublin" }, { code: "CDG", city: "Paris CDG" }, { code: "ORY", city: "Paris Orly" },
+  { code: "AMS", city: "Amsterdam" }, { code: "FRA", city: "Frankfurt" }, { code: "MUC", city: "Munich" },
+  { code: "BER", city: "Berlin" }, { code: "MAD", city: "Madrid" }, { code: "BCN", city: "Barcelona" },
+  { code: "LIS", city: "Lisbon" }, { code: "OPO", city: "Porto" }, { code: "FCO", city: "Rome" },
+  { code: "MXP", city: "Milan" }, { code: "VCE", city: "Venice" }, { code: "ATH", city: "Athens" },
+  { code: "VIE", city: "Vienna" }, { code: "ZRH", city: "Zurich" }, { code: "GVA", city: "Geneva" },
+  { code: "BRU", city: "Brussels" }, { code: "CPH", city: "Copenhagen" }, { code: "ARN", city: "Stockholm" },
+  { code: "OSL", city: "Oslo" }, { code: "HEL", city: "Helsinki" }, { code: "KEF", city: "Reykjavik" },
+  { code: "PRG", city: "Prague" }, { code: "BUD", city: "Budapest" }, { code: "WAW", city: "Warsaw" },
+  { code: "KRK", city: "Kraków" }, { code: "OTP", city: "Bucharest" }, { code: "IST", city: "Istanbul" },
+  { code: "DBV", city: "Dubrovnik" }, { code: "ZAG", city: "Zagreb" }, { code: "TLL", city: "Tallinn" },
+  { code: "LJU", city: "Ljubljana" }, { code: "TBS", city: "Tbilisi" }, { code: "SVO", city: "Moscow" },
+  // ── Middle East & Africa ──
+  { code: "DXB", city: "Dubai" }, { code: "AUH", city: "Abu Dhabi" }, { code: "DOH", city: "Doha" },
+  { code: "TLV", city: "Tel Aviv" }, { code: "AMM", city: "Amman" }, { code: "RUH", city: "Riyadh" },
+  { code: "JED", city: "Jeddah" }, { code: "CAI", city: "Cairo" }, { code: "RAK", city: "Marrakech" },
+  { code: "CMN", city: "Casablanca" }, { code: "CPT", city: "Cape Town" }, { code: "JNB", city: "Johannesburg" },
+  { code: "NBO", city: "Nairobi" }, { code: "ADD", city: "Addis Ababa" }, { code: "ZNZ", city: "Zanzibar" },
+  { code: "MRU", city: "Mauritius" },
+  // ── Asia ──
+  { code: "NRT", city: "Tokyo Narita" }, { code: "HND", city: "Tokyo Haneda" }, { code: "KIX", city: "Osaka" },
+  { code: "ICN", city: "Seoul Incheon" }, { code: "PUS", city: "Busan" }, { code: "CJU", city: "Jeju" },
+  { code: "PEK", city: "Beijing" }, { code: "PVG", city: "Shanghai" }, { code: "CTU", city: "Chengdu" },
+  { code: "XIY", city: "Xi'an" }, { code: "KWL", city: "Guilin" }, { code: "HKG", city: "Hong Kong" },
+  { code: "TPE", city: "Taipei" }, { code: "BKK", city: "Bangkok" }, { code: "HKT", city: "Phuket" },
+  { code: "CNX", city: "Chiang Mai" }, { code: "USM", city: "Koh Samui" }, { code: "SIN", city: "Singapore" },
+  { code: "KUL", city: "Kuala Lumpur" }, { code: "PEN", city: "Penang" }, { code: "DPS", city: "Bali (Denpasar)" },
+  { code: "CGK", city: "Jakarta" }, { code: "MNL", city: "Manila" }, { code: "CEB", city: "Cebu" },
+  { code: "SGN", city: "Ho Chi Minh City" }, { code: "HAN", city: "Hanoi" }, { code: "REP", city: "Siem Reap" },
+  { code: "PNH", city: "Phnom Penh" }, { code: "VTE", city: "Vientiane" }, { code: "LPQ", city: "Luang Prabang" },
+  { code: "RGN", city: "Yangon" }, { code: "DEL", city: "Delhi" }, { code: "BOM", city: "Mumbai" },
+  { code: "BLR", city: "Bangalore" }, { code: "MAA", city: "Chennai" }, { code: "GOI", city: "Goa" },
+  { code: "DED", city: "Dehradun (Rishikesh)" }, { code: "KTM", city: "Kathmandu" }, { code: "CMB", city: "Colombo" },
+  { code: "MLE", city: "Malé (Maldives)" }, { code: "ULN", city: "Ulaanbaatar" },
+  // ── Oceania ──
+  { code: "SYD", city: "Sydney" }, { code: "MEL", city: "Melbourne" }, { code: "BNE", city: "Brisbane" },
+  { code: "PER", city: "Perth" }, { code: "OOL", city: "Gold Coast" }, { code: "AKL", city: "Auckland" },
+  { code: "ZQN", city: "Queenstown" }, { code: "CHC", city: "Christchurch" }, { code: "NAN", city: "Fiji (Nadi)" },
+];
+
+/**
+ * All airports for the global picker — world airports + featured destinations +
+ * common origins, de-duped by IATA code. The form also accepts any free-text
+ * IATA code, so destinations not listed here can still be searched.
+ */
 export const ALL_AIRPORTS: Airport[] = (() => {
   const map = new Map<string, Airport>();
-  for (const a of [...COMMON_ORIGINS, ...Object.values(CITY_AIRPORTS)]) {
+  for (const a of [...WORLD_AIRPORTS, ...COMMON_ORIGINS, ...Object.values(CITY_AIRPORTS)]) {
     if (!map.has(a.code)) map.set(a.code, a);
   }
   return Array.from(map.values()).sort((x, y) => x.city.localeCompare(y.city));

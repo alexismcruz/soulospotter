@@ -100,7 +100,7 @@ export default function GlobalFlightCTA() {
                   list="global-airports"
                   value={origin}
                   onChange={(e) => setOrigin(e.target.value)}
-                  placeholder="e.g. JFK"
+                  placeholder="Any airport, e.g. JFK"
                   className="w-full px-3 py-2 rounded-xl border border-soulo-border bg-white text-sm text-soulo-dark placeholder-soulo-mist focus:outline-none focus:ring-2 focus:ring-soulo-gold"
                 />
               </div>
@@ -110,7 +110,7 @@ export default function GlobalFlightCTA() {
                   list="global-airports"
                   value={dest}
                   onChange={(e) => setDest(e.target.value)}
-                  placeholder="e.g. BKK"
+                  placeholder="Any airport, e.g. BKK"
                   className="w-full px-3 py-2 rounded-xl border border-soulo-border bg-white text-sm text-soulo-dark placeholder-soulo-mist focus:outline-none focus:ring-2 focus:ring-soulo-gold"
                 />
               </div>
@@ -161,7 +161,10 @@ export default function GlobalFlightCTA() {
               Search flights →
             </button>
 
-            <p className="text-[11px] text-soulo-mist mt-2.5 leading-relaxed">
+            <p className="text-[11px] text-soulo-mist mt-2 leading-relaxed">
+              Search any airport worldwide — type a city or 3-letter airport code.
+            </p>
+            <p className="text-[11px] text-soulo-mist mt-1.5 leading-relaxed">
               Flights are booked through <span className="font-semibold text-soulo-grey">Expedia</span>,
               the world&apos;s leading online travel booking platform. SouloSpotter may earn a
               commission — at no extra cost to you.
