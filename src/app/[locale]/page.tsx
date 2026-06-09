@@ -19,7 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 async function getHomeData() {
-  const [featuredCities, regionCounts] = await Promise.all([
+  const [featuredCities, regionCounts, cityCount, spotCount] = await Promise.all([
     prisma.city.findMany({
       where: { published: true },
       include: {
@@ -35,13 +35,15 @@ async function getHomeData() {
       where: { published: true },
       _count: { id: true },
     }),
+    prisma.city.count({ where: { published: true } }),
+    prisma.spot.count({ where: { published: true } }),
   ]);
 
-  return { featuredCities, regionCounts };
+  return { featuredCities, regionCounts, cityCount, spotCount };
 }
 
 export default async function HomePage() {
-  const { featuredCities, regionCounts } = await getHomeData();
+  const { featuredCities, regionCounts, cityCount, spotCount } = await getHomeData();
 
   const regionCountMap = regionCounts.reduce(
     (acc, r) => ({ ...acc, [r.region]: r._count.id }),
@@ -53,7 +55,7 @@ export default async function HomePage() {
       <JsonLd data={[websiteSchema(), organizationSchema()]} />
       <SiteHeader />
       <main className="flex-1">
-        <HeroSection />
+        <HeroSection cityCount={cityCount} spotCount={spotCount} regionCount={regionCounts.length} />
         <RegionGrid regionCounts={regionCountMap} />
         <FeaturedCities cities={featuredCities} />
       </main>

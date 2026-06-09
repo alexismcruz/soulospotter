@@ -4,6 +4,7 @@ import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import PageHero from "@/components/layout/PageHero";
 import AdvertiseForm from "@/components/advertise/AdvertiseForm";
+import { prisma } from "@/lib/prisma";
 
 export const metadata: Metadata = {
   title: "Advertise with SouloSpotter — Reach Travelers Worldwide",
@@ -79,7 +80,14 @@ const TIERS = [
   },
 ];
 
-export default function AdvertisePage() {
+export default async function AdvertisePage() {
+  const [cityCount, spotCount, regionRows] = await Promise.all([
+    prisma.city.count({ where: { published: true } }),
+    prisma.spot.count({ where: { published: true } }),
+    prisma.city.groupBy({ by: ["region"], where: { published: true }, _count: { id: true } }),
+  ]);
+  const regionCount = regionRows.length;
+
   return (
     <div className="flex flex-col min-h-screen">
       <SiteHeader />
@@ -95,7 +103,7 @@ export default function AdvertisePage() {
             </nav>
             <div className="max-w-3xl">
               <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-sm text-amber-300 mb-5">
-                🌍 Reaching solo travelers in 21 cities across 8 regions
+                🌍 Reaching solo travelers in {cityCount} cities across {regionCount} regions
               </div>
               <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4 text-soulo-white">
                 Advertise with<br />
@@ -109,10 +117,10 @@ export default function AdvertisePage() {
             {/* Trust stats */}
             <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-6">
               {[
-                { value: "21",   label: "Cities covered" },
-                { value: "8",    label: "Global regions" },
-                { value: "63+",  label: "Curated spots" },
-                { value: "100%", label: "Solo travel focus" },
+                { value: String(cityCount),       label: "Cities covered" },
+                { value: String(regionCount),      label: "Global regions" },
+                { value: `${spotCount}+`,          label: "Curated spots" },
+                { value: "100%",                   label: "Solo travel focus" },
               ].map((s) => (
                 <div key={s.label}>
                   <p className="text-3xl font-bold text-amber-400">{s.value}</p>

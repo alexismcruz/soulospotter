@@ -11,7 +11,7 @@ const MENUS = {
     image: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80",
     imageAlt: "Solo traveler overlooking mountains",
     heading: "Find your next city",
-    description: "38 cities across 6 regions, curated for solo travelers.",
+    description: "Cities across Asia, Europe, Latin America & more — curated for solo travelers.",
     links: [
       { href: "/destinations", label: "🌍 All Destinations" },
       { href: "/destinations?region=ASIA", label: "🌏 Asia" },

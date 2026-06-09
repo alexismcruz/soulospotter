@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { useSearchParams } from "next/navigation";
 import { ExperienceCategory } from "@prisma/client";
 import ExperienceCard from "./ExperienceCard";
 
@@ -42,7 +43,13 @@ export default function ExperienceFiltersClient({
   experiences,
   cities,
 }: ExperienceFiltersClientProps) {
-  const [selectedCity, setSelectedCity] = useState<string | null>(null);
+  const searchParams = useSearchParams();
+  // Pre-select a city when arriving from a destination page (?city=<slug>),
+  // but only if that slug actually has experiences.
+  const cityParam = searchParams.get("city");
+  const initialCity =
+    cityParam && cities.some((c) => c.slug === cityParam) ? cityParam : null;
+  const [selectedCity, setSelectedCity] = useState<string | null>(initialCity);
   const [selectedCategory, setSelectedCategory] = useState<ExperienceCategory | null>(null);
 
   // Filter experiences
