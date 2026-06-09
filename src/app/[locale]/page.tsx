@@ -10,6 +10,10 @@ import SiteFooter from "@/components/layout/SiteFooter";
 import JsonLd from "@/components/seo/JsonLd";
 import { websiteSchema, organizationSchema } from "@/lib/jsonld";
 
+// Refresh the homepage at most hourly so newly-seeded cities, spot counts
+// and photos appear without waiting for a redeploy.
+export const revalidate = 3600;
+
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("home");
   return {
