@@ -17,6 +17,7 @@ type CityWithRelations = {
   costLevel: CostLevel | null;
   safetyScore: number | null;
   description: string | null;
+  imageUrl: string | null;
   country: { name: string; code: string; flagEmoji: string | null };
   tags: { tag: string }[];
   _count: { spots: number };
@@ -48,7 +49,9 @@ export default function FeaturedCities({ cities }: Props) {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {cities.map((city) => {
-            const imgSrc = CITY_IMAGES[city.slug] ?? FALLBACK_IMAGE;
+            // DB imageUrl (real city/landmark photo) takes priority, then the
+            // legacy hardcoded map, then the generic fallback.
+            const imgSrc = city.imageUrl ?? CITY_IMAGES[city.slug] ?? FALLBACK_IMAGE;
             const cost = city.costLevel ? COST_LABEL[city.costLevel] : null;
 
             return (
