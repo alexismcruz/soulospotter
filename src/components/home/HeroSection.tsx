@@ -146,8 +146,9 @@ export default function HeroSection({ cityCount, spotCount, regionCount }: HeroS
           </p>
 
           {/* Search with autocomplete */}
-          <div ref={wrapperRef} className="relative max-w-lg">
+          <div ref={wrapperRef} className="max-w-lg">
             <form onSubmit={handleSearch} className="flex gap-3">
+              {/* Input — dropdown is anchored to this element */}
               <div className="flex-1 relative">
                 <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
                   <svg className="w-5 h-5 text-soulo-mist" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -164,7 +165,33 @@ export default function HeroSection({ cityCount, spotCount, regionCount }: HeroS
                   autoComplete="off"
                   className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-white/10 border border-white/15 text-soulo-white placeholder-soulo-mist focus:outline-none focus:ring-2 focus:ring-soulo-gold focus:border-transparent transition-all"
                 />
+
+                {/* Dropdown anchored to input width — left-0 right-0 = matches input exactly */}
+                {isOpen && (
+                  <div className="absolute top-full left-0 right-0 mt-2 bg-soulo-dark border border-white/10 rounded-2xl shadow-2xl overflow-hidden z-50">
+                    {results.map((city, i) => (
+                      <button
+                        key={city.slug}
+                        type="button"
+                        onMouseDown={() => navigate(city.slug)}
+                        className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-colors ${
+                          i === activeIndex ? "bg-white/10" : "hover:bg-white/5"
+                        }`}
+                      >
+                        <svg className="w-4 h-4 text-soulo-mist flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        <div className="flex-1 min-w-0">
+                          <span className="text-sm font-medium text-soulo-white">{city.name}</span>
+                          <span className="text-xs text-soulo-mist ml-2">{city.country.name}</span>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
+
               <button
                 type="submit"
                 className="px-6 py-3.5 bg-soulo-gold hover:bg-amber-400 text-soulo-dark font-bold rounded-2xl transition-colors whitespace-nowrap"
@@ -172,31 +199,6 @@ export default function HeroSection({ cityCount, spotCount, regionCount }: HeroS
                 Explore
               </button>
             </form>
-
-            {/* Autocomplete dropdown */}
-            {isOpen && (
-              <div className="absolute top-full left-0 right-12 mt-2 bg-soulo-dark border border-white/10 rounded-2xl shadow-2xl overflow-hidden z-50">
-                {results.map((city, i) => (
-                  <button
-                    key={city.slug}
-                    type="button"
-                    onMouseDown={() => navigate(city.slug)}
-                    className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-colors ${
-                      i === activeIndex ? "bg-white/10" : "hover:bg-white/5"
-                    }`}
-                  >
-                    <svg className="w-4 h-4 text-soulo-mist flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    <div className="flex-1 min-w-0">
-                      <span className="text-sm font-medium text-soulo-white">{city.name}</span>
-                      <span className="text-xs text-soulo-mist ml-2">{city.country.name}</span>
-                    </div>
-                  </button>
-                ))}
-              </div>
-            )}
           </div>
 
           {/* Popular searches */}
@@ -213,14 +215,18 @@ export default function HeroSection({ cityCount, spotCount, regionCount }: HeroS
             ))}
           </div>
 
-          {/* Trust bar */}
-          <div className="mt-10 flex flex-wrap gap-5 sm:gap-8">
+          {/* Trust bar — stacks vertically on mobile, horizontal from sm up */}
+          <div className="mt-8 flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-8">
             {TRUST_STATS.map((s) => (
               <div key={s.value} className="flex items-center gap-2">
                 <svg className="w-4 h-4 text-soulo-gold flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
-                <span className="text-sm text-soulo-mist"><strong className="text-soulo-white">{s.value}</strong> · {s.label}</span>
+                <span className="text-xs sm:text-sm text-soulo-mist">
+                  <strong className="text-soulo-white">{s.value}</strong>
+                  <span className="hidden sm:inline"> · {s.label}</span>
+                  <span className="sm:hidden text-soulo-mist/70"> · {s.label}</span>
+                </span>
               </div>
             ))}
           </div>

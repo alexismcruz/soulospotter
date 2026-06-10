@@ -238,11 +238,18 @@ export default function SiteHeader() {
               </Link>
             ))}
             <Link
-              href="/advertise"
+              href="/destinations"
               className="mt-2 mx-3 py-2.5 text-center rounded-xl text-sm font-bold bg-soulo-gold text-soulo-dark hover:bg-amber-400 transition-colors"
               onClick={() => setMenuOpen(false)}
             >
-              Reach Travelers — List from $29/mo
+              Start Exploring
+            </Link>
+            <Link
+              href="/advertise"
+              className="mx-3 py-2 text-center rounded-xl text-xs text-soulo-mist hover:text-soulo-white transition-colors"
+              onClick={() => setMenuOpen(false)}
+            >
+              Advertise with us →
             </Link>
           </nav>
         </div>
