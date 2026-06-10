@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SouloLogo from "@/components/ui/SouloLogo";
 
 export default function SiteFooter() {
   return (
@@ -7,9 +8,8 @@ export default function SiteFooter() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="md:col-span-2">
-            <div className="flex items-center gap-2 mb-3">
-              <span className="text-2xl">🧭</span>
-              <span className="font-display font-bold text-xl text-soulo-white">SouloSpotter</span>
+            <div className="mb-3">
+              <SouloLogo linkClassName="inline-flex" />
             </div>
             <p className="text-sm leading-relaxed max-w-xs">
               Travel alone. Travel Soulo. Find yourself. The global directory for solo travelers who seek more than a destination.

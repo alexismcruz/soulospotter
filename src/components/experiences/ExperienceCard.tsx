@@ -112,15 +112,10 @@ export default function ExperienceCard({
             </span>
           </div>
 
-          {/* Book Button */}
-          <button
-            className="mt-auto px-4 py-2.5 bg-soulo-gold hover:bg-amber-400 text-soulo-dark font-bold rounded-xl transition-colors text-sm w-full"
-            onClick={(e) => {
-              e.preventDefault();
-            }}
-          >
-            View & Book →
-          </button>
+          {/* View button — the whole card is already a Link; this is a visual affordance */}
+          <div className="mt-auto px-4 py-2.5 bg-soulo-gold group-hover:bg-amber-400 text-soulo-dark font-bold rounded-xl transition-colors text-sm w-full text-center">
+            View Details →
+          </div>
         </div>
       </div>
     </Link>

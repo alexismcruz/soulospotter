@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { useState, useRef } from "react";
+import SouloLogo from "@/components/ui/SouloLogo";
 
 // ─── Mega-menu definitions ─────────────────────────────────────────────────
 
@@ -93,12 +94,7 @@ export default function SiteHeader() {
         <div className="flex items-center justify-between h-16">
 
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <span className="text-2xl">🧭</span>
-            <span className="font-display font-bold text-xl tracking-tight text-soulo-white group-hover:text-soulo-gold transition-colors">
-              SouloSpotter
-            </span>
-          </Link>
+          <SouloLogo />
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-6">
@@ -185,16 +181,20 @@ export default function SiteHeader() {
               );
             })}
 
-            {/* Advertise CTA — pitched at businesses */}
+            {/* Quiet advertise link for businesses */}
             <Link
               href="/advertise"
-              className="group relative text-sm font-semibold px-4 py-1.5 rounded-full bg-soulo-gold text-soulo-dark hover:bg-amber-400 transition-colors"
+              className="text-xs text-soulo-mist hover:text-soulo-white transition-colors"
             >
-              Reach Travelers
-              {/* Tooltip */}
-              <span className="pointer-events-none absolute -bottom-9 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-lg bg-soulo-dark text-soulo-mist text-xs px-3 py-1.5 opacity-0 group-hover:opacity-100 transition-opacity border border-white/10">
-                List your business from $29/mo
-              </span>
+              Advertise
+            </Link>
+
+            {/* Primary traveler CTA */}
+            <Link
+              href="/destinations"
+              className="text-sm font-semibold px-4 py-1.5 rounded-full bg-soulo-gold text-soulo-dark hover:bg-amber-400 transition-colors"
+            >
+              Start Exploring
             </Link>
           </nav>
 
