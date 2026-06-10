@@ -27,7 +27,7 @@ const SLIDES = [
   },
 ];
 
-const POPULAR = ["Bali", "Lisbon", "Chiang Mai", "Tbilisi", "Kyoto"];
+const POPULAR = ["Lisbon", "Bali", "Medellín", "Chiang Mai", "Cape Town", "Tbilisi"];
 
 const TRUST_STATS = [
   { value: "Solo-first", label: "Every spot curated for solo travelers" },

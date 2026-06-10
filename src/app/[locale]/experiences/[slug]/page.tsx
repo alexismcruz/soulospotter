@@ -253,15 +253,33 @@ export default async function ExperienceDetailPage({ params }: Props) {
             <div className="lg:col-span-1 space-y-4">
               {/* Book CTA */}
               {isPlaceholderBooking ? (
-                <div className="bg-soulo-linen border border-soulo-border rounded-2xl p-5 text-center">
-                  <p className="text-soulo-dark font-semibold mb-1">Interested in this experience?</p>
-                  <p className="text-soulo-mist text-sm mb-4">Contact the organizer directly to book</p>
+                <div className="bg-soulo-linen border border-soulo-border rounded-2xl p-5 space-y-3">
+                  <p className="text-soulo-dark font-semibold">Find &amp; Book This Experience</p>
+                  <p className="text-soulo-mist text-sm">
+                    Search GetYourGuide or Viator for this experience in {experience.city.name} — thousands of verified operators, free cancellation on most bookings.
+                  </p>
+                  <a
+                    href={`https://www.getyourguide.com/s/?q=${encodeURIComponent(experience.name + " " + experience.city.name)}&partner_id=CDE4NF2`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 w-full px-5 py-3 bg-soulo-gold hover:bg-amber-400 text-soulo-dark font-bold rounded-xl transition-colors text-sm"
+                  >
+                    Search on GetYourGuide →
+                  </a>
+                  <a
+                    href={`https://www.viator.com/searchResults/all?text=${encodeURIComponent(experience.name + " " + experience.city.name)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 w-full px-5 py-3 border border-soulo-border text-soulo-grey hover:bg-white rounded-xl transition-colors text-sm font-medium"
+                  >
+                    Search on Viator →
+                  </a>
                   {hasRealContact && (
                     <a
                       href={`mailto:${experience.organizer.email}`}
-                      className="block w-full px-5 py-3 bg-soulo-gold hover:bg-amber-400 text-soulo-dark font-bold rounded-xl transition-colors text-sm"
+                      className="block w-full text-center text-xs text-soulo-mist hover:text-soulo-dark transition-colors pt-1"
                     >
-                      ✉️ Email Organizer
+                      Or email the organizer directly →
                     </a>
                   )}
                 </div>

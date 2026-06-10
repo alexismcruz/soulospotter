@@ -24,7 +24,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 async function getHomeData() {
-  const [featuredCities, regionCounts, cityCount, spotCount] = await Promise.all([
+  // Fetch more candidates than needed, then pick the top 2 per region so the
+  // homepage grid always shows geographic diversity rather than just the cities
+  // with the highest safety scores (which tends to cluster in one region).
+  const [allCandidates, regionCounts, cityCount, spotCount] = await Promise.all([
     prisma.city.findMany({
       where: { published: true },
       include: {
@@ -32,8 +35,8 @@ async function getHomeData() {
         tags: true,
         _count: { select: { spots: true } },
       },
-      orderBy: { safetyScore: "desc" },
-      take: 8,
+      orderBy: [{ safetyScore: "desc" }, { name: "asc" }],
+      take: 60,
     }),
     prisma.city.groupBy({
       by: ["region"],
@@ -43,6 +46,15 @@ async function getHomeData() {
     prisma.city.count({ where: { published: true } }),
     prisma.spot.count({ where: { published: true } }),
   ]);
+
+  // Pick top 2 cities per region (by safetyScore, already sorted), capped at 8 total
+  const seenRegions = new Map<string, number>();
+  const featuredCities = allCandidates.filter((city) => {
+    const count = seenRegions.get(city.region) ?? 0;
+    if (count >= 2) return false;
+    seenRegions.set(city.region, count + 1);
+    return true;
+  }).slice(0, 8);
 
   return { featuredCities, regionCounts, cityCount, spotCount };
 }

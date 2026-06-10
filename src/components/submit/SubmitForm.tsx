@@ -64,12 +64,39 @@ export default function SubmitForm() {
 
   if (state === "success") {
     return (
-      <div className="bg-green-50 border border-green-200 rounded-2xl p-10 text-center">
-        <div className="text-5xl mb-4">🎉</div>
-        <h2 className="text-xl font-bold text-soulo-dark mb-2">Thanks for your submission!</h2>
-        <p className="text-soulo-grey text-sm max-w-sm mx-auto">
-          We'll review your listing within 5 business days. If approved, it will appear on the city page automatically.
-        </p>
+      <div className="space-y-4">
+        <div className="bg-soulo-linen border border-soulo-gold/40 rounded-2xl p-10 text-center">
+          <div className="w-16 h-16 rounded-full bg-soulo-gold/20 flex items-center justify-center mx-auto mb-5">
+            <svg className="w-8 h-8 text-soulo-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <h2 className="font-display text-2xl font-bold text-soulo-dark mb-2">Spot submitted!</h2>
+          <p className="text-soulo-grey text-sm max-w-sm mx-auto mb-6 leading-relaxed">
+            We&apos;ll review your listing within 5 business days. Once approved, it will appear on the city page automatically. We may email you if we have questions.
+          </p>
+          <button
+            onClick={() => setState("idle")}
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border border-soulo-border text-soulo-grey hover:bg-white hover:text-soulo-dark transition-colors text-sm font-medium"
+          >
+            Submit another spot
+          </button>
+        </div>
+
+        <div className="bg-soulo-slate rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+          <div className="flex-1">
+            <p className="text-soulo-white font-semibold text-sm mb-0.5">Help us reach more solo travelers</p>
+            <p className="text-soulo-mist text-xs">Share SouloSpotter with a solo traveler friend — every spot added makes the directory more useful for everyone.</p>
+          </div>
+          <a
+            href="https://soulospotter.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-shrink-0 px-4 py-2 rounded-xl bg-soulo-gold hover:bg-amber-400 text-soulo-dark text-sm font-bold transition-colors whitespace-nowrap"
+          >
+            Share SouloSpotter →
+          </a>
+        </div>
       </div>
     );
   }

@@ -47,19 +47,28 @@ export default function CityStats({ city }: Props) {
               <span className="text-2xl font-bold text-soulo-dark">{city.safetyScore}/10</span>
               <span
                 className="text-lg cursor-help hover:opacity-75 transition-opacity"
-                title={safetySourcesText}
+                title={`${safetySourcesText}\n\nScale: 9–10 = Very Safe · 7–8 = Generally Safe · 5–6 = Exercise Caution · Below 5 = High Caution`}
               >
                 {city.safetyScore >= 9 ? "🛡️" : city.safetyScore >= 7 ? "✅" : "⚠️"}
               </span>
             </div>
-            {city.safetyScore >= 9 && (
-              <span className="inline-block mt-1.5 text-xs font-semibold px-2 py-0.5 rounded-full bg-soulo-teal text-soulo-dark">
+            {city.safetyScore >= 9 ? (
+              <span
+                className="inline-block mt-1.5 text-xs font-semibold px-2 py-0.5 rounded-full bg-soulo-teal text-soulo-dark cursor-help"
+                title="Score 9–10: Very Safe — consistently rated among the safest cities for solo travel based on crime index, solo traveler reports, and safety rankings."
+              >
                 Very Safe
               </span>
+            ) : city.safetyScore >= 7 ? (
+              <span className="inline-block mt-1.5 text-xs font-semibold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800">
+                Generally Safe
+              </span>
+            ) : (
+              <span className="inline-block mt-1.5 text-xs font-semibold px-2 py-0.5 rounded-full bg-red-50 text-red-700">
+                Exercise Caution
+              </span>
             )}
-            {city.safetyScore < 9 && (
-              <p className="text-xs text-soulo-grey mt-2">Hover over icon for data sources →</p>
-            )}
+            <p className="text-xs text-soulo-mist mt-2">Hover icon for sources</p>
           </div>
         )}
 
