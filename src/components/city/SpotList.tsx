@@ -58,8 +58,8 @@ type Props = {
 export default function SpotList({ spots, allSpots, categories, activeCategory, citySlug, cityName }: Props) {
   return (
     <div>
-      {/* Category filter tabs */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-2 mb-8 scrollbar-hide">
+      {/* Category filter tabs — sticky so they stay accessible while scrolling through spots */}
+      <div className="sticky top-16 z-20 bg-soulo-white/95 backdrop-blur-sm border-b border-soulo-border -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 pt-3 pb-3 mb-8 flex items-center gap-2 overflow-x-auto scrollbar-hide">
         <Link
           href={`/destinations/${citySlug}`}
           className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors ${
