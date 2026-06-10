@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import GlobalFlightCTA from "@/components/flights/GlobalFlightCTA";
 import ChatWidget from "@/components/chat/ChatWidget";
+import { Analytics } from "@vercel/analytics/next";
 import "../globals.css";
 
 const playfair = Playfair_Display({
@@ -68,6 +69,7 @@ export default async function LocaleLayout({
           {children}
           <GlobalFlightCTA />
           <ChatWidget />
+          <Analytics />
         </NextIntlClientProvider>
       </body>
     </html>
