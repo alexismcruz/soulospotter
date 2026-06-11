@@ -133,6 +133,7 @@ export default function SpotList({ spots, allSpots, categories, activeCategory, 
                       alt={`${spot.name} — ${meta.label} in ${cityName}`}
                       fill
                       loading="lazy"
+                      unoptimized={spot.imageUrl.startsWith("http")}
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
