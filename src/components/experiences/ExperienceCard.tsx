@@ -42,7 +42,8 @@ export default function ExperienceCard({
   const categoryInfo = CATEGORY_DISPLAY[category];
   const fallbackImage =
     "https://images.unsplash.com/photo-1488085061387-422e29b40080?w=600&q=80";
-  const imgSrc = photoUrl || fallbackImage;
+  const rawSrc = photoUrl || fallbackImage;
+  const imgSrc = rawSrc.startsWith("http") ? `/api/img?url=${encodeURIComponent(rawSrc)}` : rawSrc;
 
   return (
     <Link href={`/experiences/${slug}`}>

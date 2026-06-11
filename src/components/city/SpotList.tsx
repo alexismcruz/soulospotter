@@ -129,7 +129,7 @@ export default function SpotList({ spots, allSpots, categories, activeCategory, 
                 {spot.imageUrl && (
                   <div className="relative w-full h-48 bg-soulo-linen overflow-hidden">
                     <Image
-                      src={spot.imageUrl}
+                      src={spot.imageUrl.startsWith("http") ? `/api/img?url=${encodeURIComponent(spot.imageUrl)}` : spot.imageUrl}
                       alt={`${spot.name} — ${meta.label} in ${cityName}`}
                       fill
                       loading="lazy"
