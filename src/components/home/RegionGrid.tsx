@@ -9,7 +9,8 @@ const REGION_PHOTOS: Record<Region, string> = {
   LATIN_AMERICA:      "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=600&q=80&auto=format&fit=crop",
   NORTH_AMERICA:      "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=600&q=80&auto=format&fit=crop",
   OCEANIA:            "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=600&q=80&auto=format&fit=crop",
-  MIDDLE_EAST_AFRICA: "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=600&q=80&auto=format&fit=crop",
+  AFRICA:    "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=600&q=80&auto=format&fit=crop",
+  CARIBBEAN: "https://images.unsplash.com/photo-1548574505-5e239809ee19?w=600&q=80&auto=format&fit=crop",
 };
 
 type Props = {

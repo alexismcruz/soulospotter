@@ -34,12 +34,20 @@ export const REGIONS: RegionMeta[] = [
       "Ancient capitals, hidden wine bars, sulphur baths in the Caucasus. Europe has more solo-travel character per square kilometre than anywhere on earth — and some of the safest cities in the world.",
   },
   {
-    region: Region.MIDDLE_EAST_AFRICA,
-    slug: "middle-east-africa",
-    label: "Middle East & Africa",
-    emoji: "🏜️",
+    region: Region.AFRICA,
+    slug: "africa",
+    label: "Africa",
+    emoji: "🦁",
     description:
-      "Medinas, souks, and sunsets over the Sahara. The Middle East and Africa are the most underrated solo travel regions on the planet — rich in culture, hospitality, and once-in-a-lifetime experiences.",
+      "Gorilla trekking in Rwanda, safaris across the Serengeti, the Sahara dunes of Morocco, and the warm hospitality that makes Africa the most rewarding continent for solo travel.",
+  },
+  {
+    region: Region.CARIBBEAN,
+    slug: "caribbean",
+    label: "Caribbean",
+    emoji: "🌴",
+    description:
+      "1950s Havana, reggae beaches in Jamaica, bioluminescent bays in Puerto Rico, and Carnival in Trinidad — the Caribbean rewards solo travelers with colour, music, and rum at every turn.",
   },
   {
     region: Region.ASIA,
