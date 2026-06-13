@@ -27,6 +27,10 @@ const SPOT_IMG = {
   TRANSPORT: ['/spots/_category/culture-1.jpg', '/spots/_category/culture-2.jpg'],
 };
 
+function toSlug(str) {
+  return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
 function pickImg(map, category, idx) {
   const arr = map[category] || map.CULTURE;
   return arr[idx % arr.length];
@@ -65,13 +69,18 @@ async function seed({ SPOTS = {}, EXPERIENCES = {} }) {
     if (!cityId) { console.log('SKIP spots (no city): ' + slug); continue; }
     let i = 0;
     for (const s of spots) {
-      const { tags = [], ...data } = s;
-      const exists = await withRetry(() => prisma.spot.findFirst({ where: { cityId, slug: data.slug } }), 'find spot ' + data.slug);
+      const { tags = [], costLevel, ...data } = s;
+      // map costLevel → priceRange if priceRange not already set
+      if (!data.priceRange && costLevel) {
+        data.priceRange = costLevel === 'EXPENSIVE' ? 'HIGH' : costLevel === 'MID_RANGE' ? 'MID' : 'BUDGET';
+      }
+      const spotSlug = data.slug || toSlug(data.name);
+      const exists = await withRetry(() => prisma.spot.findFirst({ where: { cityId, slug: spotSlug } }), 'find spot ' + spotSlug);
       if (exists) { spotSkipped++; i++; continue; }
-      const img = data.imageUrl || pickImg(SPOT_IMG, data.category, i);
+      const img = data.imageUrl || pickImg(SPOT_IMG, data.category.toUpperCase(), i);
       await withRetry(() => prisma.spot.create({
-        data: { ...data, imageUrl: img, cityId, published: true, tags: { create: tags.map((t) => ({ tag: t })) } },
-      }), 'create spot ' + data.slug);
+        data: { ...data, slug: spotSlug, category: (data.category || 'culture').toUpperCase(), imageUrl: img, cityId, published: true, tags: { create: tags.map((t) => ({ tag: t })) } },
+      }), 'create spot ' + spotSlug);
       spotCreated++; i++;
       console.log('  spot: ' + slug + ' / ' + data.name);
     }
@@ -82,12 +91,13 @@ async function seed({ SPOTS = {}, EXPERIENCES = {} }) {
     if (!cityId) { console.log('SKIP experiences (no city): ' + slug); continue; }
     let i = 0;
     for (const e of exps) {
-      const exists = await withRetry(() => prisma.experience.findFirst({ where: { cityId, slug: e.slug } }), 'find exp ' + e.slug);
+      const expSlug = e.slug || toSlug(e.title || e.name);
+      const exists = await withRetry(() => prisma.experience.findFirst({ where: { cityId, slug: expSlug } }), 'find exp ' + expSlug);
       if (exists) { expSkipped++; i++; continue; }
       const photo = e.photoUrl || pickImg(EXP_IMG, e.category, i);
       await withRetry(() => prisma.experience.create({
         data: {
-          slug: e.slug, name: e.name, description: e.description, price: e.price, category: e.category,
+          slug: expSlug, name: e.title || e.name, description: e.description, price: e.price, category: e.category,
           duration: e.duration, groupSizeMin: e.groupSizeMin ?? 1, groupSizeMax: e.groupSizeMax ?? 12,
           frequency: e.frequency || 'daily', bookingUrl: e.bookingUrl || '', photoUrl: photo,
           cityId, organizerId: organizer.id, isActive: true,
