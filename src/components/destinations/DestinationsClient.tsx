@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useEffect } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
-import { Region, CostLevel } from "@prisma/client";
+import { Region, CostLevel, SoloLevel } from "@prisma/client";
 import { REGIONS as REGION_LIST, REGION_BY_ENUM } from "@/lib/regions";
 import CityCard from "./CityCard";
 
@@ -26,6 +26,7 @@ type City = {
   slug: string;
   region: Region;
   costLevel: CostLevel | null;
+  soloLevel: SoloLevel | null;
   safetyScore: number | null;
   description: string | null;
   imageUrl: string | null;
