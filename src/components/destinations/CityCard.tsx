@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { CostLevel, Region } from "@prisma/client";
+import { CostLevel, Region, SoloLevel } from "@prisma/client";
 import { CITY_IMAGES, FALLBACK_IMAGE } from "@/lib/cityImages";
 import FlagImage from "@/components/ui/FlagImage";
 
@@ -10,12 +10,19 @@ const COST_BADGE: Record<CostLevel, { symbol: string; color: string }> = {
   EXPENSIVE: { symbol: "$$$", color: "text-white bg-purple-500" },
 };
 
+const SOLO_LEVEL_BADGE: Record<SoloLevel, { label: string; color: string }> = {
+  BEGINNER:     { label: "Solo Friendly", color: "bg-emerald-100 text-emerald-800" },
+  INTERMEDIATE: { label: "Some Experience", color: "bg-amber-100 text-amber-800" },
+  ADVANCED:     { label: "Experienced Solo", color: "bg-rose-100 text-rose-800" },
+};
+
 type City = {
   id: string;
   name: string;
   slug: string;
   region: Region;
   costLevel: CostLevel | null;
+  soloLevel: SoloLevel | null;
   safetyScore: number | null;
   description: string | null;
   imageUrl: string | null;
@@ -28,6 +35,7 @@ export default function CityCard({ city }: { city: City }) {
   // DB imageUrl takes priority, then hardcoded map, then fallback
   const imgSrc = city.imageUrl ?? CITY_IMAGES[city.slug] ?? FALLBACK_IMAGE;
   const cost = city.costLevel ? COST_BADGE[city.costLevel] : null;
+  const solo = city.soloLevel ? SOLO_LEVEL_BADGE[city.soloLevel] : null;
 
   return (
     <Link
@@ -54,6 +62,13 @@ export default function CityCard({ city }: { city: City }) {
             </span>
           )}
         </div>
+        {solo && (
+          <div className="absolute bottom-3 left-3">
+            <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${solo.color}`}>
+              {solo.label}
+            </span>
+          </div>
+        )}
       </div>
 
       <div className="p-4 flex-1 flex flex-col">

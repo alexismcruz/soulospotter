@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import { Region, CostLevel } from "@prisma/client";
-
-export const revalidate = 3600; // ISR: revalidate every hour (listing page changes more often)
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import DestinationsClient from "@/components/destinations/DestinationsClient";
+
+export const revalidate = 3600; // ISR: revalidate every hour
 
 export const metadata: Metadata = {
   title: "Destinations — SouloSpotter",

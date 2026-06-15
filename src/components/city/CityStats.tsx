@@ -1,5 +1,11 @@
-import { CostLevel } from "@prisma/client";
+import { CostLevel, SoloLevel } from "@prisma/client";
 import { getSafetySourcesText } from "@/lib/safetySourcesByCity";
+
+const SOLO_LEVEL: Record<SoloLevel, { label: string; desc: string; icon: string; color: string }> = {
+  BEGINNER:     { label: "Solo Friendly",    desc: "Great infrastructure, English-friendly, well-established solo traveler culture.", icon: "🟢", color: "bg-emerald-50 border-emerald-200 text-emerald-900" },
+  INTERMEDIATE: { label: "Some Experience",  desc: "Some language barrier or logistics complexity — rewarding with a bit of preparation.", icon: "🟡", color: "bg-amber-50 border-amber-200 text-amber-900" },
+  ADVANCED:     { label: "Experienced Solo", desc: "Challenging infrastructure, language, or safety considerations — for seasoned solo travelers.", icon: "🔴", color: "bg-rose-50 border-rose-200 text-rose-900" },
+};
 
 const COST_DISPLAY: Record<CostLevel, { label: string; symbol: string; color: string }> = {
   BUDGET:    { label: "Budget",    symbol: "$",   color: "text-soulo-gold" },
@@ -14,6 +20,8 @@ type Props = {
     description: string | null;
     safetyScore: number | null;
     costLevel: CostLevel | null;
+    soloLevel: SoloLevel | null;
+    soloTips: string | null;
     currency: string | null;
     language: string | null;
     timezone: string | null;
@@ -23,6 +31,7 @@ type Props = {
 
 export default function CityStats({ city }: Props) {
   const cost = city.costLevel ? COST_DISPLAY[city.costLevel] : null;
+  const solo = city.soloLevel ? SOLO_LEVEL[city.soloLevel] : null;
 
   const safetySourcesText = getSafetySourcesText(city.slug);
 
@@ -36,6 +45,19 @@ export default function CityStats({ city }: Props) {
           <p className="text-soulo-grey leading-relaxed max-w-3xl text-lg">
             {city.description}
           </p>
+        </div>
+      )}
+
+      {city.soloTips && (
+        <div className={`mb-8 rounded-2xl border p-5 ${solo ? solo.color : "bg-soulo-linen border-soulo-border text-soulo-dark"}`}>
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-lg">{solo?.icon ?? "🧭"}</span>
+            <h3 className="font-display font-bold text-base">
+              Solo Travel Tips
+              {solo && <span className="ml-2 text-sm font-semibold opacity-75">· {solo.label}</span>}
+            </h3>
+          </div>
+          <p className="text-sm leading-relaxed">{city.soloTips}</p>
         </div>
       )}
 
@@ -93,6 +115,17 @@ export default function CityStats({ city }: Props) {
           <div className="bg-white rounded-2xl p-4 border border-soulo-border">
             <p className="text-xs text-soulo-mist uppercase tracking-wide font-medium mb-1">Currency</p>
             <p className="text-sm font-semibold text-soulo-dark">{city.currency}</p>
+          </div>
+        )}
+
+        {solo && (
+          <div className="bg-white rounded-2xl p-4 border border-soulo-border">
+            <p className="text-xs text-soulo-mist uppercase tracking-wide font-medium mb-1">Solo Level</p>
+            <div className="flex items-center gap-1.5">
+              <span className="text-lg">{solo.icon}</span>
+              <span className="text-sm font-semibold text-soulo-dark">{solo.label}</span>
+            </div>
+            <p className="text-xs text-soulo-mist mt-1.5 leading-snug">{solo.desc}</p>
           </div>
         )}
       </div>
