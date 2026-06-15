@@ -38,6 +38,8 @@ model City {
   spots       Spot[]
   tags        CityTag[]
   experiences Experience[]
+  soloTips    String?  @db.Text  // solo-traveler-specific advice
+  soloLevel   SoloLevel?            // BEGINNER / INTERMEDIATE / ADVANCED
   seoTitle    String?
   seoDesc     String?  @db.Text
   published   Boolean  @default(false)
@@ -65,6 +67,8 @@ model Spot {
   imageUrl    String?
   priceRange  PriceRange?
   rating      Float?     // aggregated, 1-5
+  meetPeople      Boolean @default(false)  // good for meeting other travelers/locals
+  comfortableAlone Boolean @default(false) // comfortable to visit solo (eat alone, etc.)
   tags        SpotTag[]
   affiliateLinks AffiliateLink[]
   published   Boolean    @default(false)
@@ -121,6 +125,12 @@ enum CostLevel {
   BUDGET
   MID_RANGE
   EXPENSIVE
+}
+
+enum SoloLevel {
+  BEGINNER     // easy infrastructure, English-friendly, solo-traveler culture
+  INTERMEDIATE // some language barrier or logistics complexity
+  ADVANCED     // challenging infrastructure, language, or safety considerations
 }
 
 enum PriceRange {
