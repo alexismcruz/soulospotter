@@ -2,6 +2,8 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import { SpotCategory } from "@prisma/client";
+
+export const revalidate = 86400; // ISR: revalidate every 24 hours
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import CityHero from "@/components/city/CityHero";

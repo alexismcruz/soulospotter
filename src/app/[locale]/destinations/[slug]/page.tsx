@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import SiteHeader from "@/components/layout/SiteHeader";
+
+export const revalidate = 86400; // ISR: revalidate every 24 hours
 import SiteFooter from "@/components/layout/SiteFooter";
 import CityHero from "@/components/city/CityHero";
 import CityStats from "@/components/city/CityStats";
