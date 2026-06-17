@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { SpotCategory, PriceRange, AffiliateProvider } from "@prisma/client";
@@ -42,6 +45,8 @@ type Spot = {
   imageUrl: string | null;
   priceRange: PriceRange | null;
   rating: number | null;
+  meetPeople: boolean;
+  comfortableAlone: boolean;
   tags: SpotTag[];
   affiliateLinks: AffiliateLink[];
 };
@@ -56,9 +61,23 @@ type Props = {
 };
 
 export default function SpotList({ spots, allSpots, categories, activeCategory, citySlug, cityName }: Props) {
+  const [filterMeet, setFilterMeet] = useState(false);
+  const [filterAlone, setFilterAlone] = useState(false);
+
+  const filtered = useMemo(() => {
+    return spots.filter((s) => {
+      if (filterMeet && !s.meetPeople) return false;
+      if (filterAlone && !s.comfortableAlone) return false;
+      return true;
+    });
+  }, [spots, filterMeet, filterAlone]);
+
+  const meetCount = spots.filter((s) => s.meetPeople).length;
+  const aloneCount = spots.filter((s) => s.comfortableAlone).length;
+
   return (
     <div>
-      {/* Category filter tabs — sticky so they stay accessible while scrolling through spots */}
+      {/* Category filter tabs */}
       <div className="sticky top-16 z-20 bg-soulo-white/95 backdrop-blur-sm border-b border-soulo-border -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 pt-3 pb-3 mb-8 flex items-center gap-2 overflow-x-auto scrollbar-hide">
         <Link
           href={`/destinations/${citySlug}`}
@@ -91,30 +110,73 @@ export default function SpotList({ spots, allSpots, categories, activeCategory, 
         })}
       </div>
 
-      {/* Section H2 — keyword-rich heading for Google */}
+      {/* Section heading */}
       <h2 className="font-display text-2xl font-bold text-soulo-dark mb-2">
         {activeCategory
           ? `Best ${CATEGORY_META[activeCategory].label} in ${cityName} for Solo Travelers`
           : `Top Spots in ${cityName} for Solo Travelers`}
       </h2>
 
+      {/* Solo filter toggles */}
+      <div className="flex flex-wrap items-center gap-2 mb-4">
+        <span className="text-xs text-soulo-mist font-medium uppercase tracking-wide">Solo filters:</span>
+        <button
+          onClick={() => setFilterMeet((v) => !v)}
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium border transition-colors ${
+            filterMeet
+              ? "bg-violet-600 text-white border-violet-600"
+              : "bg-white border-soulo-border text-soulo-grey hover:bg-soulo-linen"
+          }`}
+        >
+          <span>🤝</span>
+          Meet People
+          <span className={`text-xs ${filterMeet ? "opacity-75" : "text-soulo-mist"}`}>({meetCount})</span>
+        </button>
+        <button
+          onClick={() => setFilterAlone((v) => !v)}
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium border transition-colors ${
+            filterAlone
+              ? "bg-soulo-gold text-soulo-dark border-soulo-gold"
+              : "bg-white border-soulo-border text-soulo-grey hover:bg-soulo-linen"
+          }`}
+        >
+          <span>🧘</span>
+          Comfortable Alone
+          <span className={`text-xs ${filterAlone ? "opacity-60" : "text-soulo-mist"}`}>({aloneCount})</span>
+        </button>
+        {(filterMeet || filterAlone) && (
+          <button
+            onClick={() => { setFilterMeet(false); setFilterAlone(false); }}
+            className="text-xs text-soulo-mist hover:text-soulo-grey underline"
+          >
+            Clear
+          </button>
+        )}
+      </div>
+
       {/* Spot count */}
       <p className="text-sm text-soulo-grey mb-6">
-        Showing <strong className="text-soulo-dark">{spots.length}</strong>{" "}
-        {spots.length === 1 ? "spot" : "spots"}
+        Showing <strong className="text-soulo-dark">{filtered.length}</strong>{" "}
+        {filtered.length === 1 ? "spot" : "spots"}
         {activeCategory && ` in ${CATEGORY_META[activeCategory].label}`}
+        {(filterMeet || filterAlone) && ` matching your solo filters`}
       </p>
 
       {/* Spot cards */}
-      {spots.length === 0 ? (
+      {filtered.length === 0 ? (
         <div className="text-center py-16 text-soulo-mist">
           <p className="text-4xl mb-3">🗺️</p>
-          <p className="font-medium">No spots in this category yet.</p>
-          <p className="text-sm mt-1">Check back soon or browse all spots.</p>
+          <p className="font-medium">No spots match your filters.</p>
+          <button
+            onClick={() => { setFilterMeet(false); setFilterAlone(false); }}
+            className="mt-3 text-sm text-soulo-gold hover:underline"
+          >
+            Clear filters
+          </button>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {spots.map((spot) => {
+          {filtered.map((spot) => {
             const meta = CATEGORY_META[spot.category];
             const price = spot.priceRange ? PRICE_LABELS[spot.priceRange] : null;
             const spotUrl = `/destinations/${citySlug}/${CATEGORY_SLUGS[spot.category]}/${spot.slug}`;
@@ -170,6 +232,22 @@ export default function SpotList({ spots, allSpots, categories, activeCategory, 
                     </p>
                   )}
 
+                  {/* Solo badges */}
+                  {(spot.meetPeople || spot.comfortableAlone) && (
+                    <div className="mt-3 flex flex-wrap gap-1.5">
+                      {spot.meetPeople && (
+                        <span className="text-xs px-2 py-0.5 rounded-full bg-violet-50 text-violet-700 font-medium">
+                          🤝 Meet People
+                        </span>
+                      )}
+                      {spot.comfortableAlone && (
+                        <span className="text-xs px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 font-medium">
+                          🧘 Solo Friendly
+                        </span>
+                      )}
+                    </div>
+                  )}
+
                   {/* Tags */}
                   {spot.tags.length > 0 && (
                     <div className="mt-3 flex flex-wrap gap-1">
@@ -194,6 +272,7 @@ export default function SpotList({ spots, allSpots, categories, activeCategory, 
                         href={link.url}
                         target="_blank"
                         rel="noopener noreferrer sponsored"
+                        onClick={(e) => e.stopPropagation()}
                         className="flex-1 text-center text-xs font-semibold px-3 py-2 rounded-lg bg-soulo-gold hover:bg-amber-400 text-soulo-dark transition-colors"
                       >
                         {link.label ?? AFFILIATE_LABELS[link.provider] ?? "Book Now"}
@@ -204,6 +283,7 @@ export default function SpotList({ spots, allSpots, categories, activeCategory, 
                         href={spot.website}
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
                         className="flex-1 text-center text-xs font-medium px-3 py-2 rounded-lg border border-soulo-border text-soulo-grey hover:bg-soulo-linen transition-colors"
                       >
                         Visit Website →
