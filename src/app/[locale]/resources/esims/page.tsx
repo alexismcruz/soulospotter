@@ -5,6 +5,7 @@ import SiteFooter from "@/components/layout/SiteFooter";
 import PageHero from "@/components/layout/PageHero";
 import AffiliateCTA from "@/components/resources/AffiliateCTA";
 import ResourceCityLinks from "@/components/resources/ResourceCityLinks";
+import { breezeSimUrl } from "@/lib/affiliates";
 
 export const metadata: Metadata = {
   title: "Best eSIM for Solo Travelers — BreezeSim Review (2025)",
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
   },
 };
 
-const BREEZESIM_URL = "https://breezesim.com?sca_ref=11468464.321pPwPKQ4";
+const BREEZESIM_URL = breezeSimUrl();
 
 export default function EsimsPage() {
   return (

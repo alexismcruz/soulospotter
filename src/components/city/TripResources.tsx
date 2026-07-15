@@ -1,39 +1,13 @@
 import Link from "next/link";
+import { gygCityToursUrl } from "@/lib/affiliates";
 
 type Props = {
   citySlug?: string;
 };
 
-const AFFILIATE_ID = "CDE4NF2";
-
-// GetYourGuide URL map for cities
-const GYG_CITY_MAP: Record<string, string> = {
-  "new-york-city": "https://www.getyourguide.com/new-york-city-l18/?partner_id=" + AFFILIATE_ID,
-  "portland": "https://www.getyourguide.com/portland-l29/?partner_id=" + AFFILIATE_ID,
-  "mexico-city": "https://www.getyourguide.com/mexico-city-l43/?partner_id=" + AFFILIATE_ID,
-  "medellin": "https://www.getyourguide.com/medellin-l122/?partner_id=" + AFFILIATE_ID,
-  "rio-de-janeiro": "https://www.getyourguide.com/rio-de-janeiro-l101/?partner_id=" + AFFILIATE_ID,
-  "lisbon": "https://www.getyourguide.com/lisbon-l46/?partner_id=" + AFFILIATE_ID,
-  "tbilisi": "https://www.getyourguide.com/tbilisi-l148/?partner_id=" + AFFILIATE_ID,
-  "barcelona": "https://www.getyourguide.com/barcelona-l25/?partner_id=" + AFFILIATE_ID,
-  "berlin": "https://www.getyourguide.com/berlin-l23/?partner_id=" + AFFILIATE_ID,
-  "marrakech": "https://www.getyourguide.com/marrakech-l133/?partner_id=" + AFFILIATE_ID,
-  "rishikesh": "https://www.getyourguide.com/rishikesh-l209/?partner_id=" + AFFILIATE_ID,
-  "kathmandu": "https://www.getyourguide.com/kathmandu-l75/?partner_id=" + AFFILIATE_ID,
-  "chiang-mai": "https://www.getyourguide.com/chiang-mai-l67/?partner_id=" + AFFILIATE_ID,
-  "hanoi": "https://www.getyourguide.com/hanoi-l88/?partner_id=" + AFFILIATE_ID,
-  "bali": "https://www.getyourguide.com/bali-l128/?partner_id=" + AFFILIATE_ID,
-  "siargao": "https://www.getyourguide.com/siargao-l329/?partner_id=" + AFFILIATE_ID,
-  "hong-kong": "https://www.getyourguide.com/hong-kong-l103/?partner_id=" + AFFILIATE_ID,
-  "kyoto": "https://www.getyourguide.com/kyoto-l104/?partner_id=" + AFFILIATE_ID,
-  "seoul": "https://www.getyourguide.com/seoul-l57/?partner_id=" + AFFILIATE_ID,
-  "melbourne": "https://www.getyourguide.com/melbourne-l125/?partner_id=" + AFFILIATE_ID,
-  "queenstown": "https://www.getyourguide.com/queenstown-l144/?partner_id=" + AFFILIATE_ID,
-  "byron-bay": "https://www.getyourguide.com/byron-bay-l211/?partner_id=" + AFFILIATE_ID,
-};
-
 export default function TripResources({ citySlug }: Props) {
-  const toursHref = citySlug && GYG_CITY_MAP[citySlug] ? GYG_CITY_MAP[citySlug] : "/resources/tours";
+  const cityTours = citySlug ? gygCityToursUrl(citySlug) : null;
+  const toursHref = cityTours ?? "/resources/tours";
   const isExternalLink = toursHref.startsWith("http");
 
   const RESOURCES = [

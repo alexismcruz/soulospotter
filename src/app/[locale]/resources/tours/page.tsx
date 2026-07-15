@@ -5,6 +5,7 @@ import SiteFooter from "@/components/layout/SiteFooter";
 import PageHero from "@/components/layout/PageHero";
 import AffiliateCTA from "@/components/resources/AffiliateCTA";
 import ResourceCityLinks from "@/components/resources/ResourceCityLinks";
+import { gygHomeUrl } from "@/lib/affiliates";
 
 export const metadata: Metadata = {
   title: "Best Tours for Solo Travelers (2025)",
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
   },
 };
 
-const GYG_URL = "https://www.getyourguide.com/?partner_id=CDE4NF2";
+const GYG_URL = gygHomeUrl();
 
 const TOUR_PICKS = [
   {

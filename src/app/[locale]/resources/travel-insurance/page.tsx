@@ -5,6 +5,7 @@ import SiteFooter from "@/components/layout/SiteFooter";
 import PageHero from "@/components/layout/PageHero";
 import AffiliateCTA from "@/components/resources/AffiliateCTA";
 import ResourceCityLinks from "@/components/resources/ResourceCityLinks";
+import { safetyWingUrl, worldNomadsUrl } from "@/lib/affiliates";
 
 export const metadata: Metadata = {
   title: "Best Travel Insurance for Solo Travelers (2025)",
@@ -17,8 +18,8 @@ export const metadata: Metadata = {
   },
 };
 
-const SAFETYWING_URL = "https://safetywing.com/?referenceID=26538744&utm_source=26538744&utm_medium=Ambassador";
-const WORLD_NOMADS_URL = "https://www.worldnomads.com/?affiliate=soulospotter"; // replace with real affiliate URL
+const SAFETYWING_URL = safetyWingUrl();
+const WORLD_NOMADS_URL = worldNomadsUrl(); // ⚠️ placeholder — see lib/affiliates.ts
 
 export default function TravelInsurancePage() {
   return (

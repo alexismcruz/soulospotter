@@ -10,6 +10,7 @@ import FlagImage from "@/components/ui/FlagImage";
 import AffiliateCTA from "@/components/resources/AffiliateCTA";
 import JsonLd from "@/components/seo/JsonLd";
 import { experienceSchema, breadcrumbSchema } from "@/lib/jsonld";
+import { safetyWingUrl, breezeSimUrl, gygHomeUrl, gygSearchUrl, viatorSearchUrl } from "@/lib/affiliates";
 
 const BASE = "https://soulospotter.com";
 
@@ -261,17 +262,17 @@ export default async function ExperienceDetailPage({ params }: Props) {
                     Search GetYourGuide or Viator for this experience in {experience.city.name} — thousands of verified operators, free cancellation on most bookings.
                   </p>
                   <a
-                    href={`https://www.getyourguide.com/s/?q=${encodeURIComponent(experience.name + " " + experience.city.name)}&partner_id=CDE4NF2`}
+                    href={gygSearchUrl(`${experience.name} ${experience.city.name}`)}
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel="noopener noreferrer sponsored"
                     className="flex items-center justify-center gap-2 w-full px-5 py-3 bg-soulo-gold hover:bg-amber-400 text-soulo-dark font-bold rounded-xl transition-colors text-sm"
                   >
                     Search on GetYourGuide →
                   </a>
                   <a
-                    href={`https://www.viator.com/searchResults/all?text=${encodeURIComponent(experience.name + " " + experience.city.name)}`}
+                    href={viatorSearchUrl(`${experience.name} ${experience.city.name}`)}
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel="noopener noreferrer sponsored"
                     className="flex items-center justify-center gap-2 w-full px-5 py-3 border border-soulo-border text-soulo-grey hover:bg-white rounded-xl transition-colors text-sm font-medium"
                   >
                     Search on Viator →
@@ -351,9 +352,9 @@ export default async function ExperienceDetailPage({ params }: Props) {
               Plan your trip to {experience.city.name}
             </h2>
             <div className="grid sm:grid-cols-3 gap-4">
-              <AffiliateCTA href="https://safetywing.com/?referenceID=26538744&utm_source=26538744&utm_medium=Ambassador" label="Get travel insurance" sublabel="From $45/month" color="blue" />
-              <AffiliateCTA href="https://breezesim.com?sca_ref=11468464.321pPwPKQ4" label="Get an eSIM" sublabel="200+ countries · From $5" color="teal" />
-              <AffiliateCTA href="https://www.getyourguide.com/?partner_id=CDE4NF2" label="Browse more tours" sublabel="300,000+ experiences" color="amber" />
+              <AffiliateCTA href={safetyWingUrl()} label="Get travel insurance" sublabel="From $45/month" color="blue" />
+              <AffiliateCTA href={breezeSimUrl()} label="Get an eSIM" sublabel="200+ countries · From $5" color="teal" />
+              <AffiliateCTA href={gygHomeUrl()} label="Browse more tours" sublabel="300,000+ experiences" color="amber" />
             </div>
           </div>
         </div>
