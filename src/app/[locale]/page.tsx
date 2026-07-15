@@ -77,7 +77,7 @@ export default async function HomePage() {
         <HeroSection cityCount={cityCount} spotCount={spotCount} regionCount={regionCounts.length} />
         <RegionGrid regionCounts={regionCountMap} />
         <FeaturedCities cities={featuredCities} />
-        <TestimonialsSection />
+        <TestimonialsSection cityCount={cityCount} spotCount={spotCount} regionCount={regionCounts.length} />
       </main>
       <SiteFooter />
     </div>

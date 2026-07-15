@@ -41,6 +41,9 @@ export default async function ExperiencesPage() {
     }))
     .sort((a, b) => a.name.localeCompare(b.name));
 
+  // Distinct countries represented by active experiences (derived, never hardcoded).
+  const countryCount = new Set(experiences.map((e) => e.city.country.code)).size;
+
   // Transform for client component
   const clientExperiences = experiences.map((exp) => ({
     id: exp.id,
@@ -103,7 +106,7 @@ export default async function ExperiencesPage() {
                 <p className="text-sm text-soulo-mist mt-1">Cities</p>
               </div>
               <div>
-                <p className="text-3xl font-bold text-soulo-gold">30+</p>
+                <p className="text-3xl font-bold text-soulo-gold">{countryCount}</p>
                 <p className="text-sm text-soulo-mist mt-1">Countries</p>
               </div>
               <div>

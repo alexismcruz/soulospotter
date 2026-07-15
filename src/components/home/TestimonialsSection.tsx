@@ -1,3 +1,5 @@
+import { approxPlus } from "@/lib/stats";
+
 const TESTIMONIALS = [
   {
     quote: "I used SouloSpotter to plan my first solo trip to Lisbon and found every single cafe and hostel in my itinerary here. It felt like getting tips from someone who actually traveled alone — not a generic guide.",
@@ -22,7 +24,13 @@ const TESTIMONIALS = [
   },
 ];
 
-export default function TestimonialsSection() {
+type Props = {
+  cityCount: number;
+  spotCount: number;
+  regionCount: number;
+};
+
+export default function TestimonialsSection({ cityCount, spotCount, regionCount }: Props) {
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8 bg-soulo-white border-t border-soulo-border">
       <div className="max-w-7xl mx-auto">
@@ -64,9 +72,9 @@ export default function TestimonialsSection() {
         {/* Social proof numbers */}
         <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
           {[
-            { stat: "100+", label: "Cities worldwide" },
-            { stat: "1,000+", label: "Curated spots" },
-            { stat: "6", label: "Regions covered" },
+            { stat: approxPlus(cityCount, 100), label: "Cities worldwide" },
+            { stat: approxPlus(spotCount, 100), label: "Curated spots" },
+            { stat: String(regionCount), label: "Regions covered" },
             { stat: "Free", label: "Always free to browse" },
           ].map((item) => (
             <div key={item.label} className="py-4 border-t-2 border-soulo-gold">
