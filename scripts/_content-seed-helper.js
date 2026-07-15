@@ -1,6 +1,7 @@
 // Region-agnostic content seeder (city slugs are globally unique).
 // Usage: const { seed } = require('./_content-seed-helper'); seed({ SPOTS, EXPERIENCES });
 const { PrismaClient } = require('@prisma/client');
+const { assertRecordNoMojibake } = require('./validate-no-mojibake');
 const prisma = new PrismaClient();
 
 const EXP_IMG = {
@@ -75,6 +76,8 @@ async function seed({ SPOTS = {}, EXPERIENCES = {} }) {
         data.priceRange = costLevel === 'EXPENSIVE' ? 'HIGH' : costLevel === 'MID_RANGE' ? 'MID' : 'BUDGET';
       }
       const spotSlug = data.slug || toSlug(data.name);
+      // Guard: reject mojibake in source data before it reaches the DB.
+      assertRecordNoMojibake(data, ['name', 'description', 'address'], `Spot "${spotSlug}" (${slug})`);
       const exists = await withRetry(() => prisma.spot.findFirst({ where: { cityId, slug: spotSlug } }), 'find spot ' + spotSlug);
       if (exists) { spotSkipped++; i++; continue; }
       const img = data.imageUrl || pickImg(SPOT_IMG, data.category.toUpperCase(), i);
@@ -92,6 +95,12 @@ async function seed({ SPOTS = {}, EXPERIENCES = {} }) {
     let i = 0;
     for (const e of exps) {
       const expSlug = e.slug || toSlug(e.title || e.name);
+      // Guard: reject mojibake in source data before it reaches the DB.
+      assertRecordNoMojibake(
+        { name: e.title || e.name, description: e.description, duration: e.duration },
+        ['name', 'description', 'duration'],
+        `Experience "${expSlug}" (${slug})`,
+      );
       const exists = await withRetry(() => prisma.experience.findFirst({ where: { cityId, slug: expSlug } }), 'find exp ' + expSlug);
       if (exists) { expSkipped++; i++; continue; }
       const photo = e.photoUrl || pickImg(EXP_IMG, e.category, i);
