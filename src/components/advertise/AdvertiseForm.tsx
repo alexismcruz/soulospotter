@@ -27,6 +27,7 @@ export default function AdvertiseForm() {
       city:     (form.elements.namedItem("city") as HTMLInputElement).value.trim(),
       tier:     (form.elements.namedItem("tier") as HTMLSelectElement).value,
       message:  (form.elements.namedItem("message") as HTMLTextAreaElement).value.trim(),
+      company:  (form.elements.namedItem("company") as HTMLInputElement)?.value ?? "", // honeypot
     };
 
     try {
@@ -57,6 +58,14 @@ export default function AdvertiseForm() {
 
   return (
     <form onSubmit={handleSubmit} className="bg-white rounded-2xl border border-soulo-border p-7 space-y-5">
+      {/* Honeypot — hidden from humans, catches bots that autofill every field */}
+      <div aria-hidden="true" style={{ position: "absolute", left: "-9999px", width: 1, height: 1, overflow: "hidden" }}>
+        <label>
+          Company (leave this empty)
+          <input type="text" name="company" tabIndex={-1} autoComplete="off" />
+        </label>
+      </div>
+
       <div className="grid sm:grid-cols-2 gap-5">
         <div>
           <label className="block text-sm font-medium text-soulo-grey mb-1.5">

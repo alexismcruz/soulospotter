@@ -43,6 +43,7 @@ export default function SubmitForm() {
       countryName:    (form.countryName as HTMLInputElement).value.trim(),
       submitterName:  (form.submitterName as HTMLInputElement).value.trim(),
       submitterEmail: (form.submitterEmail as HTMLInputElement).value.trim(),
+      company:        (form.company as HTMLInputElement)?.value ?? "", // honeypot
     };
 
     try {
@@ -103,6 +104,14 @@ export default function SubmitForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
+      {/* Honeypot — hidden from humans, catches bots that autofill every field */}
+      <div aria-hidden="true" style={{ position: "absolute", left: "-9999px", width: 1, height: 1, overflow: "hidden" }}>
+        <label>
+          Company (leave this empty)
+          <input type="text" name="company" tabIndex={-1} autoComplete="off" />
+        </label>
+      </div>
+
       {/* Section: Submission Type */}
       <fieldset className="bg-white rounded-2xl border border-soulo-border p-6 space-y-4">
         <legend className="text-base font-display font-bold text-soulo-dark px-1">What are you doing?</legend>
