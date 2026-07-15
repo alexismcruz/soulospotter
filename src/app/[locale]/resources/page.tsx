@@ -4,12 +4,12 @@ import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 
 export const metadata: Metadata = {
-  title: "Solo Travel Resources — SouloSpotter",
+  title: "Solo Travel Resources",
   description:
     "Everything a solo traveler needs before departure — travel insurance, eSIMs, tours, and gear. Curated and trusted by SouloSpotter.",
   alternates: { canonical: "https://soulospotter.com/resources" },
   openGraph: {
-    title: "Solo Travel Resources — SouloSpotter",
+    title: "Solo Travel Resources",
     description: "Travel insurance, eSIMs, solo-friendly tours — everything you need before you fly.",
   },
 };

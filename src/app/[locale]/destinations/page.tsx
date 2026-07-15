@@ -8,7 +8,7 @@ import DestinationsClient from "@/components/destinations/DestinationsClient";
 export const revalidate = 3600; // ISR: revalidate every hour
 
 export const metadata: Metadata = {
-  title: "Destinations — SouloSpotter",
+  title: "Destinations",
   description:
     "Browse solo-travel destinations by region, country, and city. Filter by region, cost, and safety to find your next soulo adventure.",
   alternates: { canonical: "https://soulospotter.com/destinations" },

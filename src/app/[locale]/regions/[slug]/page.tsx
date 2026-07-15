@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const meta = REGION_BY_SLUG[slug];
   if (!meta) return {};
   return {
-    title: `Solo Travel in ${meta.label} — SouloSpotter`,
+    title: `Solo Travel in ${meta.label}`,
     description: meta.description,
     alternates: { canonical: `${BASE}/regions/${slug}` },
   };

@@ -7,7 +7,7 @@ import ExperienceSubmissionForm from "@/components/experiences/ExperienceSubmiss
 import PageHero from "@/components/layout/PageHero";
 
 export const metadata: Metadata = {
-  title: "List Your Experience — SouloSpotter",
+  title: "List Your Experience",
   description:
     "Reach solo travelers from 30+ countries. List your activity, tour, or experience with SouloSpotter. Two simple pricing tiers: Basic $29/mo or Featured $79/mo.",
   alternates: { canonical: "https://soulospotter.com/experiences/list-your-experience" },

@@ -7,7 +7,8 @@ import AdvertiseForm from "@/components/advertise/AdvertiseForm";
 import { prisma } from "@/lib/prisma";
 
 export const metadata: Metadata = {
-  title: "Advertise with SouloSpotter — Reach Travelers Worldwide",
+  // Brand is structural in this title — use `absolute` to keep it appearing once.
+  title: { absolute: "Advertise with SouloSpotter — Reach Travelers Worldwide" },
   description:
     "Put your business in front of thousands of solo travelers. Featured listings, city spotlights, and homepage placements — transparent pricing, no hidden fees.",
   alternates: { canonical: "https://soulospotter.com/advertise" },

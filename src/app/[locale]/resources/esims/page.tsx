@@ -7,7 +7,7 @@ import AffiliateCTA from "@/components/resources/AffiliateCTA";
 import ResourceCityLinks from "@/components/resources/ResourceCityLinks";
 
 export const metadata: Metadata = {
-  title: "Best eSIM for Solo Travelers — BreezeSim Review (2025) — SouloSpotter",
+  title: "Best eSIM for Solo Travelers — BreezeSim Review (2025)",
   description:
     "Never get stranded without data again. BreezeSim lets you buy a local eSIM before you land — works in 200+ countries. Our honest review for solo travelers.",
   alternates: { canonical: "https://soulospotter.com/resources/esims" },

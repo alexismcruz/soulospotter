@@ -4,7 +4,7 @@ import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — SouloSpotter",
+  title: "Privacy Policy",
   description: "How SouloSpotter collects, uses, and protects your personal information.",
   alternates: { canonical: "https://soulospotter.com/privacy" },
   robots: { index: false },

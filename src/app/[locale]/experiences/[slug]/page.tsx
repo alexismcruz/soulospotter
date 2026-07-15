@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const experience = await getExperience(slug);
   if (!experience) return {};
   return {
-    title: `${experience.name} in ${experience.city.name} — SouloSpotter`,
+    title: `${experience.name} in ${experience.city.name}`,
     description: experience.description.substring(0, 160),
     alternates: { canonical: `${BASE}/experiences/${slug}` },
     openGraph: {

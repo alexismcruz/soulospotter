@@ -7,7 +7,7 @@ import AffiliateCTA from "@/components/resources/AffiliateCTA";
 import ResourceCityLinks from "@/components/resources/ResourceCityLinks";
 
 export const metadata: Metadata = {
-  title: "Best Travel Insurance for Solo Travelers (2025) — SouloSpotter",
+  title: "Best Travel Insurance for Solo Travelers (2025)",
   description:
     "SafetyWing vs World Nomads — an honest comparison for solo travelers. Which travel insurance is right for your trip? We break down cost, coverage, and claims.",
   alternates: { canonical: "https://soulospotter.com/resources/travel-insurance" },

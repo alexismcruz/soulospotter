@@ -18,7 +18,9 @@ export const revalidate = 3600;
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("home");
   return {
-    title: "SouloSpotter — Travel alone. Travel Soulo. Find yourself.",
+    // Home is the brand page — use `absolute` so the root template doesn't append
+    // the brand a second time.
+    title: { absolute: "SouloSpotter — Travel alone. Travel Soulo. Find yourself." },
     description: t("heroSubtitle"),
   };
 }

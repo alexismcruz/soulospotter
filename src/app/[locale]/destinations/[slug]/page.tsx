@@ -57,7 +57,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const city = await getCity(slug);
   if (!city) return {};
   return {
-    title: city.seoTitle ?? `Solo Travel in ${city.name} — SouloSpotter`,
+    // Root template appends " | SouloSpotter" — keep these brand-free (seoTitle, if
+    // ever set, must not include the brand either).
+    title: city.seoTitle ?? `Solo Travel in ${city.name}`,
     description:
       city.seoDesc ??
       `Discover the best spots for solo travelers in ${city.name}, ${city.country.name}. Cafes, coworking, accommodation, wellness and more.`,

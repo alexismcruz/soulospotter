@@ -5,7 +5,7 @@ import SiteFooter from "@/components/layout/SiteFooter";
 import SubmitForm from "@/components/submit/SubmitForm";
 
 export const metadata: Metadata = {
-  title: "Submit a Listing — SouloSpotter",
+  title: "Submit a Listing",
   description:
     "Know a great spot for solo travelers? Submit it to SouloSpotter. We review every listing before it goes live.",
   alternates: { canonical: "https://soulospotter.com/submit" },

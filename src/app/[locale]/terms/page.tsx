@@ -4,7 +4,7 @@ import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 
 export const metadata: Metadata = {
-  title: "Terms of Use — SouloSpotter",
+  title: "Terms of Use",
   description: "The terms and conditions that govern your use of SouloSpotter.",
   alternates: { canonical: "https://soulospotter.com/terms" },
   robots: { index: false },

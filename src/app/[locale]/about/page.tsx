@@ -6,7 +6,8 @@ import PageHero from "@/components/layout/PageHero";
 import { prisma } from "@/lib/prisma";
 
 export const metadata: Metadata = {
-  title: "About SouloSpotter — Travel alone. Travel Soulo. Find yourself.",
+  // Brand is structural in this title — use `absolute` to keep it appearing once.
+  title: { absolute: "About SouloSpotter — Travel alone. Travel Soulo. Find yourself." },
   description:
     "SouloSpotter is the global directory for solo travelers who seek more than a destination. We curate the best spots, cities, and resources for people who travel alone — and love it.",
   alternates: { canonical: "https://soulospotter.com/about" },

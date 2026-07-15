@@ -2,10 +2,10 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import { SpotCategory } from "@prisma/client";
-
-export const revalidate = 86400; // ISR: revalidate every 24 hours
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
+
+export const revalidate = 86400; // ISR: revalidate every 24 hours
 import CityHero from "@/components/city/CityHero";
 import CityStats from "@/components/city/CityStats";
 import SpotList from "@/components/city/SpotList";
@@ -66,7 +66,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const count = city.spots.filter((s) => s.category === activeCategory).length;
 
   return {
-    title: `${meta.label} in ${city.name} for Solo Travelers — SouloSpotter`,
+    title: `${meta.label} in ${city.name} for Solo Travelers`,
     description: `The best ${meta.label.toLowerCase()} in ${city.name} for solo travelers. ${count} curated ${count === 1 ? "spot" : "spots"} — handpicked for people who travel alone.`,
     alternates: {
       canonical: `${BASE}/destinations/${slug}/${categorySlug}`,

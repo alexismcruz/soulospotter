@@ -71,7 +71,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!spot) return {};
   const catMeta = CATEGORY_META[spot.category];
   return {
-    title: `${spot.name} — ${spot.city.name} ${catMeta.label} for Solo Travelers | SouloSpotter`,
+    title: `${spot.name} — ${spot.city.name} ${catMeta.label} for Solo Travelers`,
     description:
       spot.description?.substring(0, 160) ??
       `${spot.name} is a solo-travel-friendly ${catMeta.label.toLowerCase()} in ${spot.city.name}. Discovered and verified by SouloSpotter.`,
