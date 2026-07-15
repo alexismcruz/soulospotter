@@ -7,16 +7,22 @@ import AffiliateCTA from "@/components/resources/AffiliateCTA";
 import ResourceCityLinks from "@/components/resources/ResourceCityLinks";
 import { gygHomeUrl } from "@/lib/affiliates";
 
-export const metadata: Metadata = {
-  title: "Best Tours for Solo Travelers (2025)",
-  description:
-    "Group tours are the fastest way to meet other travelers and see a city properly. Our picks from GetYourGuide — curated for solo travelers across every region.",
-  alternates: { canonical: "https://soulospotter.com/resources/tours" },
-  openGraph: {
-    title: "Best Tours for Solo Travelers (2025)",
-    description: "Group tours, food walks, sunrise hikes — curated for solo travelers worldwide.",
-  },
-};
+// Revalidate daily so the dynamic year (below) refreshes without a redeploy.
+export const revalidate = 86400;
+
+export function generateMetadata(): Metadata {
+  const year = new Date().getFullYear();
+  return {
+    title: `Best Tours for Solo Travelers (${year})`,
+    description:
+      "Group tours are the fastest way to meet other travelers and see a city properly. Our picks from GetYourGuide — curated for solo travelers across every region.",
+    alternates: { canonical: "https://soulospotter.com/resources/tours" },
+    openGraph: {
+      title: `Best Tours for Solo Travelers (${year})`,
+      description: "Group tours, food walks, sunrise hikes — curated for solo travelers worldwide.",
+    },
+  };
+}
 
 const GYG_URL = gygHomeUrl();
 

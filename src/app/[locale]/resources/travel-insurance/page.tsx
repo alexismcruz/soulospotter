@@ -7,21 +7,28 @@ import AffiliateCTA from "@/components/resources/AffiliateCTA";
 import ResourceCityLinks from "@/components/resources/ResourceCityLinks";
 import { safetyWingUrl, worldNomadsUrl } from "@/lib/affiliates";
 
-export const metadata: Metadata = {
-  title: "Best Travel Insurance for Solo Travelers (2025)",
-  description:
-    "SafetyWing vs World Nomads — an honest comparison for solo travelers. Which travel insurance is right for your trip? We break down cost, coverage, and claims.",
-  alternates: { canonical: "https://soulospotter.com/resources/travel-insurance" },
-  openGraph: {
-    title: "Best Travel Insurance for Solo Travelers (2025)",
-    description: "SafetyWing vs World Nomads — an honest comparison for solo travelers.",
-  },
-};
+// Revalidate daily so the dynamic year (below) refreshes without a redeploy.
+export const revalidate = 86400;
+
+export function generateMetadata(): Metadata {
+  const year = new Date().getFullYear();
+  return {
+    title: `Best Travel Insurance for Solo Travelers (${year})`,
+    description:
+      "SafetyWing vs World Nomads — an honest comparison for solo travelers. Which travel insurance is right for your trip? We break down cost, coverage, and claims.",
+    alternates: { canonical: "https://soulospotter.com/resources/travel-insurance" },
+    openGraph: {
+      title: `Best Travel Insurance for Solo Travelers (${year})`,
+      description: "SafetyWing vs World Nomads — an honest comparison for solo travelers.",
+    },
+  };
+}
 
 const SAFETYWING_URL = safetyWingUrl();
 const WORLD_NOMADS_URL = worldNomadsUrl(); // ⚠️ placeholder — see lib/affiliates.ts
 
 export default function TravelInsurancePage() {
+  const year = new Date().getFullYear();
   return (
     <div className="flex flex-col min-h-screen">
       <SiteHeader />
@@ -38,7 +45,7 @@ export default function TravelInsurancePage() {
             </nav>
             <div className="max-w-3xl">
               <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-sm text-blue-300 mb-5">
-                🛡️ Updated for 2025
+                🛡️ Updated for {year}
               </div>
               <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-soulo-white">
                 Travel Insurance for<br />

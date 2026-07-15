@@ -7,16 +7,22 @@ import AffiliateCTA from "@/components/resources/AffiliateCTA";
 import ResourceCityLinks from "@/components/resources/ResourceCityLinks";
 import { breezeSimUrl } from "@/lib/affiliates";
 
-export const metadata: Metadata = {
-  title: "Best eSIM for Solo Travelers — BreezeSim Review (2025)",
-  description:
-    "Never get stranded without data again. BreezeSim lets you buy a local eSIM before you land — works in 200+ countries. Our honest review for solo travelers.",
-  alternates: { canonical: "https://soulospotter.com/resources/esims" },
-  openGraph: {
-    title: "Best eSIM for Solo Travelers (2025)",
-    description: "Stay connected in 200+ countries. Our honest eSIM review for solo travelers.",
-  },
-};
+// Revalidate daily so the dynamic year (below) refreshes without a redeploy.
+export const revalidate = 86400;
+
+export function generateMetadata(): Metadata {
+  const year = new Date().getFullYear();
+  return {
+    title: `Best eSIM for Solo Travelers — BreezeSim Review (${year})`,
+    description:
+      "Never get stranded without data again. BreezeSim lets you buy a local eSIM before you land — works in 200+ countries. Our honest review for solo travelers.",
+    alternates: { canonical: "https://soulospotter.com/resources/esims" },
+    openGraph: {
+      title: `Best eSIM for Solo Travelers (${year})`,
+      description: "Stay connected in 200+ countries. Our honest eSIM review for solo travelers.",
+    },
+  };
+}
 
 const BREEZESIM_URL = breezeSimUrl();
 
