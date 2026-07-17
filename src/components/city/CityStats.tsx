@@ -3,7 +3,7 @@ import { getSafetySourcesText } from "@/lib/safetySourcesByCity";
 
 const SOLO_LEVEL: Record<SoloLevel, { label: string; desc: string; icon: string; color: string }> = {
   BEGINNER:     { label: "Solo Friendly",    desc: "Great infrastructure, English-friendly, well-established solo traveler culture.", icon: "🟢", color: "bg-emerald-50 border-emerald-200 text-emerald-900" },
-  INTERMEDIATE: { label: "Some Experience",  desc: "Some language barrier or logistics complexity — rewarding with a bit of preparation.", icon: "🟡", color: "bg-amber-50 border-amber-200 text-amber-900" },
+  INTERMEDIATE: { label: "Confident Solo",  desc: "Some language barrier or logistics complexity — rewarding with a bit of preparation.", icon: "🟡", color: "bg-amber-50 border-amber-200 text-amber-900" },
   ADVANCED:     { label: "Experienced Solo", desc: "Challenging infrastructure, language, or safety considerations — for seasoned solo travelers.", icon: "🔴", color: "bg-rose-50 border-rose-200 text-rose-900" },
 };
 

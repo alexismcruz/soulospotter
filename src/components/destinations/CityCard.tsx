@@ -12,7 +12,7 @@ const COST_BADGE: Record<CostLevel, { symbol: string; color: string }> = {
 
 const SOLO_LEVEL_BADGE: Record<SoloLevel, { label: string; color: string }> = {
   BEGINNER:     { label: "Solo Friendly", color: "bg-emerald-100 text-emerald-800" },
-  INTERMEDIATE: { label: "Some Experience", color: "bg-amber-100 text-amber-800" },
+  INTERMEDIATE: { label: "Confident Solo", color: "bg-amber-100 text-amber-800" },
   ADVANCED:     { label: "Experienced Solo", color: "bg-rose-100 text-rose-800" },
 };
 

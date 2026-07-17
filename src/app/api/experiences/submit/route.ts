@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { ExperienceCategory } from "@prisma/client";
+import { sendOwnerEmail, fieldsTable } from "@/lib/email";
+
+// Prisma requires the Node.js runtime (not edge).
+export const runtime = "nodejs";
 
 const schema = z.object({
   name: z.string().min(3).max(100),
@@ -19,6 +23,8 @@ const schema = z.object({
   organizerEmail: z.string().email(),
   package: z.enum(["basic", "featured"]),
   notes: z.string().max(500).optional(),
+  // Honeypot: real users never see or fill this. Bots that autofill everything will.
+  company: z.string().optional(),
 });
 
 export async function POST(req: NextRequest) {
@@ -38,6 +44,12 @@ export async function POST(req: NextRequest) {
     }
 
     const data = result.data;
+
+    // Honeypot tripped — respond 200 so the bot thinks it succeeded, but persist
+    // nothing and notify no one.
+    if (data.company && data.company.trim() !== "") {
+      return NextResponse.json({ success: true });
+    }
 
     // Check if city exists
     const city = await prisma.city.findUnique({
@@ -84,6 +96,33 @@ export async function POST(req: NextRequest) {
         status: "PENDING",
       },
     });
+
+    // Best-effort owner notification (no-op unless RESEND_API_KEY is set).
+    const emailRes = await sendOwnerEmail({
+      subject: `New experience submission: ${data.name} (${data.city})`,
+      replyTo: data.organizerEmail,
+      html: `
+        <h2 style="font-family:system-ui,sans-serif;color:#1A1A2E">New experience submission</h2>
+        ${fieldsTable([
+          ["Experience", data.name],
+          ["City", data.city],
+          ["Category", data.category],
+          ["Package", data.package],
+          ["Price", `$${data.price}`],
+          ["Duration", data.duration],
+          ["Group size", `${data.groupSizeMin}–${data.groupSizeMax}`],
+          ["Booking URL", data.bookingUrl],
+          ["Description", data.description],
+          ["Organizer", `${data.organizerName} <${data.organizerEmail}>`],
+          ["Notes", data.notes || null],
+        ])}
+        <p style="font-family:system-ui,sans-serif;color:#8AAAC0;font-size:12px;margin-top:16px">
+          Saved to the ExperienceSubmission table with status PENDING.
+        </p>`,
+    });
+    if (!emailRes.ok && "error" in emailRes) {
+      console.error("[/api/experiences/submit] email notification failed:", emailRes.error);
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {

@@ -39,7 +39,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const experience = await getExperience(slug);
-  if (!experience) return {};
+  if (!experience) return { title: "Page not found" };
   return {
     title: `${experience.name} in ${experience.city.name}`,
     description: experience.description.substring(0, 160),

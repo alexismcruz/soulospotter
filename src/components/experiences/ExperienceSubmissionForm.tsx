@@ -77,6 +77,10 @@ export default function ExperienceSubmissionForm({ cities }: ExperienceSubmissio
     setError(null);
     setValidationErrors({});
 
+    // Read honeypot straight from the DOM (this form posts from React state, so a
+    // bot that fills the hidden field via the DOM wouldn't otherwise be caught).
+    const company = (e.currentTarget.elements.namedItem("company") as HTMLInputElement)?.value ?? "";
+
     try {
       const response = await fetch("/api/experiences/submit", {
         method: "POST",
@@ -86,6 +90,7 @@ export default function ExperienceSubmissionForm({ cities }: ExperienceSubmissio
           price: parseFloat(formData.price),
           groupSizeMin: parseInt(formData.groupSizeMin),
           groupSizeMax: parseInt(formData.groupSizeMax),
+          company, // honeypot
         }),
       });
 
@@ -155,6 +160,14 @@ export default function ExperienceSubmissionForm({ cities }: ExperienceSubmissio
 
   return (
     <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-8">
+      {/* Honeypot — hidden from humans, catches bots that autofill every field */}
+      <div aria-hidden="true" style={{ position: "absolute", left: "-9999px", width: 1, height: 1, overflow: "hidden" }}>
+        <label>
+          Company (leave this empty)
+          <input type="text" name="company" tabIndex={-1} autoComplete="off" />
+        </label>
+      </div>
+
       {error && (
         <div className="bg-red-50 border border-red-200 rounded-2xl p-4">
           <p className="text-red-700 text-sm font-semibold">{error}</p>

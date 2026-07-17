@@ -55,7 +55,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const city = await getCity(slug);
-  if (!city) return {};
+  if (!city) return { title: "Page not found" };
   return {
     // Root template appends " | SouloSpotter" — keep these brand-free (seoTitle, if
     // ever set, must not include the brand either).

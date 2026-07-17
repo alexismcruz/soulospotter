@@ -57,10 +57,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug, category: categorySlug } = await params;
 
   const activeCategory = SLUG_TO_CATEGORY[categorySlug];
-  if (!activeCategory) return {};
+  if (!activeCategory) return { title: "Page not found" };
 
   const city = await getCity(slug);
-  if (!city) return {};
+  if (!city) return { title: "Page not found" };
 
   const meta = CATEGORY_META[activeCategory];
   const count = city.spots.filter((s) => s.category === activeCategory).length;

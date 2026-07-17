@@ -40,7 +40,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const meta = REGION_BY_SLUG[slug];
-  if (!meta) return {};
+  if (!meta) return { title: "Page not found" };
   return {
     title: `Solo Travel in ${meta.label}`,
     description: meta.description,

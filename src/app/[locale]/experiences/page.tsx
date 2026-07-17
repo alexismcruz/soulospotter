@@ -6,12 +6,21 @@ import SiteFooter from "@/components/layout/SiteFooter";
 import ExperienceFiltersClient from "@/components/experiences/ExperienceFiltersClient";
 import PageHero from "@/components/layout/PageHero";
 
-export const metadata: Metadata = {
-  title: "Curated Experiences for Solo Travelers",
-  description:
-    "Browse solo-friendly tours, activities, and experiences across 30+ countries. Cooking classes, hiking tours, photography walks, and more — curated for travelers going alone.",
-  alternates: { canonical: "https://soulospotter.com/experiences" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  // Live distinct-country count so the description never goes stale.
+  const rows = await prisma.experience.findMany({
+    where: { isActive: true },
+    select: { city: { select: { country: { select: { code: true } } } } },
+  });
+  const countryCount = new Set(rows.map((r) => r.city.country.code)).size;
+
+  return {
+    title: "Curated Experiences for Solo Travelers",
+    description:
+      `Browse solo-friendly tours, activities, and experiences across ${countryCount} countries. Cooking classes, hiking tours, photography walks, and more — curated for travelers going alone.`,
+    alternates: { canonical: "https://soulospotter.com/experiences" },
+  };
+}
 
 export default async function ExperiencesPage() {
   // Fetch all published experiences with city info

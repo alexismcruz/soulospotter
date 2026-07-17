@@ -68,7 +68,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug, category: catSlug, spot: spotSlug } = await params;
   const spot = await getSpot(slug, spotSlug);
-  if (!spot) return {};
+  if (!spot) return { title: "Page not found" };
   const catMeta = CATEGORY_META[spot.category];
   return {
     title: `${spot.name} — ${spot.city.name} ${catMeta.label} for Solo Travelers`,
