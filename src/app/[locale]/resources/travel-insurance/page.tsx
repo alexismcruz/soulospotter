@@ -159,6 +159,7 @@ export default function TravelInsurancePage() {
                     label="Get a World Nomads quote"
                     sublabel="Covers 200+ adventure activities"
                     color="amber"
+                    sponsored={false} /* not an affiliate — see lib/affiliates.ts */
                   />
                 </div>
               </div>
@@ -201,7 +202,7 @@ export default function TravelInsurancePage() {
           {/* Bottom CTAs */}
           <section className="grid sm:grid-cols-2 gap-4">
             <AffiliateCTA href={SAFETYWING_URL} label="Get SafetyWing" sublabel="Best for long trips" color="blue" />
-            <AffiliateCTA href={WORLD_NOMADS_URL} label="Get World Nomads" sublabel="Best for adventure" color="amber" />
+            <AffiliateCTA href={WORLD_NOMADS_URL} label="Get World Nomads" sublabel="Best for adventure" color="amber" sponsored={false} />
           </section>
 
           {/* Related cities */}
@@ -212,7 +213,7 @@ export default function TravelInsurancePage() {
 
           {/* Disclaimer */}
           <p className="text-xs text-stone-400 border-t border-stone-100 pt-6">
-            <strong className="text-stone-500">Affiliate disclosure:</strong> Links to SafetyWing and World Nomads are affiliate links. SouloSpotter earns a commission if you purchase — at no extra cost to you. We only recommend products we genuinely trust.
+            <strong className="text-stone-500">Affiliate disclosure:</strong> Our SafetyWing link is an affiliate link — SouloSpotter earns a commission if you purchase, at no extra cost to you. Our World Nomads link is <strong className="text-stone-500">not</strong> an affiliate link and earns us nothing; it&apos;s here purely because it&apos;s the better choice for some trips. We only recommend products we genuinely trust.
           </p>
         </div>
       </main>

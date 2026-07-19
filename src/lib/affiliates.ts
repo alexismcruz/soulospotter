@@ -11,7 +11,14 @@
  * placeholder needs a real ID before it makes money.
  */
 
-export type AffiliateStatus = "live" | "placeholder";
+/**
+ * - "live"        — real, approved tracking; earns commission.
+ * - "placeholder" — tracking not real yet; earns nothing. Needs a real ID.
+ * - "none"        — no affiliate relationship at all. Plain editorial link:
+ *                   must NOT be marked rel="sponsored" and must NOT be described
+ *                   as an affiliate link in any disclosure.
+ */
+export type AffiliateStatus = "live" | "placeholder" | "none";
 
 export const AFFILIATES = {
   safetywing: {
@@ -22,11 +29,15 @@ export const AFFILIATES = {
   },
   worldNomads: {
     name: "World Nomads",
-    // ⚠️ PLACEHOLDER — "?affiliate=soulospotter" is NOT a real World Nomads
-    // tracking parameter, so these clicks earn nothing. Apply to the World Nomads
-    // / nomadinsurance affiliate program (impact.com) and replace `url` + status.
-    status: "placeholder" as AffiliateStatus,
-    url: "https://www.worldnomads.com/?affiliate=soulospotter",
+    // NOT an affiliate. The application was DECLINED (2026-07, reason: insufficient
+    // site traffic). The old "?affiliate=soulospotter" param was fake and has been
+    // removed — this is now a plain editorial link that earns nothing.
+    //
+    // Because status is "none": do NOT add rel="sponsored" to these links, and do
+    // NOT describe World Nomads as an affiliate in any disclosure copy.
+    // Worth reapplying once traffic grows; if approved, set a real url + "live".
+    status: "none" as AffiliateStatus,
+    url: "https://www.worldnomads.com/",
   },
   breezesim: {
     name: "BreezeSim",
