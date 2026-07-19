@@ -1,5 +1,6 @@
 import Link from "next/link";
 import SouloLogo from "@/components/ui/SouloLogo";
+import NewsletterForm from "@/components/layout/NewsletterForm";
 import { REGIONS } from "@/lib/regions";
 
 export default function SiteFooter() {
@@ -14,27 +15,7 @@ export default function SiteFooter() {
               <p className="text-soulo-white font-display font-bold text-lg">Get the solo travel newsletter</p>
               <p className="text-sm text-soulo-mist mt-1">New destinations, curated spots, and honest guides — no spam.</p>
             </div>
-            <form
-              action="https://app.us14.list-manage.com/subscribe/post"
-              method="GET"
-              target="_blank"
-              className="flex gap-2 w-full sm:w-auto"
-              aria-label="Newsletter signup"
-            >
-              <input
-                type="email"
-                name="EMAIL"
-                required
-                placeholder="your@email.com"
-                className="flex-1 sm:w-64 px-4 py-2.5 rounded-xl bg-white/10 border border-white/15 text-soulo-white placeholder-soulo-mist text-sm focus:outline-none focus:ring-2 focus:ring-soulo-gold focus:border-transparent transition-all"
-              />
-              <button
-                type="submit"
-                className="px-5 py-2.5 bg-soulo-gold hover:bg-amber-400 text-soulo-dark text-sm font-bold rounded-xl transition-colors whitespace-nowrap"
-              >
-                Subscribe
-              </button>
-            </form>
+            <NewsletterForm />
           </div>
         </div>
       </div>
