@@ -1,5 +1,6 @@
 import Link from "next/link";
 import SouloLogo from "@/components/ui/SouloLogo";
+import { REGIONS } from "@/lib/regions";
 
 export default function SiteFooter() {
   return (
@@ -93,10 +94,16 @@ export default function SiteFooter() {
             <h3 className="text-xs font-semibold text-soulo-white uppercase tracking-wider mb-4">Explore</h3>
             <ul className="space-y-2.5 text-sm">
               <li><Link href="/destinations" className="hover:text-soulo-white transition-colors">All Destinations</Link></li>
-              <li><Link href="/regions/asia" className="hover:text-soulo-white transition-colors">Asia</Link></li>
-              <li><Link href="/regions/europe" className="hover:text-soulo-white transition-colors">Europe</Link></li>
-              <li><Link href="/regions/latin-america" className="hover:text-soulo-white transition-colors">Latin America</Link></li>
-              <li><Link href="/regions/oceania" className="hover:text-soulo-white transition-colors">Oceania</Link></li>
+              {/* Generated from the shared REGIONS source so every region always appears */}
+              {[...REGIONS]
+                .sort((a, b) => a.label.localeCompare(b.label))
+                .map((r) => (
+                  <li key={r.slug}>
+                    <Link href={`/regions/${r.slug}`} className="hover:text-soulo-white transition-colors">
+                      {r.label}
+                    </Link>
+                  </li>
+                ))}
               <li><Link href="/experiences" className="hover:text-soulo-white transition-colors">Experiences</Link></li>
             </ul>
           </div>
@@ -105,6 +112,7 @@ export default function SiteFooter() {
           <div>
             <h3 className="text-xs font-semibold text-soulo-white uppercase tracking-wider mb-4">Resources</h3>
             <ul className="space-y-2.5 text-sm">
+              <li><Link href="/resources" className="hover:text-soulo-white transition-colors">All Resources</Link></li>
               <li><Link href="/resources/travel-insurance" className="hover:text-soulo-white transition-colors">Travel Insurance</Link></li>
               <li><Link href="/resources/esims" className="hover:text-soulo-white transition-colors">eSIMs for Travel</Link></li>
               <li><Link href="/resources/tours" className="hover:text-soulo-white transition-colors">Solo Tours</Link></li>
