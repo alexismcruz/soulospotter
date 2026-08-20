@@ -97,12 +97,34 @@ export default function DestinationsClient({
     setPage(1);
   }, [query, region, cost]);
 
+  // Sort by country (then city) so every country's cities sit together — the grid
+  // stays categorised even though it's paginated.
+  const sorted = useMemo(
+    () =>
+      [...filtered].sort(
+        (a, b) =>
+          a.country.name.localeCompare(b.country.name) || a.name.localeCompare(b.name),
+      ),
+    [filtered],
+  );
+
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const safePage = Math.min(page, totalPages);
   const paged = useMemo(
-    () => filtered.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE),
-    [filtered, safePage],
+    () => sorted.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE),
+    [sorted, safePage],
   );
+
+  // Break the current page into consecutive same-country groups for subheadings.
+  const pageGroups = useMemo(() => {
+    const groups: { country: string; flag: string | null; cities: City[] }[] = [];
+    for (const city of paged) {
+      const last = groups[groups.length - 1];
+      if (last && last.country === city.country.name) last.cities.push(city);
+      else groups.push({ country: city.country.name, flag: city.country.flagEmoji, cities: [city] });
+    }
+    return groups;
+  }, [paged]);
 
   function goToPage(p: number) {
     setPage(Math.min(Math.max(1, p), totalPages));
@@ -231,12 +253,25 @@ export default function DestinationsClient({
         </div>
       )}
 
-      {/* Paginated grid — only one page (~24 cards) is ever in the DOM */}
+      {/* Paginated grid, grouped by country — only one page (~24 cards) in the DOM */}
       {filtered.length > 0 && (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-            {paged.map((city) => (
-              <CityCard key={city.id} city={city} />
+          <div className="space-y-10">
+            {pageGroups.map((group) => (
+              <div key={group.country}>
+                <div className="flex items-center gap-2.5 mb-5 pb-2 border-b border-soulo-border">
+                  <span className="text-xl">{group.flag}</span>
+                  <h3 className="font-display text-lg font-bold text-soulo-dark">{group.country}</h3>
+                  <span className="text-xs text-soulo-mist">
+                    {group.cities.length} {group.cities.length === 1 ? "city" : "cities"}
+                  </span>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                  {group.cities.map((city) => (
+                    <CityCard key={city.id} city={city} />
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
 
