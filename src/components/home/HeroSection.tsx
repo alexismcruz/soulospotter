@@ -16,9 +16,9 @@ const SLIDES = [
     label: "🌙 Nightlife",
   },
   {
-    url: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1600&q=85&auto=format&fit=crop",
-    alt: "Open road road trip",
-    label: "🚗 Road Trips",
+    url: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=1600&q=85&auto=format&fit=crop",
+    alt: "Solo traveler meditating at sunrise",
+    label: "🧘 Wellness",
   },
   {
     url: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=85&auto=format&fit=crop",

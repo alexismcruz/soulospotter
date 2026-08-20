@@ -240,6 +240,12 @@ export default async function AdvertisePage() {
               </div>
             </div>
             <p className="text-center text-xs text-stone-400 mt-4">Example of how a Featured listing appears on a city page</p>
+
+            {/* Reconciles the homepage "never pay-to-rank" promise with paid placements */}
+            <p className="max-w-2xl mx-auto text-center text-sm text-stone-500 mt-6 leading-relaxed">
+              <strong className="text-stone-700">How this fits our &ldquo;no pay-to-rank&rdquo; promise:</strong>{" "}
+              Featured listings are always clearly labeled <em>Sponsored</em> and sit in their own promoted slot. They never change how our free, editorial listings rank against each other — we don&apos;t sell organic ranking. Paying only buys a labeled, more prominent placement, never a better editorial position.
+            </p>
           </div>
         </div>
 
