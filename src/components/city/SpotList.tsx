@@ -182,11 +182,17 @@ export default function SpotList({ spots, allSpots, categories, activeCategory, 
             const spotUrl = `/destinations/${citySlug}/${CATEGORY_SLUGS[spot.category]}/${spot.slug}`;
 
             return (
-              <Link
+              <div
                 key={spot.id}
-                href={spotUrl}
-                className="bg-white rounded-2xl border border-soulo-border hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 overflow-hidden flex flex-col group"
+                className="relative bg-white rounded-2xl border border-soulo-border hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 overflow-hidden flex flex-col group"
               >
+                {/* Stretched link — makes the whole card clickable without wrapping
+                    the footer CTA anchors in another <a> (which is invalid HTML and
+                    caused a hydration error). Footer CTAs sit above this via z-index. */}
+                <Link href={spotUrl} className="absolute inset-0 z-10" aria-label={`${spot.name} — ${meta.label} in ${cityName}`}>
+                  <span className="sr-only">{spot.name}</span>
+                </Link>
+
                 {/* Photo */}
                 {spot.imageUrl && (
                   <div className="relative w-full h-48 bg-soulo-linen overflow-hidden">
@@ -263,16 +269,16 @@ export default function SpotList({ spots, allSpots, categories, activeCategory, 
                   )}
                 </div>
 
-                {/* Card footer — CTAs */}
+                {/* Card footer — CTAs. relative z-20 keeps them above the stretched
+                    link so they stay independently clickable. */}
                 {(spot.website || spot.affiliateLinks.length > 0) && (
-                  <div className="px-5 pb-4 pt-3 border-t border-soulo-border flex flex-wrap gap-2">
+                  <div className="relative z-20 px-5 pb-4 pt-3 border-t border-soulo-border flex flex-wrap gap-2">
                     {spot.affiliateLinks.map((link) => (
                       <a
                         key={link.id}
                         href={link.url}
                         target="_blank"
                         rel="noopener noreferrer sponsored"
-                        onClick={(e) => e.stopPropagation()}
                         className="flex-1 text-center text-xs font-semibold px-3 py-2 rounded-lg bg-soulo-gold hover:bg-amber-400 text-soulo-dark transition-colors"
                       >
                         {link.label ?? AFFILIATE_LABELS[link.provider] ?? "Book Now"}
@@ -283,7 +289,6 @@ export default function SpotList({ spots, allSpots, categories, activeCategory, 
                         href={spot.website}
                         target="_blank"
                         rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
                         className="flex-1 text-center text-xs font-medium px-3 py-2 rounded-lg border border-soulo-border text-soulo-grey hover:bg-soulo-linen transition-colors"
                       >
                         Visit Website →
@@ -291,7 +296,7 @@ export default function SpotList({ spots, allSpots, categories, activeCategory, 
                     )}
                   </div>
                 )}
-              </Link>
+              </div>
             );
           })}
         </div>
