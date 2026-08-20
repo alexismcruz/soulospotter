@@ -3,7 +3,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { Region, CostLevel, SoloLevel } from "@prisma/client";
-import { REGIONS as REGION_LIST, REGION_BY_ENUM } from "@/lib/regions";
+import { REGIONS as REGION_LIST } from "@/lib/regions";
 import CityCard from "./CityCard";
 
 const REGIONS: { value: Region | ""; label: string; emoji: string }[] = [
@@ -88,16 +88,43 @@ export default function DestinationsClient({
     });
   }, [cities, query, region, cost]);
 
-  // Group filtered cities by region for display
-  const byRegion = useMemo(() => {
-    if (region) return { [region]: filtered };
-    const groups: Partial<Record<Region, City[]>> = {};
-    for (const city of filtered) {
-      if (!groups[city.region]) groups[city.region] = [];
-      groups[city.region]!.push(city);
+  // Paginate so the DOM only ever holds one page of cards, not all ~321.
+  const PAGE_SIZE = 24;
+  const [page, setPage] = useState(1);
+
+  // Any change to the filter set resets to the first page.
+  useEffect(() => {
+    setPage(1);
+  }, [query, region, cost]);
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const safePage = Math.min(page, totalPages);
+  const paged = useMemo(
+    () => filtered.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE),
+    [filtered, safePage],
+  );
+
+  function goToPage(p: number) {
+    setPage(Math.min(Math.max(1, p), totalPages));
+    // Jump back up to the results heading so the new page starts at the top.
+    if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  const rangeStart = filtered.length === 0 ? 0 : (safePage - 1) * PAGE_SIZE + 1;
+  const rangeEnd = Math.min(safePage * PAGE_SIZE, filtered.length);
+
+  // Windowed page numbers: 1 … (cur-1) cur (cur+1) … last
+  const pageNumbers = useMemo(() => {
+    const pages: (number | "ellipsis")[] = [];
+    for (let p = 1; p <= totalPages; p++) {
+      if (p === 1 || p === totalPages || (p >= safePage - 1 && p <= safePage + 1)) {
+        pages.push(p);
+      } else if (pages[pages.length - 1] !== "ellipsis") {
+        pages.push("ellipsis");
+      }
     }
-    return groups;
-  }, [filtered, region]);
+    return pages;
+  }, [totalPages, safePage]);
 
   const hasFilters = query || region || cost;
 
@@ -185,7 +212,7 @@ export default function DestinationsClient({
       <p className="text-sm text-soulo-grey mb-6">
         {filtered.length === 0
           ? "No destinations match your filters."
-          : <>Showing <strong className="text-soulo-dark">{filtered.length}</strong> {filtered.length === 1 ? "destination" : "destinations"}{hasFilters ? " matching your filters" : ""}</>
+          : <>Showing <strong className="text-soulo-dark">{rangeStart}–{rangeEnd}</strong> of <strong className="text-soulo-dark">{filtered.length}</strong> {filtered.length === 1 ? "destination" : "destinations"}{hasFilters ? " matching your filters" : ""}</>
         }
       </p>
 
@@ -204,58 +231,57 @@ export default function DestinationsClient({
         </div>
       )}
 
-      {/* Grouped by region -> country -> city (all alphabetical) */}
+      {/* Paginated grid — only one page (~24 cards) is ever in the DOM */}
       {filtered.length > 0 && (
-        <div className="space-y-14">
-          {Object.entries(byRegion)
-            .filter(([, regCities]) => regCities && regCities.length > 0)
-            .sort(([a], [b]) => {
-              const la = REGION_BY_ENUM[a as Region]?.label ?? a;
-              const lb = REGION_BY_ENUM[b as Region]?.label ?? b;
-              return la.localeCompare(lb);
-            })
-            .map(([reg, regCities]) => {
-              const regionMeta = reg ? REGION_BY_ENUM[reg as Region] : null;
-              // group this region's cities by country, alphabetically
-              const byCountry = Object.entries(
-                regCities!.reduce((acc, city) => {
-                  (acc[city.country.name] ??= []).push(city);
-                  return acc;
-                }, {} as Record<string, City[]>)
-              )
-                .map(([name, cs]) => [name, cs.slice().sort((x, y) => x.name.localeCompare(y.name))] as [string, City[]])
-                .sort(([a], [b]) => a.localeCompare(b));
+        <>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+            {paged.map((city) => (
+              <CityCard key={city.id} city={city} />
+            ))}
+          </div>
 
-              return (
-                <div key={reg}>
-                  {/* Region heading — hidden when filtered to one region */}
-                  {!region && (
-                    <div className="flex items-center gap-3 mb-6 pb-2 border-b border-soulo-border">
-                      <span className="text-2xl">{regionMeta?.emoji}</span>
-                      <h2 className="font-display text-2xl font-bold text-soulo-dark">{regionMeta?.label}</h2>
-                      <span className="text-sm text-soulo-mist">{regCities!.length} {regCities!.length === 1 ? "city" : "cities"}</span>
-                    </div>
-                  )}
-                  <div className="space-y-10">
-                    {byCountry.map(([countryName, countryCities]) => (
-                      <div key={countryName}>
-                        <div className="flex items-center gap-2.5 mb-5">
-                          <span className="text-xl">{countryCities[0].country.flagEmoji}</span>
-                          <h3 className="font-display text-lg font-bold text-soulo-dark">{countryName}</h3>
-                          <span className="text-xs text-soulo-mist">{countryCities.length} {countryCities.length === 1 ? "city" : "cities"}</span>
-                        </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-                          {countryCities.map((city) => (
-                            <CityCard key={city.id} city={city} />
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
-        </div>
+          {/* Pagination controls */}
+          {totalPages > 1 && (
+            <nav className="mt-12 flex items-center justify-center flex-wrap gap-1.5" aria-label="Destinations pagination">
+              <button
+                onClick={() => goToPage(safePage - 1)}
+                disabled={safePage === 1}
+                className="px-3 py-2 rounded-lg text-sm font-medium border border-soulo-border text-soulo-grey hover:bg-soulo-linen disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                aria-label="Previous page"
+              >
+                ← Prev
+              </button>
+
+              {pageNumbers.map((p, i) =>
+                p === "ellipsis" ? (
+                  <span key={`e${i}`} className="px-2 text-soulo-mist select-none">…</span>
+                ) : (
+                  <button
+                    key={p}
+                    onClick={() => goToPage(p)}
+                    aria-current={p === safePage ? "page" : undefined}
+                    className={`min-w-[2.25rem] px-3 py-2 rounded-lg text-sm font-semibold border transition-colors ${
+                      p === safePage
+                        ? "bg-soulo-gold border-soulo-gold text-soulo-dark"
+                        : "border-soulo-border text-soulo-grey hover:bg-soulo-linen"
+                    }`}
+                  >
+                    {p}
+                  </button>
+                )
+              )}
+
+              <button
+                onClick={() => goToPage(safePage + 1)}
+                disabled={safePage === totalPages}
+                className="px-3 py-2 rounded-lg text-sm font-medium border border-soulo-border text-soulo-grey hover:bg-soulo-linen disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                aria-label="Next page"
+              >
+                Next →
+              </button>
+            </nav>
+          )}
+        </>
       )}
     </div>
   );
