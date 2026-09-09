@@ -13,7 +13,8 @@ import TripResources from "@/components/city/TripResources";
 import CityExperiences from "@/components/city/CityExperiences";
 import CityCard from "@/components/destinations/CityCard";
 import JsonLd from "@/components/seo/JsonLd";
-import { citySchema, breadcrumbSchema } from "@/lib/jsonld";
+import { citySchema, breadcrumbSchema, itemListSchema } from "@/lib/jsonld";
+import { CATEGORY_SLUGS } from "@/lib/categoryUtils";
 
 const BASE = "https://soulospotter.com";
 
@@ -103,6 +104,17 @@ export default async function CityPage({ params }: Props) {
       { name: "Destinations", url: `${BASE}/destinations` },
       { name: city.name,      url: `${BASE}/destinations/${slug}` },
     ]),
+    ...(city.spots.length > 0
+      ? [
+          itemListSchema({
+            name: `Best spots in ${city.name} for solo travelers`,
+            items: city.spots.map((s) => ({
+              name: s.name,
+              url: `${BASE}/destinations/${slug}/${CATEGORY_SLUGS[s.category]}/${s.slug}`,
+            })),
+          }),
+        ]
+      : []),
   ];
 
   return (

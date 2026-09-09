@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="SouloSpotter">
+  <rect width="512" height="512" rx="96" fill="#1F2D3D"/>
+  <g transform="translate(256 214)">
+    <circle cx="0" cy="0" r="132" fill="none" stroke="#F0A500" stroke-width="12"/>
+    <!-- compass needle: north (gold), south (muted) -->
+    <path d="M0 -104 L28 0 L0 -18 L-28 0 Z" fill="#F5C842"/>
+    <path d="M0 104 L-28 0 L0 18 L28 0 Z" fill="#8AAAC0" opacity="0.55"/>
+    <circle cx="0" cy="0" r="15" fill="#F5C842"/>
+  </g>
+  <text x="256" y="430" text-anchor="middle" font-family="Georgia, 'Playfair Display', serif" font-size="62" font-weight="700">
+    <tspan fill="#FAFAF8">Soulo</tspan><tspan fill="#F0A500">Spotter</tspan>
+  </text>
+</svg>

@@ -38,6 +38,10 @@ export const metadata: Metadata = {
     siteName: "SouloSpotter",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    site: "@soulospotter",
+  },
 };
 
 export function generateStaticParams() {

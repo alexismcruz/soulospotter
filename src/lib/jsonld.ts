@@ -29,7 +29,7 @@ export function websiteSchema() {
     name: "SouloSpotter",
     url: BASE,
     description:
-      "The global directory for solo travelers. Curated cafes, coworking spaces, accommodation, and experiences in 19 cities worldwide.",
+      "The global directory for solo travelers. Curated cafes, coworking spaces, accommodation, and experiences in cities across every region of the world.",
     potentialAction: {
       "@type": "SearchAction",
       target: {
@@ -47,12 +47,36 @@ export function organizationSchema() {
     "@type": "Organization",
     name: "SouloSpotter",
     url: BASE,
-    logo: `${BASE}/logo.png`,
+    logo: `${BASE}/logo.svg`,
     description: "Curated solo travel directory for cities worldwide.",
     sameAs: [
       "https://instagram.com/soulospotter",
-      "https://twitter.com/soulospotter",
+      "https://x.com/soulospotter",
+      "https://tiktok.com/@soulospotter",
     ],
+  };
+}
+
+// ── ItemList (listing pages: city spots, category spots) ──────────────────────
+// Helps Google understand these as curated lists and can surface list rich results.
+export function itemListSchema({
+  name,
+  items,
+}: {
+  name: string;
+  items: { name: string; url: string }[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name,
+    numberOfItems: items.length,
+    itemListElement: items.map((it, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: it.name,
+      url: it.url,
+    })),
   };
 }
 
@@ -93,21 +117,19 @@ export function citySchema({
 
 // ── Spot / Place ──────────────────────────────────────────────────────────────
 // Maps our SpotCategory enum → best-fit Schema.org type
+// Keys MUST match the SpotCategory enum exactly, or the spot falls back to the
+// generic "LocalBusiness" type and loses rich-result specificity.
 const CATEGORY_SCHEMA_TYPE: Record<string, string> = {
-  ACCOMMODATION:   "LodgingBusiness",
-  CAFE:            "CafeOrCoffeeShop",
-  RESTAURANT:      "Restaurant",
-  COWORKING:       "LocalBusiness",
-  ARTS_CULTURE:    "TouristAttraction",
-  CULTURAL_SITE:   "TouristAttraction",
-  ATTRACTION:      "TouristAttraction",
-  OUTDOOR:         "TouristAttraction",
-  NATURE:          "TouristAttraction",
-  WELLNESS:        "HealthAndBeautyBusiness",
-  NIGHTLIFE:       "BarOrPub",
-  SHOPPING:        "Store",
-  FOOD_DRINK:      "Restaurant",
-  DAY_TRIP:        "TouristAttraction",
+  ACCOMMODATION: "LodgingBusiness",
+  CAFE:          "CafeOrCoffeeShop",
+  COWORKING:     "LocalBusiness",
+  FOOD:          "Restaurant",
+  WELLNESS:      "HealthAndBeautyBusiness",
+  COMMUNITY:     "LocalBusiness",
+  NATURE:        "TouristAttraction",
+  CULTURE:       "TouristAttraction",
+  NIGHTLIFE:     "BarOrPub",
+  TRANSPORT:     "LocalBusiness",
 };
 
 export function spotSchema({

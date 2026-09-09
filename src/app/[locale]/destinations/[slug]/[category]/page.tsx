@@ -12,7 +12,7 @@ import SpotList from "@/components/city/SpotList";
 import TripResources from "@/components/city/TripResources";
 import { SLUG_TO_CATEGORY, CATEGORY_SLUGS, CATEGORY_META } from "@/lib/categoryUtils";
 import JsonLd from "@/components/seo/JsonLd";
-import { breadcrumbSchema } from "@/lib/jsonld";
+import { breadcrumbSchema, itemListSchema } from "@/lib/jsonld";
 
 const BASE = "https://soulospotter.com";
 
@@ -96,12 +96,21 @@ export default async function CityCategoryPage({ params }: Props) {
 
   const categories = Array.from(new Set(city.spots.map((s) => s.category)));
 
-  const jsonLd = breadcrumbSchema([
-    { name: "Home",                               url: BASE },
-    { name: "Destinations",                       url: `${BASE}/destinations` },
-    { name: city.name,                            url: `${BASE}/destinations/${slug}` },
-    { name: CATEGORY_META[activeCategory].label,  url: `${BASE}/destinations/${slug}/${categorySlug}` },
-  ]);
+  const jsonLd = [
+    breadcrumbSchema([
+      { name: "Home",                               url: BASE },
+      { name: "Destinations",                       url: `${BASE}/destinations` },
+      { name: city.name,                            url: `${BASE}/destinations/${slug}` },
+      { name: CATEGORY_META[activeCategory].label,  url: `${BASE}/destinations/${slug}/${categorySlug}` },
+    ]),
+    itemListSchema({
+      name: `${CATEGORY_META[activeCategory].label} in ${city.name} for solo travelers`,
+      items: filteredSpots.map((s) => ({
+        name: s.name,
+        url: `${BASE}/destinations/${slug}/${categorySlug}/${s.slug}`,
+      })),
+    }),
+  ];
 
   return (
     <div className="flex flex-col min-h-screen">
