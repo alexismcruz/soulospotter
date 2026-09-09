@@ -10,7 +10,7 @@ import SiteFooter from "@/components/layout/SiteFooter";
 import CityCard from "@/components/destinations/CityCard";
 import PageHero, { HERO_IMAGES } from "@/components/layout/PageHero";
 import JsonLd from "@/components/seo/JsonLd";
-import { breadcrumbSchema } from "@/lib/jsonld";
+import { breadcrumbSchema, itemListSchema } from "@/lib/jsonld";
 
 const BASE = "https://soulospotter.com";
 
@@ -62,11 +62,24 @@ export default async function RegionPage({ params }: Props) {
   // Other regions for "Explore other regions" section
   const otherRegions = REGIONS.filter((r) => r.slug !== slug);
 
-  const jsonLd = breadcrumbSchema([
-    { name: "Home",         url: BASE },
-    { name: "Destinations", url: `${BASE}/destinations` },
-    { name: meta.label,     url: `${BASE}/regions/${slug}` },
-  ]);
+  const jsonLd = [
+    breadcrumbSchema([
+      { name: "Home",         url: BASE },
+      { name: "Destinations", url: `${BASE}/destinations` },
+      { name: meta.label,     url: `${BASE}/regions/${slug}` },
+    ]),
+    ...(cities.length > 0
+      ? [
+          itemListSchema({
+            name: `Solo travel destinations in ${meta.label}`,
+            items: cities.map((c) => ({
+              name: c.name,
+              url: `${BASE}/destinations/${c.slug}`,
+            })),
+          }),
+        ]
+      : []),
+  ];
 
   return (
     <div className="flex flex-col min-h-screen">
