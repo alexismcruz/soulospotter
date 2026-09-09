@@ -70,11 +70,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const spot = await getSpot(slug, spotSlug);
   if (!spot) return { title: "Page not found" };
   const catMeta = CATEGORY_META[spot.category];
+  // Trim the real description at a word boundary (~155 chars) so the SERP snippet
+  // never cuts mid-word.
+  const cleanDesc =
+    spot.description && spot.description.length > 155
+      ? spot.description.slice(0, 155).replace(/\s+\S*$/, "") + "…"
+      : spot.description;
   return {
     title: `${spot.name} — ${spot.city.name} ${catMeta.label} for Solo Travelers`,
     description:
-      spot.description?.substring(0, 160) ??
-      `${spot.name} is a solo-travel-friendly ${catMeta.label.toLowerCase()} in ${spot.city.name}. Discovered and verified by SouloSpotter.`,
+      cleanDesc ??
+      `${spot.name} — a solo-travel-friendly ${catMeta.label.toLowerCase()} in ${spot.city.name}, hand-picked by SouloSpotter for people travelling alone.`,
     alternates: {
       canonical: `${BASE}/destinations/${slug}/${catSlug}/${spotSlug}`,
     },

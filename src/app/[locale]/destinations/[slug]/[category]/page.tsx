@@ -66,8 +66,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const count = city.spots.filter((s) => s.category === activeCategory).length;
 
   return {
-    title: `${meta.label} in ${city.name} for Solo Travelers`,
-    description: `The best ${meta.label.toLowerCase()} in ${city.name} for solo travelers. ${count} curated ${count === 1 ? "spot" : "spots"} — handpicked for people who travel alone.`,
+    title: `Best ${meta.label} in ${city.name} for Solo Travelers`,
+    description: `The ${count} best ${meta.label.toLowerCase()} in ${city.name} for solo travelers — hand-picked spots where you'll feel comfortable on your own and can meet other travellers.`,
     alternates: {
       canonical: `${BASE}/destinations/${slug}/${categorySlug}`,
     },

@@ -60,16 +60,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     // Root template appends " | SouloSpotter" — keep these brand-free (seoTitle, if
     // ever set, must not include the brand either).
-    title: city.seoTitle ?? `Solo Travel in ${city.name}`,
+    title: city.seoTitle ?? `${city.name} Solo Travel Guide`,
     description:
       city.seoDesc ??
-      `Discover the best spots for solo travelers in ${city.name}, ${city.country.name}. Cafes, coworking, accommodation, wellness and more.`,
+      `Solo travel guide to ${city.name}, ${city.country.name} — ${city.spots.length} handpicked cafés, stays, coworking spaces and things to do, with safety, cost and tips for travelling alone.`,
     alternates: {
       canonical: `${BASE}/destinations/${slug}`,
     },
     openGraph: {
-      title: `Solo Travel in ${city.name}`,
-      description: `${city.spots.length} curated spots for solo travelers in ${city.name}.`,
+      title: `${city.name} Solo Travel Guide`,
+      description: `${city.spots.length} curated spots for solo travelers in ${city.name}, ${city.country.name}.`,
     },
   };
 }
