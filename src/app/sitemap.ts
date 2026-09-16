@@ -2,6 +2,7 @@ import { MetadataRoute } from "next";
 import { prisma } from "@/lib/prisma";
 import { REGIONS } from "@/lib/regions";
 import { CATEGORY_SLUGS } from "@/lib/categoryUtils";
+import { COUNTRY_GUIDE_SLUGS } from "@/lib/countryGuides";
 
 // Always fetch fresh data from the database — never use cached build output
 export const dynamic = "force-dynamic";
@@ -39,6 +40,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE_URL}/submit`,                       lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
     { url: `${BASE_URL}/advertise`,                    lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
   ];
+
+  // Country guide pages ("start here" guides)
+  const guidePages: MetadataRoute.Sitemap = COUNTRY_GUIDE_SLUGS.map((slug) => ({
+    url: `${BASE_URL}/guides/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.85,
+  }));
 
   // Region pages
   const regionPages: MetadataRoute.Sitemap = REGIONS.map((r) => ({
@@ -85,5 +94,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  return [...staticPages, ...regionPages, ...cityPages, ...categoryPages, ...spotPages, ...experiencePages];
+  return [...staticPages, ...guidePages, ...regionPages, ...cityPages, ...categoryPages, ...spotPages, ...experiencePages];
 }
