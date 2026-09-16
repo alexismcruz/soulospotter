@@ -15,6 +15,7 @@ import CityCard from "@/components/destinations/CityCard";
 import JsonLd from "@/components/seo/JsonLd";
 import { citySchema, breadcrumbSchema, itemListSchema } from "@/lib/jsonld";
 import { CATEGORY_SLUGS } from "@/lib/categoryUtils";
+import { getCountryGuide } from "@/lib/countryGuides";
 
 const BASE = "https://soulospotter.com";
 
@@ -124,6 +125,18 @@ export default async function CityPage({ params }: Props) {
       <main className="flex-1">
         <CityHero city={city} />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          {getCountryGuide(city.country.slug) && (
+            <Link
+              href={`/guides/${city.country.slug}`}
+              className="flex items-center justify-between gap-3 mb-8 p-4 rounded-2xl bg-soulo-slate text-soulo-white hover:bg-soulo-dark transition-colors"
+            >
+              <span className="text-sm sm:text-base font-medium">
+                <span className="mr-2">{city.country.flagEmoji}</span>
+                New to {city.country.name}? Start with our {city.country.name} Solo Travel Guide
+              </span>
+              <span className="text-soulo-gold font-bold whitespace-nowrap">Read the guide →</span>
+            </Link>
+          )}
           <CityStats city={city} />
           <TripResources citySlug={slug} />
           <CityExperiences
