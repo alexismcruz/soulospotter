@@ -67,7 +67,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `Best ${meta.label} in ${city.name} for Solo Travelers`,
-    description: `The ${count} best ${meta.label.toLowerCase()} in ${city.name} for solo travelers — hand-picked spots where you'll feel comfortable on your own and can meet other travellers.`,
+    description:
+      count === 1
+        ? `The best ${meta.label.toLowerCase()} in ${city.name} for solo travelers — a hand-picked spot where you'll feel comfortable on your own and can meet other travellers.`
+        : `The ${count} best ${meta.label.toLowerCase()} in ${city.name} for solo travelers — hand-picked spots where you'll feel comfortable on your own and can meet other travellers.`,
     alternates: {
       canonical: `${BASE}/destinations/${slug}/${categorySlug}`,
     },
