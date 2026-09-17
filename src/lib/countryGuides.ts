@@ -24,6 +24,14 @@ export type VisaCase = {
   matchCodes?: string[];
 };
 
+export type VisaInfo = {
+  updated: string;         // year the summary was last reviewed
+  summary: string;         // high-level overview
+  officialUrl: string;     // authoritative source for exact requirements
+  officialLabel: string;
+  cases: VisaCase[];       // common-nationality quick answers
+};
+
 export type CountryGuide = {
   /** Must match Country.slug in the database. */
   countrySlug: string;
@@ -36,13 +44,7 @@ export type CountryGuide = {
   bestFor: string;
   /** Main editorial sections. */
   sections: { heading: string; body: string }[];
-  visa: {
-    updated: string;         // year the summary was last reviewed
-    summary: string;         // high-level overview
-    officialUrl: string;     // authoritative source for exact requirements
-    officialLabel: string;
-    cases: VisaCase[];       // common-nationality quick answers
-  };
+  visa: VisaInfo;
 };
 
 export const COUNTRY_GUIDES: Record<string, CountryGuide> = {
@@ -121,3 +123,149 @@ export function getCountryGuide(slug: string): CountryGuide | null {
 }
 
 export const COUNTRY_GUIDE_SLUGS = Object.keys(COUNTRY_GUIDES);
+
+/**
+ * Visa notes, decoupled from full country guides.
+ *
+ * A full CountryGuide (intro, safety, budget, culture, etc.) takes real
+ * research and editorial effort to write well, so guide coverage will always
+ * lag our 92-country destinations list. Visa facts are narrower, more
+ * mechanical, and arguably the single most-wanted piece of trip-planning info
+ * (see: the visa checker's "no notes yet" dead end) — so they're tracked here
+ * independently and can be populated much faster than full guides.
+ *
+ * getVisaNotes() checks this map FIRST, then falls back to a full guide's
+ * embedded `visa` field if one exists (so Thailand's data — written inline in
+ * COUNTRY_GUIDES — keeps working without duplicating it here).
+ *
+ * Every entry MUST be sourced from a real, checkable source (the destination's
+ * own official immigration/e-Visa portal, cross-referenced with VisaHQ's or
+ * IATA's country page) — never invented. `updated` is the year it was last
+ * verified; re-check periodically, since visa policy changes without notice.
+ */
+// Shared ISO code lists, reused across multiple countries' visa cases.
+const EU_SCHENGEN_CODES = [
+  "AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR",
+  "HU", "IE", "IT", "LV", "LT", "LU", "MT", "NL", "PL", "PT", "RO", "SK",
+  "SI", "ES", "SE", "IS", "NO", "CH", "LI",
+];
+
+export const VISA_NOTES: Record<string, VisaInfo> = {
+  germany: {
+    updated: "2026",
+    summary:
+      "Germany is in the Schengen Area. EU/Schengen citizens can enter freely with no visa. Many other nationalities (US, UK, Canada, Australia and others) can enter visa-free for short tourist or business stays; everyone else needs a Schengen visa arranged in advance. A separate travel authorization (ETIAS) has been repeatedly delayed for visa-exempt travellers — check its current status before you fly.",
+    officialUrl: "https://www.germany.info/us-en/service/visa",
+    officialLabel: "German Federal Foreign Office — Visa Information",
+    cases: [
+      {
+        flags: "🇪🇺",
+        who: "EU / Schengen area citizens",
+        rule: "No visa needed at all — freedom of movement within the Schengen area covers entry, residence, and work.",
+        matchCodes: EU_SCHENGEN_CODES,
+      },
+      {
+        flags: "🇺🇸🇬🇧🇨🇦🇦🇺🇳🇿",
+        who: "US, UK, Canada, Australia, New Zealand, and other visa-exempt nationalities",
+        rule: "Visa-free entry for tourism or business, for stays of up to 90 days within any 180-day period. Visa-exempt travellers may additionally need to register for ETIAS before flying — its enforcement date has been postponed multiple times, so check europa.eu/etias for the current status.",
+        matchCodes: ["US", "GB", "CA", "AU", "NZ", "JP", "KR", "SG"],
+      },
+      {
+        flags: "🌍",
+        who: "Other nationalities",
+        rule: "A Schengen visa is typically required in advance for stays up to 90 days; longer stays (work, study, relocation) need a residence visa. Apply well before travelling — processing commonly takes 2–3 weeks.",
+        // No matchCodes — this is the catch-all row.
+      },
+    ],
+  },
+  mexico: {
+    updated: "2026",
+    summary:
+      "Mexico is one of the most visa-friendly countries for tourism worldwide — a long list of nationalities (including the US, UK, EU, Canada, Australia, and most of Latin America) can enter visa-free for up to 180 days. Even travellers from countries that normally need a visa can often enter using a substitute visa rule if they already hold a valid US, UK, Canadian, Schengen, or Japanese visa.",
+    officialUrl: "https://www.gob.mx/inm",
+    officialLabel: "Instituto Nacional de Migración (Mexico's immigration authority)",
+    cases: [
+      {
+        flags: "🇺🇸🇬🇧🇪🇺🇨🇦🇦🇺",
+        who: "US, UK, EU/Schengen, Canada, Australia, New Zealand, Japan, South Korea, and most of Latin America",
+        rule: "Visa-free entry for tourism, business, study, or medical purposes for up to 180 days. On arrival you'll get a tourist permit (FMM) — keep it, since you'll need to hand it back when you leave.",
+        matchCodes: [
+          "US", "GB", "CA", "AU", "NZ", "JP", "KR", "SG", "HK",
+          ...EU_SCHENGEN_CODES,
+          "AR", "CL", "CO", "CR", "PA", "PY", "UY", "IL", "AE", "BS", "BB", "BZ", "BO", "TT", "MY",
+        ],
+      },
+      {
+        flags: "🌍",
+        who: "Other nationalities",
+        rule: "A visa is normally required in advance — but if you already hold a valid multiple-entry visa or permanent residence card from the US, UK, Canada, a Schengen country, or Japan, you can usually enter Mexico visa-free instead (a 'substitute visa'). Check both options for your passport.",
+        // No matchCodes — this is the catch-all row.
+      },
+    ],
+  },
+  colombia: {
+    updated: "2026",
+    summary:
+      "Colombia is straightforward for most solo travellers — a long list of nationalities (US, UK, EU, Canada, Australia, and most of Latin America) can enter visa-free for tourism, typically for 90 days, extendable up to 180 days total within a calendar year. Canadian citizens pay a small entry fee on arrival.",
+    officialUrl: "https://www.migracioncolombia.gov.co",
+    officialLabel: "Migración Colombia (Colombia's immigration authority)",
+    cases: [
+      {
+        flags: "🇺🇸🇬🇧🇪🇺🇨🇦🇦🇺",
+        who: "US, UK, EU/Schengen, Canada, Australia, New Zealand, Japan, South Korea, and most of Latin America",
+        rule: "Visa-free entry for up to 90 days, extendable to a total of 180 days within a calendar year. Canadian citizens pay a small entry fee (around CAD$85) on arrival — everyone else pays nothing.",
+        matchCodes: [
+          "US", "GB", "CA", "AU", "NZ", "JP", "KR", "SG", "HK",
+          ...EU_SCHENGEN_CODES,
+          "AR", "BO", "BR", "CL", "CR", "DO", "EC", "SV", "GT", "HN", "JM", "MX",
+          "PA", "PY", "PE", "TT", "UY", "VE", "AE", "IL", "BS", "BB", "BZ", "ID", "PH",
+        ],
+      },
+      {
+        flags: "🌍",
+        who: "Other nationalities",
+        rule: "A visa is typically required in advance. Check the requirement for your specific passport with Migración Colombia or your nearest Colombian consulate before booking.",
+        // No matchCodes — this is the catch-all row.
+      },
+    ],
+  },
+  "united-states": {
+    updated: "2026",
+    summary:
+      "Canadian citizens can enter the US visa-free with just a passport, under a longstanding separate arrangement. Most Western Europeans, the UK, Australia, Japan, South Korea, and several others enter under the Visa Waiver Program (VWP) — visa-free for up to 90 days, but only after registering online via ESTA before departure. Everyone else needs a US visitor visa (B-2) arranged in advance, including Bulgarian, Cypriot, and Romanian citizens, who are notably NOT covered by the EU's VWP membership.",
+    officialUrl: "https://esta.cbp.dhs.gov",
+    officialLabel: "Official ESTA application (US Customs and Border Protection)",
+    cases: [
+      {
+        flags: "🇨🇦",
+        who: "Canada",
+        rule: "Visa-free entry with just a valid passport — Canada has its own long-standing arrangement with the US and doesn't use ESTA or the Visa Waiver Program.",
+        matchCodes: ["CA"],
+      },
+      {
+        flags: "🇬🇧🇪🇺🇦🇺🇯🇵🇰🇷",
+        who: "UK, most of the EU, Australia, New Zealand, Japan, South Korea, Singapore, Chile, Israel, and Taiwan (Visa Waiver Program)",
+        rule: "Visa-free entry for tourism or business for up to 90 days — but you must apply for ESTA (Electronic System for Travel Authorization) online before you fly, ideally at least 72 hours ahead. ESTA is not a visa, but you cannot board without an approved one.",
+        matchCodes: [
+          ...EU_SCHENGEN_CODES.filter((c) => !["BG", "CY", "RO"].includes(c)),
+          "GB", "AU", "NZ", "JP", "KR", "SG", "CL", "IL",
+        ],
+      },
+      {
+        flags: "🌍",
+        who: "Other nationalities (including Bulgaria, Cyprus, and Romania)",
+        rule: "A B-2 visitor visa is required in advance — this includes several EU nationalities not covered by the Visa Waiver Program. Apply well ahead, as interview wait times vary widely by consulate and can run into weeks or months.",
+        // No matchCodes — this is the catch-all row.
+      },
+    ],
+  },
+};
+
+export function getVisaNotes(slug: string): VisaInfo | null {
+  return VISA_NOTES[slug] ?? COUNTRY_GUIDES[slug]?.visa ?? null;
+}
+
+/** Every country slug we have visa data for, from either source. */
+export const VISA_NOTES_SLUGS = Array.from(
+  new Set([...Object.keys(VISA_NOTES), ...COUNTRY_GUIDE_SLUGS]),
+);

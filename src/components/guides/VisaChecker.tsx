@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { NATIONALITIES } from "@/lib/nationalities";
-import { getCountryGuide } from "@/lib/countryGuides";
+import { getVisaNotes, getCountryGuide } from "@/lib/countryGuides";
 import { visahqUrl, AFFILIATES } from "@/lib/affiliates";
 
 const DURATIONS = ["Under 15 days", "15–30 days", "31–90 days", "More than 90 days"];
@@ -33,7 +33,10 @@ export default function VisaChecker({
   const [purpose, setPurpose] = useState(PURPOSES[0]);
   const [result, setResult] = useState<null | {
     dest: VisaDestination;
-    hasGuide: boolean;
+    hasVisaNotes: boolean;
+    /** Whether /guides/<slug> exists to deep-link "Full guide" to — separate
+        from hasVisaNotes, since visa data can exist without a full guide. */
+    hasFullGuide: boolean;
     matchedRule?: string;
     matchedWho?: string;
     officialUrl?: string;
@@ -60,15 +63,16 @@ export default function VisaChecker({
     const dest = destinations.find((d) => d.slug === destSlug);
     if (!dest) return;
 
-    const guide = getCountryGuide(destSlug);
-    if (!guide) {
-      setResult({ dest, hasGuide: false });
+    const visa = getVisaNotes(destSlug);
+    const hasFullGuide = !!getCountryGuide(destSlug);
+    if (!visa) {
+      setResult({ dest, hasVisaNotes: false, hasFullGuide });
       return;
     }
 
     const matched =
-      guide.visa.cases.find((c) => c.matchCodes?.includes(citizenOf)) ??
-      guide.visa.cases.find((c) => !c.matchCodes || c.matchCodes.length === 0);
+      visa.cases.find((c) => c.matchCodes?.includes(citizenOf)) ??
+      visa.cases.find((c) => !c.matchCodes || c.matchCodes.length === 0);
 
     const extraNote =
       purpose !== "Leisure / tourism" || duration === "More than 90 days"
@@ -77,12 +81,13 @@ export default function VisaChecker({
 
     setResult({
       dest,
-      hasGuide: true,
+      hasVisaNotes: true,
+      hasFullGuide,
       matchedRule: matched?.rule,
       matchedWho: matched?.who,
-      officialUrl: guide.visa.officialUrl,
-      officialLabel: guide.visa.officialLabel,
-      updated: guide.visa.updated,
+      officialUrl: visa.officialUrl,
+      officialLabel: visa.officialLabel,
+      updated: visa.updated,
       extraNote,
     });
   }
@@ -216,7 +221,7 @@ export default function VisaChecker({
                   <p className="font-display font-bold text-lg text-soulo-dark">{result.dest.name}</p>
                 </div>
 
-                {result.hasGuide ? (
+                {result.hasVisaNotes ? (
                   <>
                     <div className="bg-soulo-linen border border-soulo-gold/30 rounded-xl p-4">
                       <p className="text-xs font-semibold text-soulo-gold uppercase tracking-wide mb-1.5">
@@ -264,7 +269,7 @@ export default function VisaChecker({
                   >
                     ← Check another
                   </button>
-                  {result.hasGuide && (
+                  {result.hasFullGuide && (
                     <Link
                       href={`/guides/${result.dest.slug}#visa`}
                       onClick={close}

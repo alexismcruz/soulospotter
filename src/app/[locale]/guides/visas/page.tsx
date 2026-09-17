@@ -5,7 +5,8 @@ import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import JsonLd from "@/components/seo/JsonLd";
 import { breadcrumbSchema, itemListSchema, faqSchema } from "@/lib/jsonld";
-import { COUNTRY_GUIDES, COUNTRY_GUIDE_SLUGS } from "@/lib/countryGuides";
+import { getCountryGuide, getVisaNotes, VISA_NOTES_SLUGS } from "@/lib/countryGuides";
+import { visahqUrl } from "@/lib/affiliates";
 import VisaChecker from "@/components/guides/VisaChecker";
 
 export const revalidate = 86400; // ISR: refresh daily
@@ -59,9 +60,31 @@ export default async function VisaGuidesIndexPage() {
     select: { slug: true, name: true, flagEmoji: true },
     orderBy: { name: "asc" },
   });
-  const flagBySlug = Object.fromEntries(allCountries.map((c) => [c.slug, c.flagEmoji]));
+  const countryBySlug = Object.fromEntries(allCountries.map((c) => [c.slug, c]));
 
-  const guides = COUNTRY_GUIDE_SLUGS.map((slug) => COUNTRY_GUIDES[slug]);
+  // Every country we have visa data for — NOT just the ones with a full
+  // written guide. Visa notes are tracked independently (src/lib/countryGuides.ts)
+  // so coverage can grow much faster than full editorial guides.
+  const visaCountries = VISA_NOTES_SLUGS
+    .map((slug) => {
+      const country = countryBySlug[slug];
+      const visa = getVisaNotes(slug);
+      if (!country || !visa) return null;
+      const hasFullGuide = !!getCountryGuide(slug);
+      return {
+        slug,
+        name: country.name,
+        flag: country.flagEmoji,
+        visa,
+        // Deep-link to our own full guide when it exists, otherwise send them
+        // straight to VisaHQ for that country — never a link to a page we
+        // don't actually have.
+        breakdownUrl: hasFullGuide ? `/guides/${slug}#visa` : visahqUrl(country.name),
+        breakdownIsExternal: !hasFullGuide,
+      };
+    })
+    .filter((c): c is NonNullable<typeof c> => c !== null)
+    .sort((a, b) => a.name.localeCompare(b.name));
 
   const jsonLd = [
     breadcrumbSchema([
@@ -71,7 +94,10 @@ export default async function VisaGuidesIndexPage() {
     ]),
     itemListSchema({
       name: "Visa requirements by country",
-      items: guides.map((g) => ({ name: g.countryName, url: `${BASE}/guides/${g.countrySlug}#visa` })),
+      items: visaCountries.map((c) => ({
+        name: c.name,
+        url: c.breakdownIsExternal ? c.breakdownUrl : `${BASE}${c.breakdownUrl}`,
+      })),
     }),
     faqSchema(VISA_FAQS),
   ];
@@ -107,29 +133,31 @@ export default async function VisaGuidesIndexPage() {
         </section>
 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          {guides.length === 0 ? (
+          {visaCountries.length === 0 ? (
             <p className="text-soulo-grey">Visa guides are on the way — check back soon.</p>
           ) : (
             <div className="space-y-4">
-              {guides.map((g) => (
+              {visaCountries.map((c) => (
                 <Link
-                  key={g.countrySlug}
-                  href={`/guides/${g.countrySlug}#visa`}
+                  key={c.slug}
+                  href={c.breakdownUrl}
+                  target={c.breakdownIsExternal ? "_blank" : undefined}
+                  rel={c.breakdownIsExternal ? "noopener noreferrer sponsored" : undefined}
                   className="group block p-6 rounded-2xl border border-soulo-border bg-white hover:border-soulo-gold hover:-translate-y-0.5 hover:shadow-md transition-all"
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div>
                       <div className="flex items-center gap-2.5 mb-2">
-                        <span className="text-2xl" aria-hidden>{flagBySlug[g.countrySlug]}</span>
+                        <span className="text-2xl" aria-hidden>{c.flag}</span>
                         <h2 className="font-display text-xl font-bold text-soulo-dark group-hover:text-soulo-gold transition-colors">
-                          {g.countryName}
+                          {c.name}
                         </h2>
                       </div>
-                      <p className="text-sm text-soulo-grey leading-relaxed max-w-2xl">{g.visa.summary}</p>
-                      <p className="text-xs text-soulo-mist mt-2">Reviewed {g.visa.updated}</p>
+                      <p className="text-sm text-soulo-grey leading-relaxed max-w-2xl">{c.visa.summary}</p>
+                      <p className="text-xs text-soulo-mist mt-2">Reviewed {c.visa.updated}</p>
                     </div>
                     <span className="flex-shrink-0 text-sm font-bold text-soulo-gold whitespace-nowrap mt-1">
-                      Full breakdown →
+                      {c.breakdownIsExternal ? "Check on VisaHQ →" : "Full breakdown →"}
                     </span>
                   </div>
                 </Link>
