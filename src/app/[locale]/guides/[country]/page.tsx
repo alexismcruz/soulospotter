@@ -7,6 +7,7 @@ import SiteFooter from "@/components/layout/SiteFooter";
 import JsonLd from "@/components/seo/JsonLd";
 import AffiliateCTA from "@/components/resources/AffiliateCTA";
 import GuideFlightsCTA from "@/components/guides/GuideFlightsCTA";
+import VisaChecker from "@/components/guides/VisaChecker";
 import { getCountryGuide, COUNTRY_GUIDE_SLUGS } from "@/lib/countryGuides";
 import { gygSearchUrl, breezeSimUrl } from "@/lib/affiliates";
 import { breadcrumbSchema, itemListSchema } from "@/lib/jsonld";
@@ -58,6 +59,14 @@ export default async function CountryGuidePage({ params }: Props) {
   const data = await getGuideData(country);
   if (!data) notFound();
   const { guide, flag, cities } = data;
+
+  // Full destination list for the visa checker's "Going to" field, pre-selected
+  // to this country — kept separate from `cities` (which is this country's own
+  // city list) since the checker needs every country we cover.
+  const allCountries = await prisma.country.findMany({
+    select: { slug: true, name: true, flagEmoji: true },
+    orderBy: { name: "asc" },
+  });
 
   const jsonLd = [
     breadcrumbSchema([
@@ -128,9 +137,16 @@ export default async function CountryGuidePage({ params }: Props) {
           ))}
 
           {/* Visa */}
-          <section>
+          <section id="visa" className="scroll-mt-24">
             <h2 className="font-display text-2xl font-bold text-soulo-dark mb-3">Do you need a visa for {guide.countryName}?</h2>
             <p className="text-soulo-grey leading-relaxed mb-4">{guide.visa.summary}</p>
+            <div className="mb-5">
+              <VisaChecker
+                destinations={allCountries.map((c) => ({ slug: c.slug, name: c.name, flag: c.flagEmoji }))}
+                presetDestinationSlug={guide.countrySlug}
+                triggerLabel={`🛂 Check my exact requirement for ${guide.countryName}`}
+              />
+            </div>
             <div className="overflow-x-auto rounded-2xl border border-soulo-border">
               <table className="w-full text-sm">
                 <thead>

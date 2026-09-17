@@ -50,6 +50,17 @@ const MENUS = {
     ],
     cta: { href: "/resources", label: "View all resources →" },
   },
+  guides: {
+    image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600&q=80",
+    imageAlt: "Solo traveler planning a trip",
+    heading: "Get ready before you fly",
+    description: "Start-here guides for every country we cover — safety, budget, visas, and where to go.",
+    links: [
+      { href: "/guides", label: "🧭 Country Guides" },
+      { href: "/guides/visas", label: "🛂 Visa Guides" },
+    ],
+    cta: { href: "/guides", label: "Browse all guides →" },
+  },
   about: {
     image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&q=80",
     imageAlt: "Solo road trip",
@@ -84,6 +95,7 @@ export default function SiteHeader() {
   const navItems: { key: MenuKey; href: string; label: string }[] = [
     { key: "destinations", href: "/destinations", label: t("destinations") },
     { key: "experiences",  href: "/experiences",  label: "Experiences" },
+    { key: "guides",       href: "/guides",       label: "Guides" },
     { key: "resources",    href: "/resources",    label: t("resources") },
     { key: "about",        href: "/about",        label: t("about") },
   ];
@@ -224,6 +236,8 @@ export default function SiteHeader() {
             {[
               { href: "/destinations",  label: "🌍 Destinations" },
               { href: "/experiences",   label: "🎯 Experiences" },
+              { href: "/guides",        label: "🧭 Country Guides" },
+              { href: "/guides/visas",  label: "🛂 Visa Guides" },
               { href: "/resources",     label: "🛡️ Resources" },
               { href: "/submit",        label: "📍 Submit a Spot" },
               { href: "/about",         label: "✨ About" },

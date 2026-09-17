@@ -16,6 +16,12 @@ export type VisaCase = {
   flags: string;   // emoji flags for the nationalities this row covers
   who: string;     // e.g. "US, UK, EU, Australia, Canada"
   rule: string;    // high-level, stable guidance
+  /**
+   * ISO 3166-1 alpha-2 passport codes this row covers, for the visa checker to
+   * match a picked nationality to a row. Omit (or leave empty) on the catch-all
+   * "everyone else" row.
+   */
+  matchCodes?: string[];
 };
 
 export type CountryGuide = {
@@ -82,9 +88,29 @@ export const COUNTRY_GUIDES: Record<string, CountryGuide> = {
       officialUrl: "https://www.thaievisa.go.th/",
       officialLabel: "Official Thai e-Visa portal",
       cases: [
-        { flags: "🇺🇸🇬🇧🇪🇺🇦🇺🇨🇦", who: "US, UK, EU/Schengen, Australia, Canada", rule: "Visa-free entry for tourism (commonly up to 30–60 days depending on current policy). Confirm your exact allowance before booking." },
-        { flags: "🇮🇳🇨🇳", who: "India, China", rule: "Visa on arrival or e-Visa is typically available for short tourist stays. Check current eligibility and apply online where required." },
-        { flags: "🌍", who: "Other nationalities", rule: "Requirements vary widely — some need a visa arranged in advance. Check the official e-Visa portal for your passport." },
+        {
+          flags: "🇺🇸🇬🇧🇪🇺🇦🇺🇨🇦",
+          who: "US, UK, EU/Schengen, Australia, Canada",
+          rule: "Visa-free entry for tourism (commonly up to 30–60 days depending on current policy). Confirm your exact allowance before booking.",
+          matchCodes: [
+            "US", "GB", "AU", "CA",
+            // EU / Schengen
+            "AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR",
+            "HU", "IE", "IT", "LV", "LT", "LU", "MT", "NL", "PL", "PT", "RO", "SK", "SI", "ES", "SE",
+          ],
+        },
+        {
+          flags: "🇮🇳🇨🇳",
+          who: "India, China",
+          rule: "Visa on arrival or e-Visa is typically available for short tourist stays. Check current eligibility and apply online where required.",
+          matchCodes: ["IN", "CN"],
+        },
+        {
+          flags: "🌍",
+          who: "Other nationalities",
+          rule: "Requirements vary widely — some need a visa arranged in advance. Check the official e-Visa portal for your passport.",
+          // No matchCodes — this is the catch-all row.
+        },
       ],
     },
   },

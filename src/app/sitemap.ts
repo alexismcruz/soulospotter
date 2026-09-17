@@ -41,13 +41,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE_URL}/advertise`,                    lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
   ];
 
-  // Country guide pages ("start here" guides)
-  const guidePages: MetadataRoute.Sitemap = COUNTRY_GUIDE_SLUGS.map((slug) => ({
-    url: `${BASE_URL}/guides/${slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: 0.85,
-  }));
+  // Country guide pages ("start here" guides) + their index pages
+  const guidePages: MetadataRoute.Sitemap = [
+    { url: `${BASE_URL}/guides`,       lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.85 },
+    { url: `${BASE_URL}/guides/visas`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.85 },
+    ...COUNTRY_GUIDE_SLUGS.map((slug) => ({
+      url: `${BASE_URL}/guides/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.85,
+    })),
+  ];
 
   // Region pages
   const regionPages: MetadataRoute.Sitemap = REGIONS.map((r) => ({
