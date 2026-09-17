@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { NATIONALITIES } from "@/lib/nationalities";
 import { getCountryGuide } from "@/lib/countryGuides";
-import { ivisaUrl, AFFILIATES } from "@/lib/affiliates";
+import { visahqUrl, AFFILIATES } from "@/lib/affiliates";
 
 const DURATIONS = ["Under 15 days", "15–30 days", "31–90 days", "More than 90 days"];
 const PURPOSES = ["Leisure / tourism", "Business", "Visiting family or friends", "Remote work / digital nomad", "Other"];
@@ -231,22 +231,22 @@ export default function VisaChecker({
                   </>
                 ) : (
                   <p className="text-sm text-soulo-grey leading-relaxed">
-                    We don't have visa notes for {result.dest.name} yet — but iVisa can look up the exact
+                    We don't have visa notes for {result.dest.name} yet — but VisaHQ can look up the exact
                     requirement for your specific passport and handle the application if you need one.
                   </p>
                 )}
 
-                {/* iVisa: a real, per-passport checker/applier — the genuinely
+                {/* VisaHQ: a real, per-passport checker/applier — the genuinely
                     actionable next step, especially when we have no written
                     guide for this destination. */}
                 <a
-                  href={ivisaUrl(result.dest.name)}
+                  href={visahqUrl(result.dest.name)}
                   target="_blank"
-                  rel={AFFILIATES.ivisa.status === "live" ? "noopener noreferrer sponsored" : "noopener noreferrer"}
+                  rel={AFFILIATES.visahq.status === "live" ? "noopener noreferrer sponsored" : "noopener noreferrer"}
                   className="flex items-center justify-between gap-3 p-3.5 rounded-xl bg-soulo-slate hover:bg-soulo-dark text-white transition-colors"
                 >
                   <span className="text-sm font-medium">
-                    🛂 Check my exact requirement &amp; apply via iVisa
+                    🛂 Check my exact requirement &amp; apply via VisaHQ
                   </span>
                   <span className="text-soulo-gold font-bold text-sm whitespace-nowrap">Go →</span>
                 </a>
@@ -280,7 +280,7 @@ export default function VisaChecker({
                 <a href="https://www.iatatravelcentre.com/" target="_blank" rel="noopener noreferrer" className="text-soulo-gold hover:underline">
                   IATA Travel Centre
                 </a>
-                . For your exact, personal requirement, use the iVisa link above or the official portal — not a
+                . For your exact, personal requirement, use the VisaHQ link above or the official portal — not a
                 substitute for official advice.
               </p>
             </div>

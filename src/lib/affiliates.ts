@@ -59,17 +59,11 @@ export const AFFILIATES = {
     status: "placeholder" as AffiliateStatus,
     partnerId: null as string | null,
   },
-  ivisa: {
-    name: "iVisa",
-    // ⚠️ PLACEHOLDER — no tracking parameter yet, so clicks are unattributed.
-    // Apply at ivisa.com/affiliates (or via their Impact.com listing) and set
-    // `affiliateId`; ivisaUrl() will start appending it. Still worth linking
-    // untracked in the meantime — iVisa gives a REAL per-passport visa answer
-    // (they're a visa processing service), unlike our own general-guidance
-    // summaries, so it's the genuinely useful next step for a traveller,
-    // especially for destinations we don't have a written guide for yet.
-    status: "placeholder" as AffiliateStatus,
-    affiliateId: null as string | null,
+  visahq: {
+    name: "VisaHQ",
+    // Real, approved affiliate ID — live.
+    status: "live" as AffiliateStatus,
+    affiliateId: "vaff18597",
   },
 } as const;
 
@@ -118,38 +112,73 @@ export function viatorSearchUrl(query: string): string {
   return AFFILIATES.viator.partnerId ? `${base}&pid=${AFFILIATES.viator.partnerId}` : base;
 }
 
-// ── iVisa ─────────────────────────────────────────────────────────────────────
-// Country slugs iVisa actually has a /visas/<slug> page for, pulled from their
-// own sitemap.xml (2026-09) — NOT guessed. Deep-linking a country not on this
-// list risks a 404 on their site, so anything outside it falls back to the
-// iVisa homepage instead. Re-verify against https://www.ivisa.com/sitemap.xml
-// occasionally, since their catalogue grows.
-const IVISA_COUNTRY_SLUGS = new Set([
-  "argentina", "armenia", "aruba", "australia", "austria", "azerbaijan", "bahrain",
-  "barbados", "belgium", "belize", "benin", "bermuda", "bhutan", "brazil", "bulgaria",
-  "burkina-faso", "cambodia", "canada", "china", "colombia", "ivory-coast", "croatia",
-  "curacao", "czech-republic", "denmark", "djibouti", "dominica", "dominican-republic",
-  "egypt", "equatorial-guinea", "estonia", "ethiopia", "finland", "france", "georgia",
-  "germany", "greece", "guinea", "honduras", "hungary", "iceland", "india", "indonesia",
-  "israel", "italy", "jamaica", "japan", "jordan", "kenya", "kuwait", "kyrgyzstan",
-  "laos", "latvia", "liechtenstein", "lithuania", "luxembourg", "madagascar", "malawi",
-  "malaysia", "maldives", "malta", "mauritius", "mexico", "moldova", "mongolia",
-  "morocco", "namibia", "nepal", "netherlands", "new-zealand", "nigeria", "norway",
-  "oman", "pakistan", "papua-new-guinea", "philippines", "poland", "portugal", "qatar",
-  "romania", "rwanda", "saint-kitts-and-nevis", "saint-lucia", "saudi-arabia",
-  "seychelles", "singapore", "sint-maarten", "slovakia", "slovenia", "south-korea",
-  "sri-lanka", "suriname", "sweden", "switzerland", "taiwan", "tajikistan", "tanzania",
-  "thailand", "togo", "turkey", "uganda", "british-virgin-islands",
-  "united-arab-emirates", "united-kingdom", "usa", "uzbekistan", "vietnam", "zambia",
-  "zimbabwe",
+// ── VisaHQ ────────────────────────────────────────────────────────────────────
+// Country slugs VisaHQ actually has a /<slug>/ page for, pulled from their own
+// sitemap_1.xml on visahq.co.uk (2026-09) — NOT guessed. Deep-linking a country
+// not on this list risks a 404 on their site, so anything outside it falls back
+// to the VisaHQ homepage instead. Re-verify against
+// https://www.visahq.co.uk/sitemap_1.xml occasionally, since their catalogue
+// changes. Affiliate tracking (?a_aid=) is confirmed to work on both the
+// homepage and country pages on this exact domain (visahq.co.uk) — use this
+// domain, not visahq.com, since the affiliate ID was issued against it.
+const VISAHQ_COUNTRY_SLUGS = new Set([
+  "afghanistan", "albania", "algeria", "american-samoa", "andorra", "angola",
+  "anguilla", "antigua-barbuda", "argentina", "armenia", "aruba", "australia",
+  "austria", "azerbaijan", "bahamas", "bahrain", "bangladesh", "barbados",
+  "belarus", "belgium", "belize", "benin", "bermuda", "bhutan", "bolivia",
+  "bosnia-herzegovina", "botswana", "brazil", "british-virgin-islands",
+  "brunei-darussalam", "bulgaria", "burkina-faso", "burundi", "cambodia",
+  "cameroon", "canada", "cape-verde", "cayman-islands",
+  "central-african-republic", "chad", "chile", "china", "christmas-island",
+  "cocos-islands", "colombia", "comoros", "congo-democratic-republic",
+  "congo-republic", "cook-islands", "costa-rica", "croatia", "cuba", "cyprus",
+  "czech-republic", "denmark", "djibouti", "dominica", "dominican-republic",
+  "ecuador", "egypt", "el-salvador", "equatorial-guinea", "eritrea", "estonia",
+  "ethiopia", "falkland-islands", "faroe-islands", "fiji", "finland", "france",
+  "french-guiana", "french-polynesia", "gabon", "gambia", "georgia", "germany",
+  "ghana", "gibraltar", "greece", "greenland", "grenada", "guadeloupe", "guam",
+  "guatemala", "guinea", "guinea-bissau", "guyana", "haiti", "honduras",
+  "hong-kong", "hungary", "iceland", "india", "indonesia", "iran", "iraq",
+  "ireland", "israel", "italy", "ivory-coast", "jamaica", "japan", "jordan",
+  "kazakhstan", "kenya", "kiribati", "kosovo", "kuwait", "kyrgyzstan", "laos",
+  "latvia", "lebanon", "lesotho", "liberia", "libya", "liechtenstein",
+  "lithuania", "luxembourg", "macau", "macedonia", "madagascar", "malawi",
+  "malaysia", "maldives", "mali", "malta", "marshall-islands", "martinique",
+  "mauritania", "mauritius", "mayotte", "mexico", "micronesia", "moldova",
+  "monaco", "mongolia", "montenegro", "montserrat", "morocco", "mozambique",
+  "myanmar", "namibia", "nauru", "nepal", "netherlands", "netherlands-antilles",
+  "new-caledonia", "new-zealand", "nicaragua", "niger", "nigeria", "niue",
+  "norfolk-island", "north-korea", "norway", "oman", "pakistan", "palau",
+  "palestine", "panama", "papua-new-guinea", "paraguay", "peru", "philippines",
+  "pitcairn-island", "poland", "portugal", "puerto-rico", "qatar", "reunion",
+  "romania", "russia", "rwanda", "saint-helena", "saint-kitts-nevis",
+  "saint-lucia", "saint-martin", "saint-pierre-miquelon",
+  "saint-vincent-grenadines", "samoa", "san-marino", "sao-tome-principe",
+  "saudi-arabia", "senegal", "serbia", "seychelles", "sierra-leone",
+  "singapore", "slovak-republic", "slovenia", "solomon-islands", "somalia",
+  "south-africa", "south-korea", "south-sudan", "spain", "sri-lanka", "sudan",
+  "suriname", "swaziland", "sweden", "switzerland", "syria", "taiwan",
+  "tajikistan", "tanzania", "thailand", "timor-leste", "togo", "tokelau",
+  "tonga", "trinidad-tobago", "tunisia", "turkey", "turkmenistan", "tuvalu",
+  "uganda", "ukraine", "united-arab-emirates", "united-kingdom",
+  "united-states", "uruguay", "us-virgin-islands", "uzbekistan", "vanuatu",
+  "vatican", "venezuela", "vietnam", "wallis-futuna-islands", "yemen",
+  "zambia", "zimbabwe",
 ]);
 
-// A few country names don't kebab-case straight into iVisa's slug — map the
+// A few country names don't kebab-case straight into VisaHQ's slug — map the
 // exceptions here rather than guessing.
-const IVISA_SLUG_OVERRIDES: Record<string, string> = {
-  "united-states": "usa",
+const VISAHQ_SLUG_OVERRIDES: Record<string, string> = {
   "cote-divoire": "ivory-coast",
   "czechia": "czech-republic",
+  "slovakia": "slovak-republic",
+  "brunei": "brunei-darussalam",
+  "congo": "congo-republic",
+  "dr-congo": "congo-democratic-republic",
+  "saint-kitts-and-nevis": "saint-kitts-nevis",
+  "trinidad-and-tobago": "trinidad-tobago",
+  "bosnia-and-herzegovina": "bosnia-herzegovina",
+  "vatican-city": "vatican",
 };
 
 function toKebab(name: string): string {
@@ -157,18 +186,17 @@ function toKebab(name: string): string {
 }
 
 /**
- * iVisa link for a country's real visa-application page when we've confirmed
- * they have one, otherwise their homepage. `status` on AFFILIATES.ivisa is
- * "placeholder" — no tracking id yet, so this earns nothing until applied.
+ * VisaHQ link for a country's real visa page when we've confirmed they have
+ * one, otherwise their homepage. Both carry the live affiliate tracking param.
  */
-export function ivisaUrl(countryName: string): string {
+export function visahqUrl(countryName: string): string {
   const slug = toKebab(countryName);
-  const ivisaSlug = IVISA_SLUG_OVERRIDES[slug] ?? slug;
-  const id = AFFILIATES.ivisa.affiliateId;
-  const base = IVISA_COUNTRY_SLUGS.has(ivisaSlug)
-    ? `https://www.ivisa.com/visas/${ivisaSlug}`
-    : "https://www.ivisa.com/";
-  return id ? `${base}?ref=${id}` : base;
+  const visahqSlug = VISAHQ_SLUG_OVERRIDES[slug] ?? slug;
+  const id = AFFILIATES.visahq.affiliateId;
+  const base = VISAHQ_COUNTRY_SLUGS.has(visahqSlug)
+    ? `https://www.visahq.co.uk/${visahqSlug}/`
+    : "https://www.visahq.co.uk/";
+  return `${base}?a_aid=${id}`;
 }
 
 // ── GetYourGuide per-city location paths ─────────────────────────────────────
