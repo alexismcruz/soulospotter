@@ -27,6 +27,17 @@
 
 /* ─── Base styles ────────────────────────────────────────────── */
 
+:root {
+  /* This site has no dark theme — it's light-only by design. Without this,
+     browsers that follow OS/browser dark-mode preference render native form
+     controls (select dropdowns, date pickers, etc.) with a dark-scheme palette:
+     the popup keeps a white background but the option text goes near-white,
+     making dropdowns like the visa checker's country picker unreadable. Forcing
+     light here makes every native control render with dark-on-light text
+     regardless of the visitor's OS setting. */
+  color-scheme: light;
+}
+
 body {
   background-color: #FAFAF8;
   color: #1A1A2E;
