@@ -116,7 +116,13 @@ export default function VisaChecker({
             role="dialog"
             aria-modal="true"
             aria-label="Visa requirement checker"
-            className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl border border-soulo-border max-h-[90vh] overflow-y-auto"
+            // Explicit text-soulo-dark so this never inherits a light/white
+            // color from wherever the trigger happens to be mounted (e.g. the
+            // dark hero section on /guides/visas) — the dialog is a DOM child
+            // of its trigger's position even though it visually escapes via
+            // fixed positioning, so it was inheriting near-white text into the
+            // dropdowns and making the country picker unreadable.
+            className="relative w-full max-w-lg bg-white text-soulo-dark rounded-2xl shadow-2xl border border-soulo-border max-h-[90vh] overflow-y-auto"
           >
             <div className="flex items-center justify-between px-6 py-4 border-b border-soulo-border">
               <p className="font-display font-bold text-soulo-dark">🛂 Visa Checker</p>
