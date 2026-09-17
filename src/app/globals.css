@@ -46,3 +46,11 @@ h1, h2, h3, h4, h5, h6 {
 /* ─── Scrollbar hide ─────────────────────────────────────────── */
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ─── Cursor ─────────────────────────────────────────────────── */
+/* Tailwind's Preflight resets native <button>/<select> cursor to "default" to
+   match browser behaviour, but every button/select on this site acts as a
+   clickable control, so restore the hand cursor sitewide. */
+button:not(:disabled), [role="button"], select {
+  cursor: pointer;
+}

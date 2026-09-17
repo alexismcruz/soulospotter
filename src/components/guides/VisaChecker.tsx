@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { NATIONALITIES } from "@/lib/nationalities";
 import { getCountryGuide } from "@/lib/countryGuides";
+import { ivisaUrl, AFFILIATES } from "@/lib/affiliates";
 
 const DURATIONS = ["Under 15 days", "15–30 days", "31–90 days", "More than 90 days"];
 const PURPOSES = ["Leisure / tourism", "Business", "Visiting family or friends", "Remote work / digital nomad", "Other"];
@@ -229,16 +230,26 @@ export default function VisaChecker({
                     </p>
                   </>
                 ) : (
-                  <>
-                    <p className="text-sm text-soulo-grey leading-relaxed">
-                      We don't have visa notes for {result.dest.name} yet. Check the current requirement for your
-                      passport with the destination's embassy, consulate, or a trusted aggregator like the{" "}
-                      <a href="https://www.iatatravelcentre.com/" target="_blank" rel="noopener noreferrer" className="text-soulo-gold hover:underline font-medium">
-                        IATA Travel Centre
-                      </a>.
-                    </p>
-                  </>
+                  <p className="text-sm text-soulo-grey leading-relaxed">
+                    We don't have visa notes for {result.dest.name} yet — but iVisa can look up the exact
+                    requirement for your specific passport and handle the application if you need one.
+                  </p>
                 )}
+
+                {/* iVisa: a real, per-passport checker/applier — the genuinely
+                    actionable next step, especially when we have no written
+                    guide for this destination. */}
+                <a
+                  href={ivisaUrl(result.dest.name)}
+                  target="_blank"
+                  rel={AFFILIATES.ivisa.status === "live" ? "noopener noreferrer sponsored" : "noopener noreferrer"}
+                  className="flex items-center justify-between gap-3 p-3.5 rounded-xl bg-soulo-slate hover:bg-soulo-dark text-white transition-colors"
+                >
+                  <span className="text-sm font-medium">
+                    🛂 Check my exact requirement &amp; apply via iVisa
+                  </span>
+                  <span className="text-soulo-gold font-bold text-sm whitespace-nowrap">Go →</span>
+                </a>
 
                 <div className="flex gap-2 pt-2">
                   <button
@@ -264,12 +275,13 @@ export default function VisaChecker({
                 result states, matching the same note on /guides/visas. */}
             <div className="px-6 py-3 border-t border-soulo-border bg-soulo-linen/60">
               <p className="text-[11px] text-soulo-mist leading-relaxed">
-                <strong className="text-soulo-grey">Source:</strong> Written and reviewed by the SouloSpotter team
-                using each destination's official immigration portal, cross-referenced with the{" "}
+                <strong className="text-soulo-grey">Source:</strong> General guidance written and reviewed by the
+                SouloSpotter team using each destination's official immigration portal, cross-referenced with the{" "}
                 <a href="https://www.iatatravelcentre.com/" target="_blank" rel="noopener noreferrer" className="text-soulo-gold hover:underline">
                   IATA Travel Centre
                 </a>
-                . General guidance only — not a substitute for official advice.
+                . For your exact, personal requirement, use the iVisa link above or the official portal — not a
+                substitute for official advice.
               </p>
             </div>
           </div>

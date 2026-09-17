@@ -59,6 +59,18 @@ export const AFFILIATES = {
     status: "placeholder" as AffiliateStatus,
     partnerId: null as string | null,
   },
+  ivisa: {
+    name: "iVisa",
+    // ⚠️ PLACEHOLDER — no tracking parameter yet, so clicks are unattributed.
+    // Apply at ivisa.com/affiliates (or via their Impact.com listing) and set
+    // `affiliateId`; ivisaUrl() will start appending it. Still worth linking
+    // untracked in the meantime — iVisa gives a REAL per-passport visa answer
+    // (they're a visa processing service), unlike our own general-guidance
+    // summaries, so it's the genuinely useful next step for a traveller,
+    // especially for destinations we don't have a written guide for yet.
+    status: "placeholder" as AffiliateStatus,
+    affiliateId: null as string | null,
+  },
 } as const;
 
 /** True if any program is still a placeholder (handy for a build-time warning). */
@@ -104,6 +116,59 @@ export function gygCityUrl(locationPath: string): string {
 export function viatorSearchUrl(query: string): string {
   const base = `https://www.viator.com/searchResults/all?text=${encodeURIComponent(query)}`;
   return AFFILIATES.viator.partnerId ? `${base}&pid=${AFFILIATES.viator.partnerId}` : base;
+}
+
+// ── iVisa ─────────────────────────────────────────────────────────────────────
+// Country slugs iVisa actually has a /visas/<slug> page for, pulled from their
+// own sitemap.xml (2026-09) — NOT guessed. Deep-linking a country not on this
+// list risks a 404 on their site, so anything outside it falls back to the
+// iVisa homepage instead. Re-verify against https://www.ivisa.com/sitemap.xml
+// occasionally, since their catalogue grows.
+const IVISA_COUNTRY_SLUGS = new Set([
+  "argentina", "armenia", "aruba", "australia", "austria", "azerbaijan", "bahrain",
+  "barbados", "belgium", "belize", "benin", "bermuda", "bhutan", "brazil", "bulgaria",
+  "burkina-faso", "cambodia", "canada", "china", "colombia", "ivory-coast", "croatia",
+  "curacao", "czech-republic", "denmark", "djibouti", "dominica", "dominican-republic",
+  "egypt", "equatorial-guinea", "estonia", "ethiopia", "finland", "france", "georgia",
+  "germany", "greece", "guinea", "honduras", "hungary", "iceland", "india", "indonesia",
+  "israel", "italy", "jamaica", "japan", "jordan", "kenya", "kuwait", "kyrgyzstan",
+  "laos", "latvia", "liechtenstein", "lithuania", "luxembourg", "madagascar", "malawi",
+  "malaysia", "maldives", "malta", "mauritius", "mexico", "moldova", "mongolia",
+  "morocco", "namibia", "nepal", "netherlands", "new-zealand", "nigeria", "norway",
+  "oman", "pakistan", "papua-new-guinea", "philippines", "poland", "portugal", "qatar",
+  "romania", "rwanda", "saint-kitts-and-nevis", "saint-lucia", "saudi-arabia",
+  "seychelles", "singapore", "sint-maarten", "slovakia", "slovenia", "south-korea",
+  "sri-lanka", "suriname", "sweden", "switzerland", "taiwan", "tajikistan", "tanzania",
+  "thailand", "togo", "turkey", "uganda", "british-virgin-islands",
+  "united-arab-emirates", "united-kingdom", "usa", "uzbekistan", "vietnam", "zambia",
+  "zimbabwe",
+]);
+
+// A few country names don't kebab-case straight into iVisa's slug — map the
+// exceptions here rather than guessing.
+const IVISA_SLUG_OVERRIDES: Record<string, string> = {
+  "united-states": "usa",
+  "cote-divoire": "ivory-coast",
+  "czechia": "czech-republic",
+};
+
+function toKebab(name: string): string {
+  return name.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+}
+
+/**
+ * iVisa link for a country's real visa-application page when we've confirmed
+ * they have one, otherwise their homepage. `status` on AFFILIATES.ivisa is
+ * "placeholder" — no tracking id yet, so this earns nothing until applied.
+ */
+export function ivisaUrl(countryName: string): string {
+  const slug = toKebab(countryName);
+  const ivisaSlug = IVISA_SLUG_OVERRIDES[slug] ?? slug;
+  const id = AFFILIATES.ivisa.affiliateId;
+  const base = IVISA_COUNTRY_SLUGS.has(ivisaSlug)
+    ? `https://www.ivisa.com/visas/${ivisaSlug}`
+    : "https://www.ivisa.com/";
+  return id ? `${base}?ref=${id}` : base;
 }
 
 // ── GetYourGuide per-city location paths ─────────────────────────────────────

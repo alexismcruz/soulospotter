@@ -9,7 +9,7 @@ import AffiliateCTA from "@/components/resources/AffiliateCTA";
 import GuideFlightsCTA from "@/components/guides/GuideFlightsCTA";
 import VisaChecker from "@/components/guides/VisaChecker";
 import { getCountryGuide, COUNTRY_GUIDE_SLUGS } from "@/lib/countryGuides";
-import { gygSearchUrl, breezeSimUrl } from "@/lib/affiliates";
+import { gygSearchUrl, breezeSimUrl, safetyWingUrl } from "@/lib/affiliates";
 import { breadcrumbSchema, itemListSchema } from "@/lib/jsonld";
 
 export const revalidate = 86400; // ISR: refresh daily
@@ -115,9 +115,10 @@ export default async function CountryGuidePage({ params }: Props) {
             <h2 className="font-display text-2xl font-bold text-soulo-dark mb-4">Plan your {guide.countryName} trip</h2>
             <div className="space-y-4">
               <GuideFlightsCTA destCode={guide.gatewayAirport.code} destCity={guide.gatewayAirport.city} countryName={guide.countryName} />
-              <div className="grid sm:grid-cols-2 gap-4">
+              <div className="grid sm:grid-cols-3 gap-4">
                 <AffiliateCTA href={toursUrl} label={`Book ${guide.countryName} tours`} sublabel="🗺️ Day trips & experiences on GetYourGuide" color="amber" />
                 <AffiliateCTA href={breezeSimUrl()} label="Get an eSIM" sublabel="📱 Data the moment you land — from $5" color="teal" />
+                <AffiliateCTA href={safetyWingUrl()} label="Get travel insurance" sublabel="🛡️ Cover for the unexpected — from $45/mo" color="blue" />
               </div>
             </div>
           </section>

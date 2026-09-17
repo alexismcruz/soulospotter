@@ -48,7 +48,7 @@ const VISA_FAQS = [
   {
     question: "Where can I check the exact requirement for my passport?",
     answer:
-      "Use the visa checker on this page for a quick pointer, then confirm on the destination's official government immigration or e-Visa portal (linked in every country guide) before you book anything. Requirements can change with little notice, so the official source is always the final word.",
+      "Use the visa checker on this page for a quick pointer, then get your exact requirement from iVisa (linked in every result) or the destination's official government immigration portal before you book anything. Requirements can change with little notice, so the official source is always the final word.",
   },
 ];
 
@@ -160,8 +160,9 @@ export default async function VisaGuidesIndexPage() {
               <a href="https://www.iatatravelcentre.com/" target="_blank" rel="noopener noreferrer" className="text-soulo-gold hover:underline">
                 IATA Travel Centre
               </a>
-              , a widely used travel-document reference. Requirements can change without notice — always confirm on
-              the official source before you book.
+              , a widely used travel-document reference. For your exact, personal requirement, use the visa checker
+              above (it links to iVisa) or the destination's official portal. Requirements can change without
+              notice — always confirm on the official source before you book.
             </p>
           </div>
         </div>
