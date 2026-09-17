@@ -259,6 +259,259 @@ export const VISA_NOTES: Record<string, VisaInfo> = {
       },
     ],
   },
+  brazil: {
+    updated: "2026",
+    summary:
+      "Brazil is visa-free for tourism for a long list of nationalities, including the EU, UK, Japan, and most of Latin America, for up to 90 days. US, Canadian, and Australian citizens are a special case: Brazil has gone back and forth on requiring an eVisa versus restoring unilateral visa-free entry for these three, and the rule has been actively changing — check the official status for your passport before booking.",
+    officialUrl: "https://www.gov.br/mre/en",
+    officialLabel: "Brazilian Ministry of Foreign Affairs",
+    cases: [
+      {
+        flags: "🇪🇺🇬🇧🇯🇵",
+        who: "EU/Schengen, UK, Japan, and most of Latin America",
+        rule: "Visa-free entry for tourism or business for up to 90 days.",
+        matchCodes: [
+          ...EU_SCHENGEN_CODES,
+          "GB", "JP", "KR", "SG", "IL", "AR", "BO", "CL", "CO", "CR", "EC", "SV",
+          "GT", "HN", "MX", "NI", "PA", "PY", "PE", "UY", "VE", "BS", "BB", "BZ",
+          "TT", "ZA", "HK",
+        ],
+      },
+      {
+        flags: "🇺🇸🇨🇦🇦🇺",
+        who: "US, Canada, Australia",
+        rule: "This is Brazil's most changeable visa rule for our audience — it has required an eVisa in the past, and a legislative proposal to restore unilateral visa-free entry for these three nationalities has been under consideration. Confirm the current requirement directly with the Brazilian Ministry of Foreign Affairs or your nearest Brazilian consulate before booking; don't rely on older advice you may have seen elsewhere.",
+        matchCodes: ["US", "CA", "AU"],
+      },
+      {
+        flags: "🌍",
+        who: "Other nationalities",
+        rule: "A visa or eVisa is typically required in advance. Check the requirement for your specific passport with the Brazilian Ministry of Foreign Affairs or your nearest consulate.",
+        // No matchCodes — this is the catch-all row.
+      },
+    ],
+  },
+  argentina: {
+    updated: "2026",
+    summary:
+      "Argentina is one of the easiest South American countries to enter — the US, UK, EU, Canada, Australia, and most of Latin America can all enter visa-free for tourism, typically for 90 days.",
+    officialUrl: "https://www.migraciones.gob.ar",
+    officialLabel: "Dirección Nacional de Migraciones (Argentina's immigration authority)",
+    cases: [
+      {
+        flags: "🇺🇸🇬🇧🇪🇺🇨🇦🇦🇺",
+        who: "US, UK, EU/Schengen, Canada, Australia, New Zealand, Japan, South Korea, and most of Latin America",
+        rule: "Visa-free entry for tourism or business for up to 90 days, extendable up to twice for a further 30 or 90 days at a time.",
+        matchCodes: [
+          "US", "GB", "CA", "AU", "NZ", "JP", "KR", "SG", "HK", "ZA", "IL", "AE",
+          ...EU_SCHENGEN_CODES,
+          "BO", "BR", "CL", "CO", "CR", "EC", "SV", "GT", "HN", "MX", "NI", "PA",
+          "PY", "PE", "UY", "VE", "BB", "TT",
+        ],
+      },
+      {
+        flags: "🌍",
+        who: "Other nationalities",
+        rule: "A visa is typically required in advance. Check the requirement for your specific passport with the Dirección Nacional de Migraciones or your nearest Argentine consulate.",
+        // No matchCodes — this is the catch-all row.
+      },
+    ],
+  },
+  chile: {
+    updated: "2026",
+    summary:
+      "Chile is straightforward for tourism — the US, UK, EU, Canada, Australia, and most of Latin America can enter visa-free for up to 90 days.",
+    officialUrl: "https://www.serviciomigraciones.cl",
+    officialLabel: "Servicio Nacional de Migraciones (Chile's immigration authority)",
+    cases: [
+      {
+        flags: "🇺🇸🇬🇧🇪🇺🇨🇦🇦🇺",
+        who: "US, UK, EU/Schengen, Canada, Australia, New Zealand, Japan, South Korea, and most of Latin America",
+        rule: "Visa-free entry for tourism or business for up to 90 days.",
+        matchCodes: [
+          "US", "GB", "CA", "AU", "NZ", "JP", "KR", "TW", "IL", "AE", "ZA",
+          ...EU_SCHENGEN_CODES,
+          "AR", "BO", "BR", "CO", "CR", "EC", "SV", "GT", "HN", "MX", "NI", "PA",
+          "PY", "PE", "UY", "JM", "TT", "BS", "BB", "BZ",
+        ],
+      },
+      {
+        flags: "🌍",
+        who: "Other nationalities",
+        rule: "A visa is typically required in advance. Chinese citizens holding a valid US or Canadian visa may qualify for a substitute-visa entry — check current eligibility. Everyone else should confirm the requirement with the Servicio Nacional de Migraciones or their nearest Chilean consulate.",
+        // No matchCodes — this is the catch-all row.
+      },
+    ],
+  },
+  peru: {
+    updated: "2026",
+    summary:
+      "Peru is easy to enter for tourism — the US, UK, EU (except Ireland, which has its own separate visa-free arrangement), Canada, Australia, and most of Latin America can all enter visa-free for up to 90 days, extendable to 180.",
+    officialUrl: "https://www.gob.pe/migraciones",
+    officialLabel: "Superintendencia Nacional de Migraciones (Peru's immigration authority)",
+    cases: [
+      {
+        flags: "🇺🇸🇬🇧🇪🇺🇨🇦🇦🇺",
+        who: "US, UK, EU/Schengen, Canada, Australia, New Zealand, Japan, South Korea, and most of Latin America",
+        rule: "Visa-free entry for tourism or business for up to 90 days, extendable to a total of 180 days.",
+        matchCodes: [
+          "US", "GB", "CA", "AU", "NZ", "JP", "KR", "SG", "TW", "HK", "IL", "AE", "ZA",
+          ...EU_SCHENGEN_CODES,
+          "AR", "BO", "BR", "CL", "CO", "CR", "EC", "GT", "HN", "PA", "PY", "UY",
+          "JM", "TT", "BS", "BB", "BZ",
+        ],
+      },
+      {
+        flags: "🌍",
+        who: "Other nationalities",
+        rule: "A visa is typically required in advance. Check the requirement for your specific passport with the Superintendencia Nacional de Migraciones or your nearest Peruvian consulate.",
+        // No matchCodes — this is the catch-all row.
+      },
+    ],
+  },
+  "costa-rica": {
+    updated: "2026",
+    summary:
+      "Costa Rica is very solo-friendly on entry — the US, UK, EU, Canada, and Australia can all enter visa-free for up to 180 days, one of the most generous allowances in Latin America.",
+    officialUrl: "https://www.migracion.go.cr",
+    officialLabel: "Dirección General de Migración y Extranjería (Costa Rica's immigration authority)",
+    cases: [
+      {
+        flags: "🇺🇸🇬🇧🇪🇺🇨🇦🇦🇺",
+        who: "US, UK, EU/Schengen, Canada, Australia, New Zealand, Japan, South Korea",
+        rule: "Visa-free entry for up to 180 days — one of the longest allowances in the region. Your passport must be valid on arrival.",
+        matchCodes: ["US", "GB", "CA", "AU", "NZ", "JP", "KR", "SG", "IL", "AE", "ZA", ...EU_SCHENGEN_CODES],
+      },
+      {
+        flags: "🌎",
+        who: "Argentina, Brazil, Chile, Mexico, Panama, Paraguay, Peru, Uruguay, and other Latin American nationalities",
+        rule: "Visa-free entry, typically for 30 or 180 days depending on nationality. Check your specific allowance before booking.",
+        matchCodes: ["AR", "BR", "CL", "MX", "PA", "PY", "PE", "UY", "BO", "GT", "HN", "SV"],
+      },
+      {
+        flags: "🌍",
+        who: "Other nationalities",
+        rule: "A visa is typically required in advance. Check the requirement for your specific passport with the Dirección General de Migración y Extranjería or your nearest Costa Rican consulate.",
+        // No matchCodes — this is the catch-all row.
+      },
+    ],
+  },
+  ecuador: {
+    updated: "2026",
+    summary:
+      "Ecuador defaults to visa-free entry — most nationalities, including the US, UK, EU, Canada, Australia, and almost all of Latin America, can enter for up to 90 days without applying for anything in advance. A shorter list of nationalities (including China, India, and Vietnam) needs an eVisa arranged before travel.",
+    officialUrl: "https://www.cancilleria.gob.ec",
+    officialLabel: "Ecuador Ministry of Foreign Affairs and Human Mobility",
+    cases: [
+      {
+        flags: "🇺🇸🇬🇧🇪🇺🇨🇦🇦🇺",
+        who: "US, UK, EU/Schengen, Canada, Australia, and most nationalities",
+        rule: "Visa-free entry for up to 90 days — Ecuador's default policy for most passports. Your passport must be valid for at least 6 months.",
+        matchCodes: [
+          "US", "GB", "CA", "AU", "NZ", "JP", "KR", "SG", "IL", "AE", "ZA",
+          ...EU_SCHENGEN_CODES,
+          "AR", "BO", "BR", "CL", "CO", "PY", "PE", "UY", "MX", "PA", "CR",
+          "GT", "HN", "SV", "NI", "JM", "TT", "BS", "BB", "BZ",
+        ],
+      },
+      {
+        flags: "🇨🇳🇮🇳🇵🇭",
+        who: "China, India, Pakistan, Philippines, Vietnam, and several other nationalities",
+        rule: "An eVisa is required and must be arranged before you travel — Ecuador is one of the more restrictive countries in the region for these specific passports.",
+        matchCodes: ["CN", "IN", "PK", "PH", "VN"],
+      },
+      {
+        flags: "🌍",
+        who: "Everyone else",
+        rule: "Most other nationalities enter visa-free by default. Confirm your specific passport's status with the Ecuadorian Ministry of Foreign Affairs before booking.",
+        // No matchCodes — this is the catch-all row.
+      },
+    ],
+  },
+  guatemala: {
+    updated: "2026",
+    summary:
+      "Guatemala is easy to enter for tourism — the US, UK, EU, Canada, Australia, and most of Latin America can all enter visa-free for up to 90 days, extendable for another 90.",
+    officialUrl: "https://igm.gob.gt",
+    officialLabel: "Instituto Guatemalteco de Migración",
+    cases: [
+      {
+        flags: "🇺🇸🇬🇧🇪🇺🇨🇦🇦🇺",
+        who: "US, UK, EU/Schengen, Canada, Australia, New Zealand, Japan, South Korea, and most of Latin America",
+        rule: "Visa-free entry for up to 90 days, extendable for a further 90 days.",
+        matchCodes: [
+          "US", "GB", "CA", "AU", "NZ", "JP", "KR", "SG", "TW", "IL", "AE", "ZA",
+          ...EU_SCHENGEN_CODES,
+          "AR", "BR", "CL", "CO", "CR", "MX", "PA", "PY", "PE", "UY", "SV", "HN",
+          "NI", "JM", "TT", "BS", "BB", "BZ",
+        ],
+      },
+      {
+        flags: "🌍",
+        who: "Other nationalities",
+        rule: "A visa is typically required in advance — but if you already hold a valid visa or permanent residence card from a Schengen country, Canada, Mexico, or the US, you can usually enter Guatemala visa-free instead for up to 90 days.",
+        // No matchCodes — this is the catch-all row.
+      },
+    ],
+  },
+  panama: {
+    updated: "2026",
+    summary:
+      "Panama is easy to enter for tourism. US and Canadian citizens get a generous 180-day visa-free allowance; the UK, EU, Australia, and most of Latin America and Asia get 90 days visa-free.",
+    officialUrl: "https://www.migracion.gob.pa",
+    officialLabel: "Servicio Nacional de Migración de Panamá",
+    cases: [
+      {
+        flags: "🇺🇸🇨🇦",
+        who: "US and Canada",
+        rule: "Visa-free entry for up to 180 days — a longer allowance than almost anywhere else in the region.",
+        matchCodes: ["US", "CA"],
+      },
+      {
+        flags: "🇬🇧🇪🇺🇦🇺🇯🇵",
+        who: "UK, EU/Schengen, Australia, New Zealand, Japan, South Korea, and most of Latin America and Asia",
+        rule: "Visa-free entry for up to 90 days.",
+        matchCodes: [
+          "GB", "AU", "NZ", "JP", "KR", "SG", "TW", "IL", "AE", "ZA",
+          ...EU_SCHENGEN_CODES,
+          "AR", "BO", "BR", "CL", "CO", "CR", "EC", "SV", "GT", "HN", "MX", "NI",
+          "PY", "PE", "UY", "JM", "TT", "BS", "BB", "BZ", "VN",
+        ],
+      },
+      {
+        flags: "🌍",
+        who: "Other nationalities",
+        rule: "A visa is typically required in advance. Check the requirement for your specific passport with the Servicio Nacional de Migración or your nearest Panamanian consulate.",
+        // No matchCodes — this is the catch-all row.
+      },
+    ],
+  },
+  uruguay: {
+    updated: "2026",
+    summary:
+      "Uruguay is straightforward for tourism — the US, UK, EU, Canada, Australia, and most of Latin America can all enter visa-free for up to 90 days, extendable for a further 90.",
+    officialUrl: "https://www.gub.uy/ministerio-relaciones-exteriores",
+    officialLabel: "Uruguay Ministry of Foreign Affairs",
+    cases: [
+      {
+        flags: "🇺🇸🇬🇧🇪🇺🇨🇦🇦🇺",
+        who: "US, UK, EU/Schengen, Canada, Australia, New Zealand, Japan, South Korea, and most of Latin America",
+        rule: "Visa-free entry for up to 90 days, extendable for a further 90 days.",
+        matchCodes: [
+          "US", "GB", "CA", "AU", "NZ", "JP", "KR", "SG", "HK", "IL", "AE", "ZA",
+          ...EU_SCHENGEN_CODES,
+          "AR", "BO", "BR", "CL", "CO", "CR", "EC", "SV", "GT", "HN", "MX", "NI",
+          "PA", "PY", "PE", "VE", "JM", "TT", "BS", "BB", "BZ",
+        ],
+      },
+      {
+        flags: "🌍",
+        who: "Other nationalities",
+        rule: "A visa is typically required in advance — Chinese citizens with a valid visa from certain other countries may qualify for substitute-visa entry. Check the requirement for your specific passport with the Uruguay Ministry of Foreign Affairs.",
+        // No matchCodes — this is the catch-all row.
+      },
+    ],
+  },
 };
 
 export function getVisaNotes(slug: string): VisaInfo | null {
