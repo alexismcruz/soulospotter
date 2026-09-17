@@ -259,6 +259,19 @@ export default function VisaChecker({
                 </div>
               </div>
             )}
+
+            {/* Persistent source/methodology footer — shown in both the form and
+                result states, matching the same note on /guides/visas. */}
+            <div className="px-6 py-3 border-t border-soulo-border bg-soulo-linen/60">
+              <p className="text-[11px] text-soulo-mist leading-relaxed">
+                <strong className="text-soulo-grey">Source:</strong> Written and reviewed by the SouloSpotter team
+                using each destination's official immigration portal, cross-referenced with the{" "}
+                <a href="https://www.iatatravelcentre.com/" target="_blank" rel="noopener noreferrer" className="text-soulo-gold hover:underline">
+                  IATA Travel Centre
+                </a>
+                . General guidance only — not a substitute for official advice.
+              </p>
+            </div>
           </div>
         </div>
       )}

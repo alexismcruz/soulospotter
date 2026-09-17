@@ -46,6 +46,11 @@ export default async function GuidesIndexPage() {
       <main className="flex-1 bg-soulo-white">
         <section className="bg-soulo-slate text-soulo-white">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+            <nav className="flex items-center gap-2 text-sm text-soulo-mist mb-6">
+              <Link href="/" className="hover:text-white transition-colors">Home</Link>
+              <span>/</span>
+              <span className="text-white">Guides</span>
+            </nav>
             <p className="text-soulo-gold font-semibold text-sm uppercase tracking-widest mb-3">Country Guides</p>
             <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-5">
               Solo Travel Guides by Country
@@ -58,6 +63,16 @@ export default async function GuidesIndexPage() {
         </section>
 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <Link
+            href="/guides/visas"
+            className="flex items-center justify-between gap-3 mb-8 p-4 rounded-2xl bg-soulo-linen border border-soulo-border hover:border-soulo-gold transition-colors"
+          >
+            <span className="text-sm sm:text-base font-medium text-soulo-dark">
+              🛂 Not sure if you need a visa? Check our Visa Guides
+            </span>
+            <span className="text-soulo-gold font-bold whitespace-nowrap">Browse visa guides →</span>
+          </Link>
+
           {guides.length === 0 ? (
             <p className="text-soulo-grey">More country guides are on the way — check back soon.</p>
           ) : (

@@ -21,6 +21,24 @@ export function breadcrumbSchema(items: BreadcrumbItem[]) {
   };
 }
 
+// ── FAQPage ─────────────────────────────────────────────────────────────────
+export type FaqItem = { question: string; answer: string };
+
+export function faqSchema(items: FaqItem[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+}
+
 // ── WebSite (homepage — enables Google Sitelinks Search Box) ──────────────────
 export function websiteSchema() {
   return {

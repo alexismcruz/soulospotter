@@ -71,7 +71,7 @@ export default async function CountryGuidePage({ params }: Props) {
   const jsonLd = [
     breadcrumbSchema([
       { name: "Home",                                url: BASE },
-      { name: "Destinations",                        url: `${BASE}/destinations` },
+      { name: "Guides",                               url: `${BASE}/guides` },
       { name: `${guide.countryName} Solo Travel Guide`, url: `${BASE}/guides/${country}` },
     ]),
     ...(cities.length > 0
@@ -97,7 +97,7 @@ export default async function CountryGuidePage({ params }: Props) {
             <nav className="flex items-center gap-2 text-sm text-soulo-mist mb-6">
               <Link href="/" className="hover:text-white transition-colors">Home</Link>
               <span>/</span>
-              <Link href="/destinations" className="hover:text-white transition-colors">Destinations</Link>
+              <Link href="/guides" className="hover:text-white transition-colors">Guides</Link>
               <span>/</span>
               <span className="text-white">{guide.countryName}</span>
             </nav>

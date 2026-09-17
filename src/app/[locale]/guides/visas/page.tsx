@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import JsonLd from "@/components/seo/JsonLd";
-import { breadcrumbSchema, itemListSchema } from "@/lib/jsonld";
+import { breadcrumbSchema, itemListSchema, faqSchema } from "@/lib/jsonld";
 import { COUNTRY_GUIDES, COUNTRY_GUIDE_SLUGS } from "@/lib/countryGuides";
 import VisaChecker from "@/components/guides/VisaChecker";
 
@@ -13,11 +13,44 @@ export const revalidate = 86400; // ISR: refresh daily
 const BASE = "https://soulospotter.com";
 
 export const metadata: Metadata = {
-  title: "Visa Requirements for Solo Travelers, by Country",
+  title: "Do I Need a Visa? Visa Requirements for Solo Travelers",
   description:
-    "Quick visa reference for solo travelers — do you need a visa, a visa on arrival, or can you enter visa-free? Country-by-country summaries, linking to the full breakdown by passport.",
+    "Do you need a visa to travel? Check visa-free, visa-on-arrival and e-Visa requirements by country, get answers to common visa questions, and use our free visa checker before you book.",
   alternates: { canonical: `${BASE}/guides/visas` },
 };
+
+const VISA_FAQS = [
+  {
+    question: "What's the difference between visa-free entry, a visa on arrival, and an e-Visa?",
+    answer:
+      "Visa-free entry means you can enter without applying for anything in advance — just your passport, and sometimes proof of onward travel or funds. A visa on arrival is issued at the airport or border for a fee, usually with minimal paperwork. An e-Visa is applied for online before you travel and is linked electronically to your passport, so there's no physical stamp or sticker to arrange beforehand. Which one applies to you depends entirely on your passport and the destination.",
+  },
+  {
+    question: "Does my passport need extra validity to enter a country?",
+    answer:
+      "Many countries require your passport to stay valid for a set period beyond your trip — six months past your departure date is the most common rule, though it varies by destination. Check this alongside the visa requirement: an otherwise visa-free entry can still be refused if your passport is expiring too soon.",
+  },
+  {
+    question: "Do solo travelers need a different visa than group travelers?",
+    answer:
+      "No — visa requirements are based on your passport, destination, and purpose of travel, not on whether you're travelling alone or in a group. The practical difference for solo travelers is that visa-on-arrival counters sometimes ask for proof of accommodation or an onward ticket, and there's no group leader handling that paperwork for you, so have it ready yourself.",
+  },
+  {
+    question: "What if I'm only transiting through a country, not stopping there?",
+    answer:
+      "Many countries offer visa-free or simplified transit rules if you stay airside or leave within a set number of hours, but this isn't universal — some destinations require a transit visa even if you never leave the airport. Always check the transit rule separately from the standard tourist visa rule for that country.",
+  },
+  {
+    question: "How far in advance should I apply for a visa?",
+    answer:
+      "If a destination requires an e-Visa or a visa arranged in advance, apply as soon as your dates are fixed — processing can take anywhere from a few hours to several weeks depending on the country and the season. Don't leave it until the week before you fly.",
+  },
+  {
+    question: "Where can I check the exact requirement for my passport?",
+    answer:
+      "Use the visa checker on this page for a quick pointer, then confirm on the destination's official government immigration or e-Visa portal (linked in every country guide) before you book anything. Requirements can change with little notice, so the official source is always the final word.",
+  },
+];
 
 export default async function VisaGuidesIndexPage() {
   // All destination countries we cover — the checker's "Going to" list should
@@ -40,6 +73,7 @@ export default async function VisaGuidesIndexPage() {
       name: "Visa requirements by country",
       items: guides.map((g) => ({ name: g.countryName, url: `${BASE}/guides/${g.countrySlug}#visa` })),
     }),
+    faqSchema(VISA_FAQS),
   ];
 
   return (
@@ -103,10 +137,33 @@ export default async function VisaGuidesIndexPage() {
             </div>
           )}
 
-          <p className="text-xs text-soulo-mist mt-8 border-t border-soulo-border pt-6">
-            Visa rules depend on your specific passport and change often. Always confirm the current requirement
-            with the destination's official immigration source before you book.
-          </p>
+          {/* General visa FAQ — genuine, stable explainer content (not tied to any
+              one country), matched by the FAQPage schema above */}
+          <section className="mt-14">
+            <h2 className="font-display text-2xl font-bold text-soulo-dark mb-6">Visa questions solo travelers ask</h2>
+            <div className="space-y-6">
+              {VISA_FAQS.map((f) => (
+                <div key={f.question} className="border-b border-soulo-border pb-6 last:border-0">
+                  <h3 className="font-display text-base font-bold text-soulo-dark mb-2">{f.question}</h3>
+                  <p className="text-sm text-soulo-grey leading-relaxed">{f.answer}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Sources & methodology — same wording used in the visa checker modal */}
+          <div className="mt-10 border-t border-soulo-border pt-6 space-y-2">
+            <p className="text-xs text-soulo-mist">
+              <strong className="text-soulo-grey">Source:</strong> Written and reviewed by the SouloSpotter team
+              using each destination's official government immigration and e-Visa portals (linked throughout this
+              page and in every country guide), cross-referenced with the{" "}
+              <a href="https://www.iatatravelcentre.com/" target="_blank" rel="noopener noreferrer" className="text-soulo-gold hover:underline">
+                IATA Travel Centre
+              </a>
+              , a widely used travel-document reference. Requirements can change without notice — always confirm on
+              the official source before you book.
+            </p>
+          </div>
         </div>
       </main>
       <SiteFooter />
