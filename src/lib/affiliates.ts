@@ -29,15 +29,20 @@ export const AFFILIATES = {
   },
   worldNomads: {
     name: "World Nomads",
-    // NOT an affiliate. The application was DECLINED (2026-07, reason: insufficient
-    // site traffic). The old "?affiliate=soulospotter" param was fake and has been
-    // removed — this is now a plain editorial link that earns nothing.
+    // APPROVED via CJ (welcome email 2026-07-21; CJ advertiser 6159036, pays per
+    // quote/lead ~US$2.50). Tracking link below is our real CJ link (PID 101773002,
+    // link 15403748). The 1x1 impression pixel from CJ's HTML is intentionally omitted.
     //
-    // Because status is "none": do NOT add rel="sponsored" to these links, and do
-    // NOT describe World Nomads as an affiliate in any disclosure copy.
-    // Worth reapplying once traffic grows; if approved, set a real url + "live".
+    // status stays "none" and `url` stays the plain homepage on purpose: World Nomads'
+    // Content Guidelines forbid competitor comparisons, "best"/recommendation wording,
+    // and original insurance copy, and require their disclaimers on the same page as any
+    // affiliate link. Our /resources/travel-insurance page is a SafetyWing-vs-World-Nomads
+    // comparison, so the tracked link must NOT go there. Use `trackingUrl` only on a page
+    // that uses their approved CJ copy + both mandatory disclaimers, with rel="sponsored".
+    // (An old fake "?affiliate=soulospotter" param was removed earlier.)
     status: "none" as AffiliateStatus,
     url: "https://www.worldnomads.com/",
+    trackingUrl: "https://www.jdoqocy.com/click-101773002-15403748",
   },
   breezesim: {
     name: "BreezeSim",
