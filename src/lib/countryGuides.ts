@@ -12,6 +12,8 @@
  * for their exact allowance rather than asserting precise day counts.
  */
 
+import { MORE_GUIDES } from "./guideContent";
+
 export type VisaCase = {
   flags: string;   // emoji flags for the nationalities this row covers
   who: string;     // e.g. "US, UK, EU, Australia, Canada"
@@ -36,6 +38,9 @@ export type VisaInfo = {
   cases: VisaCase[];       // common-nationality quick answers
 };
 
+/** A guide as authored: `visa` is optional — if omitted it's taken from VISA_NOTES. */
+export type GuideContent = Omit<CountryGuide, "visa"> & { visa?: VisaInfo };
+
 export type CountryGuide = {
   /** Must match Country.slug in the database. */
   countrySlug: string;
@@ -51,7 +56,7 @@ export type CountryGuide = {
   visa: VisaInfo;
 };
 
-export const COUNTRY_GUIDES: Record<string, CountryGuide> = {
+const CORE_GUIDES: Record<string, GuideContent> = {
   thailand: {
     countrySlug: "thailand",
     countryName: "Thailand",
@@ -128,8 +133,15 @@ export const COUNTRY_GUIDES: Record<string, CountryGuide> = {
   },
 };
 
+/** All guides. Editorial for the newer ones lives in ./guideContent (visa data in VISA_NOTES). */
+export const COUNTRY_GUIDES: Record<string, GuideContent> = { ...CORE_GUIDES, ...MORE_GUIDES };
+
+/** A full guide with its visa section resolved. Null if unknown or no visa data yet. */
 export function getCountryGuide(slug: string): CountryGuide | null {
-  return COUNTRY_GUIDES[slug] ?? null;
+  const g = COUNTRY_GUIDES[slug];
+  if (!g) return null;
+  const visa = g.visa ?? VISA_NOTES[slug];
+  return visa ? { ...g, visa } : null;
 }
 
 export const COUNTRY_GUIDE_SLUGS = Object.keys(COUNTRY_GUIDES);
@@ -190,6 +202,92 @@ export const VISA_NOTES: Record<string, VisaInfo> = {
         short: "Schengen visa required",
         tone: "visa",
         rule: "A Schengen visa is typically required in advance for stays up to 90 days; longer stays (work, study, relocation) need a residence visa. Apply well before travelling — processing commonly takes 2–3 weeks.",
+        // No matchCodes — this is the catch-all row.
+      },
+    ],
+  },
+  portugal: {
+    updated: "2026",
+    summary:
+      "Portugal is in the Schengen Area. EU/Schengen citizens can enter freely with no visa. Many other nationalities (US, UK, Canada, Australia, New Zealand and others) can enter visa-free for short stays; everyone else needs a Schengen visa arranged in advance. Non-EU visitors are now registered at Schengen external borders under the EU's Entry/Exit System (EES), and the separate ETIAS travel authorisation for visa-exempt travellers has not yet started — check europa.eu/etias for the current status before you fly.",
+    officialUrl: "https://vistos.mne.gov.pt/en/",
+    officialLabel: "Portugal's official visa portal (Ministry of Foreign Affairs)",
+    cases: [
+      {
+        flags: "🇪🇺",
+        who: "EU / Schengen area citizens",
+        short: "No visa needed",
+        tone: "free",
+        rule: "No visa needed at all — freedom of movement within the Schengen area covers entry, residence, and work.",
+        matchCodes: EU_SCHENGEN_CODES,
+      },
+      {
+        flags: "🇺🇸🇬🇧🇨🇦🇦🇺🇳🇿",
+        who: "US, UK, Canada, Australia, New Zealand, and other visa-exempt nationalities",
+        short: "Visa-free · 90 days",
+        tone: "free",
+        rule: "Visa-free entry for tourism or business, for stays of up to 90 days within any 180-day period across the whole Schengen area (not per country). ETIAS registration for visa-exempt travellers has not started yet — check europa.eu/etias for the current status.",
+        matchCodes: ["US", "GB", "CA", "AU", "NZ", "JP", "KR", "SG"],
+      },
+      {
+        flags: "🌍",
+        who: "Other nationalities",
+        short: "Schengen visa required",
+        tone: "visa",
+        rule: "A Schengen visa is typically required in advance for stays up to 90 days; longer stays (work, study, relocation) need a national visa or residence permit. Apply well before travelling — processing commonly takes 2–3 weeks.",
+        // No matchCodes — this is the catch-all row.
+      },
+    ],
+  },
+  japan: {
+    updated: "2026",
+    summary:
+      "Japan lets citizens of many countries — including the US, UK, Canada, Australia, New Zealand and most of Europe — enter without a visa as a 'temporary visitor' for tourism, typically for up to 90 days. Other nationalities need a visa arranged in advance (an online e-Visa is available for some). The list of exempt countries and the allowed stay can differ by passport and change over time, so confirm your exact allowance on the Ministry of Foreign Affairs list.",
+    officialUrl: "https://www.mofa.go.jp/j_info/visit/visa/short/novisa.html",
+    officialLabel: "Japan Ministry of Foreign Affairs — visa exemption list",
+    cases: [
+      {
+        flags: "🇺🇸🇬🇧🇪🇺🇨🇦🇦🇺",
+        who: "US, UK, Canada, Australia, New Zealand, and most European countries",
+        short: "Visa-free · up to 90 days",
+        tone: "free",
+        rule: "Visa-free entry for tourism, short business visits and visiting family, typically for up to 90 days (the exact period is set per passport on the MOFA list). Paid work is not allowed on this status.",
+        matchCodes: [
+          "US", "GB", "CA", "AU", "NZ", "IE", "KR", "SG", "HK",
+          "AT", "BE", "DK", "FI", "FR", "DE", "GR", "IT", "LU", "NL", "NO", "PT", "ES", "SE", "CH", "PL", "CZ", "HU",
+        ],
+      },
+      {
+        flags: "🌍",
+        who: "Other nationalities",
+        short: "Varies by passport",
+        tone: "varies",
+        rule: "Many other passports need a visa in advance, and some can apply online through Japan's e-Visa system. Check the MOFA list for your nationality.",
+        // No matchCodes — this is the catch-all row.
+      },
+    ],
+  },
+  indonesia: {
+    updated: "2026",
+    summary:
+      "Most Western passports can enter Indonesia for tourism on a Visa on Arrival for 30 days, extendable once, for a fee of IDR 500,000 (roughly US$30, depending on the exchange rate). You can buy it online in advance through the official e-Visa site (the 'e-VoA') and skip the airport queue. Your passport should be valid for at least six months, and you must complete the All Indonesia digital arrival form; visitors to Bali also pay a separate tourist levy (IDR 150,000).",
+    officialUrl: "https://evisa.imigrasi.go.id/",
+    officialLabel: "Indonesia's official e-Visa website (Directorate General of Immigration)",
+    cases: [
+      {
+        flags: "🇺🇸🇬🇧🇪🇺🇨🇦🇦🇺",
+        who: "US, UK, EU/Schengen, Canada, Australia, New Zealand, Japan, South Korea, and many other nationalities",
+        short: "Visa on arrival · 30 days",
+        tone: "auth",
+        rule: "Visa on Arrival (IDR 500,000) for tourism, valid 30 days and extendable once for a further 30 days at an immigration office. Buy the e-VoA online before you fly, or pay at the airport. Passport valid at least six months; onward ticket and the All Indonesia arrival form required.",
+        matchCodes: ["US", "GB", "CA", "AU", "NZ", "JP", "KR", ...EU_SCHENGEN_CODES],
+      },
+      {
+        flags: "🌍",
+        who: "Other nationalities",
+        short: "Varies by passport",
+        tone: "varies",
+        rule: "Eligibility for the Visa on Arrival covers roughly 100 countries; some nationalities (including some ASEAN passports) enter visa-free, and others must obtain a visa in advance. Check the official e-Visa site for your passport.",
         // No matchCodes — this is the catch-all row.
       },
     ],
