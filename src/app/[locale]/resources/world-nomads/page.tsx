@@ -3,15 +3,21 @@ import Link from "next/link";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import AffiliateCTA from "@/components/resources/AffiliateCTA";
-import { worldNomadsTrackingUrl } from "@/lib/affiliates";
+import {
+  worldNomadsTrackingUrl,
+  worldNomadsCopyUrl,
+  WORLD_NOMADS_DISCLAIMER,
+  WORLD_NOMADS_GENERAL_DISCLAIMER,
+} from "@/lib/affiliates";
 
 /**
  * World Nomads affiliate page (CJ). Deliberately minimal: World Nomads' Content
  * Guidelines only allow affiliates to state that World Nomads provides travel insurance,
  * that we're an affiliate who receives a fee for quotes, and factual copy supplied by
  * them. NO comparisons with other insurers, NO "best"/"recommended"/"comprehensive",
- * NO advice on which plan to buy, and NO original insurance copy. Add their approved CJ
- * banners/text only. Both disclaimers below are mandatory and must stay on this page.
+ * NO advice on which plan to buy, and NO original insurance copy — the two paragraphs
+ * below are World Nomads' own approved "Short Copy" templates 2 and 4, verbatim.
+ * Both disclaimers are mandatory and must stay on this page (see affiliates.ts).
  */
 export const metadata: Metadata = {
   title: "World Nomads Travel Insurance Quote",
@@ -20,6 +26,8 @@ export const metadata: Metadata = {
   // Thin by design (compliance) — keep it out of search results.
   robots: { index: false, follow: true },
 };
+
+const LINK_CLASS = "font-medium text-soulo-gold hover:underline";
 
 export default function WorldNomadsPage() {
   return (
@@ -40,7 +48,33 @@ export default function WorldNomadsPage() {
         </section>
 
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
-          <p className="text-soulo-grey leading-relaxed">World Nomads provides travel insurance.</p>
+          {/* World Nomads' approved copy (Short Copy templates 2 and 4), verbatim */}
+          <div className="space-y-4 text-soulo-grey leading-relaxed">
+            <p>
+              <a
+                href={worldNomadsCopyUrl(2)}
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className={LINK_CLASS}
+              >
+                World Nomads
+              </a>{" "}
+              travel insurance policies offer coverage for more than 150 activities. Get a quote, make a claim, or
+              buy or extend your policy while on the road.
+            </p>
+            <p>
+              <a
+                href={worldNomadsCopyUrl(4)}
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className={LINK_CLASS}
+              >
+                World Nomads
+              </a>{" "}
+              offers simple and flexible travel insurance. Buy at home or while traveling and claim online from
+              anywhere in the world.
+            </p>
+          </div>
 
           <AffiliateCTA
             href={worldNomadsTrackingUrl()}
@@ -49,18 +83,13 @@ export default function WorldNomadsPage() {
             color="amber"
           />
 
-          {/* Mandatory disclaimer #1 — wording supplied by World Nomads (welcome email), must sit near the link */}
+          {/* Mandatory disclaimer #1 — must sit near the links */}
           <p className="text-sm text-soulo-grey leading-relaxed border-l-4 border-soulo-gold pl-4">
-            We receive a fee when you get a quote from World Nomads using this link. We do not represent
-            World Nomads. This is not a recommendation to buy travel insurance.
+            {WORLD_NOMADS_DISCLAIMER}
           </p>
 
-          {/* Mandatory disclaimer #2 — World Nomads Content Guidelines */}
-          <p className="text-xs text-soulo-mist leading-relaxed">
-            Travel insurance doesn&apos;t cover everything. All of the information we provide is a brief summary.
-            It does not include all terms, conditions, limitations, exclusions and termination provisions of the
-            plans described.
-          </p>
+          {/* Mandatory disclaimer #2 — same page as any link */}
+          <p className="text-xs text-soulo-mist leading-relaxed">{WORLD_NOMADS_GENERAL_DISCLAIMER}</p>
         </div>
       </main>
       <SiteFooter />

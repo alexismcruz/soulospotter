@@ -43,6 +43,7 @@ export const AFFILIATES = {
     status: "none" as AffiliateStatus,
     url: "https://www.worldnomads.com/",
     trackingUrl: "https://www.jdoqocy.com/click-101773002-15403748",
+    pid: "101773002",
   },
   breezesim: {
     name: "BreezeSim",
@@ -148,6 +149,25 @@ export function bookingStaysUrl(opts: {
 export function worldNomadsTrackingUrl(): string {
   return AFFILIATES.worldNomads.trackingUrl;
 }
+
+/**
+ * Tracked links for World Nomads' approved "Short Copy" templates (from their CJ welcome
+ * email, PID 101773002). Each template has its own CJ link ID; all resolve to worldnomads.com.
+ * Same rules as worldNomadsTrackingUrl(): only on /resources/world-nomads, rel="sponsored",
+ * with WORLD_NOMADS_DISCLAIMER next to the link.
+ */
+export function worldNomadsCopyUrl(template: 2 | 4): string {
+  const aid = template === 2 ? "15798887" : "15798936";
+  return `https://www.jdoqocy.com/click-${AFFILIATES.worldNomads.pid}-${aid}`;
+}
+
+/** MANDATORY (World Nomads welcome email, FCA/ASA): must appear near every tracked link. Verbatim. */
+export const WORLD_NOMADS_DISCLAIMER =
+  "We receive a fee when you get a quote from World Nomads using this link. We do not represent World Nomads. This is not a recommendation to buy travel insurance.";
+
+/** MANDATORY (World Nomads Content Guidelines): on the same page as any tracked link. Verbatim. */
+export const WORLD_NOMADS_GENERAL_DISCLAIMER =
+  "Travel insurance doesn't cover everything. All of the information we provide is a brief summary. It does not include all terms, conditions, limitations, exclusions and termination provisions of the plans described.";
 
 export function worldNomadsUrl(): string {
   // Placeholder passthrough until a real affiliate URL is available.
