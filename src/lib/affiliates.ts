@@ -158,15 +158,15 @@ function bookingProgramForVisitor(visitorCountry: string | null | undefined): st
  * route at click time so it works on statically cached pages.
  */
 export function bookingStaysUrl(opts: {
-  cityName: string;
+  /** null => search the whole country (used by country guides). */
+  cityName: string | null;
   countryName: string;
   citySlug: string;
   visitorCountry?: string | null;
 }): string {
   const program = AFFILIATES.booking.programs[bookingProgramForVisitor(opts.visitorCountry)];
-  const target = `https://www.booking.com/searchresults.html?ss=${encodeURIComponent(
-    `${opts.cityName}, ${opts.countryName}`,
-  )}`;
+  const place = opts.cityName ? `${opts.cityName}, ${opts.countryName}` : opts.countryName;
+  const target = `https://www.booking.com/searchresults.html?ss=${encodeURIComponent(place)}`;
   return (
     `https://www.jdoqocy.com/click-${AFFILIATES.booking.cjPid}-${program.evergreenLinkId}` +
     `?sid=${encodeURIComponent(opts.citySlug)}&url=${encodeURIComponent(target)}`

@@ -15,18 +15,25 @@ export const runtime = "nodejs";
 export async function GET(req: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
 
-  let city: { name: string; country: { name: string } } | null = null;
+  // The slug is a city (most links) or a country (country guides -> whole-country search).
+  let place: { cityName: string | null; countryName: string } | null = null;
   try {
-    city = await prisma.city.findFirst({
+    const city = await prisma.city.findFirst({
       where: { slug, published: true },
       select: { name: true, country: { select: { name: true } } },
     });
+    if (city) {
+      place = { cityName: city.name, countryName: city.country.name };
+    } else {
+      const country = await prisma.country.findUnique({ where: { slug }, select: { name: true } });
+      if (country) place = { cityName: null, countryName: country.name };
+    }
   } catch (err) {
-    console.error("[/api/stays] city lookup failed:", err);
+    console.error("[/api/stays] lookup failed:", err);
   }
 
-  // Unknown city (or DB hiccup): send them somewhere useful rather than a dead end.
-  if (!city) {
+  // Unknown slug (or DB hiccup): send them somewhere useful rather than a dead end.
+  if (!place) {
     return NextResponse.redirect(new URL(`/destinations/${encodeURIComponent(slug)}`, req.url), 302);
   }
 
@@ -35,7 +42,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ slug
   const visitorCountry = override ?? req.headers.get("x-vercel-ip-country");
 
   const res = NextResponse.redirect(
-    bookingStaysUrl({ cityName: city.name, countryName: city.country.name, citySlug: slug, visitorCountry }),
+    bookingStaysUrl({ cityName: place.cityName, countryName: place.countryName, citySlug: slug, visitorCountry }),
     302,
   );
   res.headers.set("Cache-Control", "no-store");
