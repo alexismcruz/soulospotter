@@ -88,6 +88,8 @@ export default function SiteFooter() {
               <li><Link href="/experiences" className="hover:text-soulo-white transition-colors">Experiences</Link></li>
               <li><Link href="/guides" className="hover:text-soulo-white transition-colors">Country Guides</Link></li>
               <li><Link href="/guides/visas" className="hover:text-soulo-white transition-colors">Visa Guides</Link></li>
+              <li><Link href="/guides/escape-winter" className="hover:text-soulo-white transition-colors">Escape the Winter</Link></li>
+              <li><Link href="/guides/winter-wonderland" className="hover:text-soulo-white transition-colors">Winter Wonderland</Link></li>
             </ul>
           </div>
 

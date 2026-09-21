@@ -73,6 +73,23 @@ export default async function GuidesIndexPage() {
             <span className="text-soulo-gold font-bold whitespace-nowrap">Browse visa guides →</span>
           </Link>
 
+          <div className="grid sm:grid-cols-2 gap-3 mb-8">
+            <Link
+              href="/guides/escape-winter"
+              className="flex items-center justify-between gap-3 p-4 rounded-2xl bg-soulo-linen border border-soulo-border hover:border-soulo-gold transition-colors"
+            >
+              <span className="text-sm sm:text-base font-medium text-soulo-dark">☀️ Escape the winter: warm places for Nov–Feb</span>
+              <span className="text-soulo-gold font-bold whitespace-nowrap">Read →</span>
+            </Link>
+            <Link
+              href="/guides/winter-wonderland"
+              className="flex items-center justify-between gap-3 p-4 rounded-2xl bg-soulo-linen border border-soulo-border hover:border-soulo-gold transition-colors"
+            >
+              <span className="text-sm sm:text-base font-medium text-soulo-dark">❄️ Winter wonderland: markets, snow &amp; cosy cities</span>
+              <span className="text-soulo-gold font-bold whitespace-nowrap">Read →</span>
+            </Link>
+          </div>
+
           {guides.length === 0 ? (
             <p className="text-soulo-grey">More country guides are on the way — check back soon.</p>
           ) : (

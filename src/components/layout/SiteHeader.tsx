@@ -58,6 +58,8 @@ const MENUS = {
     links: [
       { href: "/guides", label: "🧭 Country Guides" },
       { href: "/guides/visas", label: "🛂 Visa Guides" },
+      { href: "/guides/escape-winter", label: "☀️ Escape the Winter" },
+      { href: "/guides/winter-wonderland", label: "❄️ Winter Wonderland" },
     ],
     cta: { href: "/guides", label: "Browse all guides →" },
   },
@@ -238,6 +240,8 @@ export default function SiteHeader() {
               { href: "/experiences",   label: "🎯 Experiences" },
               { href: "/guides",        label: "🧭 Country Guides" },
               { href: "/guides/visas",  label: "🛂 Visa Guides" },
+              { href: "/guides/escape-winter", label: "☀️ Escape the Winter" },
+              { href: "/guides/winter-wonderland", label: "❄️ Winter Wonderland" },
               { href: "/resources",     label: "🛡️ Resources" },
               { href: "/submit",        label: "📍 Submit a Spot" },
               { href: "/about",         label: "✨ About" },
