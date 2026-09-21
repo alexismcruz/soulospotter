@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import PageHero from "@/components/layout/PageHero";
@@ -86,9 +87,15 @@ export default function TravelInsurancePage() {
               {/* SafetyWing */}
               <div className="rounded-2xl border-2 border-blue-200 bg-white overflow-hidden">
                 <div className="bg-blue-600 px-6 py-4 flex items-center justify-between">
-                  <div>
-                    <span className="text-white font-bold text-lg">SafetyWing</span>
-                    <span className="ml-3 text-xs bg-white/20 text-white px-2 py-0.5 rounded-full">Best for long-term travelers</span>
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+                    {/* Official SafetyWing logo, unmodified (white variant for dark backgrounds) */}
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src="/partners/safetywing/logos/nomad-insurance-by-safetywing-light.svg"
+                      alt="SafetyWing Nomad Insurance"
+                      className="h-7 w-auto"
+                    />
+                    <span className="text-xs bg-white/20 text-white px-2 py-0.5 rounded-full">Best for long-term travelers</span>
                   </div>
                   <span className="text-2xl">🌐</span>
                 </div>
@@ -114,6 +121,40 @@ export default function TravelInsurancePage() {
                   <div className="bg-stone-50 rounded-xl p-4 text-sm text-stone-600 mb-5">
                     <strong>Best for:</strong> Digital nomads, gap year travelers, anyone going slow for 3+ months across multiple countries.
                   </div>
+
+                  {/* SafetyWing's own plan-comparison graphic (unmodified) */}
+                  <figure className="mb-5">
+                    <h4 className="text-sm font-semibold text-stone-500 uppercase tracking-wide mb-2">
+                      Nomad Insurance plans: Essential vs Complete
+                    </h4>
+                    <Image
+                      src="/partners/safetywing/comparison-essential-vs-complete.png"
+                      alt="SafetyWing plan comparison. Essential covers unexpected emergencies. Complete covers unexpected emergencies plus cancer testing and treatment, annual check-ups, therapy and wellness, year-round coverage at home, and coverage for life. Conditions you develop on Essential are not covered after 12 months, while Complete covers all new conditions for life."
+                      width={3123}
+                      height={1914}
+                      sizes="(min-width: 768px) 700px, 100vw"
+                      className="w-full h-auto rounded-xl border border-stone-200"
+                    />
+                    <figcaption className="mt-1.5 text-xs text-stone-400">Image: SafetyWing</figcaption>
+                  </figure>
+
+                  {/* SafetyWing's official promo button (unmodified), same affiliate link */}
+                  <a
+                    href={SAFETYWING_URL}
+                    target="_blank"
+                    rel="noopener noreferrer sponsored"
+                    className="block max-w-sm mb-5 transition-transform hover:-translate-y-0.5"
+                  >
+                    <Image
+                      src="/partners/safetywing/buttons/button-promo-1.png"
+                      alt="SafetyWing: Let's get you insured!"
+                      width={1459}
+                      height={334}
+                      sizes="384px"
+                      className="w-full h-auto"
+                    />
+                  </a>
+
                   <AffiliateCTA
                     href={SAFETYWING_URL}
                     label="Get a SafetyWing quote"
