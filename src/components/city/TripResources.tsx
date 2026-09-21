@@ -1,16 +1,40 @@
 import Link from "next/link";
-import { gygCityToursUrl } from "@/lib/affiliates";
+import { gygCityToursUrl, bookingStaysUrl } from "@/lib/affiliates";
 
 type Props = {
   citySlug?: string;
+  /** Needed for the "Where to stay" (Booking.com) link; omit to hide it. */
+  cityName?: string;
+  countryName?: string;
+  countryCode?: string;
+  region?: string;
 };
 
-export default function TripResources({ citySlug }: Props) {
+export default function TripResources({ citySlug, cityName, countryName, countryCode, region }: Props) {
   const cityTours = citySlug ? gygCityToursUrl(citySlug) : null;
   const toursHref = cityTours ?? "/resources/tours";
   const isExternalLink = toursHref.startsWith("http");
 
+  // Null when Booking.com has no CJ program for this region yet -> button hidden.
+  const staysHref =
+    citySlug && cityName && countryName && countryCode && region
+      ? bookingStaysUrl({ citySlug, cityName, countryName, countryCode, region })
+      : null;
+
   const RESOURCES = [
+    ...(staysHref
+      ? [
+          {
+            href: staysHref,
+            emoji: "🏨",
+            label: `Where to stay in ${cityName}`,
+            sublabel: "Hotels & stays on Booking.com",
+            border: "border-soulo-slate/30 hover:border-soulo-slate",
+            badge: "bg-soulo-slate/10 text-soulo-slate",
+            external: true,
+          },
+        ]
+      : []),
     {
       href: "/resources/travel-insurance",
       emoji: "🛡️",
@@ -37,10 +61,12 @@ export default function TripResources({ citySlug }: Props) {
       external: isExternalLink,
     },
   ];
+  const gridCols = RESOURCES.length === 4 ? "sm:grid-cols-2 lg:grid-cols-4" : "sm:grid-cols-3";
+
   return (
     <div className="my-10 p-6 bg-soulo-linen rounded-2xl border border-soulo-border">
       <h2 className="font-display text-base font-bold text-soulo-dark mb-4">📋 Resources for your trip</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+      <div className={`grid grid-cols-1 ${gridCols} gap-3`}>
         {RESOURCES.map((r) => {
           const Wrapper = r.external ? "a" : Link;
           const wrapperProps = r.external
@@ -62,6 +88,9 @@ export default function TripResources({ citySlug }: Props) {
           );
         })}
       </div>
+      <p className="mt-3 text-xs text-soulo-mist">
+        Some of these are affiliate links — we may earn a commission if you book, at no extra cost to you.
+      </p>
     </div>
   );
 }

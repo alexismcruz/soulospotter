@@ -70,6 +70,19 @@ export const AFFILIATES = {
     status: "live" as AffiliateStatus,
     affiliateId: "vaff18597",
   },
+  booking: {
+    name: "Booking.com",
+    // Booking.com runs REGIONAL CJ programs (APAC, Australia, LATAM, North America — no
+    // Europe/EMEA seen yet). We use each program's deep-link-enabled "Evergreen Link"
+    // (CJ link ID below) and pass the destination via `?url=`; `sid` carries the city slug
+    // so CJ reports show per-city performance. Only regions listed in `programs` get a
+    // button — add a region here (with its Evergreen link ID) to switch it on.
+    status: "live" as AffiliateStatus,
+    cjPid: "101773002",
+    programs: {
+      apac: { advertiserId: "7854081", evergreenLinkId: "17293139" },
+    } as Record<string, { advertiserId: string; evergreenLinkId: string }>,
+  },
 } as const;
 
 /** True if any program is still a placeholder (handy for a build-time warning). */
@@ -82,6 +95,40 @@ export const HAS_PLACEHOLDER_AFFILIATES = Object.values(AFFILIATES).some(
 export function safetyWingUrl(): string {
   const id = AFFILIATES.safetywing.referenceId;
   return `https://safetywing.com/?referenceID=${id}&utm_source=${id}&utm_medium=Ambassador`;
+}
+
+/**
+ * Which Booking.com CJ program covers a destination, or null if we don't have one yet
+ * (then no button is shown — never fall back to an untracked booking.com link).
+ * APAC = Asia + Oceania except Australia (which has its own, not-yet-added program).
+ */
+function bookingProgramFor(region: string, countryCode: string): string | null {
+  if (region === "ASIA") return "apac";
+  if (region === "OCEANIA" && countryCode !== "AU") return "apac";
+  return null;
+}
+
+/**
+ * Tracked Booking.com hotel-search link for a city, via the right regional CJ program.
+ * Returns null when there's no program for that region.
+ */
+export function bookingStaysUrl(opts: {
+  cityName: string;
+  countryName: string;
+  citySlug: string;
+  region: string;
+  countryCode: string;
+}): string | null {
+  const key = bookingProgramFor(opts.region, opts.countryCode);
+  const program = key ? AFFILIATES.booking.programs[key] : undefined;
+  if (!program) return null;
+  const target = `https://www.booking.com/searchresults.html?ss=${encodeURIComponent(
+    `${opts.cityName}, ${opts.countryName}`,
+  )}`;
+  return (
+    `https://www.jdoqocy.com/click-${AFFILIATES.booking.cjPid}-${program.evergreenLinkId}` +
+    `?sid=${encodeURIComponent(opts.citySlug)}&url=${encodeURIComponent(target)}`
+  );
 }
 
 /**
