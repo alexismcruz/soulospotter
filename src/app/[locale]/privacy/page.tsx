@@ -76,7 +76,7 @@ export default function PrivacyPage() {
           <section>
             <h2 className="font-display text-xl font-bold text-soulo-dark mb-3">3. Affiliate Links</h2>
             <p className="text-soulo-grey leading-relaxed">
-              SouloSpotter earns a small commission when you click certain affiliate links (currently SafetyWing, BreezeSim, GetYourGuide, and VisaHQ) and make a purchase. This comes at no extra cost to you. Not every outbound link is an affiliate link — some providers we recommend earn us nothing at all. Our editorial recommendations are never influenced by affiliate relationships; we only link to services we consider genuinely useful for solo travelers. Genuine affiliate links are marked with{" "}
+              SouloSpotter earns a small commission when you click certain affiliate links (currently SafetyWing, BreezeSim, GetYourGuide, VisaHQ, and World Nomads) and make a purchase — or, for World Nomads, request a quote. This comes at no extra cost to you. Not every outbound link is an affiliate link — some providers we recommend earn us nothing at all. Our editorial recommendations are never influenced by affiliate relationships; we only link to services we consider genuinely useful for solo travelers. Genuine affiliate links are marked with{" "}
               <code className="text-xs bg-soulo-linen px-1.5 py-0.5 rounded font-mono">rel=&quot;sponsored&quot;</code>.
             </p>
           </section>

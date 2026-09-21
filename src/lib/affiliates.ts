@@ -84,6 +84,15 @@ export function safetyWingUrl(): string {
   return `https://safetywing.com/?referenceID=${id}&utm_source=${id}&utm_medium=Ambassador`;
 }
 
+/**
+ * Real CJ tracking link. ONLY use on /resources/world-nomads (the page built to
+ * World Nomads' Content Guidelines), always with rel="sponsored" and both mandatory
+ * disclaimers on the same page. Never on the SafetyWing comparison page.
+ */
+export function worldNomadsTrackingUrl(): string {
+  return AFFILIATES.worldNomads.trackingUrl;
+}
+
 export function worldNomadsUrl(): string {
   // Placeholder passthrough until a real affiliate URL is available.
   return AFFILIATES.worldNomads.url;

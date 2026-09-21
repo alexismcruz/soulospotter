@@ -16,11 +16,11 @@ export function generateMetadata(): Metadata {
   return {
     title: `Best Travel Insurance for Solo Travelers (${year})`,
     description:
-      "SafetyWing vs World Nomads — an honest comparison for solo travelers. Which travel insurance is right for your trip? We break down cost, coverage, and claims.",
+      "Travel insurance options for solo travelers — what SafetyWing's Nomad Insurance covers, who it suits, and what to check before you buy.",
     alternates: { canonical: "https://soulospotter.com/resources/travel-insurance" },
     openGraph: {
       title: `Best Travel Insurance for Solo Travelers (${year})`,
-      description: "SafetyWing vs World Nomads — an honest comparison for solo travelers.",
+      description: "Travel insurance options for solo travelers.",
     },
   };
 }
@@ -207,39 +207,6 @@ export default function TravelInsurancePage() {
             </div>
           </section>
 
-          {/* Quick comparison table */}
-          <section>
-            <h2 className="text-2xl font-bold text-stone-900 mb-5">Quick comparison</h2>
-            <div className="overflow-x-auto rounded-2xl border border-stone-200">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="bg-stone-50 border-b border-stone-200">
-                    <th className="text-left px-5 py-3 font-semibold text-stone-600">Feature</th>
-                    <th className="text-center px-5 py-3 font-semibold text-blue-700">SafetyWing</th>
-                    <th className="text-center px-5 py-3 font-semibold text-amber-700">World Nomads</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-stone-100">
-                  {[
-                    ["Monthly cost",         "~$45",        "~$100–200"],
-                    ["Medical coverage",     "$250,000",    "$5,000,000"],
-                    ["Trip cancellation",    "✗",           "✓"],
-                    ["Adventure sports",     "Basic only",  "200+ activities"],
-                    ["Buy after departure",  "✓",           "✗"],
-                    ["Cancel anytime",       "✓",           "✗"],
-                    ["Best for",            "Long stays",   "Short trips"],
-                  ].map(([feature, sw, wn]) => (
-                    <tr key={feature} className="hover:bg-stone-50">
-                      <td className="px-5 py-3 font-medium text-stone-700">{feature}</td>
-                      <td className="px-5 py-3 text-center text-stone-600">{sw}</td>
-                      <td className="px-5 py-3 text-center text-stone-600">{wn}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </section>
-
           {/* Bottom CTAs */}
           <section className="grid sm:grid-cols-2 gap-4">
             <AffiliateCTA href={SAFETYWING_URL} label="Get SafetyWing" sublabel="Best for long trips" color="blue" />
@@ -254,7 +221,8 @@ export default function TravelInsurancePage() {
 
           {/* Disclaimer */}
           <p className="text-xs text-stone-400 border-t border-stone-100 pt-6">
-            <strong className="text-stone-500">Affiliate disclosure:</strong> Our SafetyWing link is an affiliate link — SouloSpotter earns a commission if you purchase, at no extra cost to you. Our World Nomads link is <strong className="text-stone-500">not</strong> an affiliate link and earns us nothing; it&apos;s here purely because it&apos;s the better choice for some trips. We only recommend products we genuinely trust.
+            <strong className="text-stone-500">Affiliate disclosure:</strong> Our SafetyWing link is an affiliate link — SouloSpotter earns a commission if you purchase, at no extra cost to you. The World Nomads link on this page is <strong className="text-stone-500">not</strong> an affiliate link and earns us nothing. We are a World Nomads affiliate only on our separate{" "}
+            <Link href="/resources/world-nomads" className="underline hover:text-stone-600">World Nomads page</Link>.
           </p>
         </div>
       </main>
