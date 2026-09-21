@@ -199,6 +199,11 @@ export function visahqUrl(countryName: string): string {
   return `${base}?a_aid=${id}`;
 }
 
+/** VisaHQ homepage with our affiliate ID, for generic (non-country) mentions. */
+export function visahqHomeUrl(): string {
+  return `https://www.visahq.co.uk/?a_aid=${AFFILIATES.visahq.affiliateId}`;
+}
+
 // ── GetYourGuide per-city location paths ─────────────────────────────────────
 // City slug → GYG location path (includes GYG's own location id, e.g. "-l46").
 // These are GYG destination pages, not our data — kept here so all GYG config

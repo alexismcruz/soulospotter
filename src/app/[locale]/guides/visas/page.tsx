@@ -12,7 +12,7 @@ import {
   type VisaCase,
   type VisaInfo,
 } from "@/lib/countryGuides";
-import { visahqUrl } from "@/lib/affiliates";
+import { visahqUrl, visahqHomeUrl } from "@/lib/affiliates";
 
 export const revalidate = 86400; // ISR: refresh daily
 
@@ -25,7 +25,14 @@ export const metadata: Metadata = {
   alternates: { canonical: `${BASE}/guides/visas` },
 };
 
-const VISA_FAQS = [
+type VisaFaq = {
+  question: string;
+  answer: string;
+  /** Optional word in `answer` to render as a sponsored VisaHQ link (schema keeps plain text). */
+  visahqLinkText?: string;
+};
+
+const VISA_FAQS: VisaFaq[] = [
   {
     question: "What's the difference between visa-free entry, a visa on arrival, and an e-Visa?",
     answer:
@@ -55,8 +62,29 @@ const VISA_FAQS = [
     question: "Where can I check the exact requirement for my passport?",
     answer:
       "Use the table on this page for a quick pointer, then confirm your exact requirement on the destination's official government immigration portal (linked in every row) or through VisaHQ before you book anything. Requirements can change with little notice, so the official source is always the final word.",
+    visahqLinkText: "VisaHQ",
   },
 ];
+
+function FaqAnswer({ faq }: { faq: VisaFaq }) {
+  const word = faq.visahqLinkText;
+  const idx = word ? faq.answer.indexOf(word) : -1;
+  if (!word || idx === -1) return <>{faq.answer}</>;
+  return (
+    <>
+      {faq.answer.slice(0, idx)}
+      <a
+        href={visahqHomeUrl()}
+        target="_blank"
+        rel="noopener noreferrer sponsored"
+        className="text-soulo-gold font-medium hover:underline"
+      >
+        {word}
+      </a>
+      {faq.answer.slice(idx + word.length)}
+    </>
+  );
+}
 
 // Passports shown as columns. The EU column is represented by Germany's code:
 // every EU/Schengen row lists all member states in its matchCodes.
@@ -276,7 +304,7 @@ export default async function VisaGuidesIndexPage() {
               {VISA_FAQS.map((f) => (
                 <div key={f.question} className="border-b border-soulo-border pb-6 last:border-0">
                   <h3 className="font-display text-base font-bold text-soulo-dark mb-2">{f.question}</h3>
-                  <p className="text-sm text-soulo-grey leading-relaxed">{f.answer}</p>
+                  <p className="text-sm text-soulo-grey leading-relaxed"><FaqAnswer faq={f} /></p>
                 </div>
               ))}
             </div>
