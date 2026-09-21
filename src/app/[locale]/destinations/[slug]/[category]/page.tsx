@@ -14,6 +14,7 @@ import { SLUG_TO_CATEGORY, CATEGORY_SLUGS, CATEGORY_META } from "@/lib/categoryU
 import JsonLd from "@/components/seo/JsonLd";
 import { breadcrumbSchema, itemListSchema } from "@/lib/jsonld";
 import { pickTitle } from "@/lib/seoTitle";
+import { categoryIntent } from "@/lib/seoText";
 
 const BASE = "https://soulospotter.com";
 
@@ -75,10 +76,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `Best ${meta.label} in ${city.name} (${year})`,
       `${meta.label} in ${city.name}`,
     ]),
+    // Mirrors what people actually search ("solo dining X", "going out alone in X",
+    // "cafes to meet people in X"); other categories keep the generic line.
     description:
-      count === 1
+      categoryIntent(activeCategory, city.name, count) ??
+      (count === 1
         ? `The best ${meta.label.toLowerCase()} in ${city.name} for solo travelers — a hand-picked spot where you'll feel comfortable on your own and can meet other travellers.`
-        : `The ${count} best ${meta.label.toLowerCase()} in ${city.name} for solo travelers — hand-picked spots where you'll feel comfortable on your own and can meet other travellers.`,
+        : `The ${count} best ${meta.label.toLowerCase()} in ${city.name} for solo travelers — hand-picked spots where you'll feel comfortable on your own and can meet other travellers.`),
     alternates: {
       canonical: `${BASE}/destinations/${slug}/${categorySlug}`,
     },

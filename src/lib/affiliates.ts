@@ -144,6 +144,12 @@ const VISITOR_COUNTRY_PROGRAM: Record<string, string> = {
   HR: "centralEasternEurope", SI: "centralEasternEurope", EE: "centralEasternEurope",
   LV: "centralEasternEurope", LT: "centralEasternEurope", RS: "centralEasternEurope",
   UA: "centralEasternEurope",
+  // Not joined yet — Search Console (Sep 2026) shows Netherlands, Germany and Switzerland among
+  // our biggest audiences, so these are worth applying for on CJ. Inactive until added to programs.
+  NL: "benelux", BE: "benelux", LU: "benelux",
+  DE: "dach", AT: "dach", CH: "dach", LI: "dach",
+  FR: "france",
+  IT: "italy",
 };
 
 /** The joined program to use for a visitor (never null — falls back to the default). */

@@ -1,14 +1,14 @@
 /**
- * Google shows roughly the first 55–60 characters of a <title>. The root layout appends
- * " | SouloSpotter" (15 chars), so long page titles get truncated in results and lose the
- * part that sells the click. Pass candidates from most to least descriptive; we return the
- * first that fits once the brand suffix is added, or the shortest if none do.
+ * Google shows roughly the first 55–60 characters of a <title> and cuts the END. The root
+ * layout appends " | SouloSpotter", so what matters is that the meaningful part (before the
+ * brand) fits — the brand is allowed to be the bit that gets truncated. Pass candidates from
+ * most to least descriptive; we return the first whose own text is <= MAX_VISIBLE chars, or
+ * the shortest if none fit.
  */
-const BRAND_SUFFIX_LENGTH = " | SouloSpotter".length;
-const MAX_TOTAL = 64;
+const MAX_VISIBLE = 60;
 
 export function pickTitle(candidates: string[]): string {
-  const fit = candidates.find((c) => c.length + BRAND_SUFFIX_LENGTH <= MAX_TOTAL);
+  const fit = candidates.find((c) => c.length <= MAX_VISIBLE);
   return fit ?? candidates[candidates.length - 1];
 }
 

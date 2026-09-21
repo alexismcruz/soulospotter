@@ -13,6 +13,7 @@ import { SLUG_TO_CATEGORY, CATEGORY_SLUGS, CATEGORY_META } from "@/lib/categoryU
 import JsonLd from "@/components/seo/JsonLd";
 import { spotSchema, breadcrumbSchema } from "@/lib/jsonld";
 import { pickTitle, nameHasCity } from "@/lib/seoTitle";
+import { spotMetaDescription, aloneSentence } from "@/lib/seoText";
 
 const BASE = "https://soulospotter.com";
 
@@ -25,6 +26,13 @@ const PRICE_LABELS: Record<PriceRange, string> = {
   BUDGET: "$",
   MID:    "$$",
   HIGH:   "$$$",
+};
+
+const PRICE_TEXT: Record<PriceRange, string> = {
+  FREE:   "Free to visit",
+  BUDGET: "Budget-friendly ($)",
+  MID:    "Mid-range ($$)",
+  HIGH:   "Higher-end ($$$)",
 };
 
 const AFFILIATE_LABELS: Partial<Record<AffiliateProvider, string>> = {
@@ -71,12 +79,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const spot = await getSpot(slug, spotSlug);
   if (!spot) return { title: "Page not found" };
   const catMeta = CATEGORY_META[spot.category];
-  // Trim the real description at a word boundary (~155 chars) so the SERP snippet
-  // never cuts mid-word.
-  const cleanDesc =
-    spot.description && spot.description.length > 155
-      ? spot.description.slice(0, 155).replace(/\s+\S*$/, "") + "…"
-      : spot.description;
+  // Snippet = the spot's own first sentence + a hook built from its real solo flags
+  // (comfortable alone / good for meeting people), kept under ~158 chars.
+  const cleanDesc = spotMetaDescription({
+    description: spot.description,
+    category: spot.category,
+    comfortableAlone: spot.comfortableAlone,
+    meetPeople: spot.meetPeople,
+  });
   // Don't repeat the city when the spot's name already has it ("Sairee Night Market Koh Tao"),
   // and fall back to shorter forms so the title isn't truncated in search results.
   const inCity = nameHasCity(spot.name, spot.city.name) ? "" : ` in ${spot.city.name}`;
@@ -254,10 +264,26 @@ export default async function SpotPage({ params }: Props) {
                 </div>
               )}
 
-              {/* Solo-friendly badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-soulo-teal/20 text-soulo-teal font-semibold text-sm">
-                ✓ Solo-friendly spot
-              </div>
+              {/* Why it works for solo travelers — real flags from the spot record. (This used to
+                  be a hard-coded "Solo-friendly spot" badge shown on every spot, flagged or not.) */}
+              {(spot.comfortableAlone || spot.meetPeople || spot.priceRange) && (
+                <section className="rounded-2xl border border-soulo-teal/30 bg-soulo-teal/5 p-5 mt-2">
+                  <h2 className="font-display text-lg font-bold text-soulo-dark mb-3">Why it works for solo travelers</h2>
+                  <ul className="space-y-2 text-sm text-soulo-grey leading-relaxed">
+                    {spot.comfortableAlone && <li>✓ {aloneSentence(spot.category)}</li>}
+                    {spot.meetPeople && <li>✓ Good for meeting other travelers and locals.</li>}
+                    {spot.priceRange && <li>✓ {PRICE_TEXT[spot.priceRange]}.</li>}
+                  </ul>
+                  <p className="mt-4 text-sm flex flex-wrap gap-x-5 gap-y-1 font-semibold">
+                    <Link href={`/destinations/${citySlug}/${categorySlug}`} className="text-soulo-gold hover:underline">
+                      More solo-friendly {catMeta.label.toLowerCase()} in {spot.city.name} →
+                    </Link>
+                    <Link href={`/destinations/${citySlug}`} className="text-soulo-gold hover:underline">
+                      {spot.city.name} solo travel guide →
+                    </Link>
+                  </p>
+                </section>
+              )}
             </article>
 
             {/* Right — sidebar */}
