@@ -1,25 +1,19 @@
 import Link from "next/link";
-import { gygCityToursUrl, bookingStaysUrl } from "@/lib/affiliates";
+import { gygCityToursUrl, bookingStaysPath } from "@/lib/affiliates";
 
 type Props = {
   citySlug?: string;
   /** Needed for the "Where to stay" (Booking.com) link; omit to hide it. */
   cityName?: string;
-  countryName?: string;
-  countryCode?: string;
-  region?: string;
 };
 
-export default function TripResources({ citySlug, cityName, countryName, countryCode, region }: Props) {
+export default function TripResources({ citySlug, cityName }: Props) {
   const cityTours = citySlug ? gygCityToursUrl(citySlug) : null;
   const toursHref = cityTours ?? "/resources/tours";
   const isExternalLink = toursHref.startsWith("http");
 
-  // Null when Booking.com has no CJ program for this region yet -> button hidden.
-  const staysHref =
-    citySlug && cityName && countryName && countryCode && region
-      ? bookingStaysUrl({ citySlug, cityName, countryName, countryCode, region })
-      : null;
+  // Internal redirect route: picks the Booking.com program for the visitor's country.
+  const staysHref = citySlug && cityName ? bookingStaysPath(citySlug) : null;
 
   const RESOURCES = [
     ...(staysHref

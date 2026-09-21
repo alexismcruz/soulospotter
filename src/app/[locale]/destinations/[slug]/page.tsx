@@ -138,13 +138,7 @@ export default async function CityPage({ params }: Props) {
             </Link>
           )}
           <CityStats city={city} />
-          <TripResources
-            citySlug={slug}
-            cityName={city.name}
-            countryName={city.country.name}
-            countryCode={city.country.code}
-            region={city.region}
-          />
+          <TripResources citySlug={slug} cityName={city.name} />
           <CityExperiences
             cityName={city.name}
             citySlug={slug}

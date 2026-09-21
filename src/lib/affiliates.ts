@@ -73,21 +73,34 @@ export const AFFILIATES = {
   },
   booking: {
     name: "Booking.com",
-    // Booking.com runs REGIONAL CJ programs (APAC, Australia, LATAM, North America — no
-    // Europe/EMEA seen yet). We use each program's deep-link-enabled "Evergreen Link"
-    // (CJ link ID below) and pass the destination via `?url=`; `sid` carries the city slug
-    // so CJ reports show per-city performance. Only regions listed in `programs` get a
-    // button — add a region here (with its Evergreen link ID) to switch it on.
+    // Booking.com runs REGIONAL CJ programs, and CJ's own guidance is to use the program
+    // that matches where the AUDIENCE is located — "where traffic originates, not travel
+    // destinations". So we pick the program from the VISITOR's country at click time
+    // (src/app/api/stays/[slug]/route.ts reads Vercel's x-vercel-ip-country header), and the
+    // hotel search target is the city being viewed — any city, worldwide.
+    //
+    // Each program has a deep-link-enabled "Evergreen Link" (CJ link ID). `sid` carries the
+    // city slug so CJ reports show per-city performance. Booking is session-based (a booking
+    // must complete in the same browser session as the click) and forbids voucher/discount
+    // promotions — never advertise "X% off Booking.com" deals.
+    //
+    // APPROVED + wired (Booking aid): apac 8133105, northAmerica 8133101, latam 8133104,
+    // australia 8133102. APPLIED, pending (2026-09-21): unitedKingdom (CJ 4297311),
+    // spainPortugal (4347393), nordics (5095558), centralEasternEurope (5096493) — when
+    // approved, add each program's Evergreen link ID below and visitors from those markets
+    // switch over automatically (see VISITOR_COUNTRY_PROGRAM).
     status: "live" as AffiliateStatus,
     cjPid: "101773002",
-    // Each program has its own Booking affiliate id (aid): APAC 8133105, North America
-    // 8133101, LATAM 8133104, Australia 8133102. Evergreen links are untargeted (work for
-    // any visitor country). We map by DESTINATION region — see bookingProgramFor().
+    fallbackProgram: "northAmerica",
     programs: {
-      apac:      { advertiserId: "7854081", evergreenLinkId: "17293139" },
+      apac:         { advertiserId: "7854081", evergreenLinkId: "17293139" },
       northAmerica: { advertiserId: "7864295", evergreenLinkId: "17293132" },
-      latam:     { advertiserId: "7864342", evergreenLinkId: "17293137" },
-      australia: { advertiserId: "7864353", evergreenLinkId: "17293136" },
+      latam:        { advertiserId: "7864342", evergreenLinkId: "17293137" },
+      australia:    { advertiserId: "7864353", evergreenLinkId: "17293136" },
+      // unitedKingdom:        { advertiserId: "4297311", evergreenLinkId: "TODO" },
+      // spainPortugal:        { advertiserId: "4347393", evergreenLinkId: "TODO" },
+      // nordics:              { advertiserId: "5095558", evergreenLinkId: "TODO" },
+      // centralEasternEurope: { advertiserId: "5096493", evergreenLinkId: "TODO" },
     } as Record<string, { advertiserId: string; evergreenLinkId: string }>,
   },
 } as const;
@@ -105,33 +118,52 @@ export function safetyWingUrl(): string {
 }
 
 /**
- * Which Booking.com CJ program covers a destination, or null if we don't have one yet
- * (then no button is shown — never fall back to an untracked booking.com link).
- * Mapped by destination: APAC = Asia + Oceania except Australia; Australia has its own;
- * North America and LATAM by region. No program yet (=> null): Europe, Africa, Caribbean.
+ * VISITOR country (ISO alpha-2) -> Booking.com CJ program that matches that audience.
+ * Includes programs we haven't joined yet; a program only takes effect once it has an
+ * entry in AFFILIATES.booking.programs — until then that market uses the fallback program.
  */
-function bookingProgramFor(region: string, countryCode: string): string | null {
-  if (region === "ASIA") return "apac";
-  if (region === "OCEANIA") return countryCode === "AU" ? "australia" : "apac";
-  if (region === "NORTH_AMERICA") return "northAmerica";
-  if (region === "LATIN_AMERICA") return "latam";
-  return null;
+const VISITOR_COUNTRY_PROGRAM: Record<string, string> = {
+  // North America
+  US: "northAmerica", CA: "northAmerica", PR: "northAmerica",
+  // Australia (own program); NZ and the rest of Asia-Pacific use APAC
+  AU: "australia",
+  NZ: "apac", PH: "apac", SG: "apac", MY: "apac", ID: "apac", TH: "apac", VN: "apac", IN: "apac",
+  JP: "apac", KR: "apac", HK: "apac", TW: "apac", CN: "apac", LK: "apac", BD: "apac", PK: "apac",
+  NP: "apac", KH: "apac", MM: "apac", LA: "apac", MO: "apac", FJ: "apac", MN: "apac", BN: "apac",
+  // Latin America
+  MX: "latam", CO: "latam", PE: "latam", CL: "latam", AR: "latam", UY: "latam", PY: "latam",
+  BO: "latam", EC: "latam", VE: "latam", CR: "latam", PA: "latam", GT: "latam", HN: "latam",
+  SV: "latam", NI: "latam", DO: "latam", CU: "latam",
+  BR: "brazil", // separate Booking program (not joined)
+  // Europe (programs applied for / not yet joined)
+  GB: "unitedKingdom",
+  ES: "spainPortugal", PT: "spainPortugal",
+  SE: "nordics", NO: "nordics", DK: "nordics", FI: "nordics", IS: "nordics",
+  PL: "centralEasternEurope", CZ: "centralEasternEurope", SK: "centralEasternEurope",
+  HU: "centralEasternEurope", RO: "centralEasternEurope", BG: "centralEasternEurope",
+  HR: "centralEasternEurope", SI: "centralEasternEurope", EE: "centralEasternEurope",
+  LV: "centralEasternEurope", LT: "centralEasternEurope", RS: "centralEasternEurope",
+  UA: "centralEasternEurope",
+};
+
+/** The joined program to use for a visitor (never null — falls back to the default). */
+function bookingProgramForVisitor(visitorCountry: string | null | undefined): string {
+  const key = visitorCountry ? VISITOR_COUNTRY_PROGRAM[visitorCountry.toUpperCase()] : undefined;
+  return key && AFFILIATES.booking.programs[key] ? key : AFFILIATES.booking.fallbackProgram;
 }
 
 /**
- * Tracked Booking.com hotel-search link for a city, via the right regional CJ program.
- * Returns null when there's no program for that region.
+ * Tracked Booking.com hotel-search link for a city, via the regional CJ program matching
+ * the VISITOR's country (audience), not the city's location. Called from the redirect
+ * route at click time so it works on statically cached pages.
  */
 export function bookingStaysUrl(opts: {
   cityName: string;
   countryName: string;
   citySlug: string;
-  region: string;
-  countryCode: string;
-}): string | null {
-  const key = bookingProgramFor(opts.region, opts.countryCode);
-  const program = key ? AFFILIATES.booking.programs[key] : undefined;
-  if (!program) return null;
+  visitorCountry?: string | null;
+}): string {
+  const program = AFFILIATES.booking.programs[bookingProgramForVisitor(opts.visitorCountry)];
   const target = `https://www.booking.com/searchresults.html?ss=${encodeURIComponent(
     `${opts.cityName}, ${opts.countryName}`,
   )}`;
@@ -139,6 +171,11 @@ export function bookingStaysUrl(opts: {
     `https://www.jdoqocy.com/click-${AFFILIATES.booking.cjPid}-${program.evergreenLinkId}` +
     `?sid=${encodeURIComponent(opts.citySlug)}&url=${encodeURIComponent(target)}`
   );
+}
+
+/** Internal, on-site link that redirects to the right tracked Booking link (see route). */
+export function bookingStaysPath(citySlug: string): string {
+  return `/api/stays/${encodeURIComponent(citySlug)}`;
 }
 
 /**
