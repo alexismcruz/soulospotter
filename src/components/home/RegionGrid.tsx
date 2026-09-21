@@ -35,7 +35,7 @@ export default function RegionGrid({ regionCounts }: Props) {
               <Link
                 key={meta.region}
                 href={`/regions/${meta.slug}`}
-                className="group relative rounded-2xl overflow-hidden aspect-[4/3] sm:aspect-[3/2] border border-soulo-border hover:border-soulo-gold transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+                className="group relative rounded-2xl overflow-hidden bg-stone-300 aspect-[4/3] sm:aspect-[3/2] border border-soulo-border hover:border-soulo-gold transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
               >
                 {/* Background photo */}
                 <img

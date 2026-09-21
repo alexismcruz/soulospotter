@@ -61,7 +61,7 @@ export default function FeaturedCities({ cities }: Props) {
                 className="group rounded-2xl overflow-hidden border border-soulo-border hover:shadow-lg hover:border-soulo-gold transition-all duration-200 hover:-translate-y-1 bg-white"
               >
                 {/* Image */}
-                <div className="relative h-44 overflow-hidden">
+                <div className="relative h-44 overflow-hidden bg-soulo-linen">
                   <img
                     src={imgSrc}
                     alt={city.name}

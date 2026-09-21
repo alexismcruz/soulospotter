@@ -49,7 +49,7 @@ export default function CityHero({
   const imgSrc = city.imageUrl ?? CITY_IMAGE_LG[city.slug] ?? FALLBACK_IMAGE;
 
   return (
-    <div className="relative h-80 sm:h-[26rem] overflow-hidden">
+    <div className="relative h-80 sm:h-[26rem] overflow-hidden bg-soulo-slate">
       <Image
         src={imgSrc}
         alt={`${city.name}, ${city.country.name} — solo travel guide`}

@@ -31,7 +31,8 @@ type City = {
   _count: { spots: number };
 };
 
-export default function CityCard({ city }: { city: City }) {
+/** `priority` eager-loads the photo — pass it for the first row of a list (above the fold). */
+export default function CityCard({ city, priority = false }: { city: City; priority?: boolean }) {
   // DB imageUrl takes priority, then hardcoded map, then fallback
   const imgSrc = city.imageUrl ?? CITY_IMAGES[city.slug] ?? FALLBACK_IMAGE;
   const cost = city.costLevel ? COST_BADGE[city.costLevel] : null;
@@ -42,11 +43,13 @@ export default function CityCard({ city }: { city: City }) {
       href={`/destinations/${city.slug}`}
       className="group rounded-2xl overflow-hidden border border-soulo-border bg-white hover:shadow-lg hover:border-soulo-gold transition-all duration-200 hover:-translate-y-1 flex flex-col"
     >
-      <div className="relative h-44 overflow-hidden">
+      {/* bg-soulo-linen = placeholder while the photo loads, so a card is never a blank white box */}
+      <div className="relative h-44 overflow-hidden bg-soulo-linen">
         <Image
           src={imgSrc}
           alt={`Solo travel in ${city.name}, ${city.country.name}`}
           fill
+          priority={priority}
           className="object-cover group-hover:scale-105 transition-transform duration-300"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
         />

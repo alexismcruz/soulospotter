@@ -257,7 +257,7 @@ export default function DestinationsClient({
       {filtered.length > 0 && (
         <>
           <div className="space-y-10">
-            {pageGroups.map((group) => (
+            {pageGroups.map((group, gi) => (
               <div key={group.country}>
                 <div className="flex items-center gap-2.5 mb-5 pb-2 border-b border-soulo-border">
                   <span className="text-xl">{group.flag}</span>
@@ -267,8 +267,13 @@ export default function DestinationsClient({
                   </span>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-                  {group.cities.map((city) => (
-                    <CityCard key={city.id} city={city} />
+                  {group.cities.map((city, i) => (
+                    <CityCard
+                      key={city.id}
+                      city={city}
+                      // First four cards on the page (across country groups) load eagerly
+                      priority={pageGroups.slice(0, gi).reduce((n, g) => n + g.cities.length, 0) + i < 4}
+                    />
                   ))}
                 </div>
               </div>
