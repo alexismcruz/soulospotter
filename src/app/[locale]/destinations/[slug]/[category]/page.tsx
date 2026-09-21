@@ -13,6 +13,7 @@ import TripResources from "@/components/city/TripResources";
 import { SLUG_TO_CATEGORY, CATEGORY_SLUGS, CATEGORY_META } from "@/lib/categoryUtils";
 import JsonLd from "@/components/seo/JsonLd";
 import { breadcrumbSchema, itemListSchema } from "@/lib/jsonld";
+import { pickTitle } from "@/lib/seoTitle";
 
 const BASE = "https://soulospotter.com";
 
@@ -65,8 +66,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const meta = CATEGORY_META[activeCategory];
   const count = city.spots.filter((s) => s.category === activeCategory).length;
 
+  const year = new Date().getFullYear();
   return {
-    title: `Best ${meta.label} in ${city.name} for Solo Travelers`,
+    // Year signals freshness (a known CTR lift); shorter fallbacks avoid truncation.
+    title: pickTitle([
+      `Best ${meta.label} in ${city.name} for Solo Travelers (${year})`,
+      `Best ${meta.label} in ${city.name} for Solo Travelers`,
+      `Best ${meta.label} in ${city.name} (${year})`,
+      `${meta.label} in ${city.name}`,
+    ]),
     description:
       count === 1
         ? `The best ${meta.label.toLowerCase()} in ${city.name} for solo travelers — a hand-picked spot where you'll feel comfortable on your own and can meet other travellers.`
@@ -77,6 +85,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: `${meta.emoji} ${meta.label} in ${city.name} | SouloSpotter`,
       description: `${count} solo-travel-friendly ${meta.label.toLowerCase()} in ${city.name}.`,
+      // Category pages had no social/preview image at all — use the city photo.
+      ...(city.imageUrl ? { images: [{ url: city.imageUrl, alt: `${meta.label} in ${city.name}` }] } : {}),
     },
   };
 }
@@ -123,7 +133,7 @@ export default async function CityCategoryPage({ params }: Props) {
         <CityHero city={city} activeCategory={activeCategory} />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <CityStats city={city} />
-          <TripResources />
+          <TripResources citySlug={slug} cityName={city.name} />
           <SpotList
             spots={filteredSpots}
             allSpots={city.spots}

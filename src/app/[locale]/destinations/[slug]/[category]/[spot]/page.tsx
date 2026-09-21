@@ -12,6 +12,7 @@ import TripResources from "@/components/city/TripResources";
 import { SLUG_TO_CATEGORY, CATEGORY_SLUGS, CATEGORY_META } from "@/lib/categoryUtils";
 import JsonLd from "@/components/seo/JsonLd";
 import { spotSchema, breadcrumbSchema } from "@/lib/jsonld";
+import { pickTitle, nameHasCity } from "@/lib/seoTitle";
 
 const BASE = "https://soulospotter.com";
 
@@ -76,8 +77,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     spot.description && spot.description.length > 155
       ? spot.description.slice(0, 155).replace(/\s+\S*$/, "") + "…"
       : spot.description;
+  // Don't repeat the city when the spot's name already has it ("Sairee Night Market Koh Tao"),
+  // and fall back to shorter forms so the title isn't truncated in search results.
+  const inCity = nameHasCity(spot.name, spot.city.name) ? "" : ` in ${spot.city.name}`;
   return {
-    title: `${spot.name} — ${spot.city.name} ${catMeta.label} for Solo Travelers`,
+    title: pickTitle([
+      `${spot.name}${inCity} — ${catMeta.label} for Solo Travelers`,
+      `${spot.name}${inCity} — Solo Travel Guide`,
+      `${spot.name}${inCity}`,
+    ]),
     description:
       cleanDesc ??
       `${spot.name} — a solo-travel-friendly ${catMeta.label.toLowerCase()} in ${spot.city.name}, hand-picked by SouloSpotter for people travelling alone.`,
@@ -350,7 +358,7 @@ export default async function SpotPage({ params }: Props) {
             <h2 className="font-display text-xl font-bold text-soulo-dark mb-6 text-center">
               Planning your trip to {spot.city.name}?
             </h2>
-            <TripResources />
+            <TripResources citySlug={citySlug} cityName={spot.city.name} />
           </div>
         </div>
 
