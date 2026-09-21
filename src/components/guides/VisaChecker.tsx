@@ -20,11 +20,16 @@ type Props = {
 };
 
 export default function VisaChecker({
-  destinations,
+  destinations: allDestinations,
   presetDestinationSlug,
   triggerLabel = "🛂 Check my visa requirement",
   triggerClassName,
 }: Props) {
+  // Only offer destinations we actually have visa notes for. Picking any other
+  // country would just dead-end into "no notes yet" and send the visitor off-site,
+  // which is worse than not offering it. The list grows as VISA_NOTES does.
+  const destinations = allDestinations.filter((d) => getVisaNotes(d.slug));
+
   const [open, setOpen] = useState(false);
   const [residentOf, setResidentOf] = useState("");
   const [citizenOf, setCitizenOf] = useState("");
@@ -100,6 +105,9 @@ export default function VisaChecker({
     setOpen(false);
     setResult(null);
   }
+
+  // Nothing useful to offer yet -> don't show a checker at all.
+  if (destinations.length === 0) return null;
 
   return (
     <>
@@ -181,6 +189,9 @@ export default function VisaChecker({
                       <option key={d.slug} value={d.slug}>{d.flag} {d.name}</option>
                     ))}
                   </select>
+                  <p className="text-xs text-soulo-mist mt-1">
+                    {destinations.length} countries with verified visa notes so far — more added regularly.
+                  </p>
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-4">
