@@ -22,6 +22,10 @@ export type VisaCase = {
    * "everyone else" row.
    */
   matchCodes?: string[];
+  /** Very short label for the at-a-glance table, e.g. "Visa-free · 90 days". */
+  short?: string;
+  /** Colour/meaning of that label in the table. */
+  tone?: "free" | "auth" | "visa" | "varies";
 };
 
 export type VisaInfo = {
@@ -93,6 +97,8 @@ export const COUNTRY_GUIDES: Record<string, CountryGuide> = {
         {
           flags: "🇺🇸🇬🇧🇪🇺🇦🇺🇨🇦",
           who: "US, UK, EU/Schengen, Australia, Canada",
+          short: "Visa-free · 30–60 days",
+          tone: "free",
           rule: "Visa-free entry for tourism (commonly up to 30–60 days depending on current policy). Confirm your exact allowance before booking.",
           matchCodes: [
             "US", "GB", "AU", "CA",
@@ -104,12 +110,16 @@ export const COUNTRY_GUIDES: Record<string, CountryGuide> = {
         {
           flags: "🇮🇳🇨🇳",
           who: "India, China",
+          short: "Visa on arrival / eVisa",
+          tone: "auth",
           rule: "Visa on arrival or e-Visa is typically available for short tourist stays. Check current eligibility and apply online where required.",
           matchCodes: ["IN", "CN"],
         },
         {
           flags: "🌍",
           who: "Other nationalities",
+          short: "Varies by passport",
+          tone: "varies",
           rule: "Requirements vary widely — some need a visa arranged in advance. Check the official e-Visa portal for your passport.",
           // No matchCodes — this is the catch-all row.
         },
@@ -161,18 +171,24 @@ export const VISA_NOTES: Record<string, VisaInfo> = {
       {
         flags: "🇪🇺",
         who: "EU / Schengen area citizens",
+        short: "No visa needed",
+        tone: "free",
         rule: "No visa needed at all — freedom of movement within the Schengen area covers entry, residence, and work.",
         matchCodes: EU_SCHENGEN_CODES,
       },
       {
         flags: "🇺🇸🇬🇧🇨🇦🇦🇺🇳🇿",
         who: "US, UK, Canada, Australia, New Zealand, and other visa-exempt nationalities",
+        short: "Visa-free · 90 days",
+        tone: "free",
         rule: "Visa-free entry for tourism or business, for stays of up to 90 days within any 180-day period. Visa-exempt travellers may additionally need to register for ETIAS before flying — its enforcement date has been postponed multiple times, so check europa.eu/etias for the current status.",
         matchCodes: ["US", "GB", "CA", "AU", "NZ", "JP", "KR", "SG"],
       },
       {
         flags: "🌍",
         who: "Other nationalities",
+        short: "Schengen visa required",
+        tone: "visa",
         rule: "A Schengen visa is typically required in advance for stays up to 90 days; longer stays (work, study, relocation) need a residence visa. Apply well before travelling — processing commonly takes 2–3 weeks.",
         // No matchCodes — this is the catch-all row.
       },
@@ -188,6 +204,8 @@ export const VISA_NOTES: Record<string, VisaInfo> = {
       {
         flags: "🇺🇸🇬🇧🇪🇺🇨🇦🇦🇺",
         who: "US, UK, EU/Schengen, Canada, Australia, New Zealand, Japan, South Korea, and most of Latin America",
+        short: "Visa-free · up to 180 days",
+        tone: "free",
         rule: "Visa-free entry for tourism, business, study, or medical purposes for up to 180 days. On arrival you'll get a tourist permit (FMM) — keep it, since you'll need to hand it back when you leave.",
         matchCodes: [
           "US", "GB", "CA", "AU", "NZ", "JP", "KR", "SG", "HK",
@@ -198,6 +216,8 @@ export const VISA_NOTES: Record<string, VisaInfo> = {
       {
         flags: "🌍",
         who: "Other nationalities",
+        short: "Visa required",
+        tone: "visa",
         rule: "A visa is normally required in advance — but if you already hold a valid multiple-entry visa or permanent residence card from the US, UK, Canada, a Schengen country, or Japan, you can usually enter Mexico visa-free instead (a 'substitute visa'). Check both options for your passport.",
         // No matchCodes — this is the catch-all row.
       },
@@ -213,6 +233,8 @@ export const VISA_NOTES: Record<string, VisaInfo> = {
       {
         flags: "🇺🇸🇬🇧🇪🇺🇨🇦🇦🇺",
         who: "US, UK, EU/Schengen, Canada, Australia, New Zealand, Japan, South Korea, and most of Latin America",
+        short: "Visa-free · 90 days",
+        tone: "free",
         rule: "Visa-free entry for up to 90 days, extendable to a total of 180 days within a calendar year. Canadian citizens pay a small entry fee (around CAD$85) on arrival — everyone else pays nothing.",
         matchCodes: [
           "US", "GB", "CA", "AU", "NZ", "JP", "KR", "SG", "HK",
@@ -224,6 +246,8 @@ export const VISA_NOTES: Record<string, VisaInfo> = {
       {
         flags: "🌍",
         who: "Other nationalities",
+        short: "Visa required",
+        tone: "visa",
         rule: "A visa is typically required in advance. Check the requirement for your specific passport with Migración Colombia or your nearest Colombian consulate before booking.",
         // No matchCodes — this is the catch-all row.
       },
@@ -239,12 +263,16 @@ export const VISA_NOTES: Record<string, VisaInfo> = {
       {
         flags: "🇨🇦",
         who: "Canada",
+        short: "Visa-free · no ESTA",
+        tone: "free",
         rule: "Visa-free entry with just a valid passport — Canada has its own long-standing arrangement with the US and doesn't use ESTA or the Visa Waiver Program.",
         matchCodes: ["CA"],
       },
       {
         flags: "🇬🇧🇪🇺🇦🇺🇯🇵🇰🇷",
         who: "UK, most of the EU, Australia, New Zealand, Japan, South Korea, Singapore, Chile, Israel, and Taiwan (Visa Waiver Program)",
+        short: "Visa-free · 90 days + ESTA",
+        tone: "auth",
         rule: "Visa-free entry for tourism or business for up to 90 days — but you must apply for ESTA (Electronic System for Travel Authorization) online before you fly, ideally at least 72 hours ahead. ESTA is not a visa, but you cannot board without an approved one.",
         matchCodes: [
           ...EU_SCHENGEN_CODES.filter((c) => !["BG", "CY", "RO"].includes(c)),
@@ -254,6 +282,8 @@ export const VISA_NOTES: Record<string, VisaInfo> = {
       {
         flags: "🌍",
         who: "Other nationalities (including Bulgaria, Cyprus, and Romania)",
+        short: "Visa required",
+        tone: "visa",
         rule: "A B-2 visitor visa is required in advance — this includes several EU nationalities not covered by the Visa Waiver Program. Apply well ahead, as interview wait times vary widely by consulate and can run into weeks or months.",
         // No matchCodes — this is the catch-all row.
       },
@@ -269,6 +299,8 @@ export const VISA_NOTES: Record<string, VisaInfo> = {
       {
         flags: "🇪🇺🇬🇧🇯🇵",
         who: "EU/Schengen, UK, Japan, and most of Latin America",
+        short: "Visa-free · 90 days",
+        tone: "free",
         rule: "Visa-free entry for tourism or business for up to 90 days.",
         matchCodes: [
           ...EU_SCHENGEN_CODES,
@@ -280,12 +312,16 @@ export const VISA_NOTES: Record<string, VisaInfo> = {
       {
         flags: "🇺🇸🇨🇦🇦🇺",
         who: "US, Canada, Australia",
+        short: "Check current rule",
+        tone: "varies",
         rule: "This is Brazil's most changeable visa rule for our audience — it has required an eVisa in the past, and a legislative proposal to restore unilateral visa-free entry for these three nationalities has been under consideration. Confirm the current requirement directly with the Brazilian Ministry of Foreign Affairs or your nearest Brazilian consulate before booking; don't rely on older advice you may have seen elsewhere.",
         matchCodes: ["US", "CA", "AU"],
       },
       {
         flags: "🌍",
         who: "Other nationalities",
+        short: "Visa / eVisa required",
+        tone: "visa",
         rule: "A visa or eVisa is typically required in advance. Check the requirement for your specific passport with the Brazilian Ministry of Foreign Affairs or your nearest consulate.",
         // No matchCodes — this is the catch-all row.
       },
@@ -301,6 +337,8 @@ export const VISA_NOTES: Record<string, VisaInfo> = {
       {
         flags: "🇺🇸🇬🇧🇪🇺🇨🇦🇦🇺",
         who: "US, UK, EU/Schengen, Canada, Australia, New Zealand, Japan, South Korea, and most of Latin America",
+        short: "Visa-free · 90 days",
+        tone: "free",
         rule: "Visa-free entry for tourism or business for up to 90 days, extendable up to twice for a further 30 or 90 days at a time.",
         matchCodes: [
           "US", "GB", "CA", "AU", "NZ", "JP", "KR", "SG", "HK", "ZA", "IL", "AE",
@@ -312,6 +350,8 @@ export const VISA_NOTES: Record<string, VisaInfo> = {
       {
         flags: "🌍",
         who: "Other nationalities",
+        short: "Visa required",
+        tone: "visa",
         rule: "A visa is typically required in advance. Check the requirement for your specific passport with the Dirección Nacional de Migraciones or your nearest Argentine consulate.",
         // No matchCodes — this is the catch-all row.
       },
@@ -327,6 +367,8 @@ export const VISA_NOTES: Record<string, VisaInfo> = {
       {
         flags: "🇺🇸🇬🇧🇪🇺🇨🇦🇦🇺",
         who: "US, UK, EU/Schengen, Canada, Australia, New Zealand, Japan, South Korea, and most of Latin America",
+        short: "Visa-free · 90 days",
+        tone: "free",
         rule: "Visa-free entry for tourism or business for up to 90 days.",
         matchCodes: [
           "US", "GB", "CA", "AU", "NZ", "JP", "KR", "TW", "IL", "AE", "ZA",
@@ -338,6 +380,8 @@ export const VISA_NOTES: Record<string, VisaInfo> = {
       {
         flags: "🌍",
         who: "Other nationalities",
+        short: "Visa required",
+        tone: "visa",
         rule: "A visa is typically required in advance. Chinese citizens holding a valid US or Canadian visa may qualify for a substitute-visa entry — check current eligibility. Everyone else should confirm the requirement with the Servicio Nacional de Migraciones or their nearest Chilean consulate.",
         // No matchCodes — this is the catch-all row.
       },
@@ -353,6 +397,8 @@ export const VISA_NOTES: Record<string, VisaInfo> = {
       {
         flags: "🇺🇸🇬🇧🇪🇺🇨🇦🇦🇺",
         who: "US, UK, EU/Schengen, Canada, Australia, New Zealand, Japan, South Korea, and most of Latin America",
+        short: "Visa-free · 90 days",
+        tone: "free",
         rule: "Visa-free entry for tourism or business for up to 90 days, extendable to a total of 180 days.",
         matchCodes: [
           "US", "GB", "CA", "AU", "NZ", "JP", "KR", "SG", "TW", "HK", "IL", "AE", "ZA",
@@ -364,6 +410,8 @@ export const VISA_NOTES: Record<string, VisaInfo> = {
       {
         flags: "🌍",
         who: "Other nationalities",
+        short: "Visa required",
+        tone: "visa",
         rule: "A visa is typically required in advance. Check the requirement for your specific passport with the Superintendencia Nacional de Migraciones or your nearest Peruvian consulate.",
         // No matchCodes — this is the catch-all row.
       },
@@ -379,18 +427,24 @@ export const VISA_NOTES: Record<string, VisaInfo> = {
       {
         flags: "🇺🇸🇬🇧🇪🇺🇨🇦🇦🇺",
         who: "US, UK, EU/Schengen, Canada, Australia, New Zealand, Japan, South Korea",
+        short: "Visa-free · 180 days",
+        tone: "free",
         rule: "Visa-free entry for up to 180 days — one of the longest allowances in the region. Your passport must be valid on arrival.",
         matchCodes: ["US", "GB", "CA", "AU", "NZ", "JP", "KR", "SG", "IL", "AE", "ZA", ...EU_SCHENGEN_CODES],
       },
       {
         flags: "🌎",
         who: "Argentina, Brazil, Chile, Mexico, Panama, Paraguay, Peru, Uruguay, and other Latin American nationalities",
+        short: "Visa-free · 30–180 days",
+        tone: "free",
         rule: "Visa-free entry, typically for 30 or 180 days depending on nationality. Check your specific allowance before booking.",
         matchCodes: ["AR", "BR", "CL", "MX", "PA", "PY", "PE", "UY", "BO", "GT", "HN", "SV"],
       },
       {
         flags: "🌍",
         who: "Other nationalities",
+        short: "Visa required",
+        tone: "visa",
         rule: "A visa is typically required in advance. Check the requirement for your specific passport with the Dirección General de Migración y Extranjería or your nearest Costa Rican consulate.",
         // No matchCodes — this is the catch-all row.
       },
@@ -406,6 +460,8 @@ export const VISA_NOTES: Record<string, VisaInfo> = {
       {
         flags: "🇺🇸🇬🇧🇪🇺🇨🇦🇦🇺",
         who: "US, UK, EU/Schengen, Canada, Australia, and most nationalities",
+        short: "Visa-free · 90 days",
+        tone: "free",
         rule: "Visa-free entry for up to 90 days — Ecuador's default policy for most passports. Your passport must be valid for at least 6 months.",
         matchCodes: [
           "US", "GB", "CA", "AU", "NZ", "JP", "KR", "SG", "IL", "AE", "ZA",
@@ -417,12 +473,16 @@ export const VISA_NOTES: Record<string, VisaInfo> = {
       {
         flags: "🇨🇳🇮🇳🇵🇭",
         who: "China, India, Pakistan, Philippines, Vietnam, and several other nationalities",
+        short: "eVisa required",
+        tone: "auth",
         rule: "An eVisa is required and must be arranged before you travel — Ecuador is one of the more restrictive countries in the region for these specific passports.",
         matchCodes: ["CN", "IN", "PK", "PH", "VN"],
       },
       {
         flags: "🌍",
         who: "Everyone else",
+        short: "Visa-free · 90 days",
+        tone: "free",
         rule: "Most other nationalities enter visa-free by default. Confirm your specific passport's status with the Ecuadorian Ministry of Foreign Affairs before booking.",
         // No matchCodes — this is the catch-all row.
       },
@@ -438,6 +498,8 @@ export const VISA_NOTES: Record<string, VisaInfo> = {
       {
         flags: "🇺🇸🇬🇧🇪🇺🇨🇦🇦🇺",
         who: "US, UK, EU/Schengen, Canada, Australia, New Zealand, Japan, South Korea, and most of Latin America",
+        short: "Visa-free · 90 days",
+        tone: "free",
         rule: "Visa-free entry for up to 90 days, extendable for a further 90 days.",
         matchCodes: [
           "US", "GB", "CA", "AU", "NZ", "JP", "KR", "SG", "TW", "IL", "AE", "ZA",
@@ -449,6 +511,8 @@ export const VISA_NOTES: Record<string, VisaInfo> = {
       {
         flags: "🌍",
         who: "Other nationalities",
+        short: "Visa required",
+        tone: "visa",
         rule: "A visa is typically required in advance — but if you already hold a valid visa or permanent residence card from a Schengen country, Canada, Mexico, or the US, you can usually enter Guatemala visa-free instead for up to 90 days.",
         // No matchCodes — this is the catch-all row.
       },
@@ -464,12 +528,16 @@ export const VISA_NOTES: Record<string, VisaInfo> = {
       {
         flags: "🇺🇸🇨🇦",
         who: "US and Canada",
+        short: "Visa-free · 180 days",
+        tone: "free",
         rule: "Visa-free entry for up to 180 days — a longer allowance than almost anywhere else in the region.",
         matchCodes: ["US", "CA"],
       },
       {
         flags: "🇬🇧🇪🇺🇦🇺🇯🇵",
         who: "UK, EU/Schengen, Australia, New Zealand, Japan, South Korea, and most of Latin America and Asia",
+        short: "Visa-free · 90 days",
+        tone: "free",
         rule: "Visa-free entry for up to 90 days.",
         matchCodes: [
           "GB", "AU", "NZ", "JP", "KR", "SG", "TW", "IL", "AE", "ZA",
@@ -481,6 +549,8 @@ export const VISA_NOTES: Record<string, VisaInfo> = {
       {
         flags: "🌍",
         who: "Other nationalities",
+        short: "Visa required",
+        tone: "visa",
         rule: "A visa is typically required in advance. Check the requirement for your specific passport with the Servicio Nacional de Migración or your nearest Panamanian consulate.",
         // No matchCodes — this is the catch-all row.
       },
@@ -496,6 +566,8 @@ export const VISA_NOTES: Record<string, VisaInfo> = {
       {
         flags: "🇺🇸🇬🇧🇪🇺🇨🇦🇦🇺",
         who: "US, UK, EU/Schengen, Canada, Australia, New Zealand, Japan, South Korea, and most of Latin America",
+        short: "Visa-free · 90 days",
+        tone: "free",
         rule: "Visa-free entry for up to 90 days, extendable for a further 90 days.",
         matchCodes: [
           "US", "GB", "CA", "AU", "NZ", "JP", "KR", "SG", "HK", "IL", "AE", "ZA",
@@ -507,6 +579,8 @@ export const VISA_NOTES: Record<string, VisaInfo> = {
       {
         flags: "🌍",
         who: "Other nationalities",
+        short: "Visa required",
+        tone: "visa",
         rule: "A visa is typically required in advance — Chinese citizens with a valid visa from certain other countries may qualify for substitute-visa entry. Check the requirement for your specific passport with the Uruguay Ministry of Foreign Affairs.",
         // No matchCodes — this is the catch-all row.
       },

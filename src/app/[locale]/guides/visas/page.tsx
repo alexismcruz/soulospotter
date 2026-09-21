@@ -5,9 +5,14 @@ import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import JsonLd from "@/components/seo/JsonLd";
 import { breadcrumbSchema, itemListSchema, faqSchema } from "@/lib/jsonld";
-import { getCountryGuide, getVisaNotes, VISA_NOTES_SLUGS } from "@/lib/countryGuides";
+import {
+  getCountryGuide,
+  getVisaNotes,
+  VISA_NOTES_SLUGS,
+  type VisaCase,
+  type VisaInfo,
+} from "@/lib/countryGuides";
 import { visahqUrl } from "@/lib/affiliates";
-import VisaChecker from "@/components/guides/VisaChecker";
 
 export const revalidate = 86400; // ISR: refresh daily
 
@@ -16,7 +21,7 @@ const BASE = "https://soulospotter.com";
 export const metadata: Metadata = {
   title: "Do I Need a Visa? Visa Requirements for Solo Travelers",
   description:
-    "Do you need a visa to travel? Check visa-free, visa-on-arrival and e-Visa requirements by country, get answers to common visa questions, and use our free visa checker before you book.",
+    "Visa requirements at a glance for US, UK, EU, Canadian and Australian passport holders — visa-free, eVisa or visa needed — for popular solo travel destinations, with official sources and answers to common visa questions.",
   alternates: { canonical: `${BASE}/guides/visas` },
 };
 
@@ -49,38 +54,65 @@ const VISA_FAQS = [
   {
     question: "Where can I check the exact requirement for my passport?",
     answer:
-      "Use the visa checker on this page for a quick pointer, then get your exact requirement from VisaHQ (linked in every result) or the destination's official government immigration portal before you book anything. Requirements can change with little notice, so the official source is always the final word.",
+      "Use the table on this page for a quick pointer, then confirm your exact requirement on the destination's official government immigration portal (linked in every row) or through VisaHQ before you book anything. Requirements can change with little notice, so the official source is always the final word.",
   },
 ];
 
-export default async function VisaGuidesIndexPage() {
-  // All destination countries we cover — the checker's "Going to" list should
-  // span everywhere on the site, not just the countries with a written guide.
-  const allCountries = await prisma.country.findMany({
-    select: { slug: true, name: true, flagEmoji: true },
-    orderBy: { name: "asc" },
-  });
-  const countryBySlug = Object.fromEntries(allCountries.map((c) => [c.slug, c]));
+// Passports shown as columns. The EU column is represented by Germany's code:
+// every EU/Schengen row lists all member states in its matchCodes.
+const PASSPORT_COLUMNS = [
+  { code: "US", flag: "🇺🇸", label: "US" },
+  { code: "GB", flag: "🇬🇧", label: "UK" },
+  { code: "DE", flag: "🇪🇺", label: "EU" },
+  { code: "CA", flag: "🇨🇦", label: "Canada" },
+  { code: "AU", flag: "🇦🇺", label: "Australia" },
+] as const;
 
+// A passport holder visiting their own country has no visa question.
+const HOME_PASSPORT: Record<string, string> = { "united-states": "US" };
+
+type Tone = NonNullable<VisaCase["tone"]>;
+
+const TONE_CLASSES: Record<Tone, string> = {
+  free: "bg-emerald-50 text-emerald-800",
+  auth: "bg-amber-50 text-amber-800",
+  visa: "bg-rose-50 text-rose-800",
+  varies: "bg-slate-100 text-slate-700",
+};
+
+const LEGEND: { tone: Tone; label: string }[] = [
+  { tone: "free", label: "Visa-free" },
+  { tone: "auth", label: "Online authorisation / visa on arrival / eVisa" },
+  { tone: "visa", label: "Visa required in advance" },
+  { tone: "varies", label: "Varies — check the official source" },
+];
+
+/** The case explicitly listing this passport. Never falls back to the catch-all row. */
+function caseFor(visa: VisaInfo, code: string): VisaCase | null {
+  return visa.cases.find((c) => c.matchCodes?.includes(code)) ?? null;
+}
+
+export default async function VisaGuidesIndexPage() {
   // Every country we have visa data for — NOT just the ones with a full
   // written guide. Visa notes are tracked independently (src/lib/countryGuides.ts)
   // so coverage can grow much faster than full editorial guides.
+  const countries = await prisma.country.findMany({
+    where: { slug: { in: VISA_NOTES_SLUGS } },
+    select: { slug: true, name: true, flagEmoji: true },
+  });
+  const countryBySlug = Object.fromEntries(countries.map((c) => [c.slug, c]));
+
   const visaCountries = VISA_NOTES_SLUGS
     .map((slug) => {
       const country = countryBySlug[slug];
       const visa = getVisaNotes(slug);
       if (!country || !visa) return null;
-      const hasFullGuide = !!getCountryGuide(slug);
       return {
         slug,
         name: country.name,
         flag: country.flagEmoji,
         visa,
-        // Deep-link to our own full guide when it exists, otherwise send them
-        // straight to VisaHQ for that country — never a link to a page we
-        // don't actually have.
-        breakdownUrl: hasFullGuide ? `/guides/${slug}#visa` : visahqUrl(country.name),
-        breakdownIsExternal: !hasFullGuide,
+        hasFullGuide: !!getCountryGuide(slug),
       };
     })
     .filter((c): c is NonNullable<typeof c> => c !== null)
@@ -88,15 +120,15 @@ export default async function VisaGuidesIndexPage() {
 
   const jsonLd = [
     breadcrumbSchema([
-      { name: "Home",         url: BASE },
-      { name: "Guides",       url: `${BASE}/guides` },
-      { name: "Visa Guides",  url: `${BASE}/guides/visas` },
+      { name: "Home", url: BASE },
+      { name: "Guides", url: `${BASE}/guides` },
+      { name: "Visa Guides", url: `${BASE}/guides/visas` },
     ]),
     itemListSchema({
       name: "Visa requirements by country",
       items: visaCountries.map((c) => ({
         name: c.name,
-        url: c.breakdownIsExternal ? c.breakdownUrl : `${BASE}${c.breakdownUrl}`,
+        url: `${BASE}/guides/visas#${c.slug}`,
       })),
     }),
     faqSchema(VISA_FAQS),
@@ -120,15 +152,11 @@ export default async function VisaGuidesIndexPage() {
             <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-5">
               Do You Need a Visa? Quick Reference by Country
             </h1>
-            <p className="text-soulo-mist text-lg leading-relaxed max-w-2xl mb-7">
-              A fast overview of entry requirements for solo travelers — visa-free, visa on arrival, or apply
-              online first. Click through to each country for the full breakdown by passport, plus a link to the
-              official source.
+            <p className="text-soulo-mist text-lg leading-relaxed max-w-2xl">
+              Entry requirements for tourists at a glance — find your passport, find your destination, and see
+              straight away whether it&apos;s visa-free, needs an online authorisation, or needs a visa in advance.
+              Each row links to the official source.
             </p>
-            <VisaChecker
-              destinations={allCountries.map((c) => ({ slug: c.slug, name: c.name, flag: c.flagEmoji }))}
-              triggerLabel="🛂 Check my visa requirement"
-            />
           </div>
         </section>
 
@@ -136,33 +164,108 @@ export default async function VisaGuidesIndexPage() {
           {visaCountries.length === 0 ? (
             <p className="text-soulo-grey">Visa guides are on the way — check back soon.</p>
           ) : (
-            <div className="space-y-4">
-              {visaCountries.map((c) => (
-                <Link
-                  key={c.slug}
-                  href={c.breakdownUrl}
-                  target={c.breakdownIsExternal ? "_blank" : undefined}
-                  rel={c.breakdownIsExternal ? "noopener noreferrer sponsored" : undefined}
-                  className="group block p-6 rounded-2xl border border-soulo-border bg-white hover:border-soulo-gold hover:-translate-y-0.5 hover:shadow-md transition-all"
-                >
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <div className="flex items-center gap-2.5 mb-2">
-                        <span className="text-2xl" aria-hidden>{c.flag}</span>
-                        <h2 className="font-display text-xl font-bold text-soulo-dark group-hover:text-soulo-gold transition-colors">
-                          {c.name}
-                        </h2>
-                      </div>
-                      <p className="text-sm text-soulo-grey leading-relaxed max-w-2xl">{c.visa.summary}</p>
-                      <p className="text-xs text-soulo-mist mt-2">Reviewed {c.visa.updated}</p>
-                    </div>
-                    <span className="flex-shrink-0 text-sm font-bold text-soulo-gold whitespace-nowrap mt-1">
-                      {c.breakdownIsExternal ? "Check on VisaHQ →" : "Full breakdown →"}
-                    </span>
-                  </div>
-                </Link>
-              ))}
-            </div>
+            <>
+              <ul className="flex flex-wrap gap-x-4 gap-y-2 mb-4 text-xs text-soulo-grey" aria-label="Colour key">
+                {LEGEND.map((l) => (
+                  <li key={l.tone} className="flex items-center gap-1.5">
+                    <span
+                      className={`inline-block w-3 h-3 rounded border border-soulo-border ${TONE_CLASSES[l.tone].split(" ")[0]}`}
+                      aria-hidden
+                    />
+                    {l.label}
+                  </li>
+                ))}
+              </ul>
+              <p className="sm:hidden text-xs text-soulo-mist mb-2">Swipe sideways to see every passport →</p>
+
+              <div className="overflow-x-auto rounded-2xl border border-soulo-border bg-white">
+                <table className="w-full min-w-[820px] border-collapse text-sm">
+                  <caption className="sr-only">
+                    Tourist visa requirements by destination for US, UK, EU, Canadian and Australian passport holders
+                  </caption>
+                  <thead>
+                    <tr className="bg-soulo-linen text-left">
+                      <th
+                        scope="col"
+                        className="sticky left-0 z-10 bg-soulo-linen px-4 py-3 font-display font-bold text-soulo-dark min-w-[170px]"
+                      >
+                        Destination
+                      </th>
+                      {PASSPORT_COLUMNS.map((col) => (
+                        <th key={col.code} scope="col" className="px-3 py-3 font-semibold text-soulo-dark whitespace-nowrap">
+                          <span aria-hidden>{col.flag}</span> {col.label} passport
+                        </th>
+                      ))}
+                      <th scope="col" className="px-3 py-3 font-semibold text-soulo-dark whitespace-nowrap">
+                        Need a visa?
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {visaCountries.map((c) => (
+                      <tr key={c.slug} id={c.slug} className="border-t border-soulo-border align-top scroll-mt-24">
+                        <th scope="row" className="sticky left-0 z-10 bg-white px-4 py-3 text-left font-normal">
+                          <div className="flex items-center gap-2">
+                            <span className="text-xl" aria-hidden>{c.flag}</span>
+                            <span className="font-display font-bold text-soulo-dark">{c.name}</span>
+                          </div>
+                          <div className="mt-1 flex flex-col gap-0.5 text-xs">
+                            <a
+                              href={c.visa.officialUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-soulo-gold hover:underline"
+                            >
+                              Official source ↗
+                            </a>
+                            {c.hasFullGuide && (
+                              <Link href={`/guides/${c.slug}#visa`} className="text-soulo-gold hover:underline">
+                                Full {c.name} guide →
+                              </Link>
+                            )}
+                            <span className="text-soulo-mist">Reviewed {c.visa.updated}</span>
+                          </div>
+                        </th>
+                        {PASSPORT_COLUMNS.map((col) => {
+                          const isHome = HOME_PASSPORT[c.slug] === col.code;
+                          const match = isHome ? null : caseFor(c.visa, col.code);
+                          return (
+                            <td key={col.code} className="px-3 py-3">
+                              {isHome ? (
+                                <span className="text-soulo-mist">—</span>
+                              ) : (
+                                <span
+                                  className={`inline-block rounded-lg px-2.5 py-1.5 text-xs font-semibold leading-snug ${TONE_CLASSES[match?.tone ?? "varies"]}`}
+                                >
+                                  {match?.short ?? "Check official source"}
+                                </span>
+                              )}
+                            </td>
+                          );
+                        })}
+                        <td className="px-3 py-3">
+                          <a
+                            href={visahqUrl(c.name)}
+                            target="_blank"
+                            rel="noopener noreferrer sponsored"
+                            className="inline-block whitespace-nowrap rounded-lg bg-soulo-gold px-3 py-1.5 text-xs font-bold text-soulo-dark hover:bg-amber-400 transition-colors"
+                          >
+                            Apply via VisaHQ →
+                          </a>
+                          <p className="mt-1 text-xs text-soulo-mist">Other passport? Check it here.</p>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <p className="mt-3 text-xs text-soulo-mist">
+                We&apos;re adding more countries regularly. Don&apos;t see your destination? Check the country&apos;s
+                official immigration portal or look it up on VisaHQ. The VisaHQ links are affiliate links — we may
+                earn a commission at no extra cost to you.
+              </p>
+            </>
           )}
 
           {/* General visa FAQ — genuine, stable explainer content (not tied to any
@@ -179,17 +282,17 @@ export default async function VisaGuidesIndexPage() {
             </div>
           </section>
 
-          {/* Sources & methodology — same wording used in the visa checker modal */}
+          {/* Sources & methodology */}
           <div className="mt-10 border-t border-soulo-border pt-6 space-y-2">
             <p className="text-xs text-soulo-mist">
               <strong className="text-soulo-grey">Source:</strong> Written and reviewed by the SouloSpotter team
-              using each destination's official government immigration and e-Visa portals (linked throughout this
-              page and in every country guide), cross-referenced with the{" "}
+              using each destination&apos;s official government immigration and e-Visa portals (linked in every row
+              of the table and in each country guide), cross-referenced with the{" "}
               <a href="https://www.iatatravelcentre.com/" target="_blank" rel="noopener noreferrer" className="text-soulo-gold hover:underline">
                 IATA Travel Centre
               </a>
-              , a widely used travel-document reference. For your exact, personal requirement, use the visa checker
-              above (it links to VisaHQ) or the destination's official portal. Requirements can change without
+              , a widely used travel-document reference. For your exact, personal requirement, use the official
+              source linked in each row or a visa service such as VisaHQ. Requirements can change without
               notice — always confirm on the official source before you book.
             </p>
           </div>

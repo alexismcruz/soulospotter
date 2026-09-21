@@ -55,7 +55,7 @@ export default function PrivacyPage() {
               <li className="flex gap-3">
                 <span className="text-soulo-gold font-bold mt-0.5">·</span>
                 <div>
-                  <strong className="text-soulo-dark">Newsletter sign-ups:</strong> If you subscribe to our newsletter, your email is passed to Mailchimp for delivery. You can unsubscribe at any time via the link in any email.
+                  <strong className="text-soulo-dark">Newsletter sign-ups:</strong> If you subscribe to our newsletter, your email is passed to Brevo for delivery. You can unsubscribe at any time via the link in any email.
                 </div>
               </li>
               <li className="flex gap-3">
@@ -111,7 +111,7 @@ export default function PrivacyPage() {
                 <tbody className="divide-y divide-soulo-border">
                   {[
                     { name: "Vercel", purpose: "Hosting & analytics", url: "https://vercel.com/legal/privacy-policy" },
-                    { name: "Mailchimp", purpose: "Newsletter delivery", url: "https://mailchimp.com/legal/privacy/" },
+                    { name: "Brevo", purpose: "Newsletter delivery", url: "https://www.brevo.com/legal/privacypolicy/" },
                     { name: "Unsplash", purpose: "Stock photography", url: "https://unsplash.com/privacy" },
                   ].map((s) => (
                     <tr key={s.name}>
