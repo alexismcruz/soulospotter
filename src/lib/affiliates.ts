@@ -79,8 +79,14 @@ export const AFFILIATES = {
     // button — add a region here (with its Evergreen link ID) to switch it on.
     status: "live" as AffiliateStatus,
     cjPid: "101773002",
+    // Each program has its own Booking affiliate id (aid): APAC 8133105, North America
+    // 8133101, LATAM 8133104, Australia 8133102. Evergreen links are untargeted (work for
+    // any visitor country). We map by DESTINATION region — see bookingProgramFor().
     programs: {
-      apac: { advertiserId: "7854081", evergreenLinkId: "17293139" },
+      apac:      { advertiserId: "7854081", evergreenLinkId: "17293139" },
+      northAmerica: { advertiserId: "7864295", evergreenLinkId: "17293132" },
+      latam:     { advertiserId: "7864342", evergreenLinkId: "17293137" },
+      australia: { advertiserId: "7864353", evergreenLinkId: "17293136" },
     } as Record<string, { advertiserId: string; evergreenLinkId: string }>,
   },
 } as const;
@@ -100,11 +106,14 @@ export function safetyWingUrl(): string {
 /**
  * Which Booking.com CJ program covers a destination, or null if we don't have one yet
  * (then no button is shown — never fall back to an untracked booking.com link).
- * APAC = Asia + Oceania except Australia (which has its own, not-yet-added program).
+ * Mapped by destination: APAC = Asia + Oceania except Australia; Australia has its own;
+ * North America and LATAM by region. No program yet (=> null): Europe, Africa, Caribbean.
  */
 function bookingProgramFor(region: string, countryCode: string): string | null {
   if (region === "ASIA") return "apac";
-  if (region === "OCEANIA" && countryCode !== "AU") return "apac";
+  if (region === "OCEANIA") return countryCode === "AU" ? "australia" : "apac";
+  if (region === "NORTH_AMERICA") return "northAmerica";
+  if (region === "LATIN_AMERICA") return "latam";
   return null;
 }
 
