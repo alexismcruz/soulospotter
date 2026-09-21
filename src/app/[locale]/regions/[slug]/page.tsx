@@ -10,7 +10,9 @@ import SiteFooter from "@/components/layout/SiteFooter";
 import CityCard from "@/components/destinations/CityCard";
 import PageHero, { HERO_IMAGES } from "@/components/layout/PageHero";
 import JsonLd from "@/components/seo/JsonLd";
-import { breadcrumbSchema, itemListSchema } from "@/lib/jsonld";
+import { breadcrumbSchema, itemListSchema, faqSchema } from "@/lib/jsonld";
+import { COUNTRY_GUIDES, COUNTRY_GUIDE_SLUGS } from "@/lib/countryGuides";
+import { REGION_EDITORIAL } from "@/lib/regionContent";
 
 const BASE = "https://soulospotter.com";
 
@@ -62,6 +64,15 @@ export default async function RegionPage({ params }: Props) {
   // Other regions for "Explore other regions" section
   const otherRegions = REGIONS.filter((r) => r.slug !== slug);
 
+  // Full country guides for countries in this region (internal links to our best pages)
+  const guideCountries = Array.from(
+    new Map(cities.map((c) => [c.country.slug, c.country])).values(),
+  )
+    .filter((c) => COUNTRY_GUIDE_SLUGS.includes(c.slug))
+    .sort((a, b) => a.name.localeCompare(b.name));
+
+  const editorial = REGION_EDITORIAL[slug];
+
   const jsonLd = [
     breadcrumbSchema([
       { name: "Home",         url: BASE },
@@ -79,6 +90,7 @@ export default async function RegionPage({ params }: Props) {
           }),
         ]
       : []),
+    ...(editorial ? [faqSchema(editorial.faqs)] : []),
   ];
 
   return (
@@ -126,6 +138,35 @@ export default async function RegionPage({ params }: Props) {
         {/* Cities grid */}
         <div className="bg-soulo-white py-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {guideCountries.length > 0 && (
+              <section className="mb-12">
+                <h2 className="font-display text-xl font-bold text-soulo-dark mb-4">
+                  Start-here guides for {meta.label}
+                </h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {guideCountries.map((c) => {
+                    const g = COUNTRY_GUIDES[c.slug];
+                    return (
+                      <Link
+                        key={c.slug}
+                        href={`/guides/${c.slug}`}
+                        className="group flex flex-col gap-1.5 p-5 rounded-2xl border border-soulo-border bg-white hover:border-soulo-gold hover:-translate-y-0.5 hover:shadow-md transition-all"
+                      >
+                        <span className="flex items-center gap-2.5">
+                          <span className="text-2xl" aria-hidden>{c.flagEmoji}</span>
+                          <span className="font-display text-lg font-bold text-soulo-dark group-hover:text-soulo-gold transition-colors">
+                            {c.name} solo travel guide
+                          </span>
+                        </span>
+                        <span className="text-sm text-soulo-grey leading-relaxed line-clamp-2">{g.intro}</span>
+                        <span className="text-xs font-semibold text-soulo-gold">Safety · Budget · Visa →</span>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </section>
+            )}
+
             {cities.length === 0 ? (
               <div className="text-center py-20 text-soulo-mist">
                 <p className="text-4xl mb-3">{meta.emoji}</p>
@@ -167,6 +208,38 @@ export default async function RegionPage({ params }: Props) {
             )}
           </div>
         </div>
+
+        {/* Editorial (only for regions we've written it for) */}
+        {editorial && (
+          <div className="bg-soulo-white border-t border-soulo-border py-12">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 className="font-display text-2xl font-bold text-soulo-dark mb-6">{editorial.heading}</h2>
+              <div className="space-y-6">
+                {editorial.paragraphs.map((p) => (
+                  <div key={p.title}>
+                    <h3 className="font-display text-lg font-bold text-soulo-dark mb-2">{p.title}</h3>
+                    <p className="text-soulo-grey leading-relaxed">{p.body}</p>
+                  </div>
+                ))}
+              </div>
+              <h2 className="font-display text-2xl font-bold text-soulo-dark mt-12 mb-5">Frequently asked questions</h2>
+              <div className="space-y-5">
+                {editorial.faqs.map((f) => (
+                  <div key={f.question} className="border-b border-soulo-border pb-5 last:border-0">
+                    <h3 className="font-display text-base font-bold text-soulo-dark mb-1.5">{f.question}</h3>
+                    <p className="text-sm text-soulo-grey leading-relaxed">{f.answer}</p>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-8 text-sm text-soulo-grey">
+                Planning entry rules?{" "}
+                <Link href="/guides/visas" className="text-soulo-gold font-semibold hover:underline">
+                  Check visa requirements by country →
+                </Link>
+              </p>
+            </div>
+          </div>
+        )}
 
         {/* Explore other regions */}
         <div className="bg-soulo-linen border-t border-soulo-border py-12">

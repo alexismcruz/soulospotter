@@ -239,6 +239,34 @@ export const VISA_NOTES: Record<string, VisaInfo> = {
       },
     ],
   },
+  "south-africa": {
+    updated: "2026",
+    summary:
+      "Citizens of the US, UK, Canada, Australia, New Zealand and most European countries can enter South Africa without a visa for tourism, for up to 90 days. Your passport must be valid for at least 30 days beyond your departure and have at least two consecutive blank visa pages, or you can be refused boarding. South Africa launched an online Electronic Travel Authorisation (ETA) in August 2026, initially for a few visa-required nationalities and optional for visa-exempt visitors — check the official site for changes. A yellow fever certificate is only required if you arrive from, or spend more than 12 hours in transit through, a yellow-fever-risk country.",
+    officialUrl: "https://www.dha.gov.za/",
+    officialLabel: "South African Department of Home Affairs",
+    cases: [
+      {
+        flags: "🇺🇸🇬🇧🇪🇺🇨🇦🇦🇺",
+        who: "US, UK, Canada, Australia, New Zealand, and most European countries",
+        short: "Visa-free · 90 days",
+        tone: "free",
+        rule: "Visa-free entry for tourism for up to 90 days. Passport valid at least 30 days after you leave, with two consecutive completely blank visa pages (not endorsement pages). The new online ETA (eta.dha.gov.za) is optional for visa-exempt visitors. A yellow fever certificate is only needed if you're arriving from, or transiting for over 12 hours through, a risk country.",
+        matchCodes: [
+          "US", "GB", "CA", "AU", "NZ", "IE",
+          "DE", "FR", "IT", "ES", "PT", "NL", "BE", "AT", "DK", "SE", "FI", "NO", "CH", "LU", "GR",
+        ],
+      },
+      {
+        flags: "🌍",
+        who: "Other nationalities",
+        short: "Varies by passport",
+        tone: "varies",
+        rule: "Many other passports need a visa in advance, and some nationalities can apply for the new online ETA. Check the Department of Home Affairs and the ETA site for your passport.",
+        // No matchCodes — this is the catch-all row.
+      },
+    ],
+  },
   japan: {
     updated: "2026",
     summary:

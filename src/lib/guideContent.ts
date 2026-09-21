@@ -159,6 +159,62 @@ export const MORE_GUIDES: Record<string, GuideContent> = {
     ],
   },
 
+  "south-africa": {
+    countrySlug: "south-africa",
+    countryName: "South Africa",
+    gatewayAirport: { code: "CPT", city: "Cape Town" },
+    intro:
+      "South Africa packs an astonishing amount into one country: a dramatic mountain-and-ocean city in Cape Town, world-class vineyards, the coastal Garden Route, the Drakensberg's hiking trails, and the Big Five on safari in and around Kruger National Park. For a solo traveller it's one of the most rewarding places in Africa: good infrastructure, English widely spoken, excellent value for visitors from Europe and North America, and an established backpacker network. It also asks for more street smarts than many destinations, so this guide is candid about the risks as well as the highlights.",
+    bestFor:
+      "Confident first-time solo travellers heading to Africa, nature and wildlife lovers, hikers, road-trippers, wine and food lovers, and anyone who wants safari and city travel in one trip. It's a good starter country for Africa because so much is easy to arrange, though it does reward careful planning.",
+    sections: [
+      {
+        heading: "Is South Africa safe for solo travellers?",
+        body:
+          "Millions of people visit South Africa safely each year, but crime rates are high by international standards, so it's a country where safety habits genuinely matter. Most incidents affecting tourists are opportunistic theft and robbery rather than anything targeted. Habits that make the biggest difference: use Uber or Bolt instead of walking after dark; don't display phones, cameras or jewellery in city centres; use ATMs inside shopping centres rather than on the street; keep car doors locked and valuables out of sight when driving; and avoid walking in quiet, isolated areas (including some hiking trails around Cape Town) alone — go in a group or with a guide. Choose accommodation in well-reviewed neighbourhoods, and ask your host which areas to avoid. Inside Kruger and other national parks the main danger is wildlife, so follow the rules exactly. Check your government's current travel advisory before you go.",
+      },
+      {
+        heading: "How much does South Africa cost?",
+        body:
+          "For visitors from Europe, North America and Australia, South Africa is very good value, particularly for food, wine, accommodation and activities. Budget travellers can manage on roughly US$35–55 a day (hostel dorm, self-catering or cheap restaurants, shared transport), a comfortable mid-range solo budget is around US$80–150 a day, and Cape Town is the most expensive city. Safaris and private game lodges cost far more than everyday travel, and single travellers are often charged a 'single supplement', so look for group departures and self-drive options. Costs move with the exchange rate, so check the current rand rate as you plan.",
+      },
+      {
+        heading: "Best time to visit",
+        body:
+          "It depends on what you want. Cape Town and the Western Cape are at their best in the southern summer (roughly November to March): long, dry, sunny days for beaches, hiking and wine tasting, though the wind can be strong and it's also peak season. Game viewing in Kruger and the northeast is often best in the dry southern winter (roughly May to September), when vegetation thins out and animals gather at waterholes, and malaria risk is lower. Whale watching along the coast around Hermanus is generally best between about June and November. The Garden Route is pleasant year-round, and the Drakensberg is best for hiking outside the summer thunderstorm season, with snow possible in winter. Note that seasons are the reverse of the northern hemisphere.",
+      },
+      {
+        heading: "Getting around",
+        body:
+          "Ride-hailing apps (Uber and Bolt) are the safest and most convenient way to get around cities and are generally reliable and inexpensive. In Johannesburg, the Gautrain rail link connects the airport, Sandton and Pretoria. For longer distances, options include domestic flights on routes such as Johannesburg–Cape Town, long-distance coaches, and the hop-on hop-off backpacker bus service (check its current routes) along the coast. Many travellers rent a car for the Garden Route, Cape Peninsula and Kruger, which is very rewarding — remember that South Africans drive on the left, distances are long, and driving at night outside cities is best avoided. Avoid the informal minibus taxis as a visitor unless a local you trust recommends a specific route.",
+      },
+      {
+        heading: "Cape Town and the Western Cape",
+        body:
+          "Cape Town's setting is hard to beat: Table Mountain above the city, beaches and sea cliffs below, and the Cape Peninsula's coastline stretching south to Cape Point, with African penguins at Boulders Beach along the way. Take the cable car up Table Mountain (it closes in high winds, so go on a clear morning), hike Lion's Head at sunrise in a group, explore the colourful Bo-Kaap and the V&A Waterfront, and take a day trip to the wine estates around Stellenbosch and Franschhoek. Book a tour or use a driver for the winelands so no one has to drive after tasting. Cape Town is malaria-free.",
+      },
+      {
+        heading: "The Garden Route and coast",
+        body:
+          "The Garden Route runs east of Cape Town along the southern coast through lagoons, forests and beaches, with Knysna, Plettenberg Bay, and the Tsitsikamma coast among the highlights, plus adventure activities such as hiking, kayaking and bungee jumping. It's easy to travel solo: hostels are sociable and the route is well suited to a road trip or the backpacker bus. Allow at least three or four days, and book coastal accommodation early in the December–January school holidays.",
+      },
+      {
+        heading: "Safari in Kruger National Park",
+        body:
+          "Kruger is one of Africa's most accessible safari destinations, and one of the best value for solo travellers. Self-drive safaris (renting a small car and driving yourself along the park's roads between rest camps) are affordable and flexible, and the park's rest camps and gates are well organised — just follow the park's rules on speed limits, gate closing times and staying in your vehicle. Guided game drives, small-group tours from Johannesburg, and private reserves on the park's edge cost more but improve your chances of seeing predators. Kruger is in a malaria-risk area, especially in the wetter southern-summer months, so speak to a travel health clinic well before your trip about prevention. Pack binoculars, a hat and neutral-coloured clothing.",
+      },
+      {
+        heading: "Johannesburg and the Drakensberg",
+        body:
+          "Johannesburg is South Africa's main international gateway and a city with powerful history: the Apartheid Museum and a guided visit to Soweto are highly recommended. Most visitors treat it as a base for a couple of days rather than a beach-style holiday. Use a driver, an organised tour or ride-hailing apps rather than walking around unfamiliar areas, particularly in the inner city. The Drakensberg mountains, a few hours' drive from Johannesburg, offer some of the country's best hiking, from easy valley walks to the famous Tugela Falls and Sani Pass. Mountain weather changes fast and hikers should sign in and out at park offices and go with a guide on longer trails.",
+      },
+      {
+        heading: "Culture, etiquette and practicalities",
+        body:
+          "South Africa is called the 'Rainbow Nation' for its diversity, and it has eleven official languages, although English is widely spoken and used in business and tourism. Tipping is expected: around 10–15% in restaurants, and small tips for car guards and petrol-station attendants (who fill your tank and clean your windscreen). Be sensitive when discussing race and politics — the country's history is deeply felt, and listening is often more rewarding than opinions. Tap water is generally safe to drink in the main cities, though bottled water is common in rural areas. The country uses its own three-round-pin plugs (Type M), so bring a suitable adaptor. Scheduled power cuts ('load-shedding') have been less frequent recently but can return, so ask your accommodation about backup power. Buy an eSIM before you land so you have maps and ride-hailing from the airport.",
+      },
+    ],
+  },
   indonesia: {
     countrySlug: "indonesia",
     countryName: "Indonesia",
