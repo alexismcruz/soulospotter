@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   // Brand is structural in this title — use `absolute` to keep it appearing once.
   title: { absolute: "About SouloSpotter — Travel alone. Travel Soulo. Find yourself." },
   description:
-    "SouloSpotter is the global directory for solo travelers who seek more than a destination. We curate the best spots, cities, and resources for people who travel alone — and love it.",
+    "SouloSpotter is the global directory for solo travelers: curated spots, cities and resources for people who travel alone — and love it.",
   alternates: { canonical: "https://soulospotter.com/about" },
   openGraph: {
     title: "About SouloSpotter",

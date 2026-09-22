@@ -100,5 +100,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  return [...staticPages, ...guidePages, ...regionPages, ...cityPages, ...categoryPages, ...spotPages, ...experiencePages];
+  // Slugs can contain non-ASCII characters (æ, ô, ä…); sitemap URLs must be percent-encoded.
+  return [...staticPages, ...guidePages, ...regionPages, ...cityPages, ...categoryPages, ...spotPages, ...experiencePages].map(
+    (e) => ({ ...e, url: encodeURI(e.url) }),
+  );
 }

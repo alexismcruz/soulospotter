@@ -16,6 +16,7 @@ import JsonLd from "@/components/seo/JsonLd";
 import { citySchema, breadcrumbSchema, itemListSchema } from "@/lib/jsonld";
 import { CATEGORY_SLUGS } from "@/lib/categoryUtils";
 import { getCountryGuide } from "@/lib/countryGuides";
+import { decodeSlug } from "@/lib/slug";
 
 const BASE = "https://soulospotter.com";
 
@@ -25,7 +26,7 @@ type Props = {
 
 async function getCity(slug: string) {
   return prisma.city.findUnique({
-    where: { slug },
+    where: { slug: decodeSlug(slug) },
     include: {
       country: true,
       tags: true,

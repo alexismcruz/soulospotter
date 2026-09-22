@@ -43,7 +43,7 @@ export const SEASONAL_GUIDES: Record<string, SeasonalGuide> = {
     slug: "escape-winter",
     metaTitle: "Where to Go in November & December to Escape Winter ({year})",
     metaDescription:
-      "Warm places to travel solo from November to February: dry-season Southeast Asia, India, Mexico, the Caribbean, Cape Town and the Southern Hemisphere summer — with what to watch out for.",
+      "Warm places to travel solo from November to February: dry-season Southeast Asia, India, Mexico, the Caribbean, Cape Town and Southern Hemisphere summer.",
     h1: "Where to Go in November & December to Escape Winter",
     kicker: "Seasonal Guide",
     intro:
@@ -189,7 +189,7 @@ export const SEASONAL_GUIDES: Record<string, SeasonalGuide> = {
     slug: "winter-wonderland",
     metaTitle: "Best Places to Spend Winter: Christmas Markets & Snow ({year})",
     metaDescription:
-      "Where to go to enjoy winter, not escape it: Christmas markets in Europe, snowy Nordic and Canadian cities, northern lights, and cosy solo-friendly city breaks from November to February.",
+      "Where to enjoy winter, not escape it: Christmas markets, snowy Nordic and Canadian cities, northern lights and cosy solo-friendly city breaks.",
     h1: "Best Places to Spend Winter: Christmas Markets, Snow & Cosy Cities",
     kicker: "Seasonal Guide",
     intro:

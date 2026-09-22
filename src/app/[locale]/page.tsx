@@ -21,7 +21,11 @@ export async function generateMetadata(): Promise<Metadata> {
     // Home is the brand page — use `absolute` so the root template doesn't append
     // the brand a second time.
     title: { absolute: "SouloSpotter — Travel alone. Travel Soulo. Find yourself." },
-    description: t("heroSubtitle"),
+    // The hero subtitle alone is too short for a SERP snippet (66 chars); this is ~155.
+    description:
+      "The directory for solo travelers: hand-picked cafés, coworking, stays and food in hundreds of cities, with safety, cost and tips for travelling alone.",
+    // The homepage was the only page without a canonical tag.
+    alternates: { canonical: "https://soulospotter.com" },
   };
 }
 

@@ -14,6 +14,8 @@ import JsonLd from "@/components/seo/JsonLd";
 import { spotSchema, breadcrumbSchema } from "@/lib/jsonld";
 import { pickTitle, nameHasCity } from "@/lib/seoTitle";
 import { spotMetaDescription, aloneSentence } from "@/lib/seoText";
+import RelatedCityCategories from "@/components/city/RelatedCityCategories";
+import { decodeSlug } from "@/lib/slug";
 
 const BASE = "https://soulospotter.com";
 
@@ -50,8 +52,8 @@ const AFFILIATE_LABELS: Partial<Record<AffiliateProvider, string>> = {
 async function getSpot(citySlug: string, spotSlug: string) {
   return prisma.spot.findFirst({
     where: {
-      slug: spotSlug,
-      city: { slug: citySlug },
+      slug: decodeSlug(spotSlug),
+      city: { slug: decodeSlug(citySlug) },
       published: true,
     },
     include: {
@@ -376,6 +378,19 @@ export default async function SpotPage({ params }: Props) {
               </div>
             </div>
           )}
+        </div>
+
+        {/* Internal links: same category in other cities (category pages are our top performers) */}
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+          <RelatedCityCategories
+            citySlug={citySlug}
+            countryId={spot.city.countryId}
+            region={spot.city.region}
+            category={spot.category}
+            categorySlug={categorySlug}
+            categoryLabel={catMeta.label}
+            countryName={spot.city.country.name}
+          />
         </div>
 
         {/* Trip resources */}

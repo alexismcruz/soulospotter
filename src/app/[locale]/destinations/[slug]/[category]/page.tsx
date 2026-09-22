@@ -15,6 +15,8 @@ import JsonLd from "@/components/seo/JsonLd";
 import { breadcrumbSchema, itemListSchema } from "@/lib/jsonld";
 import { pickTitle } from "@/lib/seoTitle";
 import { categoryIntent } from "@/lib/seoText";
+import RelatedCityCategories from "@/components/city/RelatedCityCategories";
+import { decodeSlug } from "@/lib/slug";
 
 const BASE = "https://soulospotter.com";
 
@@ -24,7 +26,7 @@ type Props = {
 
 async function getCity(slug: string) {
   return prisma.city.findUnique({
-    where: { slug },
+    where: { slug: decodeSlug(slug) },
     include: {
       country: true,
       tags: true,
@@ -145,6 +147,15 @@ export default async function CityCategoryPage({ params }: Props) {
             activeCategory={activeCategory}
             citySlug={slug}
             cityName={city.name}
+          />
+          <RelatedCityCategories
+            citySlug={slug}
+            countryId={city.countryId}
+            region={city.region}
+            category={activeCategory}
+            categorySlug={categorySlug}
+            categoryLabel={CATEGORY_META[activeCategory].label}
+            countryName={city.country.name}
           />
         </div>
       </main>

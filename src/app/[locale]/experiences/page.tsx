@@ -17,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Curated Experiences for Solo Travelers",
     description:
-      `Browse solo-friendly tours, activities, and experiences across ${countryCount} countries. Cooking classes, hiking tours, photography walks, and more — curated for travelers going alone.`,
+      `Solo-friendly tours and activities across ${countryCount} countries — cooking classes, hikes, photography walks and more, curated for travelers going alone.`,
     alternates: { canonical: "https://soulospotter.com/experiences" },
   };
 }

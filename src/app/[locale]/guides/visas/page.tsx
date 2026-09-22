@@ -21,7 +21,7 @@ const BASE = "https://soulospotter.com";
 export const metadata: Metadata = {
   title: "Do I Need a Visa? Visa Requirements for Solo Travelers",
   description:
-    "Visa requirements at a glance for US, UK, EU, Canadian and Australian passport holders — visa-free, eVisa or visa needed — for popular solo travel destinations, with official sources and answers to common visa questions.",
+    "Visa requirements at a glance for US, UK, EU, Canadian and Australian passport holders: visa-free, eVisa or visa needed, with official sources.",
   alternates: { canonical: `${BASE}/guides/visas` },
 };
 

@@ -11,6 +11,7 @@ import AffiliateCTA from "@/components/resources/AffiliateCTA";
 import JsonLd from "@/components/seo/JsonLd";
 import { experienceSchema, breadcrumbSchema } from "@/lib/jsonld";
 import { safetyWingUrl, breezeSimUrl, gygHomeUrl, gygSearchUrl, viatorSearchUrl } from "@/lib/affiliates";
+import { decodeSlug } from "@/lib/slug";
 
 const BASE = "https://soulospotter.com";
 
@@ -20,7 +21,7 @@ type Props = {
 
 async function getExperience(slug: string) {
   return prisma.experience.findUnique({
-    where: { slug },
+    where: { slug: decodeSlug(slug) },
     include: {
       city: { include: { country: true } },
       organizer: true,
