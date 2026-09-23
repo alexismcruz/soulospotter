@@ -43,5 +43,10 @@
     "city": "kyoto",
     "date": "2026-09-23",
     "note": "43/43 spots: every description rewritten from verified facts (all 250+ chars), real addresses + Maps links, dead links replaced. DELETED 3: Ippudo Nishikikoji (closed 2020), Weekenders Coffee Tominokoji (closed Apr 2026 for relocation, new site unconfirmed — re-add when it reopens), Hello Cafe Kyoto (no trace anywhere). Corrected: Kanga-an (Obaku not Rinzai, 1671 not 700 yrs, no evidence of public zazen — now framed as temple + fucha ryori; renamed Kanga-an Temple), L'Escamoteur (one French magician, not 'French brothers'), Gion Hatanaka (ryokan at Yasaka south gate, not a machiya), Kyoto National Museum (Meiji hall closed), plus ~12 wrong addresses (Kurasu, Impact Hub, Tenzan no Yu, oinai, Len, Piece, Walden Woods, Gion Karyo, Yoramu, etc.). Script: scripts/add-kyoto-details.js"
+  },
+  {
+    "city": "rishikesh",
+    "date": "2026-09-23",
+    "note": "26/26 spots: all descriptions rewritten from verified facts (250+ chars), real addresses + Maps links. Corrected: Lakshman Jhula closed since Apr 2022 (Bajrang Setu glass bridge built at same crossing — re-check whether open), The Sitting Elephant is at EllBee Ganga View not Ganga Kinare, Ganga Kinare address (237 not 16 Virbhadra Rd), Aloha on the Ganges is a resort (removed unsourced 'drop-in, no booking' claim), Anand Prakash dead domain replaced, Ramana's cafe is seasonal Oct–Mar. No closures/fakes found. Script: scripts/add-rishikesh-details.js"
   }
 ]
