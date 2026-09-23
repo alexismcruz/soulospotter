@@ -38,5 +38,10 @@
     "city": "seoul",
     "date": "2026-09-23",
     "note": "35/35 spots: every description rewritten from verified facts (all now 250+ chars, were 34/36 under 150), real addresses + Maps links, official links where reachable. Verification caught real errors: Siloam Sauna closed since late 2021 (DELETED); wrong addresses for WeWork Gangnam, Nine Tree, Fritz, Anthracite, Zzzip, Heyground; Southside Parlor wrongly described as a hanok; Mapo Jeong Daepo 'salt-fire' claim unsourced; Banpo fountain misplaced in Yeouido; Cheonggyecheon length. Renamed Nine Tree (Parnas rebrand), RYSE (Autograph Collection), WeWork Gangnam Station. Korean .go.kr/.or.kr sites mostly unreachable from outside Korea — existing ones kept, unverifiable new ones skipped (Maps only). Script: scripts/add-seoul-details.js"
+  },
+  {
+    "city": "kyoto",
+    "date": "2026-09-23",
+    "note": "43/43 spots: every description rewritten from verified facts (all 250+ chars), real addresses + Maps links, dead links replaced. DELETED 3: Ippudo Nishikikoji (closed 2020), Weekenders Coffee Tominokoji (closed Apr 2026 for relocation, new site unconfirmed — re-add when it reopens), Hello Cafe Kyoto (no trace anywhere). Corrected: Kanga-an (Obaku not Rinzai, 1671 not 700 yrs, no evidence of public zazen — now framed as temple + fucha ryori; renamed Kanga-an Temple), L'Escamoteur (one French magician, not 'French brothers'), Gion Hatanaka (ryokan at Yasaka south gate, not a machiya), Kyoto National Museum (Meiji hall closed), plus ~12 wrong addresses (Kurasu, Impact Hub, Tenzan no Yu, oinai, Len, Piece, Walden Woods, Gion Karyo, Yoramu, etc.). Script: scripts/add-kyoto-details.js"
   }
 ]
