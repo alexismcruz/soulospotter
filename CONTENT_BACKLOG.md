@@ -10,56 +10,56 @@ _Generated 2026-09-23 by `node scripts/content-audit.js`. Do not edit by hand �
 
 ## Where we stand
 - Published cities: **321** · spots: **2658**
-- Spots with description under 150 chars: **770** (29%)
-- Spots with **no website and no Maps link** (nothing to click): **637** (24%)
-- Spots with a generic/missing address: **601** (23%)
+- Spots with description under 150 chars: **747** (28%)
+- Spots with **no website and no Maps link** (nothing to click): **634** (24%)
+- Spots with a generic/missing address: **589** (22%)
 - Cities with fewer than 3 accommodation spots: **269** · cities with no solo tips: **36**
-- Cities marked done: simien-mountains (2026-09-21), osaka (2026-09-22), guilin (2026-09-23), (site-wide, COWORKING category) (2026-09-23), (13 cities, CAFE category) (2026-09-23), (13 cities, ACCOMMODATION category) (2026-09-23), (site-wide, all categories) + (13 cities, FOOD/NATURE/CULTURE) (2026-09-23), seoul (2026-09-23), kyoto (2026-09-23), rishikesh (2026-09-23)
+- Cities marked done: simien-mountains (2026-09-21), osaka (2026-09-22), guilin (2026-09-23), (site-wide, COWORKING category) (2026-09-23), (13 cities, CAFE category) (2026-09-23), (13 cities, ACCOMMODATION category) (2026-09-23), (site-wide, all categories) + (13 cities, FOOD/NATURE/CULTURE) (2026-09-23), seoul (2026-09-23), kyoto (2026-09-23), rishikesh (2026-09-23), kathmandu (2026-09-23)
 
 ## Top 40 cities to enrich next (re-run with --gsc for demand weighting)
 
 | # | City | Country | Spots | Avg desc | Thin desc | No link | Generic addr | Accom (no site) | Solo tips | GSC impr | Score |
 |--:|---|---|--:|--:|--:|--:|--:|--:|:-:|--:|--:|
-| 1 | Kathmandu | Nepal | 25 | 131 | 23 | 3 | 12 | 4 (0) | ✓ | – | 34 |
-| 2 | Tokyo | Japan | 20 | 105 | 20 | 0 | 20 | 3 (3) | ✓ | – | 33 |
-| 3 | Jaipur | India | 20 | 114 | 19 | 0 | 20 | 3 (3) | ✓ | – | 32 |
-| 4 | Udaipur | India | 19 | 104 | 19 | 0 | 19 | 3 (3) | ✓ | – | 32 |
-| 5 | Hong Kong | Hong Kong | 45 | 266 | 0 | 19 | 0 | 12 (2) | ✓ | – | 31 |
-| 6 | Jeju | South Korea | 18 | 104 | 18 | 0 | 18 | 3 (3) | ✓ | – | 30 |
-| 7 | Busan | South Korea | 18 | 104 | 18 | 0 | 18 | 3 (3) | ✓ | – | 30 |
-| 8 | Gyeongju | South Korea | 18 | 105 | 18 | 0 | 18 | 3 (3) | ✓ | – | 30 |
-| 9 | Varanasi | India | 17 | 109 | 17 | 0 | 17 | 3 (3) | ✓ | – | 29 |
-| 10 | Nara | Japan | 14 | 104 | 14 | 0 | 14 | 2 (2) | ✓ | – | 26 |
-| 11 | Jarabacoa | Dominican Republic | 3 | 106 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
-| 12 | Havana | Cuba | 3 | 111 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
-| 13 | Rincón | Puerto Rico | 3 | 105 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
-| 14 | Santiago de Cuba | Cuba | 3 | 107 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
-| 15 | San Juan | Puerto Rico | 3 | 114 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
-| 16 | Cabarete | Dominican Republic | 3 | 106 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
-| 17 | Cienfuegos | Cuba | 3 | 113 | 3 | 3 | 2 | 1 (1) | ✗ | – | 17 |
-| 18 | Samaná | Dominican Republic | 3 | 111 | 3 | 3 | 2 | 1 (1) | ✗ | – | 17 |
-| 19 | El Yunque | Puerto Rico | 3 | 103 | 3 | 3 | 2 | 1 (1) | ✗ | – | 17 |
-| 20 | Kingston | Jamaica | 3 | 108 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
-| 21 | Las Terrenas | Dominican Republic | 3 | 106 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
-| 22 | Negril | Jamaica | 3 | 112 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
-| 23 | Ponce | Puerto Rico | 3 | 109 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
-| 24 | Port Antonio | Jamaica | 3 | 106 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
-| 25 | Ocho Rios | Jamaica | 3 | 109 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
-| 26 | Viñales | Cuba | 3 | 110 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
-| 27 | Vieques | Puerto Rico | 3 | 112 | 3 | 3 | 2 | 1 (1) | ✗ | – | 17 |
-| 28 | Trinidad | Cuba | 3 | 108 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
-| 29 | Blue Mountains | Jamaica | 3 | 115 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
-| 30 | Queenstown | New Zealand | 3 | 136 | 3 | 3 | 0 | 1 (1) | ✗ | – | 16 |
-| 31 | Santo Domingo | Dominican Republic | 3 | 113 | 3 | 3 | 1 | 1 (1) | ✗ | – | 16 |
-| 32 | Bridgetown | Barbados | 3 | 108 | 3 | 3 | 3 | 0 (0) | ✗ | – | 16 |
-| 33 | Cap-Haïtien | Haiti | 3 | 91 | 3 | 3 | 2 | 0 (0) | ✗ | – | 16 |
-| 34 | Holetown | Barbados | 3 | 113 | 3 | 3 | 2 | 0 (0) | ✗ | – | 16 |
-| 35 | Jacmel | Haiti | 3 | 106 | 3 | 3 | 2 | 0 (0) | ✗ | – | 16 |
-| 36 | Bathsheba | Barbados | 3 | 110 | 3 | 3 | 2 | 0 (0) | ✗ | – | 16 |
-| 37 | Port-au-Prince | Haiti | 3 | 107 | 3 | 3 | 1 | 0 (0) | ✗ | – | 15 |
-| 38 | Crown Point | Trinidad and Tobago | 3 | 99 | 3 | 3 | 0 | 0 (0) | ✗ | – | 15 |
-| 39 | Port of Spain | Trinidad and Tobago | 3 | 112 | 3 | 3 | 0 | 0 (0) | ✗ | – | 15 |
-| 40 | Speyside | Trinidad and Tobago | 3 | 112 | 3 | 3 | 1 | 0 (0) | ✗ | – | 15 |
+| 1 | Tokyo | Japan | 20 | 105 | 20 | 0 | 20 | 3 (3) | ✓ | – | 33 |
+| 2 | Jaipur | India | 20 | 114 | 19 | 0 | 20 | 3 (3) | ✓ | – | 32 |
+| 3 | Udaipur | India | 19 | 104 | 19 | 0 | 19 | 3 (3) | ✓ | – | 32 |
+| 4 | Hong Kong | Hong Kong | 45 | 266 | 0 | 19 | 0 | 12 (2) | ✓ | – | 31 |
+| 5 | Jeju | South Korea | 18 | 104 | 18 | 0 | 18 | 3 (3) | ✓ | – | 30 |
+| 6 | Busan | South Korea | 18 | 104 | 18 | 0 | 18 | 3 (3) | ✓ | – | 30 |
+| 7 | Gyeongju | South Korea | 18 | 105 | 18 | 0 | 18 | 3 (3) | ✓ | – | 30 |
+| 8 | Varanasi | India | 17 | 109 | 17 | 0 | 17 | 3 (3) | ✓ | – | 29 |
+| 9 | Nara | Japan | 14 | 104 | 14 | 0 | 14 | 2 (2) | ✓ | – | 26 |
+| 10 | Jarabacoa | Dominican Republic | 3 | 106 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
+| 11 | Havana | Cuba | 3 | 111 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
+| 12 | Rincón | Puerto Rico | 3 | 105 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
+| 13 | Santiago de Cuba | Cuba | 3 | 107 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
+| 14 | San Juan | Puerto Rico | 3 | 114 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
+| 15 | Cabarete | Dominican Republic | 3 | 106 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
+| 16 | Cienfuegos | Cuba | 3 | 113 | 3 | 3 | 2 | 1 (1) | ✗ | – | 17 |
+| 17 | Samaná | Dominican Republic | 3 | 111 | 3 | 3 | 2 | 1 (1) | ✗ | – | 17 |
+| 18 | El Yunque | Puerto Rico | 3 | 103 | 3 | 3 | 2 | 1 (1) | ✗ | – | 17 |
+| 19 | Kingston | Jamaica | 3 | 108 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
+| 20 | Las Terrenas | Dominican Republic | 3 | 106 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
+| 21 | Negril | Jamaica | 3 | 112 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
+| 22 | Ponce | Puerto Rico | 3 | 109 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
+| 23 | Port Antonio | Jamaica | 3 | 106 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
+| 24 | Ocho Rios | Jamaica | 3 | 109 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
+| 25 | Viñales | Cuba | 3 | 110 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
+| 26 | Vieques | Puerto Rico | 3 | 112 | 3 | 3 | 2 | 1 (1) | ✗ | – | 17 |
+| 27 | Trinidad | Cuba | 3 | 108 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
+| 28 | Blue Mountains | Jamaica | 3 | 115 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
+| 29 | Queenstown | New Zealand | 3 | 136 | 3 | 3 | 0 | 1 (1) | ✗ | – | 16 |
+| 30 | Santo Domingo | Dominican Republic | 3 | 113 | 3 | 3 | 1 | 1 (1) | ✗ | – | 16 |
+| 31 | Bridgetown | Barbados | 3 | 108 | 3 | 3 | 3 | 0 (0) | ✗ | – | 16 |
+| 32 | Cap-Haïtien | Haiti | 3 | 91 | 3 | 3 | 2 | 0 (0) | ✗ | – | 16 |
+| 33 | Holetown | Barbados | 3 | 113 | 3 | 3 | 2 | 0 (0) | ✗ | – | 16 |
+| 34 | Jacmel | Haiti | 3 | 106 | 3 | 3 | 2 | 0 (0) | ✗ | – | 16 |
+| 35 | Bathsheba | Barbados | 3 | 110 | 3 | 3 | 2 | 0 (0) | ✗ | – | 16 |
+| 36 | Port-au-Prince | Haiti | 3 | 107 | 3 | 3 | 1 | 0 (0) | ✗ | – | 15 |
+| 37 | Crown Point | Trinidad and Tobago | 3 | 99 | 3 | 3 | 0 | 0 (0) | ✗ | – | 15 |
+| 38 | Port of Spain | Trinidad and Tobago | 3 | 112 | 3 | 3 | 0 | 0 (0) | ✗ | – | 15 |
+| 39 | Speyside | Trinidad and Tobago | 3 | 112 | 3 | 3 | 1 | 0 (0) | ✗ | – | 15 |
+| 40 | Speightstown | Barbados | 3 | 105 | 3 | 3 | 0 | 0 (0) | ✗ | – | 15 |
 
 ## Accommodation gaps (fewer than 3 listings — the Simien Mountains problem)
 
