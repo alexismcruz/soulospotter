@@ -133,18 +133,28 @@ export default async function CountryGuidePage({ params }: Props) {
           <section id="visa" className="scroll-mt-24">
             <h2 className="font-display text-2xl font-bold text-soulo-dark mb-3">Do you need a visa for {guide.countryName}?</h2>
             <p className="text-soulo-grey leading-relaxed mb-4">{guide.visa.summary}</p>
-            <div className="overflow-x-auto rounded-2xl border border-soulo-border">
+            <ul className="sm:hidden rounded-2xl border border-soulo-border divide-y divide-soulo-border text-sm">
+              {guide.visa.cases.map((c) => (
+                <li key={c.who} className="px-4 py-3">
+                  <p className="font-medium text-soulo-dark">
+                    <span className="mr-2">{c.flags}</span>{c.who}
+                  </p>
+                  <p className="mt-1 text-soulo-grey leading-relaxed">{c.rule}</p>
+                </li>
+              ))}
+            </ul>
+            <div className="hidden sm:block rounded-2xl border border-soulo-border overflow-hidden">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="bg-soulo-linen border-b border-soulo-border">
-                    <th className="text-left px-5 py-3 font-semibold text-soulo-grey">Your passport</th>
+                    <th className="text-left px-5 py-3 font-semibold text-soulo-grey w-1/3">Your passport</th>
                     <th className="text-left px-5 py-3 font-semibold text-soulo-grey">Typical requirement</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-soulo-border">
                   {guide.visa.cases.map((c) => (
                     <tr key={c.who} className="align-top">
-                      <td className="px-5 py-3 font-medium text-soulo-dark whitespace-nowrap">
+                      <td className="px-5 py-3 font-medium text-soulo-dark">
                         <span className="mr-2">{c.flags}</span>{c.who}
                       </td>
                       <td className="px-5 py-3 text-soulo-grey">{c.rule}</td>
