@@ -9,57 +9,57 @@ _Generated 2026-09-23 by `node scripts/content-audit.js`. Do not edit by hand �
 - Also check the searched intent (solo dining / going out alone / cafes to meet people) — see `project_soulospotter_seo_baseline` memory.
 
 ## Where we stand
-- Published cities: **321** · spots: **2650**
-- Spots with description under 150 chars: **689** (26%)
+- Published cities: **321** · spots: **2647**
+- Spots with description under 150 chars: **635** (24%)
 - Spots with **no website and no Maps link** (nothing to click): **615** (23%)
-- Spots with a generic/missing address: **530** (20%)
-- Cities with fewer than 3 accommodation spots: **269** · cities with no solo tips: **36**
-- Cities marked done: simien-mountains (2026-09-21), osaka (2026-09-22), guilin (2026-09-23), (site-wide, COWORKING category) (2026-09-23), (13 cities, CAFE category) (2026-09-23), (13 cities, ACCOMMODATION category) (2026-09-23), (site-wide, all categories) + (13 cities, FOOD/NATURE/CULTURE) (2026-09-23), seoul (2026-09-23), kyoto (2026-09-23), rishikesh (2026-09-23), kathmandu (2026-09-23), tokyo (2026-09-23), jaipur (2026-09-23), udaipur (2026-09-23), hong-kong (2026-09-23)
+- Spots with a generic/missing address: **476** (18%)
+- Cities with fewer than 3 accommodation spots: **271** · cities with no solo tips: **36**
+- Cities marked done: simien-mountains (2026-09-21), osaka (2026-09-22), guilin (2026-09-23), (site-wide, COWORKING category) (2026-09-23), (13 cities, CAFE category) (2026-09-23), (13 cities, ACCOMMODATION category) (2026-09-23), (site-wide, all categories) + (13 cities, FOOD/NATURE/CULTURE) (2026-09-23), seoul (2026-09-23), kyoto (2026-09-23), rishikesh (2026-09-23), kathmandu (2026-09-23), tokyo (2026-09-23), jaipur (2026-09-23), udaipur (2026-09-23), hong-kong (2026-09-23), jeju (2026-09-23), busan (2026-09-23), gyeongju (2026-09-23)
 
 ## Top 40 cities to enrich next (re-run with --gsc for demand weighting)
 
 | # | City | Country | Spots | Avg desc | Thin desc | No link | Generic addr | Accom (no site) | Solo tips | GSC impr | Score |
 |--:|---|---|--:|--:|--:|--:|--:|--:|:-:|--:|--:|
-| 1 | Jeju | South Korea | 18 | 104 | 18 | 0 | 18 | 3 (3) | ✓ | – | 30 |
-| 2 | Busan | South Korea | 18 | 104 | 18 | 0 | 18 | 3 (3) | ✓ | – | 30 |
-| 3 | Gyeongju | South Korea | 18 | 105 | 18 | 0 | 18 | 3 (3) | ✓ | – | 30 |
-| 4 | Varanasi | India | 17 | 109 | 17 | 0 | 17 | 3 (3) | ✓ | – | 29 |
-| 5 | Nara | Japan | 14 | 104 | 14 | 0 | 14 | 2 (2) | ✓ | – | 26 |
-| 6 | Jarabacoa | Dominican Republic | 3 | 106 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
-| 7 | Havana | Cuba | 3 | 111 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
-| 8 | Rincón | Puerto Rico | 3 | 105 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
-| 9 | Santiago de Cuba | Cuba | 3 | 107 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
-| 10 | San Juan | Puerto Rico | 3 | 114 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
-| 11 | Cabarete | Dominican Republic | 3 | 106 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
-| 12 | Cienfuegos | Cuba | 3 | 113 | 3 | 3 | 2 | 1 (1) | ✗ | – | 17 |
-| 13 | Samaná | Dominican Republic | 3 | 111 | 3 | 3 | 2 | 1 (1) | ✗ | – | 17 |
-| 14 | El Yunque | Puerto Rico | 3 | 103 | 3 | 3 | 2 | 1 (1) | ✗ | – | 17 |
-| 15 | Kingston | Jamaica | 3 | 108 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
-| 16 | Las Terrenas | Dominican Republic | 3 | 106 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
-| 17 | Negril | Jamaica | 3 | 112 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
-| 18 | Ponce | Puerto Rico | 3 | 109 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
-| 19 | Port Antonio | Jamaica | 3 | 106 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
-| 20 | Ocho Rios | Jamaica | 3 | 109 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
-| 21 | Viñales | Cuba | 3 | 110 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
-| 22 | Vieques | Puerto Rico | 3 | 112 | 3 | 3 | 2 | 1 (1) | ✗ | – | 17 |
-| 23 | Trinidad | Cuba | 3 | 108 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
-| 24 | Blue Mountains | Jamaica | 3 | 115 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
-| 25 | Queenstown | New Zealand | 3 | 136 | 3 | 3 | 0 | 1 (1) | ✗ | – | 16 |
-| 26 | Santo Domingo | Dominican Republic | 3 | 113 | 3 | 3 | 1 | 1 (1) | ✗ | – | 16 |
-| 27 | Bridgetown | Barbados | 3 | 108 | 3 | 3 | 3 | 0 (0) | ✗ | – | 16 |
-| 28 | Cap-Haïtien | Haiti | 3 | 91 | 3 | 3 | 2 | 0 (0) | ✗ | – | 16 |
-| 29 | Holetown | Barbados | 3 | 113 | 3 | 3 | 2 | 0 (0) | ✗ | – | 16 |
-| 30 | Jacmel | Haiti | 3 | 106 | 3 | 3 | 2 | 0 (0) | ✗ | – | 16 |
-| 31 | Bathsheba | Barbados | 3 | 110 | 3 | 3 | 2 | 0 (0) | ✗ | – | 16 |
-| 32 | Port-au-Prince | Haiti | 3 | 107 | 3 | 3 | 1 | 0 (0) | ✗ | – | 15 |
-| 33 | Crown Point | Trinidad and Tobago | 3 | 99 | 3 | 3 | 0 | 0 (0) | ✗ | – | 15 |
-| 34 | Port of Spain | Trinidad and Tobago | 3 | 112 | 3 | 3 | 0 | 0 (0) | ✗ | – | 15 |
-| 35 | Speyside | Trinidad and Tobago | 3 | 112 | 3 | 3 | 1 | 0 (0) | ✗ | – | 15 |
-| 36 | Speightstown | Barbados | 3 | 105 | 3 | 3 | 0 | 0 (0) | ✗ | – | 15 |
-| 37 | Labadee | Haiti | 3 | 95 | 3 | 3 | 1 | 0 (0) | ✗ | – | 15 |
-| 38 | Oistins | Barbados | 3 | 111 | 3 | 3 | 0 | 0 (0) | ✗ | – | 15 |
-| 39 | Maracas Bay | Trinidad and Tobago | 3 | 105 | 3 | 3 | 1 | 0 (0) | ✗ | – | 15 |
-| 40 | Pétion-Ville | Haiti | 3 | 99 | 3 | 3 | 1 | 0 (0) | ✗ | – | 15 |
+| 1 | Varanasi | India | 17 | 109 | 17 | 0 | 17 | 3 (3) | ✓ | – | 29 |
+| 2 | Nara | Japan | 14 | 104 | 14 | 0 | 14 | 2 (2) | ✓ | – | 26 |
+| 3 | Jarabacoa | Dominican Republic | 3 | 106 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
+| 4 | Havana | Cuba | 3 | 111 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
+| 5 | Rincón | Puerto Rico | 3 | 105 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
+| 6 | Santiago de Cuba | Cuba | 3 | 107 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
+| 7 | San Juan | Puerto Rico | 3 | 114 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
+| 8 | Cabarete | Dominican Republic | 3 | 106 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
+| 9 | Cienfuegos | Cuba | 3 | 113 | 3 | 3 | 2 | 1 (1) | ✗ | – | 17 |
+| 10 | Samaná | Dominican Republic | 3 | 111 | 3 | 3 | 2 | 1 (1) | ✗ | – | 17 |
+| 11 | El Yunque | Puerto Rico | 3 | 103 | 3 | 3 | 2 | 1 (1) | ✗ | – | 17 |
+| 12 | Kingston | Jamaica | 3 | 108 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
+| 13 | Las Terrenas | Dominican Republic | 3 | 106 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
+| 14 | Negril | Jamaica | 3 | 112 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
+| 15 | Ponce | Puerto Rico | 3 | 109 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
+| 16 | Port Antonio | Jamaica | 3 | 106 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
+| 17 | Ocho Rios | Jamaica | 3 | 109 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
+| 18 | Viñales | Cuba | 3 | 110 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
+| 19 | Vieques | Puerto Rico | 3 | 112 | 3 | 3 | 2 | 1 (1) | ✗ | – | 17 |
+| 20 | Trinidad | Cuba | 3 | 108 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
+| 21 | Blue Mountains | Jamaica | 3 | 115 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
+| 22 | Queenstown | New Zealand | 3 | 136 | 3 | 3 | 0 | 1 (1) | ✗ | – | 16 |
+| 23 | Santo Domingo | Dominican Republic | 3 | 113 | 3 | 3 | 1 | 1 (1) | ✗ | – | 16 |
+| 24 | Bridgetown | Barbados | 3 | 108 | 3 | 3 | 3 | 0 (0) | ✗ | – | 16 |
+| 25 | Cap-Haïtien | Haiti | 3 | 91 | 3 | 3 | 2 | 0 (0) | ✗ | – | 16 |
+| 26 | Holetown | Barbados | 3 | 113 | 3 | 3 | 2 | 0 (0) | ✗ | – | 16 |
+| 27 | Jacmel | Haiti | 3 | 106 | 3 | 3 | 2 | 0 (0) | ✗ | – | 16 |
+| 28 | Bathsheba | Barbados | 3 | 110 | 3 | 3 | 2 | 0 (0) | ✗ | – | 16 |
+| 29 | Port-au-Prince | Haiti | 3 | 107 | 3 | 3 | 1 | 0 (0) | ✗ | – | 15 |
+| 30 | Crown Point | Trinidad and Tobago | 3 | 99 | 3 | 3 | 0 | 0 (0) | ✗ | – | 15 |
+| 31 | Port of Spain | Trinidad and Tobago | 3 | 112 | 3 | 3 | 0 | 0 (0) | ✗ | – | 15 |
+| 32 | Speyside | Trinidad and Tobago | 3 | 112 | 3 | 3 | 1 | 0 (0) | ✗ | – | 15 |
+| 33 | Speightstown | Barbados | 3 | 105 | 3 | 3 | 0 | 0 (0) | ✗ | – | 15 |
+| 34 | Labadee | Haiti | 3 | 95 | 3 | 3 | 1 | 0 (0) | ✗ | – | 15 |
+| 35 | Oistins | Barbados | 3 | 111 | 3 | 3 | 0 | 0 (0) | ✗ | – | 15 |
+| 36 | Maracas Bay | Trinidad and Tobago | 3 | 105 | 3 | 3 | 1 | 0 (0) | ✗ | – | 15 |
+| 37 | Pétion-Ville | Haiti | 3 | 99 | 3 | 3 | 1 | 0 (0) | ✗ | – | 15 |
+| 38 | Asa Wright | Trinidad and Tobago | 3 | 106 | 3 | 3 | 0 | 0 (0) | ✗ | – | 15 |
+| 39 | Ambergris Caye | Belize | 3 | 121 | 3 | 3 | 2 | 1 (1) | ✓ | – | 13 |
+| 40 | Santa Marta | Colombia | 3 | 132 | 3 | 3 | 2 | 1 (1) | ✓ | – | 13 |
 
 ## Accommodation gaps (fewer than 3 listings — the Simien Mountains problem)
 

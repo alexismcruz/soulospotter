@@ -73,5 +73,20 @@
     "city": "hong-kong",
     "date": "2026-09-23",
     "note": "IMPORTANT: HK was NOT one of the 13 bulk-seeded cities but still had fabricated/closed listings — the earlier 'site-wide is clean' conclusion was too optimistic; every city enrichment must re-verify each spot. DELETED 8: Ming Fat House (a residential block, not a hostel), Fang Fang cha chaan teng and Artisan Bakery (no trace), The Press Room (closed 2014), Cafe Deadend (closed), Law Fu Kee (closed Jan 2025), Campfire coworking (closed, domain now a design agency), JustCo HK (no HK centre). 37 updated with real addresses + Maps links + fact-checked descriptions; fixed wrong districts (Butterfly on Waterfront, Mingle Place, Blueprint, Garage Society, WeWork, Cupping Room), outdated Michelin claims (Tim Ho Wan now Bib, Lung King Heen 2 stars), Star Ferry fare, several geography errors. Script: scripts/add-hong-kong-details.js"
+  },
+  {
+    "city": "jeju",
+    "date": "2026-09-23",
+    "note": "17/17 spots enriched (addresses/Maps, fact-checked 250+ char descriptions, Hallasan reservation + Manjanggul May-2026 reopening noted). DELETED Lazybox Guesthouse (unverifiable). Jeju Hiking Inn = Gudeok Guesthouse. Script: scripts/add-korea-south-details.js"
+  },
+  {
+    "city": "busan",
+    "date": "2026-09-23",
+    "note": "17/17 spots enriched. DELETED 'Hostel Haeundae' (no such specific hostel). Werk Roasters address updated (moved to Gwangan). Script: scripts/add-korea-south-details.js"
+  },
+  {
+    "city": "gyeongju",
+    "date": "2026-09-23",
+    "note": "17/17 spots enriched. DELETED 'Hwangnam Hanok Cafe' (unverifiable). Renamed to real names: Sa Rang Chae Guesthouse, Hwangnam-ppang original store, Gyeongju Ssambap Street, East Palace Garden (Donggungwon — old desc misdescribed it). Script: scripts/add-korea-south-details.js"
   }
 ]
