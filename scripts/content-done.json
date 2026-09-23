@@ -98,5 +98,45 @@
     "city": "nara",
     "date": "2026-09-23",
     "note": "13/13 spots enriched. DELETED 'Kura Coffee' (invented — the only Kura in Naramachi is an izakaya; Kura Coffee is in Osaka). Kofuku-ji pagoda noted as enclosed for restoration until ~2031. Script: scripts/add-varanasi-nara-details.js"
+  },
+  {
+    "city": "great-zimbabwe",
+    "date": "2026-09-23",
+    "note": "3/3 enriched; generic \"Great Zimbabwe Lodges\" → Lodge at the Ancient City, restaurant entry → Great Zimbabwe Hotel. Script: scripts/add-tail-batch1-details.js"
+  },
+  {
+    "city": "victoria-falls",
+    "date": "2026-09-23",
+    "note": "3/3 enriched (Shoestrings 12 West Drive, Africa Cafe at Elephant's Walk, Rainforest). Script: scripts/add-tail-batch1-details.js"
+  },
+  {
+    "city": "panajachel",
+    "date": "2026-09-23",
+    "note": "3/3 enriched; Selina → Socialtel Atitlan (rebrand); Circus Bar address fixed (Av. Los Arboles). Script: scripts/add-tail-batch1-details.js"
+  },
+  {
+    "city": "luxor",
+    "date": "2026-09-23",
+    "note": "3/3 enriched; Bob Marley Peace Hotel, Sofra (90 Mohamed Farid St), Karnak. Script: scripts/add-tail-batch1-details.js"
+  },
+  {
+    "city": "jinja",
+    "date": "2026-09-23",
+    "note": "3/3 enriched (NRE at Bujagali, Source Cafe 20 Main St, Source of the Nile). Script: scripts/add-tail-batch1-details.js"
+  },
+  {
+    "city": "accra",
+    "date": "2026-09-23",
+    "note": "3/3 enriched; Somewhere Nice desc corrected (pool/library, no rooftop bar). Script: scripts/add-tail-batch1-details.js"
+  },
+  {
+    "city": "maputo",
+    "date": "2026-09-23",
+    "note": "2 enriched; DELETED Cafe Camissa (moved years ago, unverifiable, desc wrong). Script: scripts/add-tail-batch1-details.js"
+  },
+  {
+    "city": "queenstown",
+    "date": "2026-09-23",
+    "note": "2 enriched; DELETED Base Backpackers (permanently closed); Fergburger hours corrected (not 24h). Script: scripts/add-tail-batch1-details.js"
   }
 ]
