@@ -28,5 +28,10 @@
     "city": "(13 cities, ACCOMMODATION category)",
     "date": "2026-09-23",
     "note": "Full sweep of accommodation in the same 13 cities. Cleanest category: only 32-33 of 159 unpublished (~20%) -- almost all major hotel chains and named hostel brands verified real. 4 real entries got links fixed. Two duplicate listings resolved (same real hostel entered twice). Scripts: fix-accommodation-real-links.js, unpublish-accommodation-unverified.js. This completes the 13-city sweep across coworking+cafe+accommodation started after the Guilin finding."
+  },
+  {
+    "city": "(site-wide, all categories) + (13 cities, FOOD/NATURE/CULTURE)",
+    "date": "2026-09-23",
+    "note": "Two final steps closing out the 'remove all fakes, check every category' instruction. (1) Structural scan of all 321 cities x all categories, re-scoped to COWORKING/CAFE/ACCOMMODATION in cities not yet checked: found 16 flagged clusters in 13 cities, individually verified every entry -- all genuinely real (Rambagh Palace, Taj Lake Palace, Park Hyatt Tokyo/Busan, Cafe de Flore, Zostel chain, etc). Conclusion: the fabrication problem is concentrated in the original 13-14 cities and does not extend site-wide. (2) Pulled and verified FOOD/NATURE/CULTURE for the 13 proven-bad cities (~155 spots) -- overwhelmingly real famous landmarks/markets/restaurants (Terracotta Army, Kuang Si Waterfall, Cloud 9, Hameediyah Restaurant, Auntie Gaik Lean's, etc). Only 5 problems found: lab-as-seafood-cebu (real restaurant, wrong city -- it's in Dumaguete not Cebu), khyatad-mongolian-cuisine-ulaanbaatar + mao-jia-restaurant-chengdu (unverifiable anywhere), magpupungko-rock-pools + cloud-9-surf-break (duplicates of -siargao versions, kept). Script: unpublish-food-culture-nature-unverified.js. All 149 confirmed-fake/duplicate/mislocated spots from every sweep this session (144 + 5) were then HARD DELETED per explicit instruction, via scripts/delete-unpublished-fakes.js --apply. This closes the full site-wide integrity sweep."
   }
 ]
