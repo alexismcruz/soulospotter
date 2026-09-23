@@ -13,5 +13,10 @@
     "city": "guilin",
     "date": "2026-09-23",
     "note": "32/45 spots UNPUBLISHED (not enriched) — no independent verification found anywhere (Tripadvisor/Expedia/Agoda/Hostelworld/Coworker.com all blank; source was untracked scripts/seed-guilin.js, a bulk-fill script with round per-category quotas and no citations). Kept 13 verified-real spots (3 hotels w/ corrected links, Li River Cruise, Reed Flute Cave, famous landmarks). Flagged as a possible wider issue — 80+ similar untracked seed-*.js scripts exist. Scripts: fix-guilin-verified-links.js, unpublish-guilin-unverified.js"
+  },
+  {
+    "city": "(site-wide, COWORKING category)",
+    "date": "2026-09-23",
+    "note": "Full sweep of all 182 published coworking spots site-wide. 10 verified-real entries had dead/missing website links fixed (Maria 01 Helsinki, Mesh Oslo, La Cordee Lyon, Selina Medellin, Penang Digital Library, Heyground Seoul, Blueprint HK, myHQ Jaipur, AngkorHub Siem Reap [renamed from imprecise DB name], Loft Cebu). 56 unpublished as unverifiable across 15 cities (Cebu, Chengdu, El Nido, Koh Tao, Kuala Lumpur, Luang Prabang, Pai, Penang, Phuket, Siem Reap, Ubud, Ulaanbaatar, Xian, plus Kwerk Nice and Anticafe Louvre Paris which are real brands but do not operate at that location). 182 -> 126 published coworking spots. Scripts: fix-coworking-real-links.js, unpublish-coworking-unverified.js. CAFE and ACCOMMODATION categories flagged as needing the same treatment next (Guilin showed both are also at risk) — not yet done."
   }
 ]
