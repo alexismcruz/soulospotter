@@ -68,5 +68,10 @@
     "city": "udaipur",
     "date": "2026-09-23",
     "note": "19/19 spots: all had no address — now real addresses, official links, descriptions from verified facts (250+ chars). All businesses verified open (Jagat Niwas, Edelweiss since 1999, Jheel's since 2011, Ambrai since 1998, Millets of Mewar). Script: scripts/add-jaipur-udaipur-details.js"
+  },
+  {
+    "city": "hong-kong",
+    "date": "2026-09-23",
+    "note": "IMPORTANT: HK was NOT one of the 13 bulk-seeded cities but still had fabricated/closed listings — the earlier 'site-wide is clean' conclusion was too optimistic; every city enrichment must re-verify each spot. DELETED 8: Ming Fat House (a residential block, not a hostel), Fang Fang cha chaan teng and Artisan Bakery (no trace), The Press Room (closed 2014), Cafe Deadend (closed), Law Fu Kee (closed Jan 2025), Campfire coworking (closed, domain now a design agency), JustCo HK (no HK centre). 37 updated with real addresses + Maps links + fact-checked descriptions; fixed wrong districts (Butterfly on Waterfront, Mingle Place, Blueprint, Garage Society, WeWork, Cupping Room), outdated Michelin claims (Tim Ho Wan now Bib, Lung King Heen 2 stars), Star Ferry fare, several geography errors. Script: scripts/add-hong-kong-details.js"
   }
 ]
