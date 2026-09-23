@@ -18,5 +18,15 @@
     "city": "(site-wide, COWORKING category)",
     "date": "2026-09-23",
     "note": "Full sweep of all 182 published coworking spots site-wide. 10 verified-real entries had dead/missing website links fixed (Maria 01 Helsinki, Mesh Oslo, La Cordee Lyon, Selina Medellin, Penang Digital Library, Heyground Seoul, Blueprint HK, myHQ Jaipur, AngkorHub Siem Reap [renamed from imprecise DB name], Loft Cebu). 56 unpublished as unverifiable across 15 cities (Cebu, Chengdu, El Nido, Koh Tao, Kuala Lumpur, Luang Prabang, Pai, Penang, Phuket, Siem Reap, Ubud, Ulaanbaatar, Xian, plus Kwerk Nice and Anticafe Louvre Paris which are real brands but do not operate at that location). 182 -> 126 published coworking spots. Scripts: fix-coworking-real-links.js, unpublish-coworking-unverified.js. CAFE and ACCOMMODATION categories flagged as needing the same treatment next (Guilin showed both are also at risk) — not yet done."
+  },
+  {
+    "city": "(13 cities, CAFE category)",
+    "date": "2026-09-23",
+    "note": "Full sweep of cafes in the 13 cities flagged by the coworking sweep. 5 real entries got links fixed. 23 of 78 unpublished (~30%, much better hit-rate than coworking) across Cebu, Chengdu, El Nido, Koh Tao, Luang Prabang, Pai, Penang, Phuket, Ubud, Ulaanbaatar, Xian. KL and Siem Reap had zero fabricated cafes. Scripts: fix-cafe-real-links.js, unpublish-cafe-unverified.js"
+  },
+  {
+    "city": "(13 cities, ACCOMMODATION category)",
+    "date": "2026-09-23",
+    "note": "Full sweep of accommodation in the same 13 cities. Cleanest category: only 32-33 of 159 unpublished (~20%) -- almost all major hotel chains and named hostel brands verified real. 4 real entries got links fixed. Two duplicate listings resolved (same real hostel entered twice). Scripts: fix-accommodation-real-links.js, unpublish-accommodation-unverified.js. This completes the 13-city sweep across coworking+cafe+accommodation started after the Guilin finding."
   }
 ]
