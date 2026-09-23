@@ -88,5 +88,15 @@
     "city": "gyeongju",
     "date": "2026-09-23",
     "note": "17/17 spots enriched. DELETED 'Hwangnam Hanok Cafe' (unverifiable). Renamed to real names: Sa Rang Chae Guesthouse, Hwangnam-ppang original store, Gyeongju Ssambap Street, East Palace Garden (Donggungwon — old desc misdescribed it). Script: scripts/add-korea-south-details.js"
+  },
+  {
+    "city": "varanasi",
+    "date": "2026-09-23",
+    "note": "17/17 spots enriched with real addresses/Maps and fact-checked descriptions. All businesses verified open. 'Silk Weaving Workshop' reframed as the Madanpura weaving quarter (no single workshop). Script: scripts/add-varanasi-nara-details.js"
+  },
+  {
+    "city": "nara",
+    "date": "2026-09-23",
+    "note": "13/13 spots enriched. DELETED 'Kura Coffee' (invented — the only Kura in Naramachi is an izakaya; Kura Coffee is in Osaka). Kofuku-ji pagoda noted as enclosed for restoration until ~2031. Script: scripts/add-varanasi-nara-details.js"
   }
 ]
