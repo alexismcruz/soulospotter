@@ -3,5 +3,10 @@
     "city": "simien-mountains",
     "date": "2026-09-21",
     "note": "Accommodation: Limalimo Lodge + park camps (Sankaber, Gich, Chenek, Ambiko) with official links; Simien Lodge fixed. Debark hotels still unverified. Script: scripts/add-simien-accommodation.js"
+  },
+  {
+    "city": "osaka",
+    "date": "2026-09-22",
+    "note": "18/18 spots: real addresses + official/authority links (Osaka Castle Park, Shitennoji, Sumiyoshi Taisha, Umeda Sky Bldg, Spa World, Namba Parks, Kuromon Market, Conrad Osaka, Hotel Zentis, Billboard Live, Mel/LiLo coffee, Namba Yasaka; districts linked to OSAKA-INFO tourism bureau). Descriptions were already good quality, not rewritten. Script: scripts/add-osaka-details.js"
   }
 ]
