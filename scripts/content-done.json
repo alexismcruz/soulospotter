@@ -53,5 +53,10 @@
     "city": "kathmandu",
     "date": "2026-09-23",
     "note": "25/25 spots: all descriptions rewritten from verified facts (250+ chars), real addresses + Maps links, 2026 heritage-site fees. Corrected: 'Or2K Momo & Newari Eats — Honacha' was a mash-up of two places — rebuilt as Honacha (Patan, since 1934); Thakali Bhanchha Ghar is in Thamel not Lazimpat; Pranamaya requires pre-booking (not walk-in); Alobar1000 website dead (cleared); unsourced claims removed (Places 'garden/cakes', Roadhouse 'best WiFi'). No closures found. Script: scripts/add-kathmandu-details.js"
+  },
+  {
+    "city": "tokyo",
+    "date": "2026-09-23",
+    "note": "20/20 spots: all had no address/website — now real addresses, official links, and descriptions rewritten from verified facts (250+ chars). All venues verified open: Park Hyatt reopened Dec 2025 after renovation; Koffee Mameya Omotesando still open (standing only); teamLab Planets extended to end-2027. WeWork Shibuya renamed to its real location (Shibuya Scramble Square). No fakes/closures. Script: scripts/add-tokyo-details.js"
   }
 ]
