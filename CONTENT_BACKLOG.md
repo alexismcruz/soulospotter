@@ -10,61 +10,59 @@ _Generated 2026-09-25 by `node scripts/content-audit.js`. Do not edit by hand �
 
 ## Where we stand
 - Published cities: **321** · spots: **2641**
-- Spots with description under 150 chars: **508** (19%)
-- Spots with **no website and no Maps link** (nothing to click): **519** (20%)
-- Spots with a generic/missing address: **368** (14%)
+- Spots with description under 150 chars: **484** (18%)
+- Spots with **no website and no Maps link** (nothing to click): **495** (19%)
+- Spots with a generic/missing address: **346** (13%)
 - Cities with fewer than 3 accommodation spots: **271** · cities with no solo tips: **36**
-- Cities marked done: simien-mountains (2026-09-21), osaka (2026-09-22), guilin (2026-09-23), (site-wide, COWORKING category) (2026-09-23), (13 cities, CAFE category) (2026-09-23), (13 cities, ACCOMMODATION category) (2026-09-23), (site-wide, all categories) + (13 cities, FOOD/NATURE/CULTURE) (2026-09-23), seoul (2026-09-23), kyoto (2026-09-23), rishikesh (2026-09-23), kathmandu (2026-09-23), tokyo (2026-09-23), jaipur (2026-09-23), udaipur (2026-09-23), hong-kong (2026-09-23), jeju (2026-09-23), busan (2026-09-23), gyeongju (2026-09-23), varanasi (2026-09-23), nara (2026-09-23), great-zimbabwe (2026-09-23), victoria-falls (2026-09-23), panajachel (2026-09-23), luxor (2026-09-23), jinja (2026-09-23), accra (2026-09-23), maputo (2026-09-23), queenstown (2026-09-23), boquete (2026-09-25), el-tunco (2026-09-25), dakar (2026-09-25), las-terrenas (2026-09-25), maun (2026-09-25), musanze (2026-09-25), managua (2026-09-25), kigali (2026-09-25), el-yunque (2026-09-25), jarabacoa (2026-09-25), santo-domingo (2026-09-25), quetzaltenango (2026-09-25), ponce (2026-09-25), maracas-bay (2026-09-25), port-of-spain (2026-09-25), cienfuegos (2026-09-25), havana (2026-09-25), rincon (2026-09-25), santiago-de-cuba (2026-09-25), san-juan (2026-09-25), cabarete (2026-09-25), samana (2026-09-25), kingston (2026-09-25), negril (2026-09-25)
+- Cities marked done: simien-mountains (2026-09-21), osaka (2026-09-22), guilin (2026-09-23), (site-wide, COWORKING category) (2026-09-23), (13 cities, CAFE category) (2026-09-23), (13 cities, ACCOMMODATION category) (2026-09-23), (site-wide, all categories) + (13 cities, FOOD/NATURE/CULTURE) (2026-09-23), seoul (2026-09-23), kyoto (2026-09-23), rishikesh (2026-09-23), kathmandu (2026-09-23), tokyo (2026-09-23), jaipur (2026-09-23), udaipur (2026-09-23), hong-kong (2026-09-23), jeju (2026-09-23), busan (2026-09-23), gyeongju (2026-09-23), varanasi (2026-09-23), nara (2026-09-23), great-zimbabwe (2026-09-23), victoria-falls (2026-09-23), panajachel (2026-09-23), luxor (2026-09-23), jinja (2026-09-23), accra (2026-09-23), maputo (2026-09-23), queenstown (2026-09-23), boquete (2026-09-25), el-tunco (2026-09-25), dakar (2026-09-25), las-terrenas (2026-09-25), maun (2026-09-25), musanze (2026-09-25), managua (2026-09-25), kigali (2026-09-25), el-yunque (2026-09-25), jarabacoa (2026-09-25), santo-domingo (2026-09-25), quetzaltenango (2026-09-25), ponce (2026-09-25), maracas-bay (2026-09-25), port-of-spain (2026-09-25), cienfuegos (2026-09-25), havana (2026-09-25), rincon (2026-09-25), santiago-de-cuba (2026-09-25), san-juan (2026-09-25), cabarete (2026-09-25), samana (2026-09-25), kingston (2026-09-25), negril (2026-09-25), port-antonio (2026-09-25), ocho-rios (2026-09-25), vinales (2026-09-25), vieques (2026-09-25), trinidad-cuba (2026-09-25), blue-mountains (2026-09-25), bridgetown (2026-09-25), cap-haitien (2026-09-25)
 
 ## Top 40 cities to enrich next (re-run with --gsc for demand weighting)
 
 | # | City | Country | Spots | Avg desc | Thin desc | No link | Generic addr | Accom (no site) | Solo tips | GSC impr | Score |
 |--:|---|---|--:|--:|--:|--:|--:|--:|:-:|--:|--:|
-| 1 | Port Antonio | Jamaica | 3 | 106 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
-| 2 | Ocho Rios | Jamaica | 3 | 109 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
-| 3 | Viñales | Cuba | 3 | 110 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
-| 4 | Vieques | Puerto Rico | 3 | 112 | 3 | 3 | 2 | 1 (1) | ✗ | – | 17 |
-| 5 | Trinidad | Cuba | 3 | 108 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
-| 6 | Blue Mountains | Jamaica | 3 | 115 | 3 | 3 | 3 | 1 (1) | ✗ | – | 17 |
-| 7 | Bridgetown | Barbados | 3 | 108 | 3 | 3 | 3 | 0 (0) | ✗ | – | 16 |
-| 8 | Cap-Haïtien | Haiti | 3 | 91 | 3 | 3 | 2 | 0 (0) | ✗ | – | 16 |
-| 9 | Holetown | Barbados | 3 | 113 | 3 | 3 | 2 | 0 (0) | ✗ | – | 16 |
-| 10 | Jacmel | Haiti | 3 | 106 | 3 | 3 | 2 | 0 (0) | ✗ | – | 16 |
-| 11 | Bathsheba | Barbados | 3 | 110 | 3 | 3 | 2 | 0 (0) | ✗ | – | 16 |
-| 12 | Port-au-Prince | Haiti | 3 | 107 | 3 | 3 | 1 | 0 (0) | ✗ | – | 15 |
-| 13 | Crown Point | Trinidad and Tobago | 3 | 99 | 3 | 3 | 0 | 0 (0) | ✗ | – | 15 |
-| 14 | Speyside | Trinidad and Tobago | 3 | 112 | 3 | 3 | 1 | 0 (0) | ✗ | – | 15 |
-| 15 | Speightstown | Barbados | 3 | 105 | 3 | 3 | 0 | 0 (0) | ✗ | – | 15 |
-| 16 | Labadee | Haiti | 3 | 95 | 3 | 3 | 1 | 0 (0) | ✗ | – | 15 |
-| 17 | Oistins | Barbados | 3 | 111 | 3 | 3 | 0 | 0 (0) | ✗ | – | 15 |
-| 18 | Pétion-Ville | Haiti | 3 | 99 | 3 | 3 | 1 | 0 (0) | ✗ | – | 15 |
-| 19 | Asa Wright | Trinidad and Tobago | 3 | 106 | 3 | 3 | 0 | 0 (0) | ✗ | – | 15 |
-| 20 | Ambergris Caye | Belize | 3 | 121 | 3 | 3 | 2 | 1 (1) | ✓ | – | 13 |
-| 21 | Santa Marta | Colombia | 3 | 132 | 3 | 3 | 2 | 1 (1) | ✓ | – | 13 |
-| 22 | Gondar | Ethiopia | 3 | 109 | 3 | 3 | 3 | 1 (1) | ✓ | – | 13 |
-| 23 | Mombasa | Kenya | 3 | 111 | 3 | 3 | 3 | 1 (1) | ✓ | – | 13 |
-| 24 | Paysandú | Uruguay | 3 | 123 | 3 | 3 | 2 | 1 (1) | ✓ | – | 13 |
-| 25 | San Bernardino | Paraguay | 3 | 122 | 3 | 3 | 3 | 1 (1) | ✓ | – | 13 |
-| 26 | Cabo Polonio | Uruguay | 3 | 131 | 3 | 3 | 3 | 1 (1) | ✓ | – | 13 |
-| 27 | Puerto Escondido | Mexico | 3 | 117 | 3 | 3 | 3 | 1 (1) | ✓ | – | 13 |
-| 28 | Guadalajara | Mexico | 3 | 120 | 3 | 3 | 2 | 1 (1) | ✓ | – | 13 |
-| 29 | Utila | Honduras | 3 | 116 | 3 | 3 | 3 | 1 (1) | ✓ | – | 13 |
-| 30 | Tulum | Mexico | 3 | 120 | 3 | 3 | 2 | 1 (1) | ✓ | – | 13 |
-| 31 | León | Nicaragua | 3 | 119 | 3 | 3 | 2 | 1 (1) | ✓ | – | 13 |
-| 32 | San Juan del Sur | Nicaragua | 3 | 112 | 3 | 3 | 3 | 1 (1) | ✓ | – | 13 |
-| 33 | Santa Ana | El Salvador | 3 | 115 | 3 | 3 | 2 | 1 (1) | ✓ | – | 13 |
-| 34 | Copán Ruinas | Honduras | 3 | 115 | 3 | 3 | 3 | 1 (1) | ✓ | – | 13 |
-| 35 | Santa Catalina | Panama | 3 | 122 | 3 | 3 | 3 | 1 (1) | ✓ | – | 13 |
-| 36 | Areguá | Paraguay | 3 | 121 | 3 | 3 | 3 | 1 (1) | ✓ | – | 13 |
-| 37 | San Ignacio | Belize | 3 | 123 | 3 | 3 | 3 | 1 (1) | ✓ | – | 13 |
-| 38 | Choroni | Venezuela | 3 | 120 | 3 | 3 | 3 | 1 (1) | ✓ | – | 13 |
-| 39 | Morrocoy | Venezuela | 3 | 114 | 3 | 3 | 2 | 1 (1) | ✓ | – | 13 |
-| 40 | Mérida | Venezuela | 3 | 122 | 3 | 3 | 3 | 1 (1) | ✓ | – | 13 |
+| 1 | Holetown | Barbados | 3 | 113 | 3 | 3 | 2 | 0 (0) | ✗ | – | 16 |
+| 2 | Jacmel | Haiti | 3 | 106 | 3 | 3 | 2 | 0 (0) | ✗ | – | 16 |
+| 3 | Bathsheba | Barbados | 3 | 110 | 3 | 3 | 2 | 0 (0) | ✗ | – | 16 |
+| 4 | Port-au-Prince | Haiti | 3 | 107 | 3 | 3 | 1 | 0 (0) | ✗ | – | 15 |
+| 5 | Crown Point | Trinidad and Tobago | 3 | 99 | 3 | 3 | 0 | 0 (0) | ✗ | – | 15 |
+| 6 | Speyside | Trinidad and Tobago | 3 | 112 | 3 | 3 | 1 | 0 (0) | ✗ | – | 15 |
+| 7 | Speightstown | Barbados | 3 | 105 | 3 | 3 | 0 | 0 (0) | ✗ | – | 15 |
+| 8 | Labadee | Haiti | 3 | 95 | 3 | 3 | 1 | 0 (0) | ✗ | – | 15 |
+| 9 | Oistins | Barbados | 3 | 111 | 3 | 3 | 0 | 0 (0) | ✗ | – | 15 |
+| 10 | Pétion-Ville | Haiti | 3 | 99 | 3 | 3 | 1 | 0 (0) | ✗ | – | 15 |
+| 11 | Asa Wright | Trinidad and Tobago | 3 | 106 | 3 | 3 | 0 | 0 (0) | ✗ | – | 15 |
+| 12 | Ambergris Caye | Belize | 3 | 121 | 3 | 3 | 2 | 1 (1) | ✓ | – | 13 |
+| 13 | Santa Marta | Colombia | 3 | 132 | 3 | 3 | 2 | 1 (1) | ✓ | – | 13 |
+| 14 | Gondar | Ethiopia | 3 | 109 | 3 | 3 | 3 | 1 (1) | ✓ | – | 13 |
+| 15 | Mombasa | Kenya | 3 | 111 | 3 | 3 | 3 | 1 (1) | ✓ | – | 13 |
+| 16 | Paysandú | Uruguay | 3 | 123 | 3 | 3 | 2 | 1 (1) | ✓ | – | 13 |
+| 17 | San Bernardino | Paraguay | 3 | 122 | 3 | 3 | 3 | 1 (1) | ✓ | – | 13 |
+| 18 | Cabo Polonio | Uruguay | 3 | 131 | 3 | 3 | 3 | 1 (1) | ✓ | – | 13 |
+| 19 | Puerto Escondido | Mexico | 3 | 117 | 3 | 3 | 3 | 1 (1) | ✓ | – | 13 |
+| 20 | Guadalajara | Mexico | 3 | 120 | 3 | 3 | 2 | 1 (1) | ✓ | – | 13 |
+| 21 | Utila | Honduras | 3 | 116 | 3 | 3 | 3 | 1 (1) | ✓ | – | 13 |
+| 22 | Tulum | Mexico | 3 | 120 | 3 | 3 | 2 | 1 (1) | ✓ | – | 13 |
+| 23 | León | Nicaragua | 3 | 119 | 3 | 3 | 2 | 1 (1) | ✓ | – | 13 |
+| 24 | San Juan del Sur | Nicaragua | 3 | 112 | 3 | 3 | 3 | 1 (1) | ✓ | – | 13 |
+| 25 | Santa Ana | El Salvador | 3 | 115 | 3 | 3 | 2 | 1 (1) | ✓ | – | 13 |
+| 26 | Copán Ruinas | Honduras | 3 | 115 | 3 | 3 | 3 | 1 (1) | ✓ | – | 13 |
+| 27 | Santa Catalina | Panama | 3 | 122 | 3 | 3 | 3 | 1 (1) | ✓ | – | 13 |
+| 28 | Areguá | Paraguay | 3 | 121 | 3 | 3 | 3 | 1 (1) | ✓ | – | 13 |
+| 29 | San Ignacio | Belize | 3 | 123 | 3 | 3 | 3 | 1 (1) | ✓ | – | 13 |
+| 30 | Choroni | Venezuela | 3 | 120 | 3 | 3 | 3 | 1 (1) | ✓ | – | 13 |
+| 31 | Morrocoy | Venezuela | 3 | 114 | 3 | 3 | 2 | 1 (1) | ✓ | – | 13 |
+| 32 | Mérida | Venezuela | 3 | 122 | 3 | 3 | 3 | 1 (1) | ✓ | – | 13 |
+| 33 | Manuel Antonio | Costa Rica | 3 | 121 | 3 | 3 | 3 | 1 (1) | ✓ | – | 13 |
+| 34 | San Gil | Colombia | 3 | 125 | 3 | 3 | 3 | 1 (1) | ✓ | – | 13 |
+| 35 | Flores | Guatemala | 3 | 116 | 3 | 3 | 3 | 1 (1) | ✓ | – | 13 |
+| 36 | Puerto Ayora | Ecuador | 3 | 137 | 3 | 3 | 2 | 1 (1) | ✓ | – | 13 |
+| 37 | Semuc Champey | Guatemala | 3 | 120 | 3 | 3 | 3 | 1 (1) | ✓ | – | 13 |
+| 38 | Suchitoto | El Salvador | 3 | 123 | 3 | 3 | 2 | 1 (1) | ✓ | – | 13 |
+| 39 | Montañita | Ecuador | 3 | 129 | 3 | 3 | 2 | 1 (1) | ✓ | – | 13 |
+| 40 | Canaima | Venezuela | 3 | 126 | 3 | 3 | 2 | 1 (1) | ✓ | – | 13 |
 
 ## Accommodation gaps (fewer than 3 listings — the Simien Mountains problem)
 
-- **Bridgetown**, Barbados: 0 accommodation listing(s)
-- **Cap-Haïtien**, Haiti: 0 accommodation listing(s)
 - **Holetown**, Barbados: 0 accommodation listing(s)
 - **Jacmel**, Haiti: 0 accommodation listing(s)
 - **Bathsheba**, Barbados: 0 accommodation listing(s)
@@ -91,8 +89,10 @@ _Generated 2026-09-25 by `node scripts/content-audit.js`. Do not edit by hand �
 - **Medellín**, Colombia: 0 accommodation listing(s)
 - **Tbilisi**, Georgia: 0 accommodation listing(s)
 - **Novi Sad**, Serbia: 0 accommodation listing(s)
-- **Port Antonio**, Jamaica: 1 accommodation listing(s)
-- **Ocho Rios**, Jamaica: 1 accommodation listing(s)
+- **Ambergris Caye**, Belize: 1 accommodation listing(s)
+- **Santa Marta**, Colombia: 1 accommodation listing(s)
+- **Gondar**, Ethiopia: 1 accommodation listing(s)
+- **Mombasa**, Kenya: 1 accommodation listing(s)
 
 ## Countries without a full country guide
 

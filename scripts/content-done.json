@@ -258,5 +258,45 @@
     "city": "negril",
     "date": "2026-09-25",
     "note": "3/3 enriched (Judy House, Seven Mile Beach, Rick's Cafe). Script: scripts/add-tail-batch4-details.js"
+  },
+  {
+    "city": "port-antonio",
+    "date": "2026-09-25",
+    "note": "3/3 enriched (Drapers San, Soldier Camp, Blue Lagoon). Script: scripts/add-tail-batch5-details.js"
+  },
+  {
+    "city": "ocho-rios",
+    "date": "2026-09-25",
+    "note": "3/3 enriched (Reggae Hostel, Scotchies, Dunn's River). Script: scripts/add-tail-batch5-details.js"
+  },
+  {
+    "city": "vinales",
+    "date": "2026-09-25",
+    "note": "3/3 enriched; Casa El Balcon identified (Rafael Trejo 48-A). Script: scripts/add-tail-batch5-details.js"
+  },
+  {
+    "city": "vieques",
+    "date": "2026-09-25",
+    "note": "3/3 enriched; El Quenepo seasonal-closure note. Script: scripts/add-tail-batch5-details.js"
+  },
+  {
+    "city": "trinidad-cuba",
+    "date": "2026-09-25",
+    "note": "3/3 enriched; generic Casa Colonial → Casa Colonial 1830. Script: scripts/add-tail-batch5-details.js"
+  },
+  {
+    "city": "blue-mountains",
+    "date": "2026-09-25",
+    "note": "3/3 enriched. Script: scripts/add-tail-batch5-details.js"
+  },
+  {
+    "city": "bridgetown",
+    "date": "2026-09-25",
+    "note": "3/3 enriched. Script: scripts/add-tail-batch5-details.js"
+  },
+  {
+    "city": "cap-haitien",
+    "date": "2026-09-25",
+    "note": "3/3 enriched; Marche de Fer = Marche Cluny; travel-advisory notes added. Script: scripts/add-tail-batch5-details.js"
   }
 ]
