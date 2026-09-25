@@ -138,5 +138,45 @@
     "city": "queenstown",
     "date": "2026-09-23",
     "note": "2 enriched; DELETED Base Backpackers (permanently closed); Fergburger hours corrected (not 24h). Script: scripts/add-tail-batch1-details.js"
+  },
+  {
+    "city": "boquete",
+    "date": "2026-09-25",
+    "note": "3/3 enriched; Selina → Socialtel Boquete (rebrand). Script: scripts/add-tail-batch2-details.js"
+  },
+  {
+    "city": "el-tunco",
+    "date": "2026-09-25",
+    "note": "2 enriched; DELETED La Bocana Restaurant (no such restaurant — La Bocana is a surf break). Script: scripts/add-tail-batch2-details.js"
+  },
+  {
+    "city": "dakar",
+    "date": "2026-09-25",
+    "note": "3/3 enriched; ViaVia is in Yoff; Cafe de Rome is a hotel/brasserie, not a pastry cafe. Script: scripts/add-tail-batch2-details.js"
+  },
+  {
+    "city": "las-terrenas",
+    "date": "2026-09-25",
+    "note": "3/3 enriched (Hotel Casa Robinson, La Terrasse, Playa Bonita). Script: scripts/add-tail-batch2-details.js"
+  },
+  {
+    "city": "maun",
+    "date": "2026-09-25",
+    "note": "3/3 enriched (Old Bridge Backpackers, Hilary's since 1995, Nhabe Museum). Script: scripts/add-tail-batch2-details.js"
+  },
+  {
+    "city": "musanze",
+    "date": "2026-09-25",
+    "note": "3/3 enriched (Red Rocks, Volcana Lounge, Volcanoes NP HQ Kinigi). Script: scripts/add-tail-batch2-details.js"
+  },
+  {
+    "city": "managua",
+    "date": "2026-09-25",
+    "note": "3/3 enriched; malecon renamed to Puerto Salvador Allende. Script: scripts/add-tail-batch2-details.js"
+  },
+  {
+    "city": "kigali",
+    "date": "2026-09-25",
+    "note": "3/3 enriched; Discover Rwanda hostel is in Kacyiru (not Kiyovu). Script: scripts/add-tail-batch2-details.js"
   }
 ]
