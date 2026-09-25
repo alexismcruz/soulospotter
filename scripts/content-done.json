@@ -338,5 +338,45 @@
     "city": "labadee",
     "date": "2026-09-25",
     "note": "2 enriched; DELETED generic Nord Coast Seafood Shacks; Lakou Lakay located in Milot. Script: scripts/add-tail-batch6-details.js"
+  },
+  {
+    "city": "oistins",
+    "date": "2026-09-25",
+    "note": "3/3 enriched. Script: scripts/add-tail-batch7-details.js"
+  },
+  {
+    "city": "petion-ville",
+    "date": "2026-09-25",
+    "note": "3/3 enriched with Haiti advisory; La Souvenance is French cuisine (desc corrected). Script: scripts/add-tail-batch7-details.js"
+  },
+  {
+    "city": "asa-wright",
+    "date": "2026-09-25",
+    "note": "3/3 enriched; reopened 2023 as HADCO eco-lodge. Script: scripts/add-tail-batch7-details.js"
+  },
+  {
+    "city": "ambergris-caye",
+    "date": "2026-09-25",
+    "note": "3/3 enriched. Script: scripts/add-tail-batch7-details.js"
+  },
+  {
+    "city": "santa-marta",
+    "date": "2026-09-25",
+    "note": "3/3 enriched. Script: scripts/add-tail-batch7-details.js"
+  },
+  {
+    "city": "gondar",
+    "date": "2026-09-25",
+    "note": "3/3 enriched. Script: scripts/add-tail-batch7-details.js"
+  },
+  {
+    "city": "mombasa",
+    "date": "2026-09-25",
+    "note": "3/3 enriched. Script: scripts/add-tail-batch7-details.js"
+  },
+  {
+    "city": "paysandu",
+    "date": "2026-09-25",
+    "note": "2 enriched; DELETED Parrilla El Meson (no trace). Script: scripts/add-tail-batch7-details.js"
   }
 ]
