@@ -498,5 +498,45 @@
     "city": "canaima",
     "date": "2026-09-25",
     "note": "3/3 enriched; Venezuela advisory notes. Script: scripts/add-tail-batch10-details.js"
+  },
+  {
+    "city": "roraima-venezuela",
+    "date": "2026-09-25",
+    "note": "3/3 enriched; generic lookout → Gran Sabana (Troncal 10). Script: scripts/add-tail-batch11-details.js"
+  },
+  {
+    "city": "concepcion-paraguay",
+    "date": "2026-09-25",
+    "note": "3/3 enriched. Script: scripts/add-tail-batch11-details.js"
+  },
+  {
+    "city": "la-ceiba",
+    "date": "2026-09-25",
+    "note": "2 enriched; DELETED Expatriates Bar (closed). Script: scripts/add-tail-batch11-details.js"
+  },
+  {
+    "city": "ometepe",
+    "date": "2026-09-25",
+    "note": "3/3 enriched. Script: scripts/add-tail-batch11-details.js"
+  },
+  {
+    "city": "roatan",
+    "date": "2026-09-25",
+    "note": "3/3 enriched; Roatan Backpackers is in Sandy Bay. Script: scripts/add-tail-batch11-details.js"
+  },
+  {
+    "city": "hopkins",
+    "date": "2026-09-25",
+    "note": "3/3 enriched. Script: scripts/add-tail-batch11-details.js"
+  },
+  {
+    "city": "nata",
+    "date": "2026-09-25",
+    "note": "3/3 enriched. Script: scripts/add-tail-batch11-details.js"
+  },
+  {
+    "city": "placencia",
+    "date": "2026-09-25",
+    "note": "3/3 enriched. Script: scripts/add-tail-batch11-details.js"
   }
 ]
