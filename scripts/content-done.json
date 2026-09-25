@@ -218,5 +218,45 @@
     "city": "cienfuegos",
     "date": "2026-09-25",
     "note": "3/3 enriched (Bella Perla Marina, Villa Lagarto, Parque Jose Marti). Script: scripts/add-tail-batch3-details.js"
+  },
+  {
+    "city": "havana",
+    "date": "2026-09-25",
+    "note": "2 enriched; DELETED generic \"Casa Particular Habana Vieja\" (not a real business). Script: scripts/add-tail-batch4-details.js"
+  },
+  {
+    "city": "rincon",
+    "date": "2026-09-25",
+    "note": "3/3 enriched. Script: scripts/add-tail-batch4-details.js"
+  },
+  {
+    "city": "santiago-de-cuba",
+    "date": "2026-09-25",
+    "note": "3/3 enriched; Casa Colonial → Casa Colonial 1893; St Pauli at Enramada 605. Script: scripts/add-tail-batch4-details.js"
+  },
+  {
+    "city": "san-juan",
+    "date": "2026-09-25",
+    "note": "3/3 enriched (Casa Sol 316 Calle del Sol, Deaverdura, El Morro). Script: scripts/add-tail-batch4-details.js"
+  },
+  {
+    "city": "cabarete",
+    "date": "2026-09-25",
+    "note": "2 enriched; DELETED Bagua Cafe (no trace). Script: scripts/add-tail-batch4-details.js"
+  },
+  {
+    "city": "samana",
+    "date": "2026-09-25",
+    "note": "3/3 enriched; Casa El Paraiso is a Las Galeras clifftop eco-lodge. Script: scripts/add-tail-batch4-details.js"
+  },
+  {
+    "city": "kingston",
+    "date": "2026-09-25",
+    "note": "3/3 enriched (Reggae Hostel 8 Burlington Ave, Devon House, Bob Marley Museum). Script: scripts/add-tail-batch4-details.js"
+  },
+  {
+    "city": "negril",
+    "date": "2026-09-25",
+    "note": "3/3 enriched (Judy House, Seven Mile Beach, Rick's Cafe). Script: scripts/add-tail-batch4-details.js"
   }
 ]
