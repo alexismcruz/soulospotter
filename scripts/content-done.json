@@ -178,5 +178,45 @@
     "city": "kigali",
     "date": "2026-09-25",
     "note": "3/3 enriched; Discover Rwanda hostel is in Kacyiru (not Kiyovu). Script: scripts/add-tail-batch2-details.js"
+  },
+  {
+    "city": "el-yunque",
+    "date": "2026-09-25",
+    "note": "3/3 enriched; La Mina Falls Trail (closed for construction) → El Yunque National Forest entry; Lluvia real name. Script: scripts/add-tail-batch3-details.js"
+  },
+  {
+    "city": "jarabacoa",
+    "date": "2026-09-25",
+    "note": "3/3 enriched (Rancho Baiguate, Aroma de la Montaña at Jamaca de Dios, Salto de Jimenoa). Script: scripts/add-tail-batch3-details.js"
+  },
+  {
+    "city": "santo-domingo",
+    "date": "2026-09-25",
+    "note": "3/3 enriched; Island Life address + amenities corrected. Script: scripts/add-tail-batch3-details.js"
+  },
+  {
+    "city": "quetzaltenango",
+    "date": "2026-09-25",
+    "note": "3/3 enriched; Cafe Red is a returned-migrant social enterprise; Black Cat possibly renamed (re-check). Script: scripts/add-tail-batch3-details.js"
+  },
+  {
+    "city": "ponce",
+    "date": "2026-09-25",
+    "note": "3/3 enriched (Hotel Belgica, Lola, Parque de Bombas 1882). Script: scripts/add-tail-batch3-details.js"
+  },
+  {
+    "city": "maracas-bay",
+    "date": "2026-09-25",
+    "note": "3/3 enriched. Script: scripts/add-tail-batch3-details.js"
+  },
+  {
+    "city": "port-of-spain",
+    "date": "2026-09-25",
+    "note": "3/3 enriched; Ariapita entry renamed from a Carnival event to the street itself. Script: scripts/add-tail-batch3-details.js"
+  },
+  {
+    "city": "cienfuegos",
+    "date": "2026-09-25",
+    "note": "3/3 enriched (Bella Perla Marina, Villa Lagarto, Parque Jose Marti). Script: scripts/add-tail-batch3-details.js"
   }
 ]
