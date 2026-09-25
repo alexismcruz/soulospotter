@@ -378,5 +378,45 @@
     "city": "paysandu",
     "date": "2026-09-25",
     "note": "2 enriched; DELETED Parrilla El Meson (no trace). Script: scripts/add-tail-batch7-details.js"
+  },
+  {
+    "city": "san-bernardino",
+    "date": "2026-09-25",
+    "note": "2 enriched; DELETED Cerveceria Sajonia Lakeside (Sajonia is in Asuncion). Script: scripts/add-tail-batch8-details.js"
+  },
+  {
+    "city": "cabo-polonio",
+    "date": "2026-09-25",
+    "note": "1 enriched; DELETED Posada de los Corsarios + Lo de Tato (no trace). NEEDS new verified spots. Script: scripts/add-tail-batch8-details.js"
+  },
+  {
+    "city": "puerto-escondido",
+    "date": "2026-09-25",
+    "note": "2 enriched; DELETED Selina Puerto Escondido (reported closed). Script: scripts/add-tail-batch8-details.js"
+  },
+  {
+    "city": "guadalajara",
+    "date": "2026-09-25",
+    "note": "2 enriched; DELETED Cafe de la Flor (Tijuana chain, no GDL branch). Script: scripts/add-tail-batch8-details.js"
+  },
+  {
+    "city": "utila",
+    "date": "2026-09-25",
+    "note": "3/3 enriched. Script: scripts/add-tail-batch8-details.js"
+  },
+  {
+    "city": "tulum",
+    "date": "2026-09-25",
+    "note": "3/3 enriched. Script: scripts/add-tail-batch8-details.js"
+  },
+  {
+    "city": "leon-nicaragua",
+    "date": "2026-09-25",
+    "note": "2 enriched; DELETED El Mississippi (unverifiable). Script: scripts/add-tail-batch8-details.js"
+  },
+  {
+    "city": "san-juan-del-sur",
+    "date": "2026-09-25",
+    "note": "3/3 enriched. Script: scripts/add-tail-batch8-details.js"
   }
 ]
