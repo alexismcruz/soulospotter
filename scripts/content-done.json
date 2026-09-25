@@ -418,5 +418,45 @@
     "city": "san-juan-del-sur",
     "date": "2026-09-25",
     "note": "3/3 enriched. Script: scripts/add-tail-batch8-details.js"
+  },
+  {
+    "city": "santa-ana",
+    "date": "2026-09-25",
+    "note": "2 enriched; DELETED Cadejo \"Santa Ana\" (no taproom there). Script: scripts/add-tail-batch9-details.js"
+  },
+  {
+    "city": "copan-ruinas",
+    "date": "2026-09-25",
+    "note": "3/3 enriched. Script: scripts/add-tail-batch9-details.js"
+  },
+  {
+    "city": "santa-catalina-panama",
+    "date": "2026-09-25",
+    "note": "3/3 enriched. Script: scripts/add-tail-batch9-details.js"
+  },
+  {
+    "city": "aregua",
+    "date": "2026-09-25",
+    "note": "1 enriched; DELETED Posada Ne'ery + La Cocina de Aregua (no trace). NEEDS new verified spots. Script: scripts/add-tail-batch9-details.js"
+  },
+  {
+    "city": "san-ignacio",
+    "date": "2026-09-25",
+    "note": "3/3 enriched. Script: scripts/add-tail-batch9-details.js"
+  },
+  {
+    "city": "choroni",
+    "date": "2026-09-25",
+    "note": "2 enriched; DELETED Restaurante Mango (no trace). Script: scripts/add-tail-batch9-details.js"
+  },
+  {
+    "city": "morrocoy",
+    "date": "2026-09-25",
+    "note": "1 enriched; DELETED Villa Gregoria + Restaurante Tucacas (no trace/generic). NEEDS new verified spots. Script: scripts/add-tail-batch9-details.js"
+  },
+  {
+    "city": "merida-venezuela",
+    "date": "2026-09-25",
+    "note": "3/3 enriched; Coromoto reopened 2024. Script: scripts/add-tail-batch9-details.js"
   }
 ]
