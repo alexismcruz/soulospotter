@@ -458,5 +458,45 @@
     "city": "merida-venezuela",
     "date": "2026-09-25",
     "note": "3/3 enriched; Coromoto reopened 2024. Script: scripts/add-tail-batch9-details.js"
+  },
+  {
+    "city": "manuel-antonio",
+    "date": "2026-09-25",
+    "note": "2 enriched; DELETED Selina Manuel Antonio (permanently closed). Script: scripts/add-tail-batch10-details.js"
+  },
+  {
+    "city": "san-gil",
+    "date": "2026-09-25",
+    "note": "3/3 enriched. Script: scripts/add-tail-batch10-details.js"
+  },
+  {
+    "city": "flores",
+    "date": "2026-09-25",
+    "note": "3/3 enriched. Script: scripts/add-tail-batch10-details.js"
+  },
+  {
+    "city": "puerto-ayora",
+    "date": "2026-09-25",
+    "note": "3/3 enriched; Galapagos Native address fixed. Script: scripts/add-tail-batch10-details.js"
+  },
+  {
+    "city": "semuc-champey",
+    "date": "2026-09-25",
+    "note": "2 enriched; DELETED Cafe Lanquin (no trace). Script: scripts/add-tail-batch10-details.js"
+  },
+  {
+    "city": "suchitoto",
+    "date": "2026-09-25",
+    "note": "3/3 enriched; El Necio desc corrected. Script: scripts/add-tail-batch10-details.js"
+  },
+  {
+    "city": "montanita",
+    "date": "2026-09-25",
+    "note": "3/3 enriched. Script: scripts/add-tail-batch10-details.js"
+  },
+  {
+    "city": "canaima",
+    "date": "2026-09-25",
+    "note": "3/3 enriched; Venezuela advisory notes. Script: scripts/add-tail-batch10-details.js"
   }
 ]
