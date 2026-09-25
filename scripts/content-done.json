@@ -298,5 +298,45 @@
     "city": "cap-haitien",
     "date": "2026-09-25",
     "note": "3/3 enriched; Marche de Fer = Marche Cluny; travel-advisory notes added. Script: scripts/add-tail-batch5-details.js"
+  },
+  {
+    "city": "holetown",
+    "date": "2026-09-25",
+    "note": "3/3 enriched. Script: scripts/add-tail-batch6-details.js"
+  },
+  {
+    "city": "jacmel",
+    "date": "2026-09-25",
+    "note": "3/3 enriched; Bas-Bleu → Bassin Bleu; Haiti advisory notes. Script: scripts/add-tail-batch6-details.js"
+  },
+  {
+    "city": "bathsheba",
+    "date": "2026-09-25",
+    "note": "3/3 enriched; Andromeda 8 acres. Script: scripts/add-tail-batch6-details.js"
+  },
+  {
+    "city": "port-au-prince",
+    "date": "2026-09-25",
+    "note": "2 enriched with strong safety warnings; DELETED Oloffson (burned July 2025). OPEN QUESTION for Alexis: whether to keep Port-au-Prince listed at all given gang control. Script: scripts/add-tail-batch6-details.js"
+  },
+  {
+    "city": "crown-point",
+    "date": "2026-09-25",
+    "note": "3/3 enriched. Script: scripts/add-tail-batch6-details.js"
+  },
+  {
+    "city": "speyside-tobago",
+    "date": "2026-09-25",
+    "note": "3/3 enriched; generic manta entry → Speyside Reefs. Script: scripts/add-tail-batch6-details.js"
+  },
+  {
+    "city": "speightstown",
+    "date": "2026-09-25",
+    "note": "2 enriched; DELETED Ariel Sands Beach (doesn't exist); Fish Net → The Fish Pot. Script: scripts/add-tail-batch6-details.js"
+  },
+  {
+    "city": "labadee",
+    "date": "2026-09-25",
+    "note": "2 enriched; DELETED generic Nord Coast Seafood Shacks; Lakou Lakay located in Milot. Script: scripts/add-tail-batch6-details.js"
   }
 ]
