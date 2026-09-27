@@ -898,5 +898,45 @@
     "city": "colonia-del-sacramento",
     "date": "2026-09-27",
     "note": "Charco address corrected to San Pedro 116; El Viajero is Viajero Colonia Hostel. Script: scripts/add-tail-batch20-details.js"
+  },
+  {
+    "city": "cuenca",
+    "date": "2026-09-27",
+    "note": "Verified Café Ñucallacta (Hermano Miguel 5-62), Posada del Ángel (Bolívar 14-11). Script: scripts/add-tail-batch21-details.js"
+  },
+  {
+    "city": "montevideo",
+    "date": "2026-09-27",
+    "note": "Splendido is a 14-room hotel (not a hostel); Café Brasilero verified. Script: scripts/add-tail-batch21-details.js"
+  },
+  {
+    "city": "san-salvador",
+    "date": "2026-09-27",
+    "note": "Verified Hostal Cumbres del Volcán (85 Av. Norte 637), Viva Espresso. Script: scripts/add-tail-batch21-details.js"
+  },
+  {
+    "city": "etosha",
+    "date": "2026-09-27",
+    "note": "Verified Okaukuejo (NWR), waterhole, Etosha Lookout. Script: scripts/add-tail-batch21-details.js"
+  },
+  {
+    "city": "amboseli",
+    "date": "2026-09-27",
+    "note": "Deleted generic Kimana Gate Picnic Site; Kibo Safari Camp verified. Now 2 spots. Script: scripts/add-tail-batch21-details.js"
+  },
+  {
+    "city": "berlin",
+    "date": "2026-09-27",
+    "note": "Verified Circus Hostel, Roamers, East Side Gallery. Script: scripts/add-tail-batch21-details.js"
+  },
+  {
+    "city": "garden-route",
+    "date": "2026-09-27",
+    "note": "Verified Island Vibe Knysna, The Fat Fish (Milkwood Centre), Storms River bridge. Script: scripts/add-tail-batch21-details.js"
+  },
+  {
+    "city": "hwange",
+    "date": "2026-09-27",
+    "note": "Main Camp restaurant named (Waterbuck's Head); Nyamandhlovu platform verified. Script: scripts/add-tail-batch21-details.js"
   }
 ]
