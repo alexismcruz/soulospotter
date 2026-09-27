@@ -818,5 +818,45 @@
     "city": "byron-bay",
     "date": "2026-09-27",
     "note": "Deleted Flow Athletic (Sydney only); Elements of Byron verified. Now 2 spots. Script: scripts/add-tail-batch18-details.js"
+  },
+  {
+    "city": "asuncion",
+    "date": "2026-09-27",
+    "note": "Deleted El Café Literario (closed June 2020); Black Cat Hostel verified. Now 2 spots. Script: scripts/add-tail-batch19-details.js"
+  },
+  {
+    "city": "banos-ecuador",
+    "date": "2026-09-27",
+    "note": "Stray Dog address corrected to Rocafuerte y Maldonado; Community Hostel Baños verified. Script: scripts/add-tail-batch19-details.js"
+  },
+  {
+    "city": "puerto-viejo",
+    "date": "2026-09-27",
+    "note": "Verified Bread & Chocolate, Rocking J's, Playa Cocles. Script: scripts/add-tail-batch19-details.js"
+  },
+  {
+    "city": "queen-elizabeth-np",
+    "date": "2026-09-27",
+    "note": "Verified Simba Safari Camp (Lake Kikorongo), Mweya Safari Lodge. Script: scripts/add-tail-batch19-details.js"
+  },
+  {
+    "city": "iquitos",
+    "date": "2026-09-27",
+    "note": "Verified Casa Fitzcarraldo, Dawn on the Amazon (Malecón Maldonado 185). Script: scripts/add-tail-batch19-details.js"
+  },
+  {
+    "city": "new-york-city",
+    "date": "2026-09-27",
+    "note": "Verified Ace Hotel NY (reopened 2021), High Line, The Bean. Script: scripts/add-tail-batch19-details.js"
+  },
+  {
+    "city": "florianopolis",
+    "date": "2026-09-27",
+    "note": "Verified Box 32, Tucano House (Rua das Araras 229). Script: scripts/add-tail-batch19-details.js"
+  },
+  {
+    "city": "punta-del-este",
+    "date": "2026-09-27",
+    "note": "Verified Parador La Huella, The Trip Hostel, La Mano. Script: scripts/add-tail-batch19-details.js"
   }
 ]
