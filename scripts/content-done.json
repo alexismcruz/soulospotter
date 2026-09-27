@@ -658,5 +658,45 @@
     "city": "nairobi",
     "date": "2026-09-27",
     "note": "Verified Wildebeest Eco Camp (151 Mokoyeti Rd West), Giraffe Centre (AFEW), Java House. Script: scripts/add-tail-batch14-details.js"
+  },
+  {
+    "city": "pemba",
+    "date": "2026-09-27",
+    "note": "Deleted duplicate Pemba Magic restaurant; Russell's Place is on Av. Marginal, Nanhimbe; Cabo Delgado advisory added. Now 2 spots. Script: scripts/add-tail-batch15-details.js"
+  },
+  {
+    "city": "stone-town",
+    "date": "2026-09-27",
+    "note": "Verified Emerson Spice (Tea House), Forodhani, Christ Church/slave market. Script: scripts/add-tail-batch15-details.js"
+  },
+  {
+    "city": "butare",
+    "date": "2026-09-27",
+    "note": "Verified Hotel Credo, Inzozi Nziza (opposite), Ethnographic Museum. Script: scripts/add-tail-batch15-details.js"
+  },
+  {
+    "city": "kidepo-valley",
+    "date": "2026-09-27",
+    "note": "Deleted Kidepo Community Eatery (no trace); Apoka Rest Camp is UWA. Now 2 spots. Script: scripts/add-tail-batch15-details.js"
+  },
+  {
+    "city": "kumasi",
+    "date": "2026-09-27",
+    "note": "Verified Four Villages Inn (412 Melcom Rd), Vic Baboo's (Nhyiaeso), Kejetia. Script: scripts/add-tail-batch15-details.js"
+  },
+  {
+    "city": "nyungwe",
+    "date": "2026-09-27",
+    "note": "Nyungwe Forest Lodge Camp corrected to One&Only Nyungwe House; Top View Café corrected to Top View Hill Hotel restaurant. Script: scripts/add-tail-batch15-details.js"
+  },
+  {
+    "city": "saint-louis-senegal",
+    "date": "2026-09-27",
+    "note": "Verified La Linguère (Rue Blaise Diagne), La Maison Rose. Script: scripts/add-tail-batch15-details.js"
+  },
+  {
+    "city": "volta-region",
+    "date": "2026-09-27",
+    "note": "Verified Big Foot Safari Lodge (Wli), Afadjato, Wli falls. Script: scripts/add-tail-batch15-details.js"
   }
 ]
