@@ -778,5 +778,45 @@
     "city": "harare",
     "date": "2026-09-27",
     "note": "Verified Café Nush Avondale and It's a Small World Backpackers (Avondale). Script: scripts/add-tail-batch17-details.js"
+  },
+  {
+    "city": "merzouga",
+    "date": "2026-09-27",
+    "note": "Deleted generic Erg Chebbi Desert Camp; Café Nora is in Khamlia. Now 2 spots. Script: scripts/add-tail-batch18-details.js"
+  },
+  {
+    "city": "monteverde",
+    "date": "2026-09-27",
+    "note": "Verified Café Monteverde (cooperative café), Sloth Backpackers, reserve. Script: scripts/add-tail-batch18-details.js"
+  },
+  {
+    "city": "swakopmund",
+    "date": "2026-09-27",
+    "note": "Verified Skeleton Beach Backpackers, Slowtown, The Tug. Script: scripts/add-tail-batch18-details.js"
+  },
+  {
+    "city": "tegucigalpa",
+    "date": "2026-09-27",
+    "note": "Deleted Casa Quinchon (a coworking building, not a hostel); Café Paradiso verified. Now 2 spots. Script: scripts/add-tail-batch18-details.js"
+  },
+  {
+    "city": "san-cristobal-de-las-casas",
+    "date": "2026-09-27",
+    "note": "Verified Frontera (Belisario Domínguez 35), Rossco (Real de Mexicanos 16). Script: scripts/add-tail-batch18-details.js"
+  },
+  {
+    "city": "encarnacion",
+    "date": "2026-09-27",
+    "note": "Deleted Cafetería del Sur (no trace); De La Costa Hotel verified. Now 2 spots. Script: scripts/add-tail-batch18-details.js"
+  },
+  {
+    "city": "portland",
+    "date": "2026-09-27",
+    "note": "Verified Powell's, Society Hotel, Forest Park; added links. Script: scripts/add-tail-batch18-details.js"
+  },
+  {
+    "city": "byron-bay",
+    "date": "2026-09-27",
+    "note": "Deleted Flow Athletic (Sydney only); Elements of Byron verified. Now 2 spots. Script: scripts/add-tail-batch18-details.js"
   }
 ]
