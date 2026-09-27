@@ -618,5 +618,45 @@
     "city": "francistown",
     "date": "2026-09-27",
     "note": "Thapama Restaurant corrected to Ivory Grill at Cresta Thapama; Cresta Marang verified. Script: scripts/add-tail-batch13-details.js"
+  },
+  {
+    "city": "el-zonte",
+    "date": "2026-09-27",
+    "note": "Deleted Bitcoin Beach Café (no such café); Esencia Nativa verified. Now 2 spots. Script: scripts/add-tail-batch14-details.js"
+  },
+  {
+    "city": "el-valle-de-anton",
+    "date": "2026-09-27",
+    "note": "Verified Bodhi Hostel, La Casa de Lourdes, Cerro Gaital. Script: scripts/add-tail-batch14-details.js"
+  },
+  {
+    "city": "cairo",
+    "date": "2026-09-27",
+    "note": "Verified Dahab Hostel (26 Mahmoud Bassiouny rooftop), Zööba Zamalek. Script: scripts/add-tail-batch14-details.js"
+  },
+  {
+    "city": "chefchaouen",
+    "date": "2026-09-27",
+    "note": "Verified Café Clock Chefchaouen; Riad Cherifa thinly sourced, described cautiously. Script: scripts/add-tail-batch14-details.js"
+  },
+  {
+    "city": "lamu",
+    "date": "2026-09-27",
+    "note": "Verified Lamu House, Whispers (Baraka Gallery building). Script: scripts/add-tail-batch14-details.js"
+  },
+  {
+    "city": "masai-mara",
+    "date": "2026-09-27",
+    "note": "Deleted generic Talek Town Eateries; Aruba Mara Camp verified. Now 2 spots. Script: scripts/add-tail-batch14-details.js"
+  },
+  {
+    "city": "moshi",
+    "date": "2026-09-27",
+    "note": "Verified Kilimanjaro Backpackers Hotel (average reviews), Union Café (KNCU). Script: scripts/add-tail-batch14-details.js"
+  },
+  {
+    "city": "nairobi",
+    "date": "2026-09-27",
+    "note": "Verified Wildebeest Eco Camp (151 Mokoyeti Rd West), Giraffe Centre (AFEW), Java House. Script: scripts/add-tail-batch14-details.js"
   }
 ]
