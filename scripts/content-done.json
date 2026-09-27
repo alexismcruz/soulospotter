@@ -538,5 +538,45 @@
     "city": "placencia",
     "date": "2026-09-25",
     "note": "3/3 enriched. Script: scripts/add-tail-batch11-details.js"
+  },
+  {
+    "city": "kasane",
+    "date": "2026-09-27",
+    "note": "Verified Thebe River Safaris (address, site), The Old House, Chobe riverfront. Script: scripts/add-tail-batch12-details.js"
+  },
+  {
+    "city": "sossusvlei",
+    "date": "2026-09-27",
+    "note": "Sesriem Restplace Café (no such name) corrected to Sossus Oasis shop & café; Sesriem Camp is NWR. Script: scripts/add-tail-batch12-details.js"
+  },
+  {
+    "city": "arusha",
+    "date": "2026-09-27",
+    "note": "Verified Arusha Backpackers Hotel (Sokoine Rd), Africafé (Boma Rd), central market. Script: scripts/add-tail-batch12-details.js"
+  },
+  {
+    "city": "dar-es-salaam",
+    "date": "2026-09-27",
+    "note": "Deleted Firefly Hostel (Firefly is in Bagamoyo); verified Mamboz, Kivukoni. Script: scripts/add-tail-batch12-details.js"
+  },
+  {
+    "city": "essaouira",
+    "date": "2026-09-27",
+    "note": "Hostel Essaouira corrected to Essaouira Hostel (HI); Triskala verified. Script: scripts/add-tail-batch12-details.js"
+  },
+  {
+    "city": "thies",
+    "date": "2026-09-27",
+    "note": "Deleted Le Cèdre (no trace); verified Lat-Dior and MSAD. Script: scripts/add-tail-batch12-details.js"
+  },
+  {
+    "city": "zanzibar",
+    "date": "2026-09-27",
+    "note": "Verified Lost & Found (opp. Shangani PO), Lukmaan, Nungwi. Script: scripts/add-tail-batch12-details.js"
+  },
+  {
+    "city": "tamale",
+    "date": "2026-09-27",
+    "note": "Catholic Guesthouse corrected to Catholic Archdiocesan Guest House; Sparkles is at Centre for National Culture. Script: scripts/add-tail-batch12-details.js"
   }
 ]
