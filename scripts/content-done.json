@@ -738,5 +738,45 @@
     "city": "alexandria",
     "date": "2026-09-27",
     "note": "Verified Hotel Union (164 Corniche), Mohamed Ahmed (Shakour St, 1957). Script: scripts/add-tail-batch16-details.js"
+  },
+  {
+    "city": "ilha-de-mocambique",
+    "date": "2026-09-27",
+    "note": "Casa de Gabriel corrected to Casa do Gabriel / Pátio dos Quintalinhos; Relíquias verified. Script: scripts/add-tail-batch17-details.js"
+  },
+  {
+    "city": "tofo",
+    "date": "2026-09-27",
+    "note": "Deleted Tofo Tofo Beach Café (no trace); Mozambeat verified. Now 2 spots. Script: scripts/add-tail-batch17-details.js"
+  },
+  {
+    "city": "aswan",
+    "date": "2026-09-27",
+    "note": "Verified Bob Marley Nubian guesthouse and Nubian House (East Bank, First Cataract view — not Elephantine). Script: scripts/add-tail-batch17-details.js"
+  },
+  {
+    "city": "bulawayo",
+    "date": "2026-09-27",
+    "note": "Verified Burke's Backpackers Paradise and Indaba Book Café (92 Josiah Tongogara Ave). Script: scripts/add-tail-batch17-details.js"
+  },
+  {
+    "city": "bwindi",
+    "date": "2026-09-27",
+    "note": "Deleted Gorilla Friends Café (no trace); Buhoma Community Rest Camp verified. Now 2 spots. Script: scripts/add-tail-batch17-details.js"
+  },
+  {
+    "city": "cape-coast",
+    "date": "2026-09-27",
+    "note": "Verified Baobab House (social enterprise), Oasis Beach Resort. Script: scripts/add-tail-batch17-details.js"
+  },
+  {
+    "city": "gisenyi",
+    "date": "2026-09-27",
+    "note": "Inzu Lodge Deck corrected to INZU Lodge; Paradis Malahide (Rubona) verified. Script: scripts/add-tail-batch17-details.js"
+  },
+  {
+    "city": "harare",
+    "date": "2026-09-27",
+    "note": "Verified Café Nush Avondale and It's a Small World Backpackers (Avondale). Script: scripts/add-tail-batch17-details.js"
   }
 ]
