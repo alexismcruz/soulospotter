@@ -938,5 +938,45 @@
     "city": "hwange",
     "date": "2026-09-27",
     "note": "Main Camp restaurant named (Waterbuck's Head); Nyamandhlovu platform verified. Script: scripts/add-tail-batch21-details.js"
+  },
+  {
+    "city": "arequipa",
+    "date": "2026-09-27",
+    "note": "Verified Crepísimo (Alianza Francesa), Wild Rover (Ugarte 111), Santa Catalina. Script: scripts/add-tail-batch22-details.js"
+  },
+  {
+    "city": "cape-town",
+    "date": "2026-09-27",
+    "note": "Verified Once in Cape Town (73 Kloof St), Truth Coffee, Cableway. Script: scripts/add-tail-batch22-details.js"
+  },
+  {
+    "city": "kruger",
+    "date": "2026-09-27",
+    "note": "Verified Cattle Baron Skukuza, Skukuza camp; drive reframed as H4-1 road. Script: scripts/add-tail-batch22-details.js"
+  },
+  {
+    "city": "foz-do-iguacu",
+    "date": "2026-09-27",
+    "note": "Capitão Bar address corrected (Av. Jorge Schimmelpfeng 288); Tetris corrected (Av. das Cataratas 639). Script: scripts/add-tail-batch22-details.js"
+  },
+  {
+    "city": "puerto-natales",
+    "date": "2026-09-27",
+    "note": "Verified Café Kaikén (Baquedano 699), The Singing Lamb (Arauco 779). Script: scripts/add-tail-batch22-details.js"
+  },
+  {
+    "city": "manaus",
+    "date": "2026-09-27",
+    "note": "Caxiri address corrected (Rua 10 de Julho 495); Local Hostel verified. Script: scripts/add-tail-batch22-details.js"
+  },
+  {
+    "city": "zagreb",
+    "date": "2026-09-27",
+    "note": "Verified Dolac, Museum of Broken Relationships, Strossmayer promenade. Script: scripts/add-tail-batch22-details.js"
+  },
+  {
+    "city": "mexico-city",
+    "date": "2026-09-27",
+    "note": "Verified Café Avellaneda (Higuera 40A), El Parnita (Yucatán 84), Casa Azul. Script: scripts/add-tail-batch22-details.js"
   }
 ]
