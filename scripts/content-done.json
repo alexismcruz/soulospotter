@@ -858,5 +858,45 @@
     "city": "punta-del-este",
     "date": "2026-09-27",
     "note": "Verified Parador La Huella, The Trip Hostel, La Mano. Script: scripts/add-tail-batch19-details.js"
+  },
+  {
+    "city": "huaraz",
+    "date": "2026-09-27",
+    "note": "Selina Huaraz address corrected to Jirón Italia (brand closures noted); Café Andino verified. Script: scripts/add-tail-batch20-details.js"
+  },
+  {
+    "city": "pucon",
+    "date": "2026-09-27",
+    "note": "Café de la Plaza corrected to Café de la P (O'Higgins 212); Chili Kiwi address corrected to Roberto Geis 355. Script: scripts/add-tail-batch20-details.js"
+  },
+  {
+    "city": "san-pedro-de-atacama",
+    "date": "2026-09-27",
+    "note": "Hostal La Ruca corrected to La Rukka Hostal (Toconao 513); Adobe verified. Script: scripts/add-tail-batch20-details.js"
+  },
+  {
+    "city": "cali",
+    "date": "2026-09-27",
+    "note": "Deleted La Pinta Hostel (no trace); Café Macondo verified. Now 2 spots. Script: scripts/add-tail-batch20-details.js"
+  },
+  {
+    "city": "quito",
+    "date": "2026-09-27",
+    "note": "Verified Café Mosaico, Community Hostel, La Compañía. Script: scripts/add-tail-batch20-details.js"
+  },
+  {
+    "city": "potosi",
+    "date": "2026-09-27",
+    "note": "Verified Café La Plata, Hostal La Casona (Chuquisaca 460), Casa de la Moneda. Script: scripts/add-tail-batch20-details.js"
+  },
+  {
+    "city": "salvador",
+    "date": "2026-09-27",
+    "note": "Deleted Café com Letras (no trace); Laranjeiras Hostel verified. Now 2 spots. Script: scripts/add-tail-batch20-details.js"
+  },
+  {
+    "city": "colonia-del-sacramento",
+    "date": "2026-09-27",
+    "note": "Charco address corrected to San Pedro 116; El Viajero is Viajero Colonia Hostel. Script: scripts/add-tail-batch20-details.js"
   }
 ]
