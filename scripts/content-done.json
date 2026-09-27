@@ -698,5 +698,45 @@
     "city": "volta-region",
     "date": "2026-09-27",
     "note": "Verified Big Foot Safari Lodge (Wli), Afadjato, Wli falls. Script: scripts/add-tail-batch15-details.js"
+  },
+  {
+    "city": "drakensberg",
+    "date": "2026-09-27",
+    "note": "Valley Bakery corrected from Underberg to Champagne Valley (R600); Amphitheatre Backpackers verified. Script: scripts/add-tail-batch16-details.js"
+  },
+  {
+    "city": "gaborone",
+    "date": "2026-09-27",
+    "note": "Verified Mokolodi Backpackers, Sanitas Tea Garden, Three Dikgosi. Script: scripts/add-tail-batch16-details.js"
+  },
+  {
+    "city": "johannesburg",
+    "date": "2026-09-27",
+    "note": "Verified Curiocity (302 Fox St), Father Coffee, Apartheid Museum. Script: scripts/add-tail-batch16-details.js"
+  },
+  {
+    "city": "luderitz",
+    "date": "2026-09-27",
+    "note": "Verified Diaz Coffee Shop/Oyster Bar, Nest Hotel (820 Diaz St). Script: scripts/add-tail-batch16-details.js"
+  },
+  {
+    "city": "ziguinchor",
+    "date": "2026-09-27",
+    "note": "Verified Le Flamboyant, Le Kassa (Place Jean-Paul II). Script: scripts/add-tail-batch16-details.js"
+  },
+  {
+    "city": "windhoek",
+    "date": "2026-09-27",
+    "note": "Verified Chameleon, Joe's Beerhouse (160 Nelson Mandela Ave), Slowtown. Script: scripts/add-tail-batch16-details.js"
+  },
+  {
+    "city": "addis-ababa",
+    "date": "2026-09-27",
+    "note": "Verified Mr Martin's Cozy Place (Bole), Tomoca (Piassa, 1953), National Museum. Script: scripts/add-tail-batch16-details.js"
+  },
+  {
+    "city": "alexandria",
+    "date": "2026-09-27",
+    "note": "Verified Hotel Union (164 Corniche), Mohamed Ahmed (Shakour St, 1957). Script: scripts/add-tail-batch16-details.js"
   }
 ]
