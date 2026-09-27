@@ -578,5 +578,45 @@
     "city": "tamale",
     "date": "2026-09-27",
     "note": "Catholic Guesthouse corrected to Catholic Archdiocesan Guest House; Sparkles is at Centre for National Culture. Script: scripts/add-tail-batch12-details.js"
+  },
+  {
+    "city": "toubab-dialaw",
+    "date": "2026-09-27",
+    "note": "Deleted Chez Manou (no trace); Sobo Badé verified (Gérard Chenet, 1970). Script: scripts/add-tail-batch13-details.js"
+  },
+  {
+    "city": "harar",
+    "date": "2026-09-27",
+    "note": "Verified Hirut, Rowda Waber (shared baths, curfew noted), Jugol. Script: scripts/add-tail-batch13-details.js"
+  },
+  {
+    "city": "dahab",
+    "date": "2026-09-27",
+    "note": "Verified Penguin Divers Club, Ralph's German Bakery (2 branches), Blue Hole safety. Script: scripts/add-tail-batch13-details.js"
+  },
+  {
+    "city": "kampala",
+    "date": "2026-09-27",
+    "note": "Verified Endiro Kisementi (23B Cooper Rd), Fat Cat (Kololo), Kasubi Tombs. Script: scripts/add-tail-batch13-details.js"
+  },
+  {
+    "city": "lalibela",
+    "date": "2026-09-27",
+    "note": "Verified Ben Abeba, Sora Lodge, rock churches. Script: scripts/add-tail-batch13-details.js"
+  },
+  {
+    "city": "fes",
+    "date": "2026-09-27",
+    "note": "Verified Café Clock (7 Derb el Magana), Riad Verus (Batha), Chouara. Script: scripts/add-tail-batch13-details.js"
+  },
+  {
+    "city": "vilanculos",
+    "date": "2026-09-27",
+    "note": "Verified Zombie Cucumber, Casa Rex; description kept general. Script: scripts/add-tail-batch13-details.js"
+  },
+  {
+    "city": "francistown",
+    "date": "2026-09-27",
+    "note": "Thapama Restaurant corrected to Ivory Grill at Cresta Thapama; Cresta Marang verified. Script: scripts/add-tail-batch13-details.js"
   }
 ]
