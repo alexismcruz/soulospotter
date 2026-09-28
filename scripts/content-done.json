@@ -1058,5 +1058,45 @@
     "city": "montreal",
     "date": "2026-09-28",
     "note": "Removed unverified smoked-meat claim at Jean-Talon; others verified. Script: scripts/add-tail-batch24-details.js"
+  },
+  {
+    "city": "melbourne",
+    "date": "2026-09-28",
+    "note": "Punthill address corrected to 11-17 Cohen Place; Patricia verified. Script: scripts/add-tail-batch25-details.js"
+  },
+  {
+    "city": "cordoba-argentina",
+    "date": "2026-09-28",
+    "note": "Sorocabana moved to Hotel Sussex arcade (2022); Aldea is in Centro. Script: scripts/add-tail-batch25-details.js"
+  },
+  {
+    "city": "uyuni",
+    "date": "2026-09-28",
+    "note": "Verified Luna Salada (Colchani), Minuteman Pizza (Hotel Tonito). Script: scripts/add-tail-batch25-details.js"
+  },
+  {
+    "city": "salta",
+    "date": "2026-09-28",
+    "note": "Café del Tiempo is a jazz/blues/rock bar, not a folklore peña — corrected. Script: scripts/add-tail-batch25-details.js"
+  },
+  {
+    "city": "santiago",
+    "date": "2026-09-28",
+    "note": "Café Triciclo address corrected to Santo Domingo 598; Río Amazonas verified. Script: scripts/add-tail-batch25-details.js"
+  },
+  {
+    "city": "valparaiso",
+    "date": "2026-09-28",
+    "note": "Verified Casa Volante, Fauna Hotel (Pasaje Dimalow 166). Script: scripts/add-tail-batch25-details.js"
+  },
+  {
+    "city": "medellin",
+    "date": "2026-09-28",
+    "note": "Selina Medellín rebranded Socialtel Provenza (Carrera 32D #9-17). Script: scripts/add-tail-batch25-details.js"
+  },
+  {
+    "city": "tbilisi",
+    "date": "2026-09-28",
+    "note": "Fabrika address corrected (Egnate Ninoshvili 8); Shavi Lomi moved to Kvlividze St 28. Script: scripts/add-tail-batch25-details.js"
   }
 ]
