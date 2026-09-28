@@ -978,5 +978,45 @@
     "city": "mexico-city",
     "date": "2026-09-27",
     "note": "Verified Café Avellaneda (Higuera 40A), El Parnita (Yucatán 84), Casa Azul. Script: scripts/add-tail-batch22-details.js"
+  },
+  {
+    "city": "new-mexico",
+    "date": "2026-09-28",
+    "note": "Verified Meow Wolf, Old Town ABQ, White Sands; added links. Script: scripts/add-tail-batch23-details.js"
+  },
+  {
+    "city": "san-francisco",
+    "date": "2026-09-28",
+    "note": "Verified Ferry Building, bridge walk, Dolores Park. Script: scripts/add-tail-batch23-details.js"
+  },
+  {
+    "city": "quebec-city",
+    "date": "2026-09-28",
+    "note": "Verified Aux Anciens Canadiens (Maison Jacquet), Terrasse Dufferin. Script: scripts/add-tail-batch23-details.js"
+  },
+  {
+    "city": "santa-cruz-bolivia",
+    "date": "2026-09-28",
+    "note": "Verified Lorca Café, Jodanga, Biocentro Güembé. Script: scripts/add-tail-batch23-details.js"
+  },
+  {
+    "city": "sucre",
+    "date": "2026-09-28",
+    "note": "Kultur Berlin is a party hostel (Spanish-school claim removed); Café Mirador verified. Script: scripts/add-tail-batch23-details.js"
+  },
+  {
+    "city": "split",
+    "date": "2026-09-28",
+    "note": "Verified Diocletian's Palace, Marjan, Pazar. Script: scripts/add-tail-batch23-details.js"
+  },
+  {
+    "city": "nashville",
+    "date": "2026-09-28",
+    "note": "Prince's original Ewing Dr closed 2019 — moved to Prince's South (5814 Nolensville Pike). Script: scripts/add-tail-batch23-details.js"
+  },
+  {
+    "city": "new-orleans",
+    "date": "2026-09-28",
+    "note": "Café du Monde no longer 24/7; Lafayette Cemetery reopens 1 Oct 2026 guided-only. Script: scripts/add-tail-batch23-details.js"
   }
 ]
