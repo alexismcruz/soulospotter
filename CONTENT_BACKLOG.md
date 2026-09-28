@@ -9,7 +9,7 @@ _Generated 2026-09-28 by `node scripts/content-audit.js`. Do not edit by hand �
 - Also check the searched intent (solo dining / going out alone / cafes to meet people) — see `project_soulospotter_seo_baseline` memory.
 
 ## Where we stand
-- Published cities: **321** · spots: **2605**
+- Published cities: **321** · spots: **2616**
 - Spots with description under 150 chars: **28** (1%)
 - Spots with **no website and no Maps link** (nothing to click): **16** (1%)
 - Spots with a generic/missing address: **72** (3%)
@@ -101,7 +101,7 @@ _(guides are the best pages for 'solo travel <country>' searches; see `src/lib/g
 - United States — 6 cities, 18 spots
 - Brazil — 6 cities, 17 spots
 - Belize — 5 cities, 15 spots
-- Paraguay — 5 cities, 10 spots
+- Paraguay — 5 cities, 14 spots
 - Dominican Republic — 5 cities, 14 spots
 - Ecuador — 5 cities, 15 spots
 - Argentina — 5 cities, 21 spots
@@ -109,7 +109,7 @@ _(guides are the best pages for 'solo travel <country>' searches; see `src/lib/g
 - Egypt — 5 cities, 15 spots
 - Kenya — 5 cities, 13 spots
 - Costa Rica — 5 cities, 14 spots
-- Uruguay — 5 cities, 12 spots
+- Uruguay — 5 cities, 15 spots
 - Uganda — 5 cities, 13 spots
 - Cuba — 5 cities, 14 spots
 - Puerto Rico — 5 cities, 15 spots
@@ -121,7 +121,7 @@ _(guides are the best pages for 'solo travel <country>' searches; see `src/lib/g
 - El Salvador — 5 cities, 12 spots
 - Canada — 5 cities, 15 spots
 - Bolivia — 5 cities, 15 spots
-- Venezuela — 5 cities, 12 spots
+- Venezuela — 5 cities, 14 spots
 - Chile — 5 cities, 15 spots
 - Senegal — 5 cities, 13 spots
 - Botswana — 5 cities, 15 spots
