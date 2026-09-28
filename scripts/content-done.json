@@ -1018,5 +1018,45 @@
     "city": "new-orleans",
     "date": "2026-09-28",
     "note": "Café du Monde no longer 24/7; Lafayette Cemetery reopens 1 Oct 2026 guided-only. Script: scripts/add-tail-batch23-details.js"
+  },
+  {
+    "city": "vancouver",
+    "date": "2026-09-28",
+    "note": "Verified Gastown, Granville Island market, Seawall. Script: scripts/add-tail-batch24-details.js"
+  },
+  {
+    "city": "banff",
+    "date": "2026-09-28",
+    "note": "Verified The Bison (211 Bear St), hot springs, Lake Louise. Script: scripts/add-tail-batch24-details.js"
+  },
+  {
+    "city": "toronto",
+    "date": "2026-09-28",
+    "note": "Verified Distillery District, Kensington, St. Lawrence Market. Script: scripts/add-tail-batch24-details.js"
+  },
+  {
+    "city": "la-paz",
+    "date": "2026-09-28",
+    "note": "Café del Mundo corrected to Sagárnaga 324; Loki description corrected (Av. América 120). Script: scripts/add-tail-batch24-details.js"
+  },
+  {
+    "city": "rio-de-janeiro",
+    "date": "2026-09-28",
+    "note": "Casa Amarelo is a boutique guesthouse (Joaquim Murtinho 569), not a hostel; Aprazível verified. Script: scripts/add-tail-batch24-details.js"
+  },
+  {
+    "city": "sao-paulo",
+    "date": "2026-09-28",
+    "note": "Ô de Casa address corrected to Inácio Pereira da Rocha 385; Coffee Lab verified. Script: scripts/add-tail-batch24-details.js"
+  },
+  {
+    "city": "barcelona",
+    "date": "2026-09-28",
+    "note": "Verified Generator, Boqueria, Sagrada Família. Script: scripts/add-tail-batch24-details.js"
+  },
+  {
+    "city": "montreal",
+    "date": "2026-09-28",
+    "note": "Removed unverified smoked-meat claim at Jean-Talon; others verified. Script: scripts/add-tail-batch24-details.js"
   }
 ]
